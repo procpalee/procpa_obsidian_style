@@ -306,6 +306,12 @@
       "type": "file"
     },
     {
+      "path": "src\\app\\globals.css",
+      "accessCount": 2,
+      "lastAccessed": 1775713839783,
+      "type": "file"
+    },
+    {
       "path": "src\\components\\home-c\\vault-drawer.tsx",
       "accessCount": 1,
       "lastAccessed": 1775635429094,
@@ -423,6 +429,12 @@
       "path": "src\\app\\footer-preview\\page.tsx",
       "accessCount": 1,
       "lastAccessed": 1775696371172,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\theme-preview\\page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1775713551890,
       "type": "file"
     }
   ],
