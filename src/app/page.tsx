@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { posts, series } from '#site/content'
-import { VaultSidebar, type VaultData } from '@/components/home-c/vault-sidebar'
-import { VaultDrawer } from '@/components/home-c/vault-drawer'
+import { VaultSidebar, type VaultData } from '@/components/vault/vault-sidebar'
+import { VaultDrawer } from '@/components/vault/vault-drawer'
 import { ScrollArea } from '@/components/ui/scroll-area'
 
 export const metadata: Metadata = {
@@ -51,8 +51,8 @@ export default function HomePage() {
       <div className="mx-auto grid min-h-[calc(100vh-3.5rem)] max-w-6xl grid-cols-12 gap-0 px-6 lg:px-0">
         {/* ───────── Left · Vault sidebar (desktop only) ───────── */}
         <aside className="hidden border-border/60 lg:col-span-3 lg:block lg:border-r">
-          <div className="sticky top-14 h-[calc(100vh-3.5rem)]">
-            <ScrollArea className="h-full">
+          <div className="group/sidebar sticky top-14 h-[calc(100vh-3.5rem)]">
+            <ScrollArea className="h-full [&_[data-slot=scroll-area-scrollbar]]:opacity-0 [&_[data-slot=scroll-area-scrollbar]]:transition-opacity group-hover/sidebar:[&_[data-slot=scroll-area-scrollbar]]:opacity-100">
               <div className="px-6 py-8">
                 <VaultSidebar data={vaultData} />
               </div>
@@ -77,17 +77,14 @@ export default function HomePage() {
             </div>
 
             {/* Title */}
-            <h1 className="mt-6 text-balance text-3xl font-semibold tracking-tight text-foreground/90 sm:text-5xl lg:mt-10 lg:text-6xl">
+            <h1 className="mt-6 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
               회계·재무 전문성에
               <br />
-              <span className="bg-gradient-to-r from-primary via-primary/90 to-blue-500 bg-clip-text text-transparent">
-                AI의 생산성
-              </span>
-              을 더하다.
+              AI의 생산성을 더하다.
             </h1>
 
-            <p className="mt-8 max-w-2xl text-[15px] leading-[1.8] text-muted-foreground sm:text-lg">
-              한국공인회계사 <span className="text-foreground font-medium">이재현</span>의 개인 지식
+            <p className="mt-6 max-w-2xl text-[15px] leading-[1.85] text-muted-foreground sm:text-base">
+              한국공인회계사 <span className="text-foreground">이재현</span>의 개인 지식
               데이터베이스. 실무에 즉시 활용 가능한 회계·재무 지식과 AI 생산성 노하우를
               한곳에서 정리합니다.
             </p>

@@ -180,15 +180,15 @@
   },
   "hotPaths": [
     {
-      "path": "src\\components\\graph\\local-graph.tsx",
-      "accessCount": 9,
-      "lastAccessed": 1775694746607,
+      "path": "src\\app\\page.tsx",
+      "accessCount": 17,
+      "lastAccessed": 1775711746040,
       "type": "file"
     },
     {
-      "path": "src\\app\\page.tsx",
-      "accessCount": 8,
-      "lastAccessed": 1775694414818,
+      "path": "src\\components\\graph\\local-graph.tsx",
+      "accessCount": 9,
+      "lastAccessed": 1775694746607,
       "type": "file"
     },
     {
@@ -228,6 +228,12 @@
       "type": "file"
     },
     {
+      "path": "src\\components\\site-footer.tsx",
+      "accessCount": 4,
+      "lastAccessed": 1775696745891,
+      "type": "file"
+    },
+    {
       "path": "CLAUDE.md",
       "accessCount": 3,
       "lastAccessed": 1775655443270,
@@ -249,6 +255,18 @@
       "path": "src\\components\\wiki-link.tsx",
       "accessCount": 3,
       "lastAccessed": 1775694755231,
+      "type": "file"
+    },
+    {
+      "path": "src",
+      "accessCount": 3,
+      "lastAccessed": 1775696682932,
+      "type": "directory"
+    },
+    {
+      "path": "src\\components\\ui\\scroll-area.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1775711726555,
       "type": "file"
     },
     {
@@ -279,18 +297,6 @@
       "path": "content\\posts\\hello-world.md",
       "accessCount": 2,
       "lastAccessed": 1775687216536,
-      "type": "file"
-    },
-    {
-      "path": "src\\components\\site-footer.tsx",
-      "accessCount": 2,
-      "lastAccessed": 1775691350482,
-      "type": "file"
-    },
-    {
-      "path": "src\\components\\ui\\scroll-area.tsx",
-      "accessCount": 2,
-      "lastAccessed": 1775694423027,
       "type": "file"
     },
     {
@@ -408,15 +414,15 @@
       "type": "file"
     },
     {
-      "path": "src",
-      "accessCount": 1,
-      "lastAccessed": 1775691306784,
-      "type": "directory"
-    },
-    {
       "path": "src\\app\\scrollbar-sample\\page.tsx",
       "accessCount": 1,
       "lastAccessed": 1775693563887,
+      "type": "file"
+    },
+    {
+      "path": "src\\app\\footer-preview\\page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1775696371172,
       "type": "file"
     }
   ],

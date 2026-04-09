@@ -36,14 +36,14 @@ const socials = [
 export function SiteFooter() {
   return (
     <footer className="mt-16 border-t border-border/60">
-      <div className="mx-auto flex max-w-6xl flex-col items-start gap-3 px-6 py-5 text-xs text-muted-foreground md:h-12 md:flex-row md:items-center md:justify-between md:py-0">
-        <div className="flex items-center gap-4">
-          <p>© {new Date().getFullYear()} PROCPA.</p>
+      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-3 px-6 py-5 text-xs text-muted-foreground md:h-14 md:grid-cols-3 md:py-0">
+        <p className="font-mono md:justify-self-start">© {new Date().getFullYear()} PROCPA</p>
+        <nav className="flex items-center gap-5 md:justify-self-center">
           <Link href="/terms" className="hover:text-foreground">이용약관</Link>
           <Link href="/disclaimer" className="hover:text-foreground">면책조항</Link>
           <Link href="/sitemap.xml" className="hover:text-foreground">사이트맵</Link>
-        </div>
-        <div className="flex items-center gap-3">
+        </nav>
+        <div className="flex items-center gap-4 md:justify-self-end">
           {socials.map((s) => {
             const Icon = s.icon
             return (
@@ -55,7 +55,7 @@ export function SiteFooter() {
                 aria-label={s.label}
                 className="transition-colors hover:text-foreground"
               >
-                <Icon className="h-3.5 w-3.5" />
+                <Icon className="h-4 w-4" />
               </a>
             )
           })}
