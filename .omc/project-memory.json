@@ -213,15 +213,15 @@
       "type": "file"
     },
     {
-      "path": "src\\app\\explore\\page.tsx",
-      "accessCount": 14,
-      "lastAccessed": 1775907412417,
+      "path": "src\\components\\site-header.tsx",
+      "accessCount": 16,
+      "lastAccessed": 1775911755224,
       "type": "file"
     },
     {
-      "path": "src\\components\\site-header.tsx",
-      "accessCount": 13,
-      "lastAccessed": 1775910405609,
+      "path": "src\\app\\explore\\page.tsx",
+      "accessCount": 14,
+      "lastAccessed": 1775907412417,
       "type": "file"
     },
     {
@@ -339,6 +339,12 @@
       "type": "file"
     },
     {
+      "path": "src\\components\\command-palette.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1775911738979,
+      "type": "file"
+    },
+    {
       "path": "src\\app\\series\\page.tsx",
       "accessCount": 2,
       "lastAccessed": 1775885750244,
@@ -360,12 +366,6 @@
       "path": "src\\components\\vault\\vault-sidebar.tsx",
       "accessCount": 2,
       "lastAccessed": 1775891296493,
-      "type": "file"
-    },
-    {
-      "path": "src\\components\\command-palette.tsx",
-      "accessCount": 2,
-      "lastAccessed": 1775891306424,
       "type": "file"
     },
     {

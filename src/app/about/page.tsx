@@ -164,7 +164,7 @@ export default function AboutPage() {
               <Timeline items={career} />
             </div>
           </div>
-          <div className="col-span-12 lg:col-span-6">
+          <div className="col-span-12 border-t border-border/60 pt-12 lg:col-span-6 lg:border-0 lg:pt-0">
             <div className="font-mono text-[11px] text-muted-foreground">
               Education
             </div>

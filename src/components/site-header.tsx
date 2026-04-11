@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { PalettePicker } from '@/components/palette-picker'
 import { CommandPalette } from '@/components/command-palette'
@@ -59,13 +60,14 @@ export function SiteHeader() {
           <CommandPalette />
           <PalettePicker />
           <ThemeToggle />
-          <button
-            onClick={() => setOpen((o) => !o)}
+          <Button
+            variant="ghost"
+            size="icon"
             aria-label="메뉴 열기"
-            className="ml-1 inline-flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground"
+            onClick={() => setOpen((o) => !o)}
           >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+            {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+          </Button>
         </div>
       </div>
 
