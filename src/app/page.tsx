@@ -4,6 +4,7 @@ import { posts, series } from '#site/content'
 import { VaultSidebar, type VaultData } from '@/components/vault/vault-sidebar'
 import { VaultDrawer } from '@/components/vault/vault-drawer'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { buildVaultTree } from '@/lib/vault-tree'
 
 export const metadata: Metadata = {
   title: 'PROCPA',
@@ -18,11 +19,6 @@ export default function HomePage() {
   const visiblePosts = posts.filter((p) => !p.draft)
   const visibleSeries = series.filter((s) => !s.draft)
 
-  const accountingPosts = visiblePosts.filter((p) => p.category === 'accounting')
-  const aiPosts = visiblePosts.filter((p) => p.category === 'ai')
-  const accountingSeries = visibleSeries.filter((s) => s.category === 'accounting')
-  const aiSeries = visibleSeries.filter((s) => s.category === 'ai')
-
   const recentPosts = [...visiblePosts]
     .sort((a, b) => +new Date(b.date) - +new Date(a.date))
     .slice(0, 6)
@@ -33,12 +29,11 @@ export default function HomePage() {
     .sort((a, b) => b[1] - a[1])
     .slice(0, 8)
 
+  const vaultTree = buildVaultTree(visiblePosts, visibleSeries)
+
   const vaultData: VaultData = {
+    tree: vaultTree,
     counts: {
-      accountingPosts: accountingPosts.length,
-      aiPosts: aiPosts.length,
-      accountingSeries: accountingSeries.length,
-      aiSeries: aiSeries.length,
       posts: visiblePosts.length,
       series: visibleSeries.length,
       tags: tagCounts.size,
@@ -84,15 +79,16 @@ export default function HomePage() {
             </h1>
 
             <p className="mt-6 max-w-2xl text-[15px] leading-[1.85] text-muted-foreground sm:text-base">
-              한국공인회계사 <span className="text-foreground">이재현</span>의 개인 지식
-              데이터베이스. 실무에 즉시 활용 가능한 회계·재무 지식과 AI 생산성 노하우를
-              한곳에서 정리합니다.
+              한국공인회계사의 개인 지식
+              데이터베이스. 
+              <br />
+              실무에 즉시 활용 가능한 회계·재무 지식과 AI 생산성 인사이트를 공유합니다.
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-2 font-mono text-[11px] text-muted-foreground">
-              <span className="rounded border border-border/60 px-2 py-0.5">#metadata</span>
-              <span className="rounded border border-border/60 px-2 py-0.5">#graph</span>
-              <span className="rounded border border-border/60 px-2 py-0.5">#linked-knowledge</span>
+              <span className="rounded border border-border/60 px-2 py-0.5">#KICPA</span>
+              <span className="rounded border border-border/60 px-2 py-0.5">#Professional</span>
+              <span className="rounded border border-border/60 px-2 py-0.5">#Productivity</span>
             </div>
 
             {/* Recent notes */}
@@ -104,7 +100,7 @@ export default function HomePage() {
                 {recentPosts.map((p) => (
                   <li key={p.slug}>
                     <Link
-                      href={`/${p.slug}`}
+                      href={`/${p.slugAsParams}`}
                       className="group flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:gap-4"
                     >
                       <div className="flex min-w-0 flex-1 items-baseline gap-3">
@@ -133,7 +129,7 @@ export default function HomePage() {
                 {visibleSeries.map((s) => (
                   <Link
                     key={s.slug}
-                    href={`/series/${s.slugAsParams}`}
+                    href={`/${s.slugAsParams}`}
                     className="group flex items-baseline gap-4 rounded-md border border-border/60 px-4 py-3.5 transition-colors hover:border-foreground/40"
                   >
                     <span className="font-mono text-[11px] text-muted-foreground">▸</span>
@@ -150,25 +146,6 @@ export default function HomePage() {
                     </span>
                   </Link>
                 ))}
-              </div>
-            </div>
-
-            {/* Backlinks footer */}
-            <div className="mt-20 border-t border-border/60 pt-6 font-mono text-[11px] text-muted-foreground">
-              <span className="uppercase tracking-widest">Backlinks</span>
-              <div className="mt-3 flex flex-wrap gap-x-3 gap-y-2">
-                <Link href="/about" className="hover:text-foreground">
-                  [[about]]
-                </Link>
-                <Link href="/posts" className="hover:text-foreground">
-                  [[posts]]
-                </Link>
-                <Link href="/series" className="hover:text-foreground">
-                  [[series]]
-                </Link>
-                <Link href="/tags" className="hover:text-foreground">
-                  [[tags]]
-                </Link>
               </div>
             </div>
           </div>

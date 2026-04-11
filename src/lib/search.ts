@@ -22,7 +22,7 @@ export function getSearchDocs(): SearchDoc[] {
       type: 'post',
       title: p.title,
       description: p.description,
-      url: `/${p.slug}`,
+      url: `/${p.slugAsParams}`,
       tags: p.tags,
       date: p.date,
       body: stripMdx(p.body),
@@ -36,7 +36,7 @@ export function getSearchDocs(): SearchDoc[] {
       type: 'series',
       title: s.title,
       description: s.description,
-      url: `/series/${s.slugAsParams}`,
+      url: `/${s.slugAsParams}`,
       tags: s.tags,
       date: s.date,
       body: '',
@@ -45,16 +45,14 @@ export function getSearchDocs(): SearchDoc[] {
 
   for (const c of chapters) {
     if (c.draft) continue
-    const seriesSlug = c.slugAsParams.split('/')[0]
-    const rest = c.slugAsParams.split('/').slice(1).join('/')
     out.push({
       id: c.slug,
       type: 'chapter',
       title: c.title,
       description: c.description ?? '',
-      url: `/series/${seriesSlug}/${rest}`,
+      url: `/${c.slugAsParams}`,
       tags: [],
-      series: seriesSlug,
+      series: c.series,
       body: stripMdx(c.body),
     })
   }

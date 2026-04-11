@@ -6,9 +6,8 @@ const SITE = 'https://procpa.co.kr'
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticUrls: MetadataRoute.Sitemap = [
     '',
-    '/posts',
-    '/series',
-    '/tags',
+    '/explore',
+    '/graph',
     '/search',
     '/about',
   ].map((p) => ({ url: `${SITE}${p}`, lastModified: new Date() }))
@@ -16,26 +15,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const postUrls: MetadataRoute.Sitemap = posts
     .filter((p) => !p.draft)
     .map((p) => ({
-      url: `${SITE}/${p.slug}`,
+      url: `${SITE}/${p.slugAsParams}`,
       lastModified: new Date(p.updated ?? p.date),
     }))
 
   const seriesUrls: MetadataRoute.Sitemap = series
     .filter((s) => !s.draft)
     .map((s) => ({
-      url: `${SITE}/series/${s.slugAsParams}`,
-      lastModified: new Date(s.date),
+      url: `${SITE}/${s.slugAsParams}`,
+      lastModified: s.date ? new Date(s.date) : new Date(),
     }))
 
   const chapterUrls: MetadataRoute.Sitemap = chapters
     .filter((c) => !c.draft)
-    .map((c) => {
-      const [seriesSlug, ...rest] = c.slugAsParams.split('/')
-      return {
-        url: `${SITE}/series/${seriesSlug}/${rest.join('/')}`,
-        lastModified: new Date(),
-      }
-    })
+    .map((c) => ({
+      url: `${SITE}/${c.slugAsParams}`,
+      lastModified: new Date(),
+    }))
 
   return [...staticUrls, ...postUrls, ...seriesUrls, ...chapterUrls]
 }

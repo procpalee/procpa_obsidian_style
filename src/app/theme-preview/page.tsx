@@ -63,6 +63,61 @@ const variants: Variant[] = [
   },
 ]
 
+const darkVariants: Variant[] = [
+  {
+    key: 'D1',
+    title: 'D1 — Pure Black (현재)',
+    note: '순수 검정 #000. OLED 친화적이지만 카드/배경 대비가 약함.',
+    vars: {
+      '--background': 'oklch(0 0 0)',
+      '--foreground': 'oklch(0.985 0 0)',
+      '--card': 'oklch(0.08 0 0)',
+      '--muted': 'oklch(0.18 0 0)',
+      '--muted-foreground': 'oklch(0.708 0 0)',
+      '--border': 'oklch(1 0 0 / 10%)',
+    },
+  },
+  {
+    key: 'D2',
+    title: 'D2 — Charcoal (#0C0D10)',
+    note: '아주 옅은 쿨톤이 섞인 거의-검정. 가장 무난하고 눈이 편함. 추천.',
+    vars: {
+      '--background': 'oklch(0.16 0.004 250)',
+      '--foreground': 'oklch(0.97 0 0)',
+      '--card': 'oklch(0.2 0.005 250)',
+      '--muted': 'oklch(0.24 0.006 250)',
+      '--muted-foreground': 'oklch(0.7 0.01 250)',
+      '--border': 'oklch(1 0 0 / 9%)',
+    },
+  },
+  {
+    key: 'D3',
+    title: 'D3 — Slate (#13161C)',
+    note: 'GitHub Dark / Linear 톤. 약간의 블루 틴트, 모던 테크.',
+    vars: {
+      '--background': 'oklch(0.19 0.012 255)',
+      '--foreground': 'oklch(0.96 0.005 250)',
+      '--card': 'oklch(0.23 0.013 255)',
+      '--muted': 'oklch(0.27 0.014 255)',
+      '--muted-foreground': 'oklch(0.7 0.012 250)',
+      '--border': 'oklch(1 0 0 / 10%)',
+    },
+  },
+  {
+    key: 'D4',
+    title: 'D4 — Warm Ink (#15130F)',
+    note: '아주 옅은 웜톤. 종이 같은 따뜻한 다크. 장시간 읽기에 부드러움.',
+    vars: {
+      '--background': 'oklch(0.17 0.005 70)',
+      '--foreground': 'oklch(0.97 0.004 80)',
+      '--card': 'oklch(0.21 0.006 70)',
+      '--muted': 'oklch(0.25 0.007 70)',
+      '--muted-foreground': 'oklch(0.71 0.01 70)',
+      '--border': 'oklch(1 0 0 / 10%)',
+    },
+  },
+]
+
 function MiniSite() {
   return (
     <div className="bg-background text-foreground">
@@ -137,6 +192,7 @@ export default function ThemePreviewPage() {
         가장 정확하게 비교됩니다. <Link href="/" className="underline">홈으로</Link>
       </p>
 
+      <h2 className="mt-2 mb-6 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">Light</h2>
       <div className="space-y-12">
         {variants.map((v) => (
           <section key={v.key}>
@@ -150,6 +206,27 @@ export default function ThemePreviewPage() {
             <div
               className="overflow-hidden rounded-lg border border-border shadow-sm"
               style={v.vars as React.CSSProperties}
+            >
+              <MiniSite />
+            </div>
+          </section>
+        ))}
+      </div>
+
+      <h2 className="mt-16 mb-6 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">Dark</h2>
+      <div className="space-y-12">
+        {darkVariants.map((v) => (
+          <section key={v.key}>
+            <div className="mb-3">
+              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                Variant {v.key}
+              </p>
+              <h3 className="mt-1 text-base font-semibold">{v.title}</h3>
+              <p className="text-xs text-muted-foreground">{v.note}</p>
+            </div>
+            <div
+              className="overflow-hidden rounded-lg border shadow-sm"
+              style={{ ...v.vars, borderColor: 'oklch(1 0 0 / 10%)' } as React.CSSProperties}
             >
               <MiniSite />
             </div>

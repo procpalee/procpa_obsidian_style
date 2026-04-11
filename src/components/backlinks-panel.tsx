@@ -49,3 +49,29 @@ export function BacklinksPanel({ slug }: { slug: string }) {
     </section>
   )
 }
+
+/** 사이드바용 컴팩트 백링크 */
+export function BacklinksCompact({ slug }: { slug: string }) {
+  const items = BACKLINKS[slug]
+  if (!items || items.length === 0) return null
+
+  return (
+    <div>
+      <h3 className="mb-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+        Backlinks · {items.length}
+      </h3>
+      <ul className="space-y-1">
+        {items.map((b) => (
+          <li key={b.sourceId}>
+            <Link
+              href={b.sourceUrl}
+              className="block rounded py-1.5 text-[13px] leading-snug text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {b.sourceTitle}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}

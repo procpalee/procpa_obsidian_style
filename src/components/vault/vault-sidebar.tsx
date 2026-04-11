@@ -1,11 +1,10 @@
 import Link from 'next/link'
+import type { TreeNode } from '@/lib/vault-tree'
+import { VaultTree } from './vault-tree'
 
 export interface VaultData {
+  tree: TreeNode[]
   counts: {
-    accountingPosts: number
-    aiPosts: number
-    accountingSeries: number
-    aiSeries: number
     posts: number
     series: number
     tags: number
@@ -13,42 +12,8 @@ export interface VaultData {
   tags: [string, number][]
 }
 
-function FolderNode({
-  label,
-  count,
-  children,
-}: {
-  label: string
-  count: number
-  children: React.ReactNode
-}) {
-  return (
-    <div>
-      <div className="flex items-center gap-1.5 py-1 text-sm">
-        <span className="font-mono text-[10px] text-muted-foreground">▾</span>
-        <span className="flex-1">{label}</span>
-        <span className="font-mono text-[10px] text-muted-foreground">{count}</span>
-      </div>
-      <div className="ml-4 border-l border-border/60">{children}</div>
-    </div>
-  )
-}
-
-function NavLeaf({ href, label, count }: { href: string; label: string; count: number }) {
-  return (
-    <Link
-      href={href}
-      className="group flex items-center gap-1.5 py-1 pl-3 text-[13px] text-muted-foreground transition-colors hover:text-foreground"
-    >
-      <span className="font-mono text-[10px]">▸</span>
-      <span className="flex-1">{label}</span>
-      <span className="font-mono text-[10px] opacity-60">{count}</span>
-    </Link>
-  )
-}
-
 export function VaultSidebar({ data }: { data: VaultData }) {
-  const { counts, tags } = data
+  const { tree, counts, tags } = data
 
   return (
     <div>
@@ -56,18 +21,8 @@ export function VaultSidebar({ data }: { data: VaultData }) {
         Vault
       </div>
 
-      <div className="mt-5 space-y-1">
-        <FolderNode
-          label="회계실무"
-          count={counts.accountingPosts + counts.accountingSeries}
-        >
-          <NavLeaf href="/series" label="시리즈" count={counts.accountingSeries} />
-          <NavLeaf href="/posts" label="포스트" count={counts.accountingPosts} />
-        </FolderNode>
-        <FolderNode label="AI · 생산성" count={counts.aiPosts + counts.aiSeries}>
-          <NavLeaf href="/series" label="시리즈" count={counts.aiSeries} />
-          <NavLeaf href="/posts" label="포스트" count={counts.aiPosts} />
-        </FolderNode>
+      <div className="mt-5">
+        <VaultTree nodes={tree} />
       </div>
 
       <div className="mt-10 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">

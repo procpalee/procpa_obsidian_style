@@ -89,9 +89,8 @@ function extractContext(md: string, matchIndex: number, rawLen: number): string 
   return ctx
 }
 
-function urlOf(entry: Entry, type: 'post' | 'chapter'): string {
-  if (type === 'post') return `/posts/${entry.slugAsParams}`
-  return `/series/${entry.slugAsParams}`
+function urlOf(entry: Entry, _type: 'post' | 'chapter'): string {
+  return `/${entry.slugAsParams}`
 }
 
 export async function buildGraph(opts: {

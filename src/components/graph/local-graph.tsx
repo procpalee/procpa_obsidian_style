@@ -101,7 +101,7 @@ export function LocalGraph({
           graphData={data}
           width={size.w}
           height={size.h}
-          nodeRelSize={2}
+          nodeRelSize={1.5}
           nodeLabel={(n: any) => n.title}
           nodeVal={(n: any) => 0.6 + Math.min(n.degree ?? 0, 6) * 0.3}
           nodeColor={(n: any) =>
@@ -118,5 +118,65 @@ export function LocalGraph({
         )}
       </div>
     </aside>
+  )
+}
+
+/** 사이드바용 미니 로컬 그래프 */
+export function LocalGraphMini({
+  currentSlug,
+  depth = 1,
+}: {
+  currentSlug: string
+  depth?: number
+}) {
+  const router = useRouter()
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [size, setSize] = useState({ w: 0, h: 0 })
+  const data = useMemo(() => buildSubgraph(currentSlug, depth), [currentSlug, depth])
+
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    const ro = new ResizeObserver((entries) => {
+      const rect = entries[0]?.contentRect
+      if (rect) setSize({ w: Math.floor(rect.width), h: Math.floor(rect.height) })
+    })
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+
+  if (data.nodes.length <= 1) return null
+
+  return (
+    <div>
+      <h3 className="mb-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+        Graph · {data.nodes.length}
+      </h3>
+      <div
+        ref={containerRef}
+        className="relative h-44 w-full overflow-hidden rounded border border-border/60 bg-background"
+      >
+        {size.w > 0 && size.h > 0 && (
+          <ForceGraph2D
+            graphData={data}
+            width={size.w}
+            height={size.h}
+            nodeRelSize={1.5}
+            nodeLabel={(n: any) => n.title}
+            nodeVal={(n: any) => 0.5 + Math.min(n.degree ?? 0, 4) * 0.25}
+            nodeColor={(n: any) =>
+              n.id === currentSlug ? ACTIVE_COLOR : COLORS[n.category] ?? '#888'
+            }
+            linkColor={() => EDGE_COLOR}
+            linkWidth={0.8}
+            cooldownTicks={60}
+            enableZoomInteraction={false}
+            onNodeClick={(n: any) => {
+              if (n.id !== currentSlug && n.url) router.push(n.url)
+            }}
+          />
+        )}
+      </div>
+    </div>
   )
 }

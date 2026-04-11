@@ -1,11 +1,11 @@
 {
   "nodes": [
     {
-      "id": "ai-productivity-intro",
+      "id": "ai/일반/ai-productivity-intro",
       "type": "post",
       "title": "AI로 회계 실무 생산성 끌어올리기",
       "category": "ai",
-      "url": "/posts/ai-productivity-intro",
+      "url": "/ai/일반/ai-productivity-intro",
       "tags": [
         "LLM",
         "생산성"
@@ -13,23 +13,23 @@
       "degree": 2
     },
     {
-      "id": "hello-world",
+      "id": "dev/일반/hello-world",
       "type": "post",
       "title": "새로운 PROCPA 블로그를 시작하며",
-      "category": "accounting",
-      "url": "/posts/hello-world",
+      "category": "dev",
+      "url": "/dev/일반/hello-world",
       "tags": [
         "공지",
         "메타"
       ],
-      "degree": 4
+      "degree": 3
     },
     {
-      "id": "wiki-test-2",
+      "id": "dev/일반/wiki-test-2",
       "type": "post",
       "title": "Wiki Link Test 2 — AI 노트",
       "category": "ai",
-      "url": "/posts/wiki-test-2",
+      "url": "/dev/일반/wiki-test-2",
       "tags": [
         "test",
         "LLM"
@@ -37,79 +37,431 @@
       "degree": 4
     },
     {
-      "id": "wiki-test-3",
+      "id": "dev/일반/wiki-test-3",
       "type": "post",
       "title": "Wiki Link Test 3 — 허브 노트",
-      "category": "accounting",
-      "url": "/posts/wiki-test-3",
+      "category": "dev",
+      "url": "/dev/일반/wiki-test-3",
       "tags": [
         "test",
         "메타"
       ],
-      "degree": 5
+      "degree": 4
     },
     {
-      "id": "wiki-test",
+      "id": "dev/일반/wiki-test",
       "type": "post",
       "title": "Wiki Link Test",
-      "category": "accounting",
-      "url": "/posts/wiki-test",
+      "category": "dev",
+      "url": "/dev/일반/wiki-test",
       "tags": [
         "test"
       ],
       "degree": 3
     },
     {
-      "id": "getting-started/01-intro",
+      "id": "accounting/일반/내부회계관리제도-실무-가이드북/0-시작하며",
+      "type": "chapter",
+      "title": "0. 시작하며",
+      "category": "accounting",
+      "url": "/accounting/일반/내부회계관리제도-실무-가이드북/0-시작하며",
+      "tags": [],
+      "series": "accounting/일반/내부회계관리제도-실무-가이드북",
+      "degree": 0
+    },
+    {
+      "id": "accounting/일반/내부회계관리제도-실무-가이드북/1-개요",
+      "type": "chapter",
+      "title": "1. 개요",
+      "category": "accounting",
+      "url": "/accounting/일반/내부회계관리제도-실무-가이드북/1-개요",
+      "tags": [],
+      "series": "accounting/일반/내부회계관리제도-실무-가이드북",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/비개발자를-위한-Antigravity-가이드/1-설치-기본설정-확장-및-단축키",
+      "type": "chapter",
+      "title": "1. 설치, 기본설정, 확장 및 단축키",
+      "category": "ai",
+      "url": "/ai/AI도구/비개발자를-위한-Antigravity-가이드/1-설치-기본설정-확장-및-단축키",
+      "tags": [],
+      "series": "ai/AI도구/비개발자를-위한-Antigravity-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/비개발자를-위한-Antigravity-가이드/2-에디터Editor-기초-사용법",
+      "type": "chapter",
+      "title": "2. 에디터(Editor) 기초 사용법",
+      "category": "ai",
+      "url": "/ai/AI도구/비개발자를-위한-Antigravity-가이드/2-에디터Editor-기초-사용법",
+      "tags": [],
+      "series": "ai/AI도구/비개발자를-위한-Antigravity-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/비개발자를-위한-Antigravity-가이드/3-에이전트Agent와-아티팩트Artifact",
+      "type": "chapter",
+      "title": "3. 에이전트(Agent)와 아티팩트(Artifact)",
+      "category": "ai",
+      "url": "/ai/AI도구/비개발자를-위한-Antigravity-가이드/3-에이전트Agent와-아티팩트Artifact",
+      "tags": [],
+      "series": "ai/AI도구/비개발자를-위한-Antigravity-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/비개발자를-위한-Antigravity-가이드/4-규칙Rules",
+      "type": "chapter",
+      "title": "4. 규칙(Rules)",
+      "category": "ai",
+      "url": "/ai/AI도구/비개발자를-위한-Antigravity-가이드/4-규칙Rules",
+      "tags": [],
+      "series": "ai/AI도구/비개발자를-위한-Antigravity-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/비개발자를-위한-Antigravity-가이드/5-워크플로우Workflows",
+      "type": "chapter",
+      "title": "5. 워크플로우(Workflows)",
+      "category": "ai",
+      "url": "/ai/AI도구/비개발자를-위한-Antigravity-가이드/5-워크플로우Workflows",
+      "tags": [],
+      "series": "ai/AI도구/비개발자를-위한-Antigravity-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/비개발자를-위한-Antigravity-가이드/6-스킬Skills",
+      "type": "chapter",
+      "title": "6. 스킬(Skills)",
+      "category": "ai",
+      "url": "/ai/AI도구/비개발자를-위한-Antigravity-가이드/6-스킬Skills",
+      "tags": [],
+      "series": "ai/AI도구/비개발자를-위한-Antigravity-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/비개발자를-위한-Antigravity-가이드/7-MCP",
+      "type": "chapter",
+      "title": "7. MCP",
+      "category": "ai",
+      "url": "/ai/AI도구/비개발자를-위한-Antigravity-가이드/7-MCP",
+      "tags": [],
+      "series": "ai/AI도구/비개발자를-위한-Antigravity-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/비개발자를-위한-Antigravity-가이드/8-브라우저-서브-에이전트",
+      "type": "chapter",
+      "title": "8. 브라우저 서브 에이전트",
+      "category": "ai",
+      "url": "/ai/AI도구/비개발자를-위한-Antigravity-가이드/8-브라우저-서브-에이전트",
+      "tags": [],
+      "series": "ai/AI도구/비개발자를-위한-Antigravity-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/1-클로드-엑셀-소개",
+      "type": "chapter",
+      "title": "1. 클로드 엑셀 소개",
+      "category": "ai",
+      "url": "/ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/1-클로드-엑셀-소개",
+      "tags": [],
+      "series": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/2-설치-및-기본설정",
+      "type": "chapter",
+      "title": "2. 설치 및 기본설정",
+      "category": "ai",
+      "url": "/ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/2-설치-및-기본설정",
+      "tags": [],
+      "series": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/3-주요-기능-및-동작-원리",
+      "type": "chapter",
+      "title": "3. 주요 기능 및 동작 원리",
+      "category": "ai",
+      "url": "/ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/3-주요-기능-및-동작-원리",
+      "tags": [],
+      "series": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/4-데이터-유출-방지를-위한-보안-설정",
+      "type": "chapter",
+      "title": "4. 데이터 유출 방지를 위한 보안 설정",
+      "category": "ai",
+      "url": "/ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/4-데이터-유출-방지를-위한-보안-설정",
+      "tags": [],
+      "series": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/5-프롬프트-작성-및-기본-활용-사례",
+      "type": "chapter",
+      "title": "5. 프롬프트 작성 및 기본 활용 사례",
+      "category": "ai",
+      "url": "/ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/5-프롬프트-작성-및-기본-활용-사례",
+      "tags": [],
+      "series": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/6-스킬Skills-활용법",
+      "type": "chapter",
+      "title": "6. 스킬(Skills) 활용법",
+      "category": "ai",
+      "url": "/ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/6-스킬Skills-활용법",
+      "tags": [],
+      "series": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/7-커넥터MCP-활용법",
+      "type": "chapter",
+      "title": "7. 커넥터(MCP) 활용법",
+      "category": "ai",
+      "url": "/ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/7-커넥터MCP-활용법",
+      "tags": [],
+      "series": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/8-실무-사례-1-DCF-평가",
+      "type": "chapter",
+      "title": "8. 실무 사례 1 - DCF 평가",
+      "category": "ai",
+      "url": "/ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/8-실무-사례-1-DCF-평가",
+      "tags": [],
+      "series": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드",
+      "degree": 0
+    },
+    {
+      "id": "dev/일반/getting-started/01-intro",
       "type": "chapter",
       "title": "이 시리즈에 대하여",
-      "category": "accounting",
-      "url": "/series/getting-started/01-intro",
+      "category": "dev",
+      "url": "/dev/일반/getting-started/01-intro",
       "tags": [],
-      "series": "getting-started",
-      "degree": 2
+      "series": "dev/일반/getting-started",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/클로드-코워크Claude-Cowork-실무-가이드/시작하며",
+      "type": "chapter",
+      "title": "시작하며",
+      "category": "ai",
+      "url": "/ai/AI도구/클로드-코워크Claude-Cowork-실무-가이드/시작하며",
+      "tags": [],
+      "series": "ai/AI도구/클로드-코워크Claude-Cowork-실무-가이드",
+      "degree": 0
+    },
+    {
+      "id": "accounting/일반/내부회계관리제도-실무-가이드북/1-개요/11-내부회계관리제도의-도입-배경",
+      "type": "chapter",
+      "title": "1.1. 내부회계관리제도의 도입 배경",
+      "category": "accounting",
+      "url": "/accounting/일반/내부회계관리제도-실무-가이드북/1-개요/11-내부회계관리제도의-도입-배경",
+      "tags": [],
+      "series": "accounting/일반/내부회계관리제도-실무-가이드북",
+      "degree": 0
+    },
+    {
+      "id": "accounting/일반/내부회계관리제도-실무-가이드북/1-개요/12-내부회계관리제도-기본-개념",
+      "type": "chapter",
+      "title": "제목 없음",
+      "category": "accounting",
+      "url": "/accounting/일반/내부회계관리제도-실무-가이드북/1-개요/12-내부회계관리제도-기본-개념",
+      "tags": [],
+      "series": "accounting/일반/내부회계관리제도-실무-가이드북",
+      "degree": 0
+    },
+    {
+      "id": "accounting/일반/내부회계관리제도-실무-가이드북/1-개요/13-내부회계관리제도-관련-기준-체계",
+      "type": "chapter",
+      "title": "제목 없음",
+      "category": "accounting",
+      "url": "/accounting/일반/내부회계관리제도-실무-가이드북/1-개요/13-내부회계관리제도-관련-기준-체계",
+      "tags": [],
+      "series": "accounting/일반/내부회계관리제도-실무-가이드북",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/비개발자를-위한-Antigravity-가이드/6-스킬Skills/61-스킬Skills의-개념-및-구조",
+      "type": "chapter",
+      "title": "6.1. 스킬(Skills)의 개념 및 구조",
+      "category": "ai",
+      "url": "/ai/AI도구/비개발자를-위한-Antigravity-가이드/6-스킬Skills/61-스킬Skills의-개념-및-구조",
+      "tags": [],
+      "series": "ai/AI도구/비개발자를-위한-Antigravity-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/비개발자를-위한-Antigravity-가이드/6-스킬Skills/62-스킬Skills-설치-방법",
+      "type": "chapter",
+      "title": "6.2. 스킬(Skills) 설치 방법",
+      "category": "ai",
+      "url": "/ai/AI도구/비개발자를-위한-Antigravity-가이드/6-스킬Skills/62-스킬Skills-설치-방법",
+      "tags": [],
+      "series": "ai/AI도구/비개발자를-위한-Antigravity-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/비개발자를-위한-Antigravity-가이드/6-스킬Skills/63-문서-편집-필수-스킬-4종xlsx-pptx-docx-pdf",
+      "type": "chapter",
+      "title": "6.3. 문서 편집 필수 스킬 4종(xlsx, pptx, docx, pdf)",
+      "category": "ai",
+      "url": "/ai/AI도구/비개발자를-위한-Antigravity-가이드/6-스킬Skills/63-문서-편집-필수-스킬-4종xlsx-pptx-docx-pdf",
+      "tags": [],
+      "series": "ai/AI도구/비개발자를-위한-Antigravity-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/비개발자를-위한-Antigravity-가이드/6-스킬Skills/64-나만의-커스텀-스킬-제작Feat-skill-creator",
+      "type": "chapter",
+      "title": "6.4. 나만의 커스텀 스킬 제작(Feat. skill-creator)",
+      "category": "ai",
+      "url": "/ai/AI도구/비개발자를-위한-Antigravity-가이드/6-스킬Skills/64-나만의-커스텀-스킬-제작Feat-skill-creator",
+      "tags": [],
+      "series": "ai/AI도구/비개발자를-위한-Antigravity-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/비개발자를-위한-Antigravity-가이드/7-MCP/71-MCP-설치-및-사용방법",
+      "type": "chapter",
+      "title": "7.1. MCP 설치 및 사용방법",
+      "category": "ai",
+      "url": "/ai/AI도구/비개발자를-위한-Antigravity-가이드/7-MCP/71-MCP-설치-및-사용방법",
+      "tags": [],
+      "series": "ai/AI도구/비개발자를-위한-Antigravity-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/비개발자를-위한-Antigravity-가이드/7-MCP/72-NotebookLM-MCP",
+      "type": "chapter",
+      "title": "7.2. NotebookLM MCP",
+      "category": "ai",
+      "url": "/ai/AI도구/비개발자를-위한-Antigravity-가이드/7-MCP/72-NotebookLM-MCP",
+      "tags": [],
+      "series": "ai/AI도구/비개발자를-위한-Antigravity-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/7-커넥터MCP-활용법/71-커넥터MCP란",
+      "type": "chapter",
+      "title": "7.1. 커넥터(MCP)란",
+      "category": "ai",
+      "url": "/ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/7-커넥터MCP-활용법/71-커넥터MCP란",
+      "tags": [],
+      "series": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/7-커넥터MCP-활용법/72-커스텀-커넥터-활용-전자공시시스템Open-DART",
+      "type": "chapter",
+      "title": "7.2. 커스텀 커넥터 활용 - 전자공시시스템(Open DART)",
+      "category": "ai",
+      "url": "/ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/7-커넥터MCP-활용법/72-커스텀-커넥터-활용-전자공시시스템Open-DART",
+      "tags": [],
+      "series": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/6-스킬Skills-활용법/61-스킬Skills이란",
+      "type": "chapter",
+      "title": "6.1. 스킬(Skills)이란",
+      "category": "ai",
+      "url": "/ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/6-스킬Skills-활용법/61-스킬Skills이란",
+      "tags": [],
+      "series": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/6-스킬Skills-활용법/62-스타터-스킬Skills-맛보기",
+      "type": "chapter",
+      "title": "6.2. 스타터 스킬(Skills) 맛보기",
+      "category": "ai",
+      "url": "/ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/6-스킬Skills-활용법/62-스타터-스킬Skills-맛보기",
+      "tags": [],
+      "series": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/6-스킬Skills-활용법/63-나만의-스킬Skills-만들고-등록하기",
+      "type": "chapter",
+      "title": "6.3. 나만의 스킬(Skills) 만들고 등록하기",
+      "category": "ai",
+      "url": "/ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/6-스킬Skills-활용법/63-나만의-스킬Skills-만들고-등록하기",
+      "tags": [],
+      "series": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/8-실무-사례-1-DCF-평가/81-DCF-평가-개요",
+      "type": "chapter",
+      "title": "8.1. DCF 평가 개요",
+      "category": "ai",
+      "url": "/ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/8-실무-사례-1-DCF-평가/81-DCF-평가-개요",
+      "tags": [],
+      "series": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/8-실무-사례-1-DCF-평가/82-Step-1-평가-템플릿-만들기",
+      "type": "chapter",
+      "title": "8.2. Step 1. 평가 템플릿 만들기",
+      "category": "ai",
+      "url": "/ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/8-실무-사례-1-DCF-평가/82-Step-1-평가-템플릿-만들기",
+      "tags": [],
+      "series": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/8-실무-사례-1-DCF-평가/83-Step-2-기초-데이터-수집",
+      "type": "chapter",
+      "title": "8.3. Step 2. 기초 데이터 수집",
+      "category": "ai",
+      "url": "/ai/AI도구/클로드-엑셀Claude-for-Excel-가이드/8-실무-사례-1-DCF-평가/83-Step-2-기초-데이터-수집",
+      "tags": [],
+      "series": "ai/AI도구/클로드-엑셀Claude-for-Excel-가이드",
+      "degree": 0
     }
   ],
   "edges": [
     {
-      "source": "wiki-test-3",
-      "target": "hello-world"
+      "source": "dev/일반/wiki-test-2",
+      "target": "dev/일반/hello-world"
     },
     {
-      "source": "wiki-test-3",
-      "target": "ai-productivity-intro"
+      "source": "dev/일반/wiki-test-2",
+      "target": "ai/일반/ai-productivity-intro"
     },
     {
-      "source": "wiki-test-3",
-      "target": "wiki-test"
+      "source": "dev/일반/wiki-test-2",
+      "target": "dev/일반/wiki-test"
     },
     {
-      "source": "wiki-test-3",
-      "target": "wiki-test-2"
+      "source": "dev/일반/wiki-test-3",
+      "target": "dev/일반/hello-world"
     },
     {
-      "source": "wiki-test-3",
-      "target": "getting-started/01-intro"
+      "source": "dev/일반/wiki-test-3",
+      "target": "ai/일반/ai-productivity-intro"
     },
     {
-      "source": "wiki-test-2",
-      "target": "hello-world"
+      "source": "dev/일반/wiki-test-3",
+      "target": "dev/일반/wiki-test"
     },
     {
-      "source": "wiki-test-2",
-      "target": "ai-productivity-intro"
+      "source": "dev/일반/wiki-test-3",
+      "target": "dev/일반/wiki-test-2"
     },
     {
-      "source": "wiki-test-2",
-      "target": "wiki-test"
-    },
-    {
-      "source": "hello-world",
-      "target": "getting-started/01-intro"
-    },
-    {
-      "source": "wiki-test",
-      "target": "hello-world"
+      "source": "dev/일반/wiki-test",
+      "target": "dev/일반/hello-world"
     }
   ]
 }

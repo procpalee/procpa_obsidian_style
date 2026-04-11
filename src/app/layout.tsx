@@ -3,6 +3,7 @@ import { Geist_Mono } from 'next/font/google'
 import './globals.css'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
+import Script from 'next/script'
 import { themeScript } from '@/lib/theme-script'
 
 const geistMono = Geist_Mono({
@@ -43,7 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable.min.css"
         />
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <Script strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground [word-break:keep-all]">
         <SiteHeader />

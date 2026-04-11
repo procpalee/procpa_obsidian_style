@@ -102,3 +102,31 @@ export const sideProjects = [
     href: 'https://clickthumb.procpa.co.kr/',
   },
 ]
+
+export const contacts = [
+  {
+    label: 'Email',
+    href: 'mailto:wogus3575@naver.com',
+    description: '업무 문의나 협업 제안은 이메일로 편하게 주세요.',
+  },
+  {
+    label: 'KakaoTalk',
+    href: 'https://open.kakao.com/o/sQCXbyXg',
+    description: '실시간 소통이 필요하다면 오픈채팅으로 연락주세요.',
+  },
+  {
+    label: 'Naver Blog',
+    href: 'https://blog.naver.com/procpalee',
+    description: '다양한 인사이트를 네이버 블로그에 기록합니다.',
+  },
+  {
+    label: 'YouTube',
+    href: 'https://www.youtube.com/@Jaehyun-f9c',
+    description: '영상 콘텐츠는 유튜브 채널에서 만나보실 수 있습니다.',
+  },
+  {
+    label: 'GitHub',
+    href: 'https://github.com/procpalee',
+    description: '사이드 프로젝트 소스 코드를 공유합니다.',
+  },
+]

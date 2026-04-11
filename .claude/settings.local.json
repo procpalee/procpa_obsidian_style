@@ -6,7 +6,9 @@
       "Bash(npx velite:*)",
       "Bash(npx next:*)",
       "Bash(npm run:*)",
-      "Bash(cd:*)"
+      "Bash(cd:*)",
+      "Bash(node -e \":*)",
+      "Bash(npx tsc:*)"
     ]
   }
 }

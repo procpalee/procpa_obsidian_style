@@ -38,8 +38,13 @@ export default async function SearchPage({ searchParams }: PageProps) {
   const allTags = [...new Set(all.flatMap((d) => d.tags))].sort()
 
   return (
-    <div className="mx-auto max-w-3xl px-6 py-16">
-      <h1 className="mb-8 text-3xl font-semibold tracking-tight">검색</h1>
+    <div className="mx-auto max-w-6xl px-6 py-12">
+      <header className="mb-10">
+        <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
+          Search
+        </p>
+        <h1 className="mt-2 text-3xl font-semibold tracking-tight">검색</h1>
+      </header>
 
       <form className="mb-10 space-y-4" method="get">
         <input

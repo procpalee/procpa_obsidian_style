@@ -21,8 +21,8 @@ export function GET() {
       (p) => `
     <item>
       <title>${escape(p.title)}</title>
-      <link>${SITE}/${p.slug}</link>
-      <guid>${SITE}/${p.slug}</guid>
+      <link>${SITE}/${p.slugAsParams}</link>
+      <guid>${SITE}/${p.slugAsParams}</guid>
       <pubDate>${new Date(p.date).toUTCString()}</pubDate>
       <description>${escape(p.description)}</description>
     </item>`,
