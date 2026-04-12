@@ -130,7 +130,7 @@ function TreeItem({
           )}
         >
           <FileIcon nodeType={node.nodeType} />
-          <span className="truncate">{node.label}</span>
+          <span>{node.label}</span>
         </Link>
       </li>
     )
@@ -166,14 +166,14 @@ function TreeItem({
           <Folder className="h-3.5 w-3.5 shrink-0 opacity-70" />
         )}
         {node.href ? (
-          <Link href={node.href} onClick={onNavigate} className="flex-1 truncate hover:underline">
+          <Link href={node.href} onClick={onNavigate} className="flex-1 hover:underline">
             {node.label}
           </Link>
         ) : (
           <button
             type="button"
             onClick={() => onToggle(node.key)}
-            className="flex-1 truncate text-left"
+            className="flex-1 text-left"
           >
             {node.label}
           </button>

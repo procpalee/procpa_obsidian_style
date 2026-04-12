@@ -12,3 +12,6 @@ export declare const series: Series[]
 
 export type Chapter = Collections['chapters']['schema']['_output']
 export declare const chapters: Chapter[]
+
+export type Download = Collections['downloads']['schema']['_output']
+export declare const downloads: Download[]

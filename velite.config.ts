@@ -84,6 +84,7 @@ const series = defineCollection({
       order: s.number().default(0),
       draft: s.boolean().default(false),
       id: s.number().optional(),
+      body: s.mdx(),
     })
     .transform((data) => {
       const segments = data.slug.split('/')
@@ -152,6 +153,27 @@ const chapters = defineCollection({
     }),
 })
 
+const downloads = defineCollection({
+  name: 'Download',
+  pattern: 'downloads/*.md',
+  schema: s
+    .object({
+      slug: s.path(),
+      title: s.string().max(120),
+      description: s.string().max(300).optional(),
+      file: s.string(),
+      category: s.string().optional(),
+      tags: s.array(s.string()).default([]),
+      date: s.isodate(),
+      draft: s.boolean().default(false),
+    })
+    .transform((data) => ({
+      ...data,
+      category: data.category ?? 'etc',
+      slugAsParams: data.slug.split('/').pop() ?? data.slug,
+    })),
+})
+
 export default defineConfig({
   root: 'content',
   output: {
@@ -161,7 +183,7 @@ export default defineConfig({
     name: '[name]-[hash:6].[ext]',
     clean: true,
   },
-  collections: { posts, series, chapters },
+  collections: { posts, series, chapters, downloads },
   prepare: async (data) => {
     await buildGraph({
       posts: data.posts as unknown as Parameters<typeof buildGraph>[0]['posts'],

@@ -20,7 +20,7 @@ export function BacklinksPanel({ slug }: { slug: string }) {
 
   return (
     <section className="mt-16 border-t border-border/60 pt-8">
-      <h2 className="mb-6 font-mono text-xs uppercase tracking-wider text-muted-foreground">
+      <h2 className="mb-6 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
         Backlinks · {items.length}
       </h2>
       <ul className="space-y-1">
@@ -57,7 +57,7 @@ export function BacklinksCompact({ slug }: { slug: string }) {
 
   return (
     <div>
-      <h3 className="mb-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+      <h3 className="mb-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
         Backlinks · {items.length}
       </h3>
       <ul className="space-y-1">

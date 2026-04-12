@@ -48,7 +48,7 @@ function TocLink({
   )
 }
 
-export function TableOfContents({ items }: { items: TocItem[] }) {
+export function TableOfContents({ items, hideTitle = false }: { items: TocItem[]; hideTitle?: boolean }) {
   const [activeId, setActiveId] = useState('')
   const observerRef = useRef<IntersectionObserver | null>(null)
 
@@ -84,9 +84,11 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
 
   return (
     <nav aria-label="목차">
-      <h3 className="mb-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-        On this page
-      </h3>
+      {!hideTitle && (
+        <h3 className="mb-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+          On this page
+        </h3>
+      )}
       <div className="space-y-0.5">
         {items.map((item) => (
           <TocLink key={item.url} item={item} depth={0} activeId={activeId} />

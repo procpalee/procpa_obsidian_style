@@ -66,17 +66,17 @@ export default function HomePage() {
             </div>
 
             {/* ── Hero ── */}
-            <h1 className="mt-6 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
+            <h1 className="mt-4 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
               회계·재무 전문성에
               <br />
               <span className="text-primary">AI의 생산성</span>을 더하다.
             </h1>
 
             <p className="mt-6 max-w-2xl text-[15px] leading-[1.85] text-muted-foreground sm:text-base">
-              한국공인회계사의 개인 지식
+              <span className="text-foreground">한국공인회계사</span>의 개인 지식
               데이터베이스.
               <br />
-              실무에 즉시 활용 가능한 회계·재무 지식과 AI 생산성 인사이트를 공유합니다.
+              실무에 즉시 활용 가능한 <span className="text-foreground">회계·재무 지식</span>과 <span className="text-foreground">AI 생산성 인사이트</span>를 공유합니다.
             </p>
             <div className="mt-6">
               <Link
@@ -89,7 +89,7 @@ export default function HomePage() {
 
             {/* ── Site Guide ── */}
             <div className="mt-14 border-t border-border/60 pt-14 lg:mt-16 lg:pt-16">
-              <h2 className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+              <h2 className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
                 Site Guide
               </h2>
               <p className="mt-3 text-sm text-muted-foreground">
@@ -123,7 +123,7 @@ export default function HomePage() {
 
             {/* ── Featured Series ── */}
             <div className="mt-14 border-t border-border/60 pt-14 lg:mt-16 lg:pt-16">
-              <h2 className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+              <h2 className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
                 Featured Series
               </h2>
 
@@ -186,7 +186,7 @@ export default function HomePage() {
 
             {/* ── Recent Notes (carousel) ── */}
             <div className="mt-14 border-t border-border/60 pt-14 lg:mt-16 lg:pt-16">
-              <h2 className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+              <h2 className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
                 Recent Notes
               </h2>
               <NoteCarousel>

@@ -52,7 +52,7 @@ export function FolderPostsSidebar({
       {/* Desktop */}
       <aside className="hidden lg:block">
         <div className="sticky top-20 max-h-[calc(100vh-6rem)]">
-          <h3 className="mb-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+          <h3 className="mb-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
             {subcategory}
           </h3>
           <ScrollArea className="max-h-[calc(100vh-10rem)]">

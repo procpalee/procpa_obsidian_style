@@ -7,22 +7,24 @@ interface MobileCollapsibleProps {
   title: string
   children: ReactNode
   defaultOpen?: boolean
+  alwaysVisible?: boolean
 }
 
 export function MobileCollapsible({
   title,
   children,
   defaultOpen = false,
+  alwaysVisible = false,
 }: MobileCollapsibleProps) {
   const [open, setOpen] = useState(defaultOpen)
 
   return (
-    <div className="mb-6 rounded-md border border-border/60 lg:hidden">
+    <div className={`mb-6 rounded-md border border-border/60${alwaysVisible ? '' : ' lg:hidden'}`}>
       <button
         onClick={() => setOpen(!open)}
         className="flex w-full items-center justify-between px-4 py-3 text-left"
       >
-        <span className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
+        <span className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
           {title}
         </span>
         <ChevronDown

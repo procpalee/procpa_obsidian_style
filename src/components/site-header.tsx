@@ -62,7 +62,10 @@ export function SiteHeader() {
           <PalettePicker />
           <ThemeToggle />
           <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger className="-mr-2 inline-flex h-8 w-8 items-center justify-center rounded-md transition-colors hover:bg-accent hover:text-foreground">
+            <SheetTrigger 
+              aria-label="메뉴 열기"
+              className="-mr-2 inline-flex h-8 w-8 items-center justify-center rounded-md transition-colors hover:bg-accent hover:text-foreground"
+            >
               <Menu className="h-4 w-4" />
             </SheetTrigger>
             <SheetContent side="right" className="w-[280px] overflow-y-auto p-0">

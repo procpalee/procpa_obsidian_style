@@ -184,14 +184,26 @@
   "hotPaths": [
     {
       "path": "src\\app\\[...slug]\\page.tsx",
-      "accessCount": 70,
-      "lastAccessed": 1775917829985,
+      "accessCount": 158,
+      "lastAccessed": 1775936272686,
       "type": "file"
     },
     {
       "path": "src\\app\\page.tsx",
-      "accessCount": 48,
-      "lastAccessed": 1775916938780,
+      "accessCount": 52,
+      "lastAccessed": 1775934204141,
+      "type": "file"
+    },
+    {
+      "path": "velite.config.ts",
+      "accessCount": 34,
+      "lastAccessed": 1775932590018,
+      "type": "file"
+    },
+    {
+      "path": "src\\components\\vault\\vault-tree.tsx",
+      "accessCount": 33,
+      "lastAccessed": 1775933792152,
       "type": "file"
     },
     {
@@ -201,27 +213,27 @@
       "type": "file"
     },
     {
-      "path": "src\\components\\vault\\vault-tree.tsx",
-      "accessCount": 28,
-      "lastAccessed": 1775918785183,
-      "type": "file"
-    },
-    {
       "path": "src\\components\\site-header.tsx",
-      "accessCount": 27,
-      "lastAccessed": 1775918726932,
-      "type": "file"
-    },
-    {
-      "path": "velite.config.ts",
-      "accessCount": 24,
-      "lastAccessed": 1775918708441,
+      "accessCount": 29,
+      "lastAccessed": 1775923652495,
       "type": "file"
     },
     {
       "path": "src\\app\\explore\\page.tsx",
-      "accessCount": 17,
-      "lastAccessed": 1775916644197,
+      "accessCount": 18,
+      "lastAccessed": 1775923653184,
+      "type": "file"
+    },
+    {
+      "path": "src",
+      "accessCount": 16,
+      "lastAccessed": 1775935801070,
+      "type": "directory"
+    },
+    {
+      "path": "src\\app\\layout.tsx",
+      "accessCount": 14,
+      "lastAccessed": 1775923669960,
       "type": "file"
     },
     {
@@ -231,21 +243,15 @@
       "type": "file"
     },
     {
-      "path": "",
-      "accessCount": 12,
-      "lastAccessed": 1775916779804,
-      "type": "directory"
-    },
-    {
-      "path": "src\\app\\layout.tsx",
-      "accessCount": 12,
-      "lastAccessed": 1775916933749,
+      "path": "src\\components\\vault\\vault-sidebar.tsx",
+      "accessCount": 13,
+      "lastAccessed": 1775933772096,
       "type": "file"
     },
     {
-      "path": "src",
-      "accessCount": 11,
-      "lastAccessed": 1775916516211,
+      "path": "",
+      "accessCount": 12,
+      "lastAccessed": 1775916779804,
       "type": "directory"
     },
     {
@@ -262,14 +268,14 @@
     },
     {
       "path": "src\\lib\\vault-tree.ts",
-      "accessCount": 9,
-      "lastAccessed": 1775894101423,
+      "accessCount": 10,
+      "lastAccessed": 1775921668367,
       "type": "file"
     },
     {
-      "path": "src\\components\\vault\\vault-sidebar.tsx",
-      "accessCount": 9,
-      "lastAccessed": 1775918753541,
+      "path": "src\\components\\backlinks-panel.tsx",
+      "accessCount": 8,
+      "lastAccessed": 1775935998378,
       "type": "file"
     },
     {
@@ -288,6 +294,12 @@
       "path": "src\\components\\mdx-content.tsx",
       "accessCount": 7,
       "lastAccessed": 1775918067128,
+      "type": "file"
+    },
+    {
+      "path": "src\\components\\graph\\local-graph.tsx",
+      "accessCount": 7,
+      "lastAccessed": 1775935999529,
       "type": "file"
     },
     {
@@ -315,33 +327,27 @@
       "type": "file"
     },
     {
-      "path": "src\\components\\backlinks-panel.tsx",
-      "accessCount": 4,
-      "lastAccessed": 1775892276993,
-      "type": "file"
-    },
-    {
-      "path": "src\\components\\graph\\local-graph.tsx",
-      "accessCount": 4,
-      "lastAccessed": 1775893940397,
-      "type": "file"
-    },
-    {
       "path": "src\\components\\json-ld.tsx",
-      "accessCount": 4,
-      "lastAccessed": 1775916861070,
+      "accessCount": 5,
+      "lastAccessed": 1775921669252,
       "type": "file"
     },
     {
       "path": "src\\components\\explore\\result-list.tsx",
-      "accessCount": 4,
-      "lastAccessed": 1775916952005,
+      "accessCount": 5,
+      "lastAccessed": 1775923664221,
       "type": "file"
     },
     {
       "path": "src\\lib\\velite\\remark-wiki-link.ts",
       "accessCount": 4,
       "lastAccessed": 1775917824725,
+      "type": "file"
+    },
+    {
+      "path": "src\\lib\\topics.ts",
+      "accessCount": 4,
+      "lastAccessed": 1775923877497,
       "type": "file"
     },
     {
@@ -411,9 +417,9 @@
       "type": "file"
     },
     {
-      "path": "src\\lib\\topics.ts",
+      "path": "src\\components\\explore\\facet-panel.tsx",
       "accessCount": 2,
-      "lastAccessed": 1775893882415,
+      "lastAccessed": 1775923664681,
       "type": "file"
     },
     {
@@ -468,12 +474,6 @@
       "path": "src\\components\\ui\\badge.tsx",
       "accessCount": 1,
       "lastAccessed": 1775891318827,
-      "type": "file"
-    },
-    {
-      "path": "src\\components\\explore\\facet-panel.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1775891323182,
       "type": "file"
     },
     {

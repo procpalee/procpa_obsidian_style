@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 import { posts, series, chapters } from '#site/content'
 import { isKnownTopic, topicLabel, type TopicKey } from '@/lib/topics'
 import { MDXContent } from '@/components/mdx-content'
-import { ContentAside } from '@/components/content-aside'
+import { TableOfContents } from '@/components/table-of-contents'
 import { FolderPostsSidebar } from '@/components/folder-posts-sidebar'
 import { ReadingProgress } from '@/components/reading-progress'
 import { ShareButtons } from '@/components/share-buttons'
@@ -39,14 +39,14 @@ function VaultLayout({ children }: { children: React.ReactNode }) {
         <aside className="hidden border-border/60 lg:col-span-3 lg:block lg:border-r">
           <div className="group/sidebar sticky top-14 h-[calc(100vh-3.5rem)]">
             <ScrollArea className="h-full [&_[data-slot=scroll-area-scrollbar]]:opacity-0 [&_[data-slot=scroll-area-scrollbar]]:transition-opacity group-hover/sidebar:[&_[data-slot=scroll-area-scrollbar]]:opacity-100">
-              <div className="px-6 py-8">
+              <div className="px-6 pt-14 pb-8">
                 <VaultSidebar data={vaultData} />
               </div>
             </ScrollArea>
           </div>
         </aside>
         <section className="col-span-12 min-w-0 lg:col-span-9">
-          <div className="py-8 sm:py-10 lg:px-12 lg:py-8">
+          <div className="pt-14 pb-8 sm:pb-10 lg:px-12">
             {children}
           </div>
         </section>
@@ -260,6 +260,17 @@ function flattenTree(nodes: ChapterNode[]): (typeof chapters)[number][] {
   return result
 }
 
+function findNodeChildren(nodes: ChapterNode[], slug: string): ChapterNode[] {
+  for (const node of nodes) {
+    if (node.chapter.slug === slug) return node.children
+    if (node.children.length > 0) {
+      const found = findNodeChildren(node.children, slug)
+      if (found.length > 0) return found
+    }
+  }
+  return []
+}
+
 // ── Static params ──
 
 export async function generateStaticParams() {
@@ -394,14 +405,30 @@ function ChapterList({
 function SidebarList({
   nodes,
   activeSlug,
+  seriesHref,
   depth = 0,
 }: {
   nodes: ChapterNode[]
   activeSlug: string
+  seriesHref?: string
   depth?: number
 }) {
   return (
     <ol className={depth > 0 ? 'ml-3 space-y-0.5' : 'space-y-1 border-l border-border/60'}>
+      {depth === 0 && seriesHref && (
+        <li>
+          <Link
+            href={seriesHref}
+            className={`block border-l-2 px-4 py-1.5 text-sm font-medium transition-colors ${
+              activeSlug === '__series__'
+                ? '-ml-[2px] border-primary text-foreground'
+                : '-ml-[2px] border-transparent text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            책 소개
+          </Link>
+        </li>
+      )}
       {nodes.map((node) => {
         const active = node.chapter.slug === activeSlug
         return (
@@ -471,10 +498,12 @@ function PostView({
       <JsonLd
         data={breadcrumbJsonLd([
           { name: '홈', url: SITE },
+          { name: topicLabel(post.category), url: `${SITE}/${post.category}` },
+          { name: post.subcategory, url: `${SITE}/${post.category}/${post.subcategory}` },
           { name: post.title, url },
         ])}
       />
-      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[220px_minmax(0,1fr)_220px]">
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[220px_minmax(0,1fr)]">
         {/* ── Left sidebar: folder posts ── */}
         <FolderPostsSidebar
           currentSlug={post.slugAsParams}
@@ -485,9 +514,11 @@ function PostView({
         {/* ── Main content ── */}
         <article className="min-w-0">
           <header className="mb-10 border-b border-border/60 pb-6">
-            <nav className="mb-4 font-mono text-[11px] text-muted-foreground">
+            <nav className="mb-4 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+              <Link href="/" className="hover:text-foreground">Home</Link>
+              {' ⟩ '}
               <Link href={`/${post.category}`} className="hover:text-foreground">{topicLabel(post.category)}</Link>
-              {' / '}
+              {' ⟩ '}
               <Link href={`/${post.category}/${post.subcategory}`} className="hover:text-foreground">{post.subcategory}</Link>
             </nav>
             <div className="mb-4 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
@@ -516,6 +547,14 @@ function PostView({
               <p className="mt-4 text-lg text-muted-foreground">{post.description}</p>
             )}
           </header>
+
+          {/* TOC collapsible */}
+          {post.toc.length > 0 && (
+            <MobileCollapsible title="On this page" alwaysVisible>
+              <TableOfContents items={post.toc} hideTitle />
+            </MobileCollapsible>
+          )}
+
           <div className="prose prose-neutral max-w-none dark:prose-invert">
             <MDXContent code={post.body} />
           </div>
@@ -542,15 +581,10 @@ function PostView({
             </nav>
           )}
 
-          {/* 모바일: 백링크/그래프를 본문 아래에 표시 */}
-          <div className="lg:hidden">
-            <BacklinksPanel slug={post.slugAsParams} />
-            <LocalGraph currentSlug={post.slugAsParams} />
-          </div>
+          {/* 백링크/그래프 */}
+          <BacklinksPanel slug={post.slugAsParams} />
+          <LocalGraph currentSlug={post.slugAsParams} />
         </article>
-
-        {/* ── Right aside (desktop only) ── */}
-        <ContentAside toc={post.toc} slug={post.slugAsParams} />
       </div>
     </div>
     </>
@@ -562,26 +596,83 @@ function PostView({
 function SeriesView({ r }: { r: Extract<Resolved, { type: 'series' }> }) {
   const s = r.series
   return (
-    <VaultLayout>
-      <header className="mb-10 border-b border-border/60 pb-6">
-        <nav className="mb-3 font-mono text-[11px] text-muted-foreground">
-          <Link href={`/${s.category}`} className="hover:text-foreground">{topicLabel(s.category)}</Link>
-          {' / '}
-          <Link href={`/${s.category}/${s.subcategory}`} className="hover:text-foreground">{s.subcategory}</Link>
-          {' / '}
-          <span className="uppercase tracking-wider">Series</span>
-        </nav>
-        <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">{s.title}</h1>
-        <p className="mt-4 max-w-xl text-lg text-muted-foreground">{s.description}</p>
-        <p className="mt-3 font-mono text-xs text-muted-foreground">{r.totalCount}개 챕터</p>
-      </header>
-      <section>
-        <h2 className="mb-4 text-sm font-medium uppercase tracking-widest text-muted-foreground">
-          목차
-        </h2>
-        <ChapterList nodes={r.tree} counter={{ value: 0 }} />
-      </section>
-    </VaultLayout>
+    <div className="mx-auto max-w-5xl px-6">
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[220px_minmax(0,1fr)]">
+        {/* ── Left sidebar: chapter TOC (desktop) ── */}
+        <aside className="hidden lg:block">
+          <div className="group/sidebar sticky top-14 h-[calc(100vh-3.5rem)]">
+            <ScrollArea className="h-full [&_[data-slot=scroll-area-scrollbar]]:opacity-0 [&_[data-slot=scroll-area-scrollbar]]:transition-opacity group-hover/sidebar:[&_[data-slot=scroll-area-scrollbar]]:opacity-100">
+              <div className="pt-14 pb-8">
+                <div className="mb-4 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+                  Table of contents
+                </div>
+                <SidebarList nodes={r.tree} activeSlug="__series__" seriesHref={`/${s.slugAsParams}`} />
+              </div>
+            </ScrollArea>
+          </div>
+        </aside>
+
+        {/* ── Mobile: chapter TOC ── */}
+        <MobileCollapsible title={`${s.title} · 목차`}>
+          <SidebarList nodes={r.tree} activeSlug="__series__" seriesHref={`/${s.slugAsParams}`} />
+        </MobileCollapsible>
+
+        {/* ── Main content ── */}
+        <article className="min-w-0 pt-14 pb-12">
+          <header className="mb-10 border-b border-border/60 pb-6">
+            <nav className="mb-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+              <Link href="/" className="hover:text-foreground">Home</Link>
+              {' ⟩ '}
+              <Link href={`/${s.category}`} className="hover:text-foreground">{topicLabel(s.category)}</Link>
+              {' ⟩ '}
+              <Link href={`/${s.category}/${s.subcategory}`} className="hover:text-foreground">{s.subcategory}</Link>
+              {' ⟩ '}
+              <span>{s.title}</span>
+            </nav>
+
+            <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">{s.title}</h1>
+            <p className="mt-4 max-w-xl text-lg text-muted-foreground">{s.description}</p>
+            <div className="mt-3 flex flex-wrap items-center gap-3 font-mono text-xs text-muted-foreground">
+              <span>{r.totalCount}개 챕터</span>
+              {s.date && (
+                <>
+                  <span>·</span>
+                  <time>{s.date.slice(0, 10)}</time>
+                </>
+              )}
+            </div>
+            {s.tags.length > 0 && (
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {s.tags.map((tag) => (
+                  <span key={tag} className="rounded border border-border/60 px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+            )}
+          </header>
+
+          {/* Cover image */}
+          {s.cover && (
+            <div className="mb-10 max-w-[200px] overflow-hidden rounded-lg border border-border/60">
+              <img
+                src={s.cover}
+                alt={s.title}
+                className="h-auto w-full object-cover"
+              />
+            </div>
+          )}
+
+          {/* Book intro body (MDX) */}
+          {s.body && (
+            <section className="prose prose-neutral mb-12 max-w-none dark:prose-invert">
+              <MDXContent code={s.body} />
+            </section>
+          )}
+
+        </article>
+      </div>
+    </div>
   )
 }
 
@@ -589,10 +680,11 @@ function SeriesView({ r }: { r: Extract<Resolved, { type: 'series' }> }) {
 
 function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
   const url = `${SITE}/${r.chapter.slugAsParams}`
+  const childNodes = findNodeChildren(r.tree, r.chapter.slug)
   return (
     <>
     <ReadingProgress />
-    <div className="mx-auto max-w-5xl px-6 py-12">
+    <div className="mx-auto max-w-5xl px-6">
       <JsonLd
         data={articleJsonLd({
           title: `${r.chapter.title} · ${r.series.title}`,
@@ -606,40 +698,43 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
       <JsonLd
         data={breadcrumbJsonLd([
           { name: '홈', url: SITE },
+          { name: topicLabel(r.series.category), url: `${SITE}/${r.series.category}` },
+          { name: r.series.subcategory, url: `${SITE}/${r.series.category}/${r.series.subcategory}` },
           { name: r.series.title, url: `${SITE}/${r.series.slugAsParams}` },
           { name: r.chapter.title, url },
         ])}
       />
-      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[220px_minmax(0,1fr)_220px]">
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[220px_minmax(0,1fr)]">
         {/* ── Left sidebar: chapter navigation ── */}
         <aside className="hidden lg:block">
-          <div className="sticky top-20">
-            <Link
-              href={`/${r.series.slugAsParams}`}
-              className="block font-mono text-[11px] uppercase tracking-widest text-muted-foreground hover:text-foreground"
-            >
-              ← {r.series.title}
-            </Link>
-            <div className="mt-6">
-              <SidebarList nodes={r.tree} activeSlug={r.chapter.slug} />
-            </div>
+          <div className="group/sidebar sticky top-14 h-[calc(100vh-3.5rem)]">
+            <ScrollArea className="h-full [&_[data-slot=scroll-area-scrollbar]]:opacity-0 [&_[data-slot=scroll-area-scrollbar]]:transition-opacity group-hover/sidebar:[&_[data-slot=scroll-area-scrollbar]]:opacity-100">
+              <div className="pt-14 pb-8">
+                <div className="mb-4 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+                  Table of contents
+                </div>
+                <SidebarList nodes={r.tree} activeSlug={r.chapter.slug} seriesHref={`/${r.series.slugAsParams}`} />
+              </div>
+            </ScrollArea>
           </div>
         </aside>
 
         {/* ── Mobile: chapter navigation ── */}
         <MobileCollapsible title={`${r.series.title} · 목차`}>
-          <SidebarList nodes={r.tree} activeSlug={r.chapter.slug} />
+          <SidebarList nodes={r.tree} activeSlug={r.chapter.slug} seriesHref={`/${r.series.slugAsParams}`} />
         </MobileCollapsible>
 
         {/* ── Main content ── */}
-        <article className="min-w-0">
+        <article className="min-w-0 pt-14 pb-12">
           <header className="mb-10 border-b border-border/60 pb-6">
             <div className="mb-2 flex items-center justify-between">
-              <nav className="font-mono text-[11px] text-muted-foreground">
+              <nav className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+                <Link href="/" className="hover:text-foreground">Home</Link>
+                {' ⟩ '}
                 <Link href={`/${r.series.category}`} className="hover:text-foreground">{topicLabel(r.series.category)}</Link>
-                {' / '}
+                {' ⟩ '}
                 <Link href={`/${r.series.category}/${r.series.subcategory}`} className="hover:text-foreground">{r.series.subcategory}</Link>
-                {' / '}
+                {' ⟩ '}
                 <Link href={`/${r.series.slugAsParams}`} className="hover:text-foreground">{r.series.title}</Link>
               </nav>
               <ShareButtons url={url} title={r.chapter.title} />
@@ -649,9 +744,25 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
             </h1>
           </header>
 
-          <div className="prose prose-neutral max-w-none dark:prose-invert">
-            <MDXContent code={r.chapter.body} />
-          </div>
+          {/* TOC collapsible */}
+          {r.chapter.toc.length > 0 && (
+            <MobileCollapsible title="On this page" alwaysVisible>
+              <TableOfContents items={r.chapter.toc} hideTitle />
+            </MobileCollapsible>
+          )}
+
+          {childNodes.length > 0 ? (
+            <section>
+              <h2 className="mb-4 text-[11px] font-medium uppercase tracking-widest text-muted-foreground">
+                하위 챕터
+              </h2>
+              <ChapterList nodes={childNodes} counter={{ value: 0 }} />
+            </section>
+          ) : (
+            <div className="prose prose-neutral max-w-none dark:prose-invert">
+              <MDXContent code={r.chapter.body} />
+            </div>
+          )}
 
           <nav className="mt-16 flex items-center justify-between gap-4 border-t border-border/60 pt-6 text-sm">
             {r.prev ? (
@@ -672,15 +783,10 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
             )}
           </nav>
 
-          {/* 모바일: 백링크/그래프를 본문 아래에 표시 */}
-          <div className="lg:hidden">
-            <BacklinksPanel slug={r.chapter.slugAsParams} />
-            <LocalGraph currentSlug={r.chapter.slugAsParams} />
-          </div>
+          {/* 백링크/그래프 */}
+          <BacklinksPanel slug={r.chapter.slugAsParams} />
+          <LocalGraph currentSlug={r.chapter.slugAsParams} />
         </article>
-
-        {/* ── Right aside (desktop only) ── */}
-        <ContentAside toc={r.chapter.toc} slug={r.chapter.slugAsParams} />
       </div>
     </div>
     </>
@@ -698,7 +804,7 @@ function DocList({ docs, emptyMsg }: { docs: CategoryDoc[]; emptyMsg?: string })
     <div className="space-y-10">
       {seriesDocs.length > 0 && (
         <div>
-          <h3 className="mb-4 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+          <h3 className="mb-4 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
             시리즈 · {seriesDocs.length}
           </h3>
           <div className="grid gap-3">
@@ -724,7 +830,7 @@ function DocList({ docs, emptyMsg }: { docs: CategoryDoc[]; emptyMsg?: string })
       )}
       {postDocs.length > 0 && (
         <div>
-          <h3 className="mb-4 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+          <h3 className="mb-4 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
             포스트 · {postDocs.length}
           </h3>
           <ul className="divide-y divide-border/60">
@@ -757,9 +863,11 @@ function CategoryView({ r }: { r: Extract<Resolved, { type: 'category' }> }) {
   return (
     <VaultLayout>
       <header className="mb-10">
-        <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-          Category
-        </p>
+        <nav className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+          <Link href="/" className="hover:text-foreground">Home</Link>
+          {' ⟩ '}
+          <span>{r.label}</span>
+        </nav>
         <h1 className="mt-2 text-3xl font-semibold tracking-tight">{r.label}</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           {r.docs.length}개의 글 · {r.subcategories.length}개의 서브카테고리
@@ -768,7 +876,7 @@ function CategoryView({ r }: { r: Extract<Resolved, { type: 'category' }> }) {
 
       {r.subcategories.length > 0 && (
         <div className="mb-10">
-          <h2 className="mb-4 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+          <h2 className="mb-4 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
             서브카테고리
           </h2>
           <div className="flex flex-wrap gap-2">
@@ -796,11 +904,13 @@ function SubcategoryView({ r }: { r: Extract<Resolved, { type: 'subcategory' }> 
   return (
     <VaultLayout>
       <header className="mb-10">
-        <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
+        <nav className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+          <Link href="/" className="hover:text-foreground">Home</Link>
+          {' ⟩ '}
           <Link href={`/${r.category}`} className="hover:text-foreground">{r.categoryLabel}</Link>
-          {' / '}
-          {r.subcategory}
-        </p>
+          {' ⟩ '}
+          <span>{r.subcategory}</span>
+        </nav>
         <h1 className="mt-2 text-3xl font-semibold tracking-tight">{r.subcategory}</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           {r.docs.length}개의 글

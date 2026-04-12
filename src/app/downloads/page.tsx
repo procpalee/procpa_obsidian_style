@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
-import fs from 'node:fs'
-import path from 'node:path'
+import { downloads } from '#site/content'
 import { FileDownload } from '@/components/mdx/file-download'
+import { TOPICS, topicLabel, topicOrder, type TopicKey } from '@/lib/topics'
 
 export const metadata: Metadata = {
   title: '자료실',
@@ -9,34 +9,23 @@ export const metadata: Metadata = {
   alternates: { canonical: '/downloads' },
 }
 
-interface FileEntry {
-  name: string
-  href: string
-  size: string
-}
-
-function getFiles(): FileEntry[] {
-  const dir = path.join(process.cwd(), 'public', 'files')
-  if (!fs.existsSync(dir)) return []
-
-  return fs
-    .readdirSync(dir)
-    .filter((f) => !f.startsWith('.'))
-    .map((f) => {
-      const stat = fs.statSync(path.join(dir, f))
-      const bytes = stat.size
-      const size =
-        bytes < 1024
-          ? `${bytes}B`
-          : bytes < 1024 * 1024
-            ? `${(bytes / 1024).toFixed(0)}KB`
-            : `${(bytes / (1024 * 1024)).toFixed(1)}MB`
-      return { name: f, href: `/files/${f}`, size }
-    })
+function groupByCategory(items: typeof downloads) {
+  const groups = new Map<string, typeof downloads>()
+  for (const item of items) {
+    if (item.draft) continue
+    const cat = item.category
+    if (!groups.has(cat)) groups.set(cat, [])
+    groups.get(cat)!.push(item)
+  }
+  // 카테고리 순서대로 정렬
+  return [...groups.entries()].sort(
+    ([a], [b]) => topicOrder(a) - topicOrder(b),
+  )
 }
 
 export default function DownloadsPage() {
-  const files = getFiles()
+  const grouped = groupByCategory(downloads)
+  const total = downloads.filter((d) => !d.draft).length
 
   return (
     <section>
@@ -51,15 +40,51 @@ export default function DownloadsPage() {
           실무에 활용할 수 있는 엑셀 템플릿, 가이드 등을 다운로드할 수 있습니다.
         </p>
 
-        <div className="mt-12 space-y-3">
-          {files.length === 0 ? (
-            <p className="text-sm text-muted-foreground">등록된 파일이 없습니다.</p>
-          ) : (
-            files.map((f) => (
-              <FileDownload key={f.href} href={f.href} size={f.size} />
-            ))
-          )}
-        </div>
+        {total === 0 ? (
+          <p className="mt-12 text-sm text-muted-foreground">등록된 파일이 없습니다.</p>
+        ) : (
+          <div className="mt-12 space-y-14">
+            {grouped.map(([category, items]) => (
+              <div key={category}>
+                <div className="flex items-baseline gap-3 border-b border-border/60 pb-3">
+                  <h2 className="text-lg font-semibold tracking-tight">
+                    {category in TOPICS
+                      ? topicLabel(category).replace(/^\d+\.\s*/, '')
+                      : category}
+                  </h2>
+                  <span className="font-mono text-[11px] text-muted-foreground">
+                    {items.length}
+                  </span>
+                </div>
+                <div className="mt-4 space-y-3">
+                  {items
+                    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+                    .map((item) => (
+                      <div key={item.slug}>
+                        <FileDownload
+                          href={item.file}
+                          name={item.title}
+                          description={item.description}
+                        />
+                        {item.tags.length > 0 && (
+                          <div className="mt-1 flex flex-wrap gap-1.5 pl-1">
+                            {item.tags.map((tag) => (
+                              <span
+                                key={tag}
+                                className="rounded-full border border-border/60 px-2 py-0.5 font-mono text-[10px] text-muted-foreground"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   )

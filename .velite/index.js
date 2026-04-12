@@ -3,3 +3,4 @@
 export { default as posts } from './posts.json' with { type: 'json' }
 export { default as series } from './series.json' with { type: 'json' }
 export { default as chapters } from './chapters.json' with { type: 'json' }
+export { default as downloads } from './downloads.json' with { type: 'json' }

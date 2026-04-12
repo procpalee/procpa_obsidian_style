@@ -17,15 +17,15 @@ export function VaultSidebar({ data, onNavigate }: { data: VaultData; onNavigate
 
   return (
     <div>
-      <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+      <div className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
         Vault
       </div>
 
-      <div className="mt-5">
+      <div className="mt-2">
         <VaultTree nodes={tree} onNavigate={onNavigate} />
       </div>
 
-      <div className="mt-10 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+      <div className="mt-10 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
         Tags
       </div>
       <div className="mt-4 flex flex-wrap gap-1.5">
@@ -46,7 +46,7 @@ export function VaultSidebar({ data, onNavigate }: { data: VaultData; onNavigate
         )}
       </div>
 
-      <div className="mt-10 border-t border-border/60 pt-6 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+      <div className="mt-10 pt-6 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
         Stats
       </div>
       <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 font-mono text-[11px]">

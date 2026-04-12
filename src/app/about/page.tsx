@@ -140,7 +140,7 @@ export default function AboutPage() {
           <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
             About
           </p>
-          <h1 className="mt-6 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
+          <h1 className="mt-4 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
             한국공인회계사
             <br />
             <span className="text-primary">
