@@ -25,10 +25,11 @@ export const metadata: Metadata = {
     locale: 'ko_KR',
     url: 'https://procpa.co.kr',
     siteName: 'PROCPA',
+    images: [{ url: '/og-default.png', width: 1200, height: 630, alt: 'PROCPA — 회계사의 기록' }],
   },
   alternates: { canonical: '/' },
   manifest: '/manifest.json',
-  twitter: { card: 'summary_large_image' },
+  twitter: { card: 'summary_large_image', images: ['/og-default.png'] },
   other: {
     'color-scheme': 'dark light',
     'theme-color': '#000000',
