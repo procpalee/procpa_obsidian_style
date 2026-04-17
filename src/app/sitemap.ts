@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { posts, series, chapters } from '#site/content'
 
-const SITE = 'https://procpa.co.kr'
+const SITE = ''
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticUrls: MetadataRoute.Sitemap = [

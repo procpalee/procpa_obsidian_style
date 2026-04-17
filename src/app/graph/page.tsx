@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/graph' },
   openGraph: {
     images: [{
-      url: '/api/og?kicker=PROCPA&title=%EC%A7%80%EC%8B%9D%20%EA%B7%B8%EB%9E%98%ED%94%84',
+      url: '/api/og?kicker=',
       width: 1200,
       height: 630,
     }],
