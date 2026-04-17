@@ -2,7 +2,7 @@ import { posts } from '#site/content'
 
 export const dynamic = 'force-static'
 
-const SITE = 'https://procpa.co.kr'
+const SITE = ''
 
 function escape(s: string) {
   return s
@@ -38,14 +38,14 @@ export function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0">
   <channel>
-    <title>PROCPA</title>
+    <title></title>
     <link>${SITE}</link>
-    <description>회계사의 기록</description>
+    <description></description>
     <language>ko</language>
     <lastBuildDate>${lastBuildDate}</lastBuildDate>
     <image>
       <url>${SITE}/icon.png</url>
-      <title>PROCPA</title>
+      <title></title>
       <link>${SITE}</link>
     </image>${items}
   </channel>
