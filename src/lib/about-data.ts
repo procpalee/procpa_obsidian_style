@@ -6,6 +6,7 @@ export const stats = [
 ]
 
 export const career = [
+  { period: '2026 – 현재', title: '정인회계법인' },
   { period: '2025 – 현재', title: '방위사업청 원가관리 자문위원' },
   { period: '2023 – 2026', title: '육군 재정장교' },
   { period: '2021 – 2023', title: '안진회계법인 (Deloitte)' },
