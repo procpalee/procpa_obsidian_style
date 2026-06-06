@@ -31,8 +31,8 @@ export const metadata: Metadata = {
   manifest: '/manifest.json',
   twitter: { card: 'summary_large_image', images: ['/og-default.png'] },
   other: {
-    'color-scheme': 'dark light',
-    'theme-color': '#000000',
+    'color-scheme': 'light dark',
+    'theme-color': '#fbfbfa',
   },
   icons: {
     icon: [
@@ -77,6 +77,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable.min.css"
+          />
+        </noscript>
+        {/* Noto Sans KR (보조 한글 폰트) — 비동기 로딩 */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
+          media="print"
+          // @ts-expect-error -- onLoad sets media to 'all' after async load
+          onLoad="this.media='all'"
+        />
+        <noscript>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
           />
         </noscript>
         <Script strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: themeScript }} />
