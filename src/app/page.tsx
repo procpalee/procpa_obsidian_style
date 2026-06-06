@@ -18,9 +18,16 @@ export default function HomePage() {
   const visiblePosts = posts.filter((p) => !p.draft)
   const visibleSeries = series.filter((s) => !s.draft)
 
-  const recentPosts = [...visiblePosts]
-    .sort((a, b) => +new Date(b.date) - +new Date(a.date))
-    .slice(0, 5)
+  const sortedPosts = [...visiblePosts].sort(
+    (a, b) => +new Date(b.date) - +new Date(a.date),
+  )
+  const recentPosts = sortedPosts.slice(0, 5)
+
+  const lastUpdated = sortedPosts[0]?.date
+  const fmtDate = (d?: string) =>
+    d
+      ? new Date(d).toLocaleDateString('en-CA').replace(/-/g, '.') // YYYY.MM.DD
+      : '—'
 
   const accountingSeries = visibleSeries.filter((s) => s.category === '회계실무')
   const aiSeries = visibleSeries.filter((s) => s.category !== '회계실무')
@@ -80,6 +87,28 @@ export default function HomePage() {
               <br />
               실무에 즉시 활용 가능한 <span className="text-foreground">회계·재무 지식</span>과 <span className="text-foreground">AI 생산성 인사이트</span>를 공유합니다.
             </p>
+            {/* Note properties (frontmatter-style metadata) */}
+            <dl className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 border-y border-border/60 py-3 font-mono text-[11px] text-muted-foreground">
+              <div className="flex items-center gap-1.5">
+                <dt className="text-muted-foreground/60">updated</dt>
+                <dd className="text-foreground">
+                  <time dateTime={lastUpdated}>{fmtDate(lastUpdated)}</time>
+                </dd>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <dt className="text-muted-foreground/60">notes</dt>
+                <dd className="text-foreground">{visiblePosts.length}</dd>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <dt className="text-muted-foreground/60">series</dt>
+                <dd className="text-foreground">{visibleSeries.length}</dd>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <dt className="text-muted-foreground/60">tags</dt>
+                <dd className="text-foreground">{tagCounts.size}</dd>
+              </div>
+            </dl>
+
             <div className="mt-6">
               <Link
                 href="/about"
