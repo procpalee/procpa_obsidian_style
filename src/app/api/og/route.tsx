@@ -34,7 +34,7 @@ function variantA({ title, subtitle, kicker, meta }: OgProps) {
         }}
       >
         {/* Top accent line */}
-        <div style={{ height: 4, background: '#7ba3ff', width: '100%' }} />
+        <div style={{ height: 4, background: '#5b9cff', width: '100%' }} />
         <div
           style={{
             flex: 1,
@@ -51,7 +51,6 @@ function variantA({ title, subtitle, kicker, meta }: OgProps) {
               fontSize: 18,
               color: '#888',
               letterSpacing: 4,
-              fontFamily: 'monospace',
               textTransform: 'uppercase' as const,
             }}
           >
@@ -66,7 +65,7 @@ function variantA({ title, subtitle, kicker, meta }: OgProps) {
               <div style={{ fontSize: 24, color: '#aaa', lineHeight: 1.4 }}>{subtitle}</div>
             )}
           </div>
-          <div style={{ fontSize: 20, color: '#7ba3ff', letterSpacing: 1 }}>procpa.co.kr</div>
+          <div style={{ fontSize: 20, color: '#5b9cff', letterSpacing: 1 }}>procpa.co.kr</div>
         </div>
       </div>
     ),
@@ -89,7 +88,7 @@ function variantB({ title, subtitle, kicker, meta }: OgProps) {
         }}
       >
         {/* Left stripe */}
-        <div style={{ width: 6, background: '#7ba3ff', height: '100%', flexShrink: 0 }} />
+        <div style={{ width: 6, background: '#5b9cff', height: '100%', flexShrink: 0 }} />
         <div
           style={{
             flex: 1,
@@ -106,7 +105,6 @@ function variantB({ title, subtitle, kicker, meta }: OgProps) {
               fontSize: 18,
               color: '#888',
               letterSpacing: 4,
-              fontFamily: 'monospace',
               textTransform: 'uppercase' as const,
             }}
           >
@@ -121,7 +119,7 @@ function variantB({ title, subtitle, kicker, meta }: OgProps) {
               <div style={{ fontSize: 24, color: '#aaa', lineHeight: 1.4 }}>{subtitle}</div>
             )}
           </div>
-          <div style={{ fontSize: 20, color: '#7ba3ff', letterSpacing: 1 }}>procpa.co.kr</div>
+          <div style={{ fontSize: 20, color: '#5b9cff', letterSpacing: 1 }}>procpa.co.kr</div>
         </div>
       </div>
     ),
@@ -160,7 +158,6 @@ function variantC({ title, subtitle, kicker, meta }: OgProps) {
               fontSize: 18,
               color: '#888',
               letterSpacing: 4,
-              fontFamily: 'monospace',
               textTransform: 'uppercase' as const,
             }}
           >
@@ -175,7 +172,7 @@ function variantC({ title, subtitle, kicker, meta }: OgProps) {
               <div style={{ fontSize: 22, color: '#aaa', lineHeight: 1.4 }}>{subtitle}</div>
             )}
           </div>
-          <div style={{ display: 'flex', justifyContent: 'flex-end', fontSize: 20, color: '#7ba3ff', letterSpacing: 1 }}>
+          <div style={{ display: 'flex', justifyContent: 'flex-end', fontSize: 20, color: '#5b9cff', letterSpacing: 1 }}>
             procpa.co.kr
           </div>
         </div>
