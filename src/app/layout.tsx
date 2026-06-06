@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image', images: ['/og-default.png'] },
   other: {
     'color-scheme': 'light dark',
-    'theme-color': '#fbfbfa',
+    'theme-color': '#ffffff',
   },
   icons: {
     icon: [

@@ -49,78 +49,80 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* ─────────── Light theme · CMDS Green ───────────
-   Deep forest green accent on warm near-white neutrals.
-   Color DNA adapted from the CMDS design system (green light / pink dark). */
+/* ─────────── Light theme · Azure ───────────
+   Deep professional blue accent on a pure-white, cool-neutral surface.
+   Structure (tokens/scale/signatures) adapted from the CMDS design system;
+   hues retuned to a blue identity per brand direction. */
 :root {
-  --background: #fbfbfa;          /* neutral-50 */
-  --foreground: #0b0d0c;          /* neutral-900 */
-  --card: #ffffff;                /* bg-elev */
-  --card-foreground: #0b0d0c;
+  --background: #ffffff;
+  --foreground: #0c0e12;
+  --card: #ffffff;
+  --card-foreground: #0c0e12;
   --popover: #ffffff;
-  --popover-foreground: #0b0d0c;
-  --primary: #134538;             /* cmds-green */
+  --popover-foreground: #0c0e12;
+  --primary: #1b4dd1;            /* deep azure */
   --primary-foreground: #ffffff;
-  --secondary: #f5f6f4;           /* bg-subtle */
-  --secondary-foreground: #0b0d0c;
-  --muted: #f5f6f4;
-  --muted-foreground: #4a544f;    /* fg-muted */
-  --accent: #f1f7f4;              /* green-50 */
-  --accent-foreground: #134538;
-  --destructive: #b45309;         /* warn */
-  --border: #e6e8e6;
-  --input: #e6e8e6;
-  --ring: #134538;
-  --chart-1: #134538;
-  --chart-2: #22896a;             /* green-bright */
-  --chart-3: #2fb488;             /* green-glow */
-  --chart-4: #8a938e;
-  --chart-5: #d0d3d0;
+  --secondary: #f4f6f9;
+  --secondary-foreground: #0c0e12;
+  --muted: #f4f6f9;
+  --muted-foreground: #4a5160;
+  --accent: #eef3fd;             /* blue-50 */
+  --accent-foreground: #1b4dd1;
+  --destructive: #c2410c;
+  --border: #e6e9ee;
+  --input: #e6e9ee;
+  --ring: #1b4dd1;
+  --chart-1: #1b4dd1;
+  --chart-2: #3b82f6;
+  --chart-3: #38bdf8;
+  --chart-4: #94a3b8;
+  --chart-5: #cbd5e1;
   --radius: 0.7rem;
-  --sidebar: #fbfbfa;
-  --sidebar-foreground: #0b0d0c;
-  --sidebar-primary: #134538;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0c0e12;
+  --sidebar-primary: #1b4dd1;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f1f7f4;
-  --sidebar-accent-foreground: #134538;
-  --sidebar-border: #e6e8e6;
-  --sidebar-ring: #134538;
+  --sidebar-accent: #eef3fd;
+  --sidebar-accent-foreground: #1b4dd1;
+  --sidebar-border: #e6e9ee;
+  --sidebar-ring: #1b4dd1;
 }
 
-/* ─────────── Dark theme · CMDS Pink ───────────
-   Pink accent on deep near-black green-tinted neutrals. */
+/* ─────────── Dark theme · Sky ───────────
+   Bright sky/cyan-blue accent on a cool near-black surface — a tonal shift
+   of the same cool family (replaces the pink dark accent). */
 .dark {
-  --background: #0b0f0d;          /* neutral-dark-900 */
-  --foreground: #f2f4f3;          /* neutral-dark-50 */
-  --card: #0d1411;               /* neutral-dark-elev */
-  --card-foreground: #f2f4f3;
-  --popover: #0d1411;
-  --popover-foreground: #f2f4f3;
-  --primary: #e985a2;            /* cmds-pink */
-  --primary-foreground: #0b0f0d;
-  --secondary: #161f1a;
-  --secondary-foreground: #f2f4f3;
-  --muted: #161f1a;
-  --muted-foreground: #9aa39d;   /* fg-muted */
-  --accent: #2b1922;             /* pink-soft */
-  --accent-foreground: #f4a4b8;
-  --destructive: #d97706;
-  --border: #1f2a24;
-  --input: #26302a;
-  --ring: #e985a2;
-  --chart-1: #e985a2;
-  --chart-2: #f4a4b8;
-  --chart-3: #2fb488;
-  --chart-4: #9aa39d;
-  --chart-5: #4a544f;
-  --sidebar: #0b0f0d;
-  --sidebar-foreground: #f2f4f3;
-  --sidebar-primary: #e985a2;
-  --sidebar-primary-foreground: #0b0f0d;
-  --sidebar-accent: #2b1922;
-  --sidebar-accent-foreground: #f4a4b8;
-  --sidebar-border: #1f2a24;
-  --sidebar-ring: #e985a2;
+  --background: #0b0e13;
+  --foreground: #f3f5f8;
+  --card: #11151c;
+  --card-foreground: #f3f5f8;
+  --popover: #11151c;
+  --popover-foreground: #f3f5f8;
+  --primary: #38bdf8;           /* sky */
+  --primary-foreground: #042430;
+  --secondary: #171c25;
+  --secondary-foreground: #f3f5f8;
+  --muted: #171c25;
+  --muted-foreground: #9aa2b1;
+  --accent: #0c2536;            /* sky-soft */
+  --accent-foreground: #7dd3fc;
+  --destructive: #ea7a3c;
+  --border: #232a36;
+  --input: #2a3340;
+  --ring: #38bdf8;
+  --chart-1: #38bdf8;
+  --chart-2: #60a5fa;
+  --chart-3: #7dd3fc;
+  --chart-4: #94a3b8;
+  --chart-5: #4a5160;
+  --sidebar: #0b0e13;
+  --sidebar-foreground: #f3f5f8;
+  --sidebar-primary: #38bdf8;
+  --sidebar-primary-foreground: #042430;
+  --sidebar-accent: #0c2536;
+  --sidebar-accent-foreground: #7dd3fc;
+  --sidebar-border: #232a36;
+  --sidebar-ring: #38bdf8;
 }
 
 @layer base {

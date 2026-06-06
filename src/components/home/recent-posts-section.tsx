@@ -38,7 +38,7 @@ export function RecentPostsSection() {
             >
               <div className="flex items-center gap-2 font-mono text-[11px] text-muted-foreground">
                 <span className="rounded-full bg-secondary px-2 py-0.5">
-                  {p.category === '회계실무' ? '회계' : 'AI'}
+                  {p.category}
                 </span>
                 <span>{p.date.slice(0, 10).replace(/-/g, '.')}</span>
               </div>
