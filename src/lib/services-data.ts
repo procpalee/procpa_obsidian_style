@@ -1,0 +1,66 @@
+// 4 핵심 서비스 — /services 페이지와 디자인 컨셉 미리보기에서 공용으로 사용.
+// about-data.ts 패턴을 따른다.
+
+export type Service = {
+  key: string
+  title: string
+  /** 한 줄 요약 (카드/리스트용) */
+  summary: string
+  /** 기대 성과 / 제공 내용 */
+  outcomes: string[]
+  /** 이런 분께 */
+  forWhom: string
+  /** CTA 라벨 */
+  cta: string
+}
+
+export const services: Service[] = [
+  {
+    key: 'accounting',
+    title: '회계·재무 자문',
+    summary: '결산·내부회계·공정가치평가 등 까다로운 회계 이슈를 실무 관점에서 풀어드립니다.',
+    outcomes: [
+      'IFRS/K-GAAP 회계처리 및 결산 자문',
+      '내부회계관리제도(ICFR) 구축·평가',
+      '공정가치평가·손상검사·PA 등 회계자문',
+    ],
+    forWhom: '결산·감사 대응이 필요한 기업, 재무팀',
+    cta: '회계 자문 문의',
+  },
+  {
+    key: 'ai',
+    title: 'AI 도입·컨설팅',
+    summary: '실무에 바로 쓰는 AI 워크플로우를 설계해 팀의 생산성을 끌어올립니다.',
+    outcomes: [
+      '재무·회계 업무 AI 자동화 설계',
+      'Claude·MCP 기반 사내 워크플로우 구축',
+      'AI 도입 교육 및 사내 가이드 정립',
+    ],
+    forWhom: 'AI로 업무 효율을 높이려는 조직·실무자',
+    cta: 'AI 컨설팅 문의',
+  },
+  {
+    key: 'teaching',
+    title: '강의·집필·연사',
+    summary: '회계와 AI를 잇는 실전 주제로 강의·집필·연사 활동을 합니다.',
+    outcomes: [
+      '회계 실무 / AI 활용 강의·워크숍',
+      '전자책·가이드북 집필 (출간 2종)',
+      '세미나·컨퍼런스 연사',
+    ],
+    forWhom: '교육 기관, 기업 교육 담당자, 행사 주최자',
+    cta: '강의·연사 섭외',
+  },
+  {
+    key: 'collab',
+    title: '협업·외주 프로젝트',
+    summary: '회계 도메인 지식이 필요한 제품·콘텐츠·도구 개발을 함께합니다.',
+    outcomes: [
+      '핀테크·회계 SaaS 도메인 자문',
+      '데이터/MCP 기반 도구 개발',
+      '전문 콘텐츠 제작 협업',
+    ],
+    forWhom: '도메인 전문성이 필요한 팀·스타트업',
+    cta: '협업 제안하기',
+  },
+]
