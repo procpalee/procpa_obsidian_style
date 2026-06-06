@@ -9,7 +9,9 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: 'Pretendard Variable', Pretendard, 'Noto Sans KR', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono);
+  /* 사이트 전반을 Pretendard/Noto Sans KR로 통일 — Geist Mono 미사용.
+     라벨/숫자용 font-mono 유틸리티도 같은 sans 스택으로 매핑된다. */
+  --font-mono: var(--font-sans);
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -49,8 +51,8 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* ─────────── Light theme · Azure ───────────
-   Deep professional blue accent on a pure-white, cool-neutral surface.
+/* ─────────── Light theme · Vivid Blue ───────────
+   Bright, energetic blue accent on a pure-white, cool-neutral surface.
    Structure (tokens/scale/signatures) adapted from the CMDS design system;
    hues retuned to a blue identity per brand direction. */
 :root {
@@ -60,37 +62,37 @@
   --card-foreground: #0c0e12;
   --popover: #ffffff;
   --popover-foreground: #0c0e12;
-  --primary: #1b4dd1;            /* deep azure */
+  --primary: #2563eb;            /* vivid blue */
   --primary-foreground: #ffffff;
   --secondary: #f4f6f9;
   --secondary-foreground: #0c0e12;
   --muted: #f4f6f9;
   --muted-foreground: #4a5160;
-  --accent: #eef3fd;             /* blue-50 */
-  --accent-foreground: #1b4dd1;
+  --accent: #eff5ff;             /* blue-50 */
+  --accent-foreground: #2563eb;
   --destructive: #c2410c;
   --border: #e6e9ee;
   --input: #e6e9ee;
-  --ring: #1b4dd1;
-  --chart-1: #1b4dd1;
+  --ring: #2563eb;
+  --chart-1: #2563eb;
   --chart-2: #3b82f6;
-  --chart-3: #38bdf8;
+  --chart-3: #60a5fa;
   --chart-4: #94a3b8;
   --chart-5: #cbd5e1;
   --radius: 0.7rem;
   --sidebar: #ffffff;
   --sidebar-foreground: #0c0e12;
-  --sidebar-primary: #1b4dd1;
+  --sidebar-primary: #2563eb;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #eef3fd;
-  --sidebar-accent-foreground: #1b4dd1;
+  --sidebar-accent: #eff5ff;
+  --sidebar-accent-foreground: #2563eb;
   --sidebar-border: #e6e9ee;
-  --sidebar-ring: #1b4dd1;
+  --sidebar-ring: #2563eb;
 }
 
-/* ─────────── Dark theme · Sky ───────────
-   Bright sky/cyan-blue accent on a cool near-black surface — a tonal shift
-   of the same cool family (replaces the pink dark accent). */
+/* ─────────── Dark theme · Bright Royal ───────────
+   Bright royal-blue accent (same family as the light vivid blue, lifted for
+   contrast) on a cool near-black surface. */
 .dark {
   --background: #0b0e13;
   --foreground: #f3f5f8;
@@ -98,31 +100,31 @@
   --card-foreground: #f3f5f8;
   --popover: #11151c;
   --popover-foreground: #f3f5f8;
-  --primary: #38bdf8;           /* sky */
-  --primary-foreground: #042430;
+  --primary: #5b9cff;           /* bright royal */
+  --primary-foreground: #06101f;
   --secondary: #171c25;
   --secondary-foreground: #f3f5f8;
   --muted: #171c25;
   --muted-foreground: #9aa2b1;
-  --accent: #0c2536;            /* sky-soft */
-  --accent-foreground: #7dd3fc;
+  --accent: #13233f;            /* royal-soft */
+  --accent-foreground: #a8c6ff;
   --destructive: #ea7a3c;
   --border: #232a36;
   --input: #2a3340;
-  --ring: #38bdf8;
-  --chart-1: #38bdf8;
+  --ring: #5b9cff;
+  --chart-1: #5b9cff;
   --chart-2: #60a5fa;
-  --chart-3: #7dd3fc;
+  --chart-3: #a8c6ff;
   --chart-4: #94a3b8;
   --chart-5: #4a5160;
   --sidebar: #0b0e13;
   --sidebar-foreground: #f3f5f8;
-  --sidebar-primary: #38bdf8;
-  --sidebar-primary-foreground: #042430;
-  --sidebar-accent: #0c2536;
-  --sidebar-accent-foreground: #7dd3fc;
+  --sidebar-primary: #5b9cff;
+  --sidebar-primary-foreground: #06101f;
+  --sidebar-accent: #13233f;
+  --sidebar-accent-foreground: #a8c6ff;
   --sidebar-border: #232a36;
-  --sidebar-ring: #38bdf8;
+  --sidebar-ring: #5b9cff;
 }
 
 @layer base {
