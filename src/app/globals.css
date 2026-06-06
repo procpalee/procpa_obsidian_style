@@ -137,6 +137,11 @@
   html {
     @apply font-sans;
   }
+  /* font-mono 라벨/숫자(메트릭·날짜·카운트 등)는 Pretendard로 렌더되므로
+     고정폭 숫자 정렬을 위해 tabular-nums를 적용한다. */
+  .font-mono {
+    font-variant-numeric: tabular-nums;
+  }
   /* TOC 앵커 클릭 시 헤더에 가리지 않도록 오프셋 */
   [id] {
     scroll-margin-top: 6rem;
