@@ -194,7 +194,7 @@ export default function AboutPage() {
       <Section label="Expertise" title="전문 분야">
         <div className="grid gap-4 sm:grid-cols-2">
           {expertise.map((e) => (
-            <div key={e.title} className="rounded-xl border border-border/60 p-6">
+            <div key={e.title} className="rounded-2xl border border-border/60 p-6 transition-all hover:-translate-y-0.5 hover:border-foreground/40">
               <h3 className="text-base font-medium">{e.title}</h3>
               <ul className="mt-3 space-y-2 text-sm leading-7 text-muted-foreground">
                 {e.items.map((line) => (
@@ -212,7 +212,7 @@ export default function AboutPage() {
       <Section label="Certificates" title="자격증">
         <div className="grid gap-4 sm:grid-cols-3">
           {certificates.map((c) => (
-            <div key={c.group} className="rounded-xl border border-border/60 p-6">
+            <div key={c.group} className="rounded-2xl border border-border/60 p-6 transition-all hover:-translate-y-0.5 hover:border-foreground/40">
               <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
                 {c.group}
               </div>
@@ -237,7 +237,7 @@ export default function AboutPage() {
               href={p.href}
               target="_blank"
               rel="noreferrer"
-              className="group rounded-xl border border-border/60 p-6 transition-colors hover:border-foreground/40"
+              className="group rounded-2xl border border-border/60 p-6 transition-all hover:-translate-y-0.5 hover:border-foreground/40"
             >
               <h3 className="text-base font-medium group-hover:text-primary">{p.title}</h3>
               <p className="mt-2 text-sm leading-6 text-muted-foreground">{p.description}</p>
@@ -250,7 +250,7 @@ export default function AboutPage() {
         <div className="mb-6">
           <Link
             href="/projects"
-            className="inline-flex items-center rounded-md border border-border/60 px-3.5 py-2 font-mono text-[11px] text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground"
+            className="inline-flex items-center rounded-full border border-border/60 px-4 py-2 font-mono text-xs text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground"
           >
             프로젝트 전체 보기 →
           </Link>
@@ -262,7 +262,7 @@ export default function AboutPage() {
               href={p.href}
               target={p.href.startsWith('http') ? '_blank' : undefined}
               rel={p.href.startsWith('http') ? 'noreferrer' : undefined}
-              className="group rounded-xl border border-border/60 p-6 transition-colors hover:border-foreground/40"
+              className="group rounded-2xl border border-border/60 p-6 transition-all hover:-translate-y-0.5 hover:border-foreground/40"
             >
               <h3 className="text-base font-medium group-hover:text-primary">{p.title}</h3>
               <p className="mt-2 text-sm leading-6 text-muted-foreground">{p.description}</p>

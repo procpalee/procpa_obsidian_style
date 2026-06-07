@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
+import { posts } from '#site/content'
 import { JsonLd, websiteJsonLd, personJsonLd } from '@/components/json-ld'
 import { socials } from '@/components/social-icons'
+import { Reveal } from '@/components/reveal'
 import { Hero } from '@/components/home/hero'
 import { AboutPreview } from '@/components/home/about-preview'
 import { BlogHighlights } from '@/components/home/blog-highlights'
@@ -14,6 +16,13 @@ export const metadata: Metadata = {
 }
 
 export default function HomePage() {
+  const lastUpdated =
+    posts
+      .filter((p) => !p.draft)
+      .map((p) => (p.updated || p.date).slice(0, 10))
+      .sort()
+      .pop() ?? new Date().toISOString().slice(0, 10)
+
   return (
     <>
       <JsonLd data={websiteJsonLd()} />
@@ -24,11 +33,19 @@ export default function HomePage() {
             .map((s) => s.href),
         })}
       />
-      <Hero />
-      <AboutPreview />
-      <BlogHighlights />
-      <ProjectsGrid limit={3} />
-      <FollowBand />
+      <Hero updated={lastUpdated} />
+      <Reveal>
+        <AboutPreview />
+      </Reveal>
+      <Reveal>
+        <BlogHighlights />
+      </Reveal>
+      <Reveal>
+        <ProjectsGrid limit={3} />
+      </Reveal>
+      <Reveal>
+        <FollowBand />
+      </Reveal>
     </>
   )
 }

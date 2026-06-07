@@ -58,7 +58,7 @@ export function SectionLink({ href, children }: { href: string; children: React.
   return (
     <Link
       href={href}
-      className="inline-flex items-center gap-1.5 rounded-md border border-border/60 px-3.5 py-2 font-mono text-[11px] text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground"
+      className="inline-flex items-center gap-1.5 rounded-full border border-border/60 px-4 py-2 font-mono text-xs text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground"
     >
       {children}
     </Link>

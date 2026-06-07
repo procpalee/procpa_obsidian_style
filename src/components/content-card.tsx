@@ -17,7 +17,7 @@ export function SeriesCard({ title, description, url, cover, chapterCount, lastU
     return (
       <Link
         href={url}
-        className="group flex w-[280px] shrink-0 snap-start items-stretch overflow-hidden rounded-xl border border-border/60 transition-all hover:translate-y-[-2px] hover:border-foreground/40 hover:shadow-sm"
+        className="group flex w-[280px] shrink-0 snap-start items-stretch overflow-hidden rounded-2xl border border-border/60 transition-all hover:translate-y-[-2px] hover:border-foreground/40 hover:shadow-sm"
       >
         {/* Book cover (10:13 ratio, compact) */}
         {cover ? (
@@ -60,7 +60,7 @@ export function SeriesCard({ title, description, url, cover, chapterCount, lastU
   return (
     <Link
       href={url}
-      className="group rounded-xl border border-border/60 p-5 transition-all hover:translate-y-[-2px] hover:border-foreground/40 hover:shadow-sm"
+      className="group rounded-2xl border border-border/60 p-5 transition-all hover:translate-y-[-2px] hover:border-foreground/40 hover:shadow-sm"
     >
       <div className="flex items-start gap-4">
         {cover ? (
@@ -111,7 +111,7 @@ export function PostCard({ title, description, url, date, category, tags, varian
     return (
       <Link
         href={url}
-        className="group flex w-[260px] shrink-0 snap-start flex-col justify-between rounded-md border border-border/60 px-4 py-4 transition-all hover:translate-y-[-2px] hover:border-foreground/40 hover:shadow-sm"
+        className="group flex w-[260px] shrink-0 snap-start flex-col justify-between rounded-2xl border border-border/60 px-4 py-4 transition-all hover:translate-y-[-2px] hover:border-foreground/40 hover:shadow-sm"
       >
         <div>
           {category && (
@@ -142,9 +142,9 @@ export function PostCard({ title, description, url, date, category, tags, varian
       className="group flex flex-col gap-2 py-4"
     >
       <div className="flex items-baseline gap-4">
-        <span className="flex-1 text-[15px] leading-snug group-hover:text-primary">{title}</span>
+        <span className="flex-1 text-[17px] leading-snug group-hover:text-primary">{title}</span>
         {date && (
-          <span className="shrink-0 font-mono text-[10px] text-muted-foreground">
+          <span className="shrink-0 font-mono text-[11px] text-muted-foreground">
             {date.slice(0, 10).replace(/-/g, '.')}
           </span>
         )}
@@ -152,7 +152,7 @@ export function PostCard({ title, description, url, date, category, tags, varian
       {tags && tags.length > 0 && (
         <div className="flex flex-wrap gap-1.5">
           {tags.map((t) => (
-            <span key={t} className="rounded-full border border-border/60 px-2 py-0.5 font-mono text-[10px] text-muted-foreground">
+            <span key={t} className="rounded-full border border-border/60 px-2 py-0.5 font-mono text-[11px] text-muted-foreground">
               {t}
             </span>
           ))}

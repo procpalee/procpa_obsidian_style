@@ -29,17 +29,17 @@ export function FollowBand() {
               href={s.href}
               target="_blank"
               rel="noreferrer"
-              className="group flex items-center gap-4 rounded-xl border border-border/60 p-5 transition-all hover:border-foreground/40 hover:shadow-sm"
+              className="group flex items-center gap-4 rounded-2xl border border-border/60 p-5 transition-all hover:-translate-y-0.5 hover:border-foreground/40 hover:shadow-sm"
             >
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-secondary text-foreground transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
                 <Icon className="h-5 w-5" />
               </span>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-1.5">
-                  <span className="text-[15px] font-semibold tracking-tight">{s.label}</span>
-                  <span className="font-mono text-[11px] text-muted-foreground">{s.handle}</span>
+                  <span className="text-base font-semibold tracking-tight">{s.label}</span>
+                  <span className="font-mono text-xs text-muted-foreground">{s.handle}</span>
                 </div>
-                <p className="mt-0.5 text-[13px] leading-relaxed text-muted-foreground">
+                <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">
                   {channelDesc[s.label]}
                 </p>
               </div>
@@ -50,7 +50,7 @@ export function FollowBand() {
       </div>
 
       {email && (
-        <p className="mt-6 text-[13px] text-muted-foreground">
+        <p className="mt-6 text-sm text-muted-foreground">
           업무·협업 제안은 이메일{' '}
           <a href={email.href} className="font-medium text-primary hover:opacity-80">
             {email.handle}

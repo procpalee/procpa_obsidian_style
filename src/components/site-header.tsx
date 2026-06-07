@@ -48,7 +48,7 @@ export function SiteHeader() {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-6 text-sm text-muted-foreground md:flex">
+        <nav className="hidden items-center gap-7 text-[15px] text-muted-foreground md:flex">
           {nav.map((item) => (
             <Link key={item.href} href={item.href} className="transition-colors hover:text-foreground">
               {item.label}
@@ -60,7 +60,7 @@ export function SiteHeader() {
           </div>
           <Link
             href="/contact"
-            className="rounded-md bg-primary px-3.5 py-1.5 text-[13px] font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+            className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
           >
             문의하기
           </Link>
@@ -85,7 +85,7 @@ export function SiteHeader() {
                     key={item.href}
                     href={item.href}
                     onClick={() => setOpen(false)}
-                    className="py-2.5 text-[15px] font-medium transition-colors hover:text-primary"
+                    className="py-2.5 text-base font-medium transition-colors hover:text-primary"
                   >
                     {item.label}
                   </Link>
@@ -108,7 +108,7 @@ export function SiteHeader() {
                 <Link
                   href="/contact"
                   onClick={() => setOpen(false)}
-                  className="mt-6 inline-flex items-center justify-center rounded-md bg-primary px-4 py-2.5 text-[14px] font-semibold text-primary-foreground"
+                  className="mt-6 inline-flex items-center justify-center rounded-full bg-primary px-4 py-2.5 text-[15px] font-semibold text-primary-foreground"
                 >
                   문의하기
                 </Link>
