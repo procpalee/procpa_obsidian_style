@@ -32,8 +32,8 @@ export function Hero({ updated }: { updated?: string }) {
         {/* oversized headline */}
         <h1
           className={cn(
-            'mt-7 font-bold leading-[0.85] tracking-[-0.04em]',
-            'text-[clamp(3rem,8.5vw,6.5rem)]',
+            'mt-7 font-bold tracking-[-0.04em]',
+            'text-[clamp(3rem,8.5vw,6.5rem)]/[0.85]',
             reveal()
           )}
           style={delay(1)}
@@ -46,8 +46,8 @@ export function Hero({ updated }: { updated?: string }) {
         {/* lede */}
         <p
           className={cn(
-            'mt-8 max-w-2xl text-pretty leading-[1.5] tracking-[-0.015em] text-muted-foreground',
-            'text-[clamp(1.25rem,1.9vw,1.5rem)]',
+            'mt-8 max-w-2xl text-pretty tracking-[-0.015em] text-muted-foreground',
+            'text-[clamp(1.25rem,1.9vw,1.5rem)]/[1.5]',
             reveal()
           )}
           style={delay(2)}

@@ -195,8 +195,8 @@ export default function AboutPage() {
         <div className="grid gap-4 sm:grid-cols-2">
           {expertise.map((e) => (
             <div key={e.title} className="rounded-2xl border border-border/60 p-6 transition-all hover:-translate-y-0.5 hover:border-foreground/40">
-              <h3 className="text-base font-medium">{e.title}</h3>
-              <ul className="mt-3 space-y-2 text-sm leading-7 text-muted-foreground">
+              <h3 className="text-lg font-medium">{e.title}</h3>
+              <ul className="mt-3 space-y-2 text-base leading-7 text-muted-foreground">
                 {e.items.map((line) => (
                   <li key={line} className="flex gap-2">
                     <span className="text-primary">·</span>
@@ -216,7 +216,7 @@ export default function AboutPage() {
               <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
                 {c.group}
               </div>
-              <ul className="mt-3 space-y-2 text-sm">
+              <ul className="mt-3 space-y-2 text-base">
                 {c.items.map((it) => (
                   <li key={it} className="flex gap-2">
                     <span className="text-primary">·</span>
@@ -239,8 +239,8 @@ export default function AboutPage() {
               rel="noreferrer"
               className="group rounded-2xl border border-border/60 p-6 transition-all hover:-translate-y-0.5 hover:border-foreground/40"
             >
-              <h3 className="text-base font-medium group-hover:text-primary">{p.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">{p.description}</p>
+              <h3 className="text-lg font-medium group-hover:text-primary">{p.title}</h3>
+              <p className="mt-2 text-base leading-6 text-muted-foreground">{p.description}</p>
             </a>
           ))}
         </div>
@@ -264,8 +264,8 @@ export default function AboutPage() {
               rel={p.href.startsWith('http') ? 'noreferrer' : undefined}
               className="group rounded-2xl border border-border/60 p-6 transition-all hover:-translate-y-0.5 hover:border-foreground/40"
             >
-              <h3 className="text-base font-medium group-hover:text-primary">{p.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">{p.description}</p>
+              <h3 className="text-lg font-medium group-hover:text-primary">{p.title}</h3>
+              <p className="mt-2 text-base leading-6 text-muted-foreground">{p.description}</p>
               <div className="mt-4 flex flex-wrap gap-1.5">
                 {p.stack.map((t) => (
                   <span

@@ -71,7 +71,7 @@ export default function ContactPage() {
                 </span>
                 <div className="min-w-0 flex-1">
                   <span className="text-[15px] font-semibold tracking-tight">{c.label}</span>
-                  <p className="mt-0.5 text-[13px] leading-relaxed text-muted-foreground">
+                  <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">
                     {c.description}
                   </p>
                 </div>
