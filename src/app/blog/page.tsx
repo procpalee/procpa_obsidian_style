@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { posts, series, chapters } from '#site/content'
 import { SeriesCard, PostCard } from '@/components/content-card'
+import { PageHero } from '@/components/page-hero'
 import { TOPIC_KEYS, topicLabel, topicOrder } from '@/lib/topics'
 
 export const metadata: Metadata = {
@@ -28,31 +29,27 @@ export default function BlogPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-6 py-14 sm:py-20">
-      <header className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <p className="font-mono text-[11px] uppercase tracking-widest text-primary">
-            Writing
-          </p>
-          <h1 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">블로그</h1>
-          <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-            회계·재무 실무와 AI 활용에 관한 기록과, 깊이 있게 정리한 시리즈 가이드입니다.
-          </p>
-        </div>
-        <div className="flex gap-2">
-          <Link
-            href="/explore"
-            className="inline-flex items-center rounded-md border border-border/60 px-3.5 py-2 font-mono text-[11px] text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground"
-          >
-            탐색 →
-          </Link>
-          <Link
-            href="/graph"
-            className="inline-flex items-center rounded-md border border-border/60 px-3.5 py-2 font-mono text-[11px] text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground"
-          >
-            그래프 →
-          </Link>
-        </div>
-      </header>
+      <PageHero
+        en="Writing"
+        ko="블로그"
+        description="회계·재무 실무와 AI 활용에 관한 기록과, 깊이 있게 정리한 시리즈 가이드입니다."
+        action={
+          <div className="flex gap-2">
+            <Link
+              href="/explore"
+              className="inline-flex items-center rounded-md border border-border/60 px-3.5 py-2 font-mono text-[11px] text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground"
+            >
+              탐색 →
+            </Link>
+            <Link
+              href="/graph"
+              className="inline-flex items-center rounded-md border border-border/60 px-3.5 py-2 font-mono text-[11px] text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground"
+            >
+              그래프 →
+            </Link>
+          </div>
+        }
+      />
 
       {/* Series */}
       {visibleSeries.length > 0 && (

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { ProjectCard } from '@/components/project-card'
+import { PageHero } from '@/components/page-hero'
 import { resolveArticleHref } from '@/components/home/projects-grid'
 import { projects, type ProjectCategory } from '@/lib/projects-data'
 
@@ -18,18 +19,11 @@ export default function ProjectsPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-6 py-14 sm:py-20">
-      <header>
-        <p className="font-mono text-[11px] uppercase tracking-widest text-primary">
-          Projects
-        </p>
-        <h1 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-          직접 만든 도구들
-        </h1>
-        <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-          실무에서 마주친 불편함을 코드로 풀어, 웹과 MCP 서버로 배포해 운영합니다.
-          각 프로젝트의 제작 과정은 글로도 정리해 두었습니다.
-        </p>
-      </header>
+      <PageHero
+        en="Projects"
+        ko="직접 만든 도구들"
+        description="실무에서 마주친 불편함을 코드로 풀어, 웹과 MCP 서버로 배포해 운영합니다. 각 프로젝트의 제작 과정은 글로도 정리해 두었습니다."
+      />
 
       <div className="mt-12 space-y-12">
         {groups.map((g) => (
