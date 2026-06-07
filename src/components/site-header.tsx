@@ -8,11 +8,16 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/s
 import { ThemeToggle } from '@/components/theme-toggle'
 import dynamic from 'next/dynamic'
 const CommandPalette = dynamic(() => import('@/components/command-palette').then((m) => m.CommandPalette), { ssr: false })
-import { MobileVaultSidebar } from '@/components/vault/mobile-vault-sidebar'
+import { socials } from '@/components/social-icons'
 
 const nav = [
-  { href: '/', label: '홈' },
   { href: '/about', label: '소개' },
+  { href: '/#services', label: '업무' },
+  { href: '/blog', label: '블로그' },
+  { href: '/projects', label: '프로젝트' },
+]
+
+const tools = [
   { href: '/explore', label: '탐색' },
   { href: '/graph', label: '그래프' },
 ]
@@ -49,10 +54,16 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <div className="ml-2 flex items-center gap-0.5">
+          <div className="ml-1 flex items-center gap-0.5">
             <CommandPalette />
             <ThemeToggle />
           </div>
+          <Link
+            href="/#follow"
+            className="rounded-md bg-primary px-3.5 py-1.5 text-[13px] font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+          >
+            구독
+          </Link>
         </nav>
 
         {/* Mobile/tablet: icons + hamburger */}
@@ -60,7 +71,7 @@ export function SiteHeader() {
           <CommandPalette />
           <ThemeToggle />
           <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger 
+            <SheetTrigger
               aria-label="메뉴 열기"
               className="-mr-2 inline-flex h-8 w-8 items-center justify-center rounded-md transition-colors hover:bg-accent hover:text-foreground"
             >
@@ -68,9 +79,65 @@ export function SiteHeader() {
             </SheetTrigger>
             <SheetContent side="right" className="w-[280px] overflow-y-auto p-0">
               <SheetTitle className="sr-only">메뉴</SheetTitle>
-              <div className="px-6 py-5">
-                <MobileVaultSidebar onNavigate={() => setOpen(false)} />
-              </div>
+              <nav className="flex flex-col px-6 py-6">
+                <Link
+                  href="/"
+                  onClick={() => setOpen(false)}
+                  className="py-2.5 text-[15px] font-medium transition-colors hover:text-primary"
+                >
+                  홈
+                </Link>
+                {nav.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className="py-2.5 text-[15px] font-medium transition-colors hover:text-primary"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+
+                <div className="mt-6 border-t border-border/60 pt-5 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                  지식베이스
+                </div>
+                {tools.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className="py-2 text-[14px] text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+
+                <Link
+                  href="/#follow"
+                  onClick={() => setOpen(false)}
+                  className="mt-6 inline-flex items-center justify-center rounded-md bg-primary px-4 py-2.5 text-[14px] font-semibold text-primary-foreground"
+                >
+                  구독하기
+                </Link>
+
+                <div className="mt-6 flex items-center gap-4 border-t border-border/60 pt-5 text-muted-foreground">
+                  {socials.map((s) => {
+                    const Icon = s.icon
+                    return (
+                      <a
+                        key={s.label}
+                        href={s.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={s.label}
+                        className="transition-colors hover:text-foreground"
+                      >
+                        <Icon className="h-[18px] w-[18px]" />
+                      </a>
+                    )
+                  })}
+                </div>
+              </nav>
             </SheetContent>
           </Sheet>
         </div>
