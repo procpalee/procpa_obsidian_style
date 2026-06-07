@@ -154,8 +154,116 @@ export function HeroIndex() {
   )
 }
 
+/** 시안 D — Graph Field: 지식 그래프(노드·엣지) 배경 위 중앙 정렬 히어로. 그래프 뷰와 동일 테마. */
+export function HeroGraph() {
+  const nodes = [
+    [120, 90, 4], [330, 60, 3], [250, 230, 7], [70, 320, 4], [430, 360, 5],
+    [620, 120, 9], [880, 80, 4], [760, 300, 6], [1040, 220, 7], [1180, 90, 4],
+    [1120, 420, 5], [560, 420, 4], [930, 440, 5], [350, 470, 4], [1230, 320, 4],
+  ] as const
+  const edges = [
+    [0, 2], [1, 2], [2, 3], [2, 4], [1, 5], [5, 6], [5, 7], [7, 8], [8, 9],
+    [8, 10], [4, 11], [7, 12], [4, 13], [10, 14], [8, 12], [11, 7],
+  ] as const
+  return (
+    <section className="relative overflow-hidden border-y border-border/60 bg-background">
+      <svg
+        aria-hidden
+        viewBox="0 0 1280 500"
+        preserveAspectRatio="xMidYMid slice"
+        className="pointer-events-none absolute inset-0 h-full w-full text-primary opacity-[0.28]"
+      >
+        <g stroke="currentColor" strokeOpacity="0.5" strokeWidth="1">
+          {edges.map(([a, b], i) => (
+            <line key={i} x1={nodes[a][0]} y1={nodes[a][1]} x2={nodes[b][0]} y2={nodes[b][1]} />
+          ))}
+        </g>
+        <g fill="currentColor">
+          {nodes.map(([x, y, r], i) => (
+            <circle key={i} cx={x} cy={y} r={r} className="animate-pulse" style={{ animationDelay: `${(i % 5) * 0.4}s`, animationDuration: '3s' }} />
+          ))}
+        </g>
+      </svg>
+      <div className="relative mx-auto max-w-3xl px-6 py-24 text-center sm:py-32">
+        <p className={KICKER}>Home</p>
+        <h1 className="mt-5 text-balance text-4xl font-bold leading-[1.12] tracking-tight sm:text-5xl">
+          회계 전문성에 <span className="text-primary">AI의 생산성</span>을 더합니다
+        </h1>
+        <p className="mx-auto mt-6 max-w-2xl text-[16px] leading-[1.8] text-muted-foreground">
+          회계·재무 실무에 AI를 접목해 더 빠르고 정확하게 일하는 법을 연구하고, 그 과정을{' '}
+          <span className="text-foreground">글·도구·강의</span>로 공유합니다.
+        </p>
+        <div className="mt-8 flex justify-center">
+          <Ctas />
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/** 시안 E — Cover: 풀블리드 배경 이미지(hero-cover.svg) + 오버레이, 매거진 커버 레이아웃. */
+export function HeroCover() {
+  return (
+    <section className="relative overflow-hidden border-y border-border/60">
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: 'url(/hero-cover.svg)' }}
+      />
+      <div className="absolute inset-0 bg-black/45" />
+      <div className="relative mx-auto max-w-5xl px-6 py-28 sm:py-40">
+        <p className="font-mono text-sm uppercase tracking-widest text-primary">Home</p>
+        <h1 className="mt-5 max-w-3xl text-balance text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-6xl">
+          회계 전문성에 <span className="text-primary">AI의 생산성</span>을 더합니다
+        </h1>
+        <p className="mt-6 max-w-2xl text-[16px] leading-[1.85] text-white/70">
+          한국공인회계사 이재현. 회계·재무 실무에 AI를 접목해 더 빠르고 정확하게 일하는 법을
+          연구하고, 그 과정을 글·도구·강의로 공유합니다.
+        </p>
+        <div className="mt-8">
+          <Ctas />
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/** 시안 F — Blueprint Grid: 모눈종이(graph paper) 배경 위 주석 달린 노트형 히어로. */
+export function HeroBlueprint() {
+  return (
+    <section className="relative overflow-hidden border-y border-border/60 bg-background">
+      <div
+        className="absolute inset-0"
+        style={{ backgroundImage: 'url(/hero-grid.svg)', backgroundSize: '48px 48px' }}
+      />
+      <div className="relative mx-auto max-w-5xl px-6 py-20 sm:py-28">
+        <div className="flex items-center gap-3">
+          <span className="font-mono text-xs uppercase tracking-widest text-primary">Home</span>
+          <span className="h-px flex-1 bg-border/60" />
+          <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+            Fig. 01
+          </span>
+        </div>
+        <h1 className="mt-6 max-w-3xl text-balance text-4xl font-bold leading-[1.12] tracking-tight sm:text-5xl">
+          회계 전문성에 <span className="text-primary">AI의 생산성</span>을 더합니다
+        </h1>
+        <p className="mt-6 max-w-2xl text-[16px] leading-[1.85] text-muted-foreground">
+          안녕하세요, 한국공인회계사 <span className="text-foreground">이재현</span>입니다.
+          회계·재무 실무에 AI를 접목해 더 빠르고 정확하게 일하는 법을 연구하고, 그 과정을{' '}
+          <span className="text-foreground">글·도구·강의</span>로 공유합니다.
+        </p>
+        <div className="mt-8 inline-flex border border-border/60 bg-background/90 p-3">
+          <Ctas />
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export const HERO_VARIANTS = [
   { id: 'editorial', name: 'A · Editorial', component: HeroEditorial },
   { id: 'frontmatter', name: 'B · Frontmatter Note', component: HeroFrontmatter },
   { id: 'index', name: 'C · Asymmetric Index', component: HeroIndex },
+  { id: 'graph', name: 'D · Graph Field', component: HeroGraph },
+  { id: 'cover', name: 'E · Cover (Background Image)', component: HeroCover },
+  { id: 'blueprint', name: 'F · Blueprint Grid', component: HeroBlueprint },
 ] as const
