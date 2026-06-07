@@ -6,7 +6,7 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/s
 export function VaultDrawer({ children }: { children: React.ReactNode }) {
   return (
     <Sheet>
-      <SheetTrigger className="inline-flex items-center gap-2 rounded-md border border-border/60 px-3 py-1.5 font-mono text-[11px] uppercase tracking-widest text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground lg:hidden">
+      <SheetTrigger className="inline-flex items-center gap-2 rounded-md border border-border/60 px-3 py-1.5 font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground lg:hidden">
         <Menu className="h-3.5 w-3.5" />
         Index
       </SheetTrigger>

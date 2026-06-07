@@ -50,7 +50,7 @@ export function FacetPanel({ facets }: { facets: FacetCounts }) {
   return (
     <aside className="space-y-8 text-sm">
       <div className="flex items-center justify-between">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+        <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
           Filters
         </p>
         <button
@@ -143,7 +143,7 @@ export function FacetPanel({ facets }: { facets: FacetCounts }) {
 function FacetGroup({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <p className="mb-2 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+      <p className="mb-2 font-mono text-xs uppercase tracking-widest text-muted-foreground">
         {label}
       </p>
       <div className="space-y-1">{children}</div>

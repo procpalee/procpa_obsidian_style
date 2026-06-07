@@ -30,7 +30,7 @@ export default function DownloadsPage() {
   return (
     <section>
       <div className="mx-auto max-w-5xl px-6 py-12">
-        <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
+        <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
           Downloads
         </p>
         <h1 className="mt-6 text-3xl font-semibold tracking-tight sm:text-4xl">

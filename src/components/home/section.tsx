@@ -29,7 +29,7 @@ export function Section({
           <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
             <div className="min-w-0">
               {kicker && (
-                <p className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+                <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
                   {kicker}
                 </p>
               )}

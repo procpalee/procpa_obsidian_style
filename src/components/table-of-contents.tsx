@@ -85,7 +85,7 @@ export function TableOfContents({ items, hideTitle = false }: { items: TocItem[]
   return (
     <nav aria-label="목차">
       {!hideTitle && (
-        <h3 className="mb-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+        <h3 className="mb-3 font-mono text-xs uppercase tracking-widest text-muted-foreground">
           On this page
         </h3>
       )}

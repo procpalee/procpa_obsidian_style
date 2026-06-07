@@ -54,7 +54,7 @@ export default function BlogPage() {
       {/* Series */}
       {visibleSeries.length > 0 && (
         <section className="mt-14">
-          <h2 className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+          <h2 className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
             Series
           </h2>
           <div className="mt-5 grid gap-3 sm:grid-cols-2">
@@ -81,7 +81,7 @@ export default function BlogPage() {
       {/* Posts by category */}
       {byCategory.map((g) => (
         <section key={g.key} className="mt-14">
-          <h2 className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+          <h2 className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
             {g.label}
           </h2>
           <div className="mt-2 divide-y divide-border/60">

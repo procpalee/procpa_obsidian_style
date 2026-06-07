@@ -64,7 +64,7 @@ export function GlobalGraph() {
 
   return (
     <div className="flex h-[calc(100vh-8rem)] flex-col gap-3">
-      <div className="flex flex-wrap items-center gap-2 font-mono text-xs uppercase tracking-wider text-muted-foreground">
+      <div className="flex flex-wrap items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted-foreground">
         <span>Global Graph</span>
         <span>·</span>
         <span>{data.nodes.length} nodes</span>

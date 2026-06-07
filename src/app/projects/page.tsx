@@ -28,7 +28,7 @@ export default function ProjectsPage() {
       <div className="mt-12 space-y-12">
         {groups.map((g) => (
           <section key={g.cat}>
-            <h2 className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+            <h2 className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
               {g.cat}
             </h2>
             <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

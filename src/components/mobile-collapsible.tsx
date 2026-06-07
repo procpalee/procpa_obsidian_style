@@ -24,7 +24,7 @@ export function MobileCollapsible({
         onClick={() => setOpen(!open)}
         className="flex w-full items-center justify-between px-4 py-3 text-left"
       >
-        <span className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+        <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
           {title}
         </span>
         <ChevronDown

@@ -88,7 +88,7 @@ export function LocalGraph({
 
   return (
     <aside className="mt-12 border-t border-border/60 pt-6">
-      <div className="mb-3 flex items-center justify-between font-mono text-xs uppercase tracking-wider text-muted-foreground">
+      <div className="mb-3 flex items-center justify-between font-mono text-xs uppercase tracking-widest text-muted-foreground">
         <span>Local Graph</span>
         <span>
           {data.nodes.length} nodes · {data.links.length} edges
@@ -151,7 +151,7 @@ export function LocalGraphMini({
 
   return (
     <div>
-      <h3 className="mb-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+      <h3 className="mb-3 font-mono text-xs uppercase tracking-widest text-muted-foreground">
         Graph · {data.nodes.length}
       </h3>
       <div

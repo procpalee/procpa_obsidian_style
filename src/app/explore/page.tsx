@@ -144,7 +144,7 @@ export default async function ExplorePage({ searchParams }: PageProps) {
   return (
     <div className="mx-auto max-w-5xl px-6 py-12">
       <header className="mb-10">
-        <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
+        <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
           Explore
         </p>
         <h1 className="mt-2 text-3xl font-semibold tracking-tight">메타데이터 탐색</h1>

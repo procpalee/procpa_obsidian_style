@@ -25,7 +25,7 @@ export default function TagsIndexPage() {
   return (
     <VaultLayout>
       <header className="mb-10">
-        <nav className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+        <nav className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
           <Link href="/" className="hover:text-foreground">Home</Link>
           {' ⟩ '}
           <span>Tags</span>

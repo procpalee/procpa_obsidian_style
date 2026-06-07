@@ -21,7 +21,7 @@ export function DocList({ docs, emptyMsg }: { docs: CategoryDoc[]; emptyMsg?: st
     <div className="space-y-12">
       {seriesDocs.length > 0 && (
         <div>
-          <h3 className="mb-5 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+          <h3 className="mb-5 font-mono text-xs uppercase tracking-widest text-muted-foreground">
             시리즈 · {seriesDocs.length}
           </h3>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -41,7 +41,7 @@ export function DocList({ docs, emptyMsg }: { docs: CategoryDoc[]; emptyMsg?: st
       )}
       {postDocs.length > 0 && (
         <div>
-          <h3 className="mb-5 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+          <h3 className="mb-5 font-mono text-xs uppercase tracking-widest text-muted-foreground">
             포스트 · {postDocs.length}
           </h3>
           <ul className="divide-y divide-border/60">

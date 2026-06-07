@@ -40,7 +40,7 @@ function Section({
     <section className="border-t border-border/60">
       <div className="mx-auto grid max-w-5xl grid-cols-12 gap-6 px-6 py-20">
         <div className="col-span-12 lg:col-span-3">
-          <div className="font-mono text-sm uppercase tracking-widest text-muted-foreground">
+          <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
             {label}
           </div>
           {title && (
@@ -58,7 +58,7 @@ function Timeline({ items }: { items: { period: string; title: string }[] }) {
     <ul className="divide-y divide-border/60">
       {items.map((item) => (
         <li key={item.period + item.title} className="flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:gap-8">
-          <span className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground sm:w-32">
+          <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground sm:w-32">
             {item.period}
           </span>
           <span className="text-base">{item.title}</span>
@@ -158,7 +158,7 @@ export default function AboutPage() {
           <dl className="mt-14 grid grid-cols-2 gap-8 border-t border-border/60 pt-10 sm:grid-cols-4">
             {stats.map((s) => (
               <div key={s.label}>
-                <dt className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                <dt className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
                   {s.label}
                 </dt>
                 <dd className="mt-2 font-mono text-3xl tracking-tight">{s.value}</dd>
@@ -171,7 +171,7 @@ export default function AboutPage() {
       <section className="border-t border-border/60">
         <div className="mx-auto grid max-w-5xl grid-cols-12 gap-y-12 lg:gap-6 px-6 py-20">
           <div className="col-span-12 lg:col-span-6">
-            <div className="font-mono text-sm uppercase tracking-widest text-muted-foreground">
+            <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
               Career
             </div>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">경력</h2>
@@ -180,7 +180,7 @@ export default function AboutPage() {
             </div>
           </div>
           <div className="col-span-12 border-t border-border/60 pt-20 lg:col-span-6 lg:border-0 lg:pt-0">
-            <div className="font-mono text-sm uppercase tracking-widest text-muted-foreground">
+            <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
               Education
             </div>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">학력</h2>
@@ -213,7 +213,7 @@ export default function AboutPage() {
         <div className="grid gap-4 sm:grid-cols-3">
           {certificates.map((c) => (
             <div key={c.group} className="rounded-xl border border-border/60 p-6">
-              <div className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+              <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
                 {c.group}
               </div>
               <ul className="mt-3 space-y-2 text-sm">

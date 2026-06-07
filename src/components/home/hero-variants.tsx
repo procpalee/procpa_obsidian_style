@@ -1,0 +1,161 @@
+import Link from 'next/link'
+
+/* 홈 히어로 시안 모음 — /design/hero 에서 비교용. 톤 규칙 준수(그라데이션·글래스·이모지 없음). */
+
+function Ctas() {
+  return (
+    <div className="flex flex-wrap items-center gap-2.5">
+      <Link
+        href="/#follow"
+        className="rounded-md bg-primary px-5 py-2.5 text-[14px] font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+      >
+        구독하기
+      </Link>
+      <Link
+        href="/contact"
+        className="rounded-md border border-border/60 px-5 py-2.5 text-[14px] font-medium transition-colors hover:border-foreground/40"
+      >
+        문의하기
+      </Link>
+    </div>
+  )
+}
+
+const KICKER = 'font-mono text-sm uppercase tracking-widest text-primary'
+
+/** 시안 A — Editorial: 큰 헤드라인 + 하단 mono 인덱스 라인. 현재 톤의 정제판. */
+export function HeroEditorial() {
+  return (
+    <section>
+      <div className="mx-auto max-w-5xl px-6 py-16 sm:py-24">
+        <p className={KICKER}>Home</p>
+        <h1 className="mt-5 max-w-3xl text-balance text-4xl font-bold leading-[1.12] tracking-tight sm:text-5xl">
+          회계 전문성에 <span className="text-primary">AI의 생산성</span>을 더합니다
+        </h1>
+        <p className="mt-6 max-w-2xl text-[16px] leading-[1.85] text-muted-foreground">
+          안녕하세요, 한국공인회계사 <span className="text-foreground">이재현</span>입니다.
+          회계·재무 실무에 AI를 접목해 더 빠르고 정확하게 일하는 법을 연구하고, 그 과정을{' '}
+          <span className="text-foreground">글·도구·강의</span>로 공유합니다.
+        </p>
+        <div className="mt-8">
+          <Ctas />
+        </div>
+        <div className="mt-12 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-border/60 pt-5 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+          <span>Accounting × AI</span>
+          <span className="text-border">/</span>
+          <span>Since 2019</span>
+          <span className="text-border">/</span>
+          <span>Seoul, KR</span>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/** 시안 B — Frontmatter Note: Obsidian 노트(프론트매터)처럼 보이는 히어로. 볼트 방향성과 일치. */
+export function HeroFrontmatter() {
+  const rows: [string, React.ReactNode][] = [
+    ['역할', '한국공인회계사 · 이재현'],
+    ['분야', '회계·재무 × AI 생산성'],
+    ['활동', '글 · 도구 · 강의'],
+    ['위치', 'Seoul, KR'],
+  ]
+  return (
+    <section>
+      <div className="mx-auto max-w-5xl px-6 py-16 sm:py-24">
+        <div className="overflow-hidden rounded-xl border border-border/60">
+          <div className="flex items-center gap-2 border-b border-border/60 bg-muted/20 px-5 py-2.5 font-mono text-xs text-muted-foreground">
+            <span className="text-primary">procpa</span>
+            <span className="text-border">/</span>
+            <span>home.md</span>
+          </div>
+          <div className="px-6 py-9 sm:px-10 sm:py-11">
+            <p className={KICKER}>Home</p>
+            <h1 className="mt-4 max-w-2xl text-3xl font-bold leading-[1.18] tracking-tight sm:text-4xl">
+              회계 전문성에 <span className="text-primary">AI의 생산성</span>을 더합니다
+            </h1>
+            <dl className="mt-8 border-y border-border/60">
+              {rows.map(([k, v]) => (
+                <div
+                  key={k}
+                  className="grid grid-cols-[5rem_1fr] items-baseline gap-4 border-b border-border/60 py-3 last:border-0"
+                >
+                  <dt className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                    {k}
+                  </dt>
+                  <dd className="text-[15px]">{v}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className="mt-7 max-w-2xl text-[15px] leading-[1.8] text-muted-foreground">
+              회계·재무 실무에 AI를 접목해 더 빠르고 정확하게 일하는 법을 연구하고, 그 과정을{' '}
+              <span className="text-foreground">글·도구·강의</span>로 공유합니다.
+            </p>
+            <div className="mt-8">
+              <Ctas />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/** 시안 C — Asymmetric Index: 초대형 헤드라인 + 우측 섹션 인덱스(목차). 매거진 느낌. */
+export function HeroIndex() {
+  const index: [string, string, string][] = [
+    ['01', '소개', '/about'],
+    ['02', '블로그', '/blog'],
+    ['03', '프로젝트', '/projects'],
+    ['04', '문의', '/contact'],
+  ]
+  return (
+    <section>
+      <div className="mx-auto grid max-w-5xl grid-cols-12 gap-x-6 gap-y-10 px-6 py-16 sm:py-24">
+        <div className="col-span-12 lg:col-span-8">
+          <p className={KICKER}>Home</p>
+          <h1 className="mt-5 text-balance text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl">
+            회계 전문성에 <span className="text-primary">AI의 생산성</span>을 더합니다
+          </h1>
+        </div>
+        <nav className="col-span-12 lg:col-span-4 lg:border-l lg:border-border/60 lg:pl-6">
+          <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+            Index
+          </p>
+          <ul className="mt-4 border-t border-border/60">
+            {index.map(([n, label, href]) => (
+              <li key={n} className="border-b border-border/60">
+                <Link
+                  href={href}
+                  className="group flex items-baseline gap-3 py-3 transition-colors"
+                >
+                  <span className="font-mono text-xs text-muted-foreground">{n}</span>
+                  <span className="text-[15px] group-hover:text-primary">{label}</span>
+                  <span className="ml-auto font-mono text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary">
+                    →
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <div className="col-span-12 lg:col-span-8">
+          <p className="max-w-2xl text-[16px] leading-[1.85] text-muted-foreground">
+            안녕하세요, 한국공인회계사 <span className="text-foreground">이재현</span>입니다.
+            회계·재무 실무에 AI를 접목해 더 빠르고 정확하게 일하는 법을 연구하고, 그 과정을{' '}
+            <span className="text-foreground">글·도구·강의</span>로 공유합니다.
+          </p>
+          <div className="mt-8">
+            <Ctas />
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export const HERO_VARIANTS = [
+  { id: 'editorial', name: 'A · Editorial', component: HeroEditorial },
+  { id: 'frontmatter', name: 'B · Frontmatter Note', component: HeroFrontmatter },
+  { id: 'index', name: 'C · Asymmetric Index', component: HeroIndex },
+] as const

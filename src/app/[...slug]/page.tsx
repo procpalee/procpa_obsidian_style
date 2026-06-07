@@ -504,7 +504,7 @@ function PostView({
         {/* ── Main content ── */}
         <article className="min-w-0">
           <header className="mb-10 border-b border-border/60 pb-6">
-            <nav className="mb-4 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+            <nav className="mb-4 font-mono text-xs uppercase tracking-widest text-muted-foreground">
               <Link href="/" className="hover:text-foreground">Home</Link>
               {' ⟩ '}
               <Link href={`/${post.category}`} className="hover:text-foreground">{topicLabel(post.category)}</Link>
@@ -599,7 +599,7 @@ function SeriesView({ r }: { r: Extract<Resolved, { type: 'series' }> }) {
           <div className="group/sidebar sticky top-14 h-[calc(100vh-3.5rem)]">
             <ScrollArea className="h-full [&_[data-slot=scroll-area-scrollbar]]:opacity-0 [&_[data-slot=scroll-area-scrollbar]]:transition-opacity group-hover/sidebar:[&_[data-slot=scroll-area-scrollbar]]:opacity-100">
               <div className="pt-14 pb-8">
-                <div className="mb-4 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+                <div className="mb-4 font-mono text-xs uppercase tracking-widest text-muted-foreground">
                   Table of contents
                 </div>
                 <SidebarList nodes={r.tree} activeSlug="__series__" seriesHref={`/${s.slugAsParams}`} />
@@ -616,7 +616,7 @@ function SeriesView({ r }: { r: Extract<Resolved, { type: 'series' }> }) {
         {/* ── Main content ── */}
         <article className="min-w-0 pt-14 pb-12">
           <header className="mb-10 border-b border-border/60 pb-6">
-            <nav className="mb-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+            <nav className="mb-3 font-mono text-xs uppercase tracking-widest text-muted-foreground">
               <Link href="/" className="hover:text-foreground">Home</Link>
               {' ⟩ '}
               <Link href={`/${s.category}`} className="hover:text-foreground">{topicLabel(s.category)}</Link>
@@ -706,7 +706,7 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
           <div className="group/sidebar sticky top-14 h-[calc(100vh-3.5rem)]">
             <ScrollArea className="h-full [&_[data-slot=scroll-area-scrollbar]]:opacity-0 [&_[data-slot=scroll-area-scrollbar]]:transition-opacity group-hover/sidebar:[&_[data-slot=scroll-area-scrollbar]]:opacity-100">
               <div className="pt-14 pb-8">
-                <div className="mb-4 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+                <div className="mb-4 font-mono text-xs uppercase tracking-widest text-muted-foreground">
                   Table of contents
                 </div>
                 <SidebarList nodes={r.tree} activeSlug={r.chapter.slug} seriesHref={`/${r.series.slugAsParams}`} />
@@ -724,7 +724,7 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
         <article className="min-w-0 pt-14 pb-12">
           <header className="mb-10 border-b border-border/60 pb-6">
             <div className="mb-2 flex items-center justify-between">
-              <nav className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+              <nav className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
                 <Link href="/" className="hover:text-foreground">Home</Link>
                 {' ⟩ '}
                 <Link href={`/${r.series.category}`} className="hover:text-foreground">{topicLabel(r.series.category)}</Link>
@@ -805,7 +805,7 @@ function CategoryView({ r }: { r: Extract<Resolved, { type: 'category' }> }) {
   return (
     <VaultLayout>
       <header className="mb-10">
-        <nav className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+        <nav className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
           <Link href="/" className="hover:text-foreground">Home</Link>
           {' ⟩ '}
           <span>{r.label}</span>
@@ -818,7 +818,7 @@ function CategoryView({ r }: { r: Extract<Resolved, { type: 'category' }> }) {
 
       {r.subcategories.length > 0 && (
         <div className="mb-12">
-          <h2 className="mb-4 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+          <h2 className="mb-4 font-mono text-xs uppercase tracking-widest text-muted-foreground">
             서브카테고리
           </h2>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -862,7 +862,7 @@ function SubcategoryView({ r }: { r: Extract<Resolved, { type: 'subcategory' }> 
   return (
     <VaultLayout>
       <header className="mb-10">
-        <nav className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+        <nav className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
           <Link href="/" className="hover:text-foreground">Home</Link>
           {' ⟩ '}
           <Link href={`/${r.category}`} className="hover:text-foreground">{r.categoryLabel}</Link>

@@ -91,7 +91,7 @@ export function SiteHeader() {
                   </Link>
                 ))}
 
-                <div className="mt-6 border-t border-border/60 pt-5 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                <div className="mt-6 border-t border-border/60 pt-5 font-mono text-xs uppercase tracking-widest text-muted-foreground">
                   지식베이스
                 </div>
                 {tools.map((item) => (

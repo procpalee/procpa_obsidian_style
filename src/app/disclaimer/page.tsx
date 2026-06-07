@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function DisclaimerPage() {
   return (
     <div className="mx-auto max-w-5xl px-6 py-12">
-      <div className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+      <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
         Disclaimer
       </div>
       <h1 className="mt-3 text-3xl font-semibold tracking-tight">면책조항</h1>
