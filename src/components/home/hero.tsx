@@ -26,7 +26,7 @@ export function Hero() {
 
   return (
     <section className="border-b border-border/60">
-      <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-6 py-20 sm:py-28">
         {/* eyebrow pill */}
         <div className={reveal()} style={delay(0)}>
           <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 font-mono text-xs uppercase tracking-widest text-primary">

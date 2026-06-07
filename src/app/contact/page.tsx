@@ -36,7 +36,7 @@ const iconFor: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>
 export default function ContactPage() {
   return (
     <>
-      <div className="mx-auto max-w-5xl px-6 py-14 sm:py-20">
+      <div className="mx-auto max-w-6xl px-6 py-14 sm:py-20">
         <PageHero
           en="Contact"
           ko="문의하기"

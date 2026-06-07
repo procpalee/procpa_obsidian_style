@@ -23,9 +23,11 @@ export function PageHero({
     >
       <div className="min-w-0">
         <p className="font-mono text-sm uppercase tracking-widest text-primary">{en}</p>
-        <h1 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">{ko}</h1>
+        <h1 className="mt-3 text-balance font-bold leading-[1.1] tracking-[-0.03em] text-[clamp(2.25rem,4.5vw,3.5rem)]">
+          {ko}
+        </h1>
         {description && (
-          <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
+          <p className="mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground">
             {description}
           </p>
         )}

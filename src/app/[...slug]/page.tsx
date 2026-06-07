@@ -473,7 +473,7 @@ function PostView({
   return (
     <>
     <ReadingProgress />
-    <div className="mx-auto max-w-5xl px-6 py-12">
+    <div className="mx-auto max-w-6xl px-6 py-12">
       <JsonLd
         data={articleJsonLd({
           title: post.title,
@@ -534,7 +534,7 @@ function PostView({
                 </span>
               ))}
             </div>
-            <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
+            <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
               {post.title}
             </h1>
             {post.description && (
@@ -549,7 +549,7 @@ function PostView({
             </MobileCollapsible>
           )}
 
-          <div className="prose prose-neutral max-w-none dark:prose-invert">
+          <div className="prose prose-neutral max-w-[68ch] dark:prose-invert">
             <MDXContent code={post.body} />
           </div>
 
@@ -592,7 +592,7 @@ function PostView({
 function SeriesView({ r }: { r: Extract<Resolved, { type: 'series' }> }) {
   const s = r.series
   return (
-    <div className="mx-auto max-w-5xl px-6">
+    <div className="mx-auto max-w-6xl px-6">
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-[220px_minmax(0,1fr)]">
         {/* ── Left sidebar: chapter TOC (desktop) ── */}
         <aside className="hidden lg:block">
@@ -626,7 +626,7 @@ function SeriesView({ r }: { r: Extract<Resolved, { type: 'series' }> }) {
               <span>{s.title}</span>
             </nav>
 
-            <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">{s.title}</h1>
+            <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">{s.title}</h1>
             <p className="mt-4 max-w-xl text-lg text-muted-foreground">{s.description}</p>
             <div className="mt-3 flex flex-wrap items-center gap-3 font-mono text-xs text-muted-foreground">
               <span>{r.totalCount}개 챕터</span>
@@ -680,7 +680,7 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
   return (
     <>
     <ReadingProgress />
-    <div className="mx-auto max-w-5xl px-6">
+    <div className="mx-auto max-w-6xl px-6">
       <JsonLd
         data={articleJsonLd({
           title: `${r.chapter.title} · ${r.series.title}`,
@@ -735,7 +735,7 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
               </nav>
               <ShareButtons url={url} title={r.chapter.title} />
             </div>
-            <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
+            <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
               {r.chapter.title}
             </h1>
           </header>
@@ -755,7 +755,7 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
               <ChapterList nodes={childNodes} counter={{ value: 0 }} />
             </section>
           ) : (
-            <div className="prose prose-neutral max-w-none dark:prose-invert">
+            <div className="prose prose-neutral max-w-[68ch] dark:prose-invert">
               <MDXContent code={r.chapter.body} />
             </div>
           )}
@@ -810,7 +810,7 @@ function CategoryView({ r }: { r: Extract<Resolved, { type: 'category' }> }) {
           {' ⟩ '}
           <span>{r.label}</span>
         </nav>
-        <h1 className="mt-2 text-3xl font-semibold tracking-tight">{r.label}</h1>
+        <h1 className="mt-2 text-4xl font-semibold tracking-tight">{r.label}</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           {statParts.join(' · ')}
         </p>
@@ -869,7 +869,7 @@ function SubcategoryView({ r }: { r: Extract<Resolved, { type: 'subcategory' }> 
           {' ⟩ '}
           <span>{r.subcategory}</span>
         </nav>
-        <h1 className="mt-2 text-3xl font-semibold tracking-tight">{r.subcategory}</h1>
+        <h1 className="mt-2 text-4xl font-semibold tracking-tight">{r.subcategory}</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           {statParts.join(' · ')}
         </p>

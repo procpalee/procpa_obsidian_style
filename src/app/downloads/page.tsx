@@ -29,7 +29,7 @@ export default function DownloadsPage() {
 
   return (
     <section>
-      <div className="mx-auto max-w-5xl px-6 py-12">
+      <div className="mx-auto max-w-6xl px-6 py-12">
         <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
           Downloads
         </p>
