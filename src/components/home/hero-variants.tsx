@@ -1,6 +1,7 @@
 import Link from 'next/link'
+import { HeroConstellation, HeroTyping } from '@/components/home/hero-animated'
 
-/* 홈 히어로 시안 모음 — /design/hero 에서 비교용. 톤 규칙 준수(그라데이션·글래스·이모지 없음). */
+/* 홈 히어로 시안 모음 — /design/hero 에서 비교용. */
 
 function Ctas() {
   return (
@@ -259,6 +260,49 @@ export function HeroBlueprint() {
   )
 }
 
+/** 시안 I — Orbit: 허브를 중심으로 노드가 공전하는 CSS 애니메이션 다이어그램 배경. */
+export function HeroOrbit() {
+  const ring = 'absolute rounded-full border border-border/50'
+  const node =
+    'absolute left-1/2 top-0 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-primary shadow-[0_0_12px_2px_rgba(91,156,255,0.5)]'
+  return (
+    <section className="relative overflow-hidden border-y border-border/60 bg-background">
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-80">
+        <div className="relative h-[560px] w-[560px] max-w-[90vw]">
+          <div className={`${ring} inset-0`} />
+          <div className={`${ring} inset-[15%]`} />
+          <div className={`${ring} inset-[30%]`} />
+          <div className="absolute inset-0 animate-[spin_30s_linear_infinite] motion-reduce:animate-none">
+            <span className={node} />
+            <span className={`${node} left-auto right-0 top-1/2 -translate-y-1/2 translate-x-1/2`} />
+          </div>
+          <div className="absolute inset-[15%] animate-[spin_20s_linear_infinite] [animation-direction:reverse] motion-reduce:animate-none">
+            <span className={node} />
+          </div>
+          <div className="absolute inset-[30%] animate-[spin_13s_linear_infinite] motion-reduce:animate-none">
+            <span className={node} />
+            <span className={`${node} left-1/2 top-auto bottom-0 translate-y-1/2`} />
+          </div>
+          <div className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary shadow-[0_0_24px_6px_rgba(91,156,255,0.55)]" />
+        </div>
+      </div>
+      <div className="relative mx-auto max-w-3xl px-6 py-28 text-center sm:py-36">
+        <p className={KICKER}>Home</p>
+        <h1 className="mt-5 text-balance text-4xl font-bold leading-[1.12] tracking-tight sm:text-5xl">
+          회계 전문성에 <span className="text-primary">AI의 생산성</span>을 더합니다
+        </h1>
+        <p className="mx-auto mt-6 max-w-2xl text-[16px] leading-[1.8] text-muted-foreground">
+          회계·재무 실무에 AI를 접목해 더 빠르고 정확하게 일하는 법을 연구하고, 그 과정을{' '}
+          <span className="text-foreground">글·도구·강의</span>로 공유합니다.
+        </p>
+        <div className="mt-8 flex justify-center">
+          <Ctas />
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export const HERO_VARIANTS = [
   { id: 'editorial', name: 'A · Editorial', component: HeroEditorial },
   { id: 'frontmatter', name: 'B · Frontmatter Note', component: HeroFrontmatter },
@@ -266,4 +310,7 @@ export const HERO_VARIANTS = [
   { id: 'graph', name: 'D · Graph Field', component: HeroGraph },
   { id: 'cover', name: 'E · Cover (Background Image)', component: HeroCover },
   { id: 'blueprint', name: 'F · Blueprint Grid', component: HeroBlueprint },
+  { id: 'constellation', name: 'G · Constellation (애니메이션·인터랙티브)', component: HeroConstellation },
+  { id: 'typing', name: 'H · Typewriter (애니메이션)', component: HeroTyping },
+  { id: 'orbit', name: 'I · Orbit (애니메이션)', component: HeroOrbit },
 ] as const
