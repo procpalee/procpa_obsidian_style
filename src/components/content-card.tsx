@@ -142,7 +142,7 @@ export function PostCard({ title, description, url, date, category, tags, varian
       className="group flex flex-col gap-2 py-4"
     >
       <div className="flex items-baseline gap-4">
-        <span className="flex-1 text-[17px] leading-snug group-hover:text-primary">{title}</span>
+        <span className="flex-1 text-lg leading-snug group-hover:text-primary">{title}</span>
         {date && (
           <span className="shrink-0 font-mono text-[11px] text-muted-foreground">
             {date.slice(0, 10).replace(/-/g, '.')}

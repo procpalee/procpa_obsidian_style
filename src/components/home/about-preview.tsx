@@ -14,7 +14,7 @@ export function AboutPreview() {
         {expertise.map((e) => (
           <span
             key={e.title}
-            className="rounded-full border border-border/60 px-4 py-2 text-[15px] text-muted-foreground"
+            className="rounded-full border border-border/60 px-4 py-2 text-base text-muted-foreground"
           >
             {e.title}
           </span>

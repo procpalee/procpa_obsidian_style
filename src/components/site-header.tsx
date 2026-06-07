@@ -48,7 +48,7 @@ export function SiteHeader() {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-7 text-[15px] text-muted-foreground md:flex">
+        <nav className="hidden items-center gap-7 text-base text-muted-foreground md:flex">
           {nav.map((item) => (
             <Link key={item.href} href={item.href} className="transition-colors hover:text-foreground">
               {item.label}

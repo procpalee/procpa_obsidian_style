@@ -38,9 +38,9 @@ export function ProjectCard({
       </div>
 
       <h3 className="mt-3 text-lg font-semibold tracking-tight">{name}</h3>
-      <p className="mt-1.5 text-[15px] leading-relaxed text-muted-foreground">{tagline}</p>
+      <p className="mt-1.5 text-base leading-relaxed text-muted-foreground">{tagline}</p>
       {detailed && (
-        <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground/90">{description}</p>
+        <p className="mt-3 text-base leading-relaxed text-muted-foreground/90">{description}</p>
       )}
 
       <div className="mt-4 flex flex-wrap gap-1.5">

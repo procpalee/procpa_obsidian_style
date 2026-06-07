@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
-import { posts } from '#site/content'
 import { JsonLd, websiteJsonLd, personJsonLd } from '@/components/json-ld'
 import { socials } from '@/components/social-icons'
+import { getLastPushDate } from '@/lib/last-updated'
 import { Reveal } from '@/components/reveal'
 import { Hero } from '@/components/home/hero'
 import { AboutPreview } from '@/components/home/about-preview'
@@ -16,12 +16,7 @@ export const metadata: Metadata = {
 }
 
 export default function HomePage() {
-  const lastUpdated =
-    posts
-      .filter((p) => !p.draft)
-      .map((p) => (p.updated || p.date).slice(0, 10))
-      .sort()
-      .pop() ?? new Date().toISOString().slice(0, 10)
+  const lastUpdated = getLastPushDate()
 
   return (
     <>

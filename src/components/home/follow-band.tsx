@@ -39,7 +39,7 @@ export function FollowBand() {
                   <span className="text-base font-semibold tracking-tight">{s.label}</span>
                   <span className="font-mono text-xs text-muted-foreground">{s.handle}</span>
                 </div>
-                <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-0.5 text-[15px] leading-relaxed text-muted-foreground">
                   {channelDesc[s.label]}
                 </p>
               </div>

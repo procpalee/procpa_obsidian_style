@@ -549,7 +549,7 @@ function PostView({
             </MobileCollapsible>
           )}
 
-          <div className="prose prose-neutral max-w-[68ch] dark:prose-invert">
+          <div className="prose prose-lg prose-neutral max-w-[72ch] dark:prose-invert">
             <MDXContent code={post.body} />
           </div>
 
@@ -755,7 +755,7 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
               <ChapterList nodes={childNodes} counter={{ value: 0 }} />
             </section>
           ) : (
-            <div className="prose prose-neutral max-w-[68ch] dark:prose-invert">
+            <div className="prose prose-lg prose-neutral max-w-[72ch] dark:prose-invert">
               <MDXContent code={r.chapter.body} />
             </div>
           )}
