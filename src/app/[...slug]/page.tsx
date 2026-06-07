@@ -534,7 +534,7 @@ function PostView({
                 </span>
               ))}
             </div>
-            <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
+            <h1 className="text-balance font-semibold tracking-[-0.03em] text-[clamp(2.25rem,4.5vw,3.75rem)]">
               {post.title}
             </h1>
             {post.description && (
@@ -626,7 +626,7 @@ function SeriesView({ r }: { r: Extract<Resolved, { type: 'series' }> }) {
               <span>{s.title}</span>
             </nav>
 
-            <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">{s.title}</h1>
+            <h1 className="text-balance font-semibold tracking-[-0.03em] text-[clamp(2.25rem,4.5vw,3.75rem)]">{s.title}</h1>
             <p className="mt-4 max-w-xl text-lg text-muted-foreground">{s.description}</p>
             <div className="mt-3 flex flex-wrap items-center gap-3 font-mono text-xs text-muted-foreground">
               <span>{r.totalCount}개 챕터</span>
@@ -735,7 +735,7 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
               </nav>
               <ShareButtons url={url} title={r.chapter.title} />
             </div>
-            <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
+            <h1 className="text-balance font-semibold tracking-[-0.03em] text-[clamp(2.25rem,4.5vw,3.75rem)]">
               {r.chapter.title}
             </h1>
           </header>
@@ -810,7 +810,7 @@ function CategoryView({ r }: { r: Extract<Resolved, { type: 'category' }> }) {
           {' ⟩ '}
           <span>{r.label}</span>
         </nav>
-        <h1 className="mt-2 text-4xl font-semibold tracking-tight">{r.label}</h1>
+        <h1 className="mt-2 text-4xl font-semibold tracking-tight sm:text-5xl">{r.label}</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           {statParts.join(' · ')}
         </p>
@@ -869,7 +869,7 @@ function SubcategoryView({ r }: { r: Extract<Resolved, { type: 'subcategory' }> 
           {' ⟩ '}
           <span>{r.subcategory}</span>
         </nav>
-        <h1 className="mt-2 text-4xl font-semibold tracking-tight">{r.subcategory}</h1>
+        <h1 className="mt-2 text-4xl font-semibold tracking-tight sm:text-5xl">{r.subcategory}</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           {statParts.join(' · ')}
         </p>

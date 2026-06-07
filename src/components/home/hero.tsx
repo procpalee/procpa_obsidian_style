@@ -33,7 +33,7 @@ export function Hero({ updated }: { updated?: string }) {
         <h1
           className={cn(
             'mt-7 font-bold tracking-[-0.04em]',
-            'text-[clamp(3rem,8.5vw,6.5rem)]/[0.85]',
+            'text-[clamp(3rem,8.5vw,6.5rem)]/[1.02]',
             reveal()
           )}
           style={delay(1)}
