@@ -13,7 +13,7 @@ const NAV = [
   { n: '03', ko: '프로젝트', en: 'Projects', href: '/projects', desc: '실무 문제를 푼 웹·MCP 도구들' },
 ]
 
-export function HeroCmds() {
+export function HeroCmds({ gradient = false }: { gradient?: boolean } = {}) {
   const [on, setOn] = useState(false)
   useEffect(() => {
     const id = requestAnimationFrame(() => setOn(true))
@@ -28,8 +28,13 @@ export function HeroCmds() {
   const delay = (i: number) => ({ transitionDelay: `${i * 90}ms` })
 
   return (
-    <section className="border-b border-border/60">
-      <div className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
+    <section className="relative overflow-hidden border-b border-border/60">
+      {gradient && (
+        <div aria-hidden className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-40 left-1/2 h-[30rem] w-[40rem] -translate-x-1/2 rounded-full bg-primary/15 blur-[130px]" />
+        </div>
+      )}
+      <div className="relative mx-auto max-w-5xl px-6 py-20 sm:py-28">
         {/* eyebrow pill */}
         <div className={reveal()} style={delay(0)}>
           <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 font-mono text-xs uppercase tracking-widest text-primary">
@@ -47,7 +52,17 @@ export function HeroCmds() {
           )}
           style={delay(1)}
         >
-          회계 전문성에 <span className="text-primary">AI의 생산성</span>을 더합니다
+          회계 전문성에{' '}
+          <span
+            className={
+              gradient
+                ? 'bg-gradient-to-r from-blue-500 via-sky-400 to-cyan-300 bg-clip-text text-transparent'
+                : 'text-primary'
+            }
+          >
+            AI의 생산성
+          </span>
+          을 더합니다
         </h1>
 
         {/* lede */}
@@ -67,7 +82,12 @@ export function HeroCmds() {
         <div className={cn('mt-9 flex flex-wrap items-center gap-3', reveal())} style={delay(3)}>
           <Link
             href="/#follow"
-            className="rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+            className={cn(
+              'rounded-full px-6 py-3 text-sm font-semibold transition-opacity hover:opacity-90',
+              gradient
+                ? 'bg-gradient-to-r from-primary to-sky-500 text-white shadow-sm'
+                : 'bg-primary text-primary-foreground'
+            )}
           >
             구독하기
           </Link>
@@ -87,7 +107,14 @@ export function HeroCmds() {
               href={item.href}
               className="group grid grid-cols-[auto_1fr_auto] items-center gap-5 rounded-2xl border border-border/60 px-6 py-6 transition-all hover:-translate-y-0.5 hover:border-foreground/30"
             >
-              <span className="font-mono text-3xl font-bold tabular-nums text-primary sm:text-4xl">
+              <span
+                className={cn(
+                  'font-mono text-3xl font-bold tabular-nums sm:text-4xl',
+                  gradient
+                    ? 'bg-gradient-to-br from-blue-500 to-cyan-300 bg-clip-text text-transparent'
+                    : 'text-primary'
+                )}
+              >
                 {item.n}
               </span>
               <div className="min-w-0">
@@ -105,4 +132,9 @@ export function HeroCmds() {
       </div>
     </section>
   )
+}
+
+/** 시안 K — CMDS Gradient: J에 블루→시안 그라데이션 강조 + 상단 글로우. */
+export function HeroCmdsGradient() {
+  return <HeroCmds gradient />
 }

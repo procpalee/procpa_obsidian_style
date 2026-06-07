@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { HeroConstellation, HeroTyping } from '@/components/home/hero-animated'
-import { HeroCmds } from '@/components/home/hero-cmds'
+import { HeroCmds, HeroCmdsGradient } from '@/components/home/hero-cmds'
 
 /* 홈 히어로 시안 모음 — /design/hero 에서 비교용. */
 
@@ -306,6 +306,7 @@ export function HeroOrbit() {
 
 export const HERO_VARIANTS = [
   { id: 'cmds', name: 'J · CMDS Editorial (신규·추천)', component: HeroCmds },
+  { id: 'cmds-gradient', name: 'K · CMDS Gradient (그라데이션)', component: HeroCmdsGradient },
   { id: 'editorial', name: 'A · Editorial', component: HeroEditorial },
   { id: 'frontmatter', name: 'B · Frontmatter Note', component: HeroFrontmatter },
   { id: 'index', name: 'C · Asymmetric Index', component: HeroIndex },
