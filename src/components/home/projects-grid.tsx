@@ -10,7 +10,8 @@ export function resolveArticleHref(articleMatch?: string): string | undefined {
   return post ? `/${post.slugAsParams}` : undefined
 }
 
-export function ProjectsGrid() {
+export function ProjectsGrid({ limit }: { limit?: number } = {}) {
+  const shown = limit ? projects.slice(0, limit) : projects
   return (
     <Section
       id="projects"
@@ -20,7 +21,7 @@ export function ProjectsGrid() {
       action={<SectionLink href="/projects">프로젝트 전체 보기 →</SectionLink>}
     >
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {projects.map((p) => (
+        {shown.map((p) => (
           <ProjectCard
             key={p.key}
             project={p}

@@ -11,8 +11,8 @@ const CommandPalette = dynamic(() => import('@/components/command-palette').then
 import { socials } from '@/components/social-icons'
 
 const nav = [
+  { href: '/', label: '홈' },
   { href: '/about', label: '소개' },
-  { href: '/#services', label: '업무' },
   { href: '/blog', label: '블로그' },
   { href: '/projects', label: '프로젝트' },
 ]
@@ -59,10 +59,10 @@ export function SiteHeader() {
             <ThemeToggle />
           </div>
           <Link
-            href="/#follow"
+            href="/contact"
             className="rounded-md bg-primary px-3.5 py-1.5 text-[13px] font-semibold text-primary-foreground transition-opacity hover:opacity-90"
           >
-            구독
+            문의하기
           </Link>
         </nav>
 
@@ -80,13 +80,6 @@ export function SiteHeader() {
             <SheetContent side="right" className="w-[280px] overflow-y-auto p-0">
               <SheetTitle className="sr-only">메뉴</SheetTitle>
               <nav className="flex flex-col px-6 py-6">
-                <Link
-                  href="/"
-                  onClick={() => setOpen(false)}
-                  className="py-2.5 text-[15px] font-medium transition-colors hover:text-primary"
-                >
-                  홈
-                </Link>
                 {nav.map((item) => (
                   <Link
                     key={item.href}
@@ -113,11 +106,11 @@ export function SiteHeader() {
                 ))}
 
                 <Link
-                  href="/#follow"
+                  href="/contact"
                   onClick={() => setOpen(false)}
                   className="mt-6 inline-flex items-center justify-center rounded-md bg-primary px-4 py-2.5 text-[14px] font-semibold text-primary-foreground"
                 >
-                  구독하기
+                  문의하기
                 </Link>
 
                 <div className="mt-6 flex items-center gap-4 border-t border-border/60 pt-5 text-muted-foreground">

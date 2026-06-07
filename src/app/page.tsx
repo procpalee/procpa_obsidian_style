@@ -3,7 +3,6 @@ import { JsonLd, websiteJsonLd, personJsonLd } from '@/components/json-ld'
 import { socials } from '@/components/social-icons'
 import { Hero } from '@/components/home/hero'
 import { AboutPreview } from '@/components/home/about-preview'
-import { ServicesGrid } from '@/components/home/services-grid'
 import { BlogHighlights } from '@/components/home/blog-highlights'
 import { ProjectsGrid } from '@/components/home/projects-grid'
 import { FollowBand } from '@/components/home/follow-band'
@@ -27,9 +26,8 @@ export default function HomePage() {
       />
       <Hero />
       <AboutPreview />
-      <ServicesGrid />
       <BlogHighlights />
-      <ProjectsGrid />
+      <ProjectsGrid limit={3} />
       <FollowBand />
     </>
   )

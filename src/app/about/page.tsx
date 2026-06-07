@@ -12,6 +12,7 @@ import {
   contacts,
 } from '@/lib/about-data'
 import { JsonLd, personJsonLd } from '@/components/json-ld'
+import { PageHero } from '@/components/page-hero'
 
 export const metadata: Metadata = {
   title: '소개',
@@ -39,7 +40,7 @@ function Section({
     <section className="border-t border-border/60">
       <div className="mx-auto grid max-w-5xl grid-cols-12 gap-6 px-6 py-20">
         <div className="col-span-12 lg:col-span-3">
-          <div className="font-mono text-[11px] text-muted-foreground">
+          <div className="font-mono text-sm uppercase tracking-widest text-muted-foreground">
             {label}
           </div>
           {title && (
@@ -137,28 +138,27 @@ export default function AboutPage() {
       <JsonLd data={personJsonLd({ sameAs: SAME_AS })} />
       {/* Hero */}
       <section>
-        <div className="mx-auto max-w-5xl px-6 py-12">
-          <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-            About
-          </p>
-          <h1 className="mt-4 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-            한국공인회계사
-            <br />
-            <span className="text-primary">
-              이재현
-            </span>
-            입니다.
-          </h1>
-          <p className="mt-6 max-w-2xl text-[15px] leading-[1.85] text-muted-foreground sm:text-base">
-            <span className="text-foreground">회계·재무 전문성</span>과{' '}
-            <span className="text-foreground">AI의 생산성</span>을 모두 갖춘 새로운 시대의
-            전문가를 지향합니다.
-          </p>
+        <div className="mx-auto max-w-5xl px-6 py-14 sm:py-20">
+          <PageHero
+            en="About"
+            ko={
+              <>
+                한국공인회계사 <span className="text-primary">이재현</span>입니다.
+              </>
+            }
+            description={
+              <>
+                <span className="text-foreground">회계·재무 전문성</span>과{' '}
+                <span className="text-foreground">AI의 생산성</span>을 모두 갖춘 새로운 시대의
+                전문가를 지향합니다.
+              </>
+            }
+          />
 
           <dl className="mt-14 grid grid-cols-2 gap-8 border-t border-border/60 pt-10 sm:grid-cols-4">
             {stats.map((s) => (
               <div key={s.label}>
-                <dt className="font-mono text-[10px] text-muted-foreground">
+                <dt className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
                   {s.label}
                 </dt>
                 <dd className="mt-2 font-mono text-3xl tracking-tight">{s.value}</dd>
@@ -171,7 +171,7 @@ export default function AboutPage() {
       <section className="border-t border-border/60">
         <div className="mx-auto grid max-w-5xl grid-cols-12 gap-y-12 lg:gap-6 px-6 py-20">
           <div className="col-span-12 lg:col-span-6">
-            <div className="font-mono text-[11px] text-muted-foreground">
+            <div className="font-mono text-sm uppercase tracking-widest text-muted-foreground">
               Career
             </div>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">경력</h2>
@@ -180,7 +180,7 @@ export default function AboutPage() {
             </div>
           </div>
           <div className="col-span-12 border-t border-border/60 pt-20 lg:col-span-6 lg:border-0 lg:pt-0">
-            <div className="font-mono text-[11px] text-muted-foreground">
+            <div className="font-mono text-sm uppercase tracking-widest text-muted-foreground">
               Education
             </div>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">학력</h2>

@@ -38,10 +38,10 @@ export function Hero() {
             구독하기
           </Link>
           <Link
-            href="/#services"
+            href="/contact"
             className="rounded-md border border-border/60 px-5 py-2.5 text-[14px] font-medium transition-colors hover:border-foreground/40"
           >
-            업무 문의
+            문의하기
           </Link>
         </div>
 
