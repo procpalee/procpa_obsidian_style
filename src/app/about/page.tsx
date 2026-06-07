@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { Mail, MessageCircle } from 'lucide-react'
 import {
   career,
@@ -246,6 +247,14 @@ export default function AboutPage() {
       </Section>
 
       <Section label="Projects" title="사이드 프로젝트">
+        <div className="mb-6">
+          <Link
+            href="/projects"
+            className="inline-flex items-center rounded-md border border-border/60 px-3.5 py-2 font-mono text-[11px] text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground"
+          >
+            프로젝트 전체 보기 →
+          </Link>
+        </div>
         <div className="grid gap-5 sm:grid-cols-3">
           {sideProjects.map((p) => (
             <a
