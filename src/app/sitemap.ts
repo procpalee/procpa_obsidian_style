@@ -6,12 +6,14 @@ const SITE = 'https://procpa.co.kr'
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticUrls: MetadataRoute.Sitemap = [
     '',
+    '/about',
+    '/blog',
+    '/projects',
     '/explore',
     '/graph',
     '/search',
     '/tags',
     '/downloads',
-    '/about',
     '/terms',
     '/disclaimer',
   ].map((p) => ({ url: `${SITE}${p}`, lastModified: new Date() }))
