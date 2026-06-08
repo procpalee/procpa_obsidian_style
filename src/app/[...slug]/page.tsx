@@ -502,7 +502,7 @@ function PostView({
   return (
     <>
     <ReadingProgress />
-    <div className="mx-auto max-w-[1200px] px-6 py-12">
+    <div className="mx-auto max-w-[1440px] px-6 py-12">
       <JsonLd
         data={articleJsonLd({
           title: post.title,

@@ -142,7 +142,7 @@ export default async function ExplorePage({ searchParams }: PageProps) {
   const pagedResults = results.slice((safePage - 1) * PER_PAGE, safePage * PER_PAGE)
 
   return (
-    <div className="mx-auto max-w-[1200px] px-6 py-12">
+    <div className="mx-auto max-w-[1440px] px-6 py-12">
       <header className="mb-10">
         <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
           Explore

@@ -24,7 +24,7 @@ export function Section({
       id={id}
       className={cn('scroll-mt-20 border-t border-border/60', className)}
     >
-      <div className="mx-auto max-w-[1200px] px-6 py-16 sm:py-20">
+      <div className="mx-auto max-w-[1440px] px-6 py-16 sm:py-20">
         {(kicker || title || description || action) && (
           <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
             <div className="min-w-0">

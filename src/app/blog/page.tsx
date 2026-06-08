@@ -28,7 +28,7 @@ export default function BlogPage() {
   })).filter((g) => g.items.length > 0)
 
   return (
-    <div className="mx-auto max-w-[1200px] px-6 py-14 sm:py-20">
+    <div className="mx-auto max-w-[1440px] px-6 py-14 sm:py-20">
       <PageHero
         en="Writing"
         ko="블로그"

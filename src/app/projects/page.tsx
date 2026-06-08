@@ -18,7 +18,7 @@ export default function ProjectsPage() {
     .filter((g) => g.items.length > 0)
 
   return (
-    <div className="mx-auto max-w-[1200px] px-6 py-14 sm:py-20">
+    <div className="mx-auto max-w-[1440px] px-6 py-14 sm:py-20">
       <PageHero
         en="Projects"
         ko="직접 만든 도구들"
