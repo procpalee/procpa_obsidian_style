@@ -52,8 +52,8 @@ export function Hero({ updated }: { updated?: string }) {
           )}
           style={delay(2)}
         >
-          회계·재무 실무에 AI를 접목해 더 빠르고 정확하게 일하는 법을 연구하고, 그 과정을{' '}
-          <span className="text-foreground">글·도구·강의</span>로 공유합니다.
+          회계·재무 실무에 AI를 접목해 더 나은 결과물을 만드는 법을 연구하고, 그 과정을{' '}
+          <span className="text-foreground">글과 프로젝트</span>로 공유합니다.
         </p>
 
         {/* pill CTAs */}

@@ -7,7 +7,7 @@ import { TOPIC_KEYS, topicLabel } from '@/lib/topics'
 
 export const metadata: Metadata = {
   title: '블로그',
-  description: '회계·재무 실무와 AI 활용에 관한 글과 시리즈 가이드.',
+  description: '회계·재무 실무와 AI 활용에 관한 시리즈와 포스트.',
 }
 
 const cleanLabel = (key: string) => topicLabel(key).replace(/^\d+\.\s*/, '')
@@ -39,9 +39,9 @@ export default function BlogPage() {
   return (
     <div className="mx-auto max-w-[1440px] px-6 py-14 sm:py-20">
       <PageHero
-        en="Writing"
+        en="Blog"
         ko="블로그"
-        description="회계·재무 실무와 AI 활용에 관한 기록과, 깊이 있게 정리한 시리즈 가이드입니다."
+        description="회계·재무 실무 및 AI 활용에 대한 지식과 생각을 정리합니다."
         action={
           <div className="flex gap-2">
             <Link

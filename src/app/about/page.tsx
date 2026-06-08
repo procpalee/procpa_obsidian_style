@@ -158,9 +158,6 @@ export default function AboutPage() {
 
           {/* 자문위원 배너 */}
           <div className="mt-8 flex flex-wrap items-center gap-2">
-            <span className="font-mono text-[11px] uppercase tracking-widest text-primary">
-              Advisory
-            </span>
             {advisory.map((a) => (
               <span
                 key={a.org + a.role}

@@ -16,8 +16,8 @@ export function ProjectsGrid({ limit }: { limit?: number } = {}) {
     <Section
       id="projects"
       kicker="Projects"
-      title="직접 만든 도구들"
-      description="회계·콘텐츠 작업의 불편함을 직접 코드로 풀어, 웹과 MCP 서버로 배포해 운영합니다."
+      title="개발 프로젝트"
+      description="실무 및 컨텐츠 작업을 위한 위한 다양한 웹/앱, MCP 서버 등을 개발 및 배포합니다."
       action={<SectionLink href="/projects">프로젝트 전체 보기 →</SectionLink>}
     >
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

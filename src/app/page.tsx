@@ -8,6 +8,7 @@ import { AboutPreview } from '@/components/home/about-preview'
 import { BlogHighlights } from '@/components/home/blog-highlights'
 import { ProjectsGrid } from '@/components/home/projects-grid'
 import { FollowBand } from '@/components/home/follow-band'
+import { CtaBlock } from '@/components/home/cta-block'
 
 export const metadata: Metadata = {
   title: 'PROCPA — 이재현',
@@ -40,6 +41,9 @@ export default function HomePage() {
       </Reveal>
       <Reveal>
         <FollowBand />
+      </Reveal>
+      <Reveal>
+        <CtaBlock />
       </Reveal>
     </>
   )
