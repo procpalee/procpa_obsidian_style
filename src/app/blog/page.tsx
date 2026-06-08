@@ -62,7 +62,7 @@ export default function BlogPage() {
 
       {/* ── Series ── */}
       {visibleSeries.length > 0 && (
-        <section className="mt-16">
+        <section className="mt-20">
           <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
             Series
           </div>
@@ -77,7 +77,7 @@ export default function BlogPage() {
                 >
                   {g.label}
                 </Link>
-                <span className="font-mono text-[11px] text-muted-foreground/60">{g.items.length}</span>
+                <span className="font-mono text-xs text-muted-foreground/60">{g.items.length}</span>
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
                 {g.items.map((s) => {
@@ -104,7 +104,7 @@ export default function BlogPage() {
 
       {/* ── Posts ── */}
       {visiblePosts.length > 0 && (
-        <section className="mt-16">
+        <section className="mt-20">
           <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
             Posts
           </div>
@@ -119,7 +119,7 @@ export default function BlogPage() {
                 >
                   {g.label}
                 </Link>
-                <span className="font-mono text-[11px] text-muted-foreground/60">{g.items.length}</span>
+                <span className="font-mono text-xs text-muted-foreground/60">{g.items.length}</span>
               </div>
               <div className="divide-y divide-border/60">
                 {g.items.map((p) => (

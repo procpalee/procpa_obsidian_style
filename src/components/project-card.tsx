@@ -30,7 +30,7 @@ const statusDot: Record<ProjectStatus, string> = {
 
 function StatusPill({ status }: { status: ProjectStatus }) {
   return (
-    <span className="inline-flex items-center gap-1.5 font-mono text-[11px] text-muted-foreground">
+    <span className="inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
       <span className={`h-1.5 w-1.5 rounded-full ${statusDot[status]}`} />
       {statusLabel[status]}
     </span>
@@ -51,7 +51,7 @@ export function ProjectCard({
   return (
     <div className="group flex flex-col rounded-2xl border border-border/60 p-5 transition-all hover:-translate-y-0.5 hover:border-foreground/40 hover:shadow-sm">
       <div className="flex items-center justify-between gap-2">
-        <span className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
+        <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
           {category}
         </span>
         <StatusPill status={status} />
@@ -67,14 +67,14 @@ export function ProjectCard({
         {stack.map((s) => (
           <span
             key={s}
-            className="rounded-full bg-secondary px-2.5 py-0.5 font-mono text-[11px] text-muted-foreground"
+            className="rounded-full bg-secondary px-2.5 py-0.5 font-mono text-xs text-muted-foreground"
           >
             {s}
           </span>
         ))}
       </div>
 
-      <div className="mt-5 flex items-center gap-4 border-t border-border/60 pt-4 text-[13px]">
+      <div className="mt-5 flex items-center gap-4 border-t border-border/60 pt-4 text-sm">
         {liveUrl && (
           <a
             href={liveUrl}
@@ -105,7 +105,7 @@ export function ProjectCard({
             제작기 →
           </Link>
         )}
-        <span className="ml-auto font-mono text-[11px] text-muted-foreground">{year}</span>
+        <span className="ml-auto font-mono text-xs text-muted-foreground">{year}</span>
       </div>
     </div>
   )
