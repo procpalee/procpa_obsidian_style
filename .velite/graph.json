@@ -306,6 +306,26 @@
       "degree": 0
     },
     {
+      "id": "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/1-mcp-설치-및-사용방법",
+      "type": "chapter",
+      "title": "7.1. MCP 설치 및 사용방법",
+      "category": "ai-생산성",
+      "url": "/ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/1-mcp-설치-및-사용방법",
+      "tags": [],
+      "series": "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드",
+      "degree": 0
+    },
+    {
+      "id": "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/2-notebooklm-mcp",
+      "type": "chapter",
+      "title": "7.2. NotebookLM MCP",
+      "category": "ai-생산성",
+      "url": "/ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/2-notebooklm-mcp",
+      "tags": [],
+      "series": "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드",
+      "degree": 0
+    },
+    {
       "id": "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/스킬skills/1-스킬skills의-개념-및-구조",
       "type": "chapter",
       "title": "6.1. 스킬(Skills)의 개념 및 구조",
@@ -341,26 +361,6 @@
       "title": "6.4. 나만의 커스텀 스킬 제작(Feat. skill-creator)",
       "category": "ai-생산성",
       "url": "/ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/스킬skills/4-나만의-커스텀-스킬-제작feat-skill-creator",
-      "tags": [],
-      "series": "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드",
-      "degree": 0
-    },
-    {
-      "id": "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/1-mcp-설치-및-사용방법",
-      "type": "chapter",
-      "title": "7.1. MCP 설치 및 사용방법",
-      "category": "ai-생산성",
-      "url": "/ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/1-mcp-설치-및-사용방법",
-      "tags": [],
-      "series": "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드",
-      "degree": 0
-    },
-    {
-      "id": "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/2-notebooklm-mcp",
-      "type": "chapter",
-      "title": "7.2. NotebookLM MCP",
-      "category": "ai-생산성",
-      "url": "/ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/2-notebooklm-mcp",
       "tags": [],
       "series": "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드",
       "degree": 0

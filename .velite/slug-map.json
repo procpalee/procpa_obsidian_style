@@ -673,6 +673,48 @@
     "url": "/회계실무/icfr/내부회계관리제도-실무-가이드북/개요/3-내부회계관리제도-관련-기준-체계",
     "category": "회계실무"
   },
+  "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/1-mcp-설치-및-사용방법": {
+    "id": "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/1-mcp-설치-및-사용방법",
+    "type": "chapter",
+    "title": "7.1. MCP 설치 및 사용방법",
+    "url": "/ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/1-mcp-설치-및-사용방법",
+    "category": "ai-생산성"
+  },
+  "1-mcp-설치-및-사용방법": {
+    "id": "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/1-mcp-설치-및-사용방법",
+    "type": "chapter",
+    "title": "7.1. MCP 설치 및 사용방법",
+    "url": "/ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/1-mcp-설치-및-사용방법",
+    "category": "ai-생산성"
+  },
+  "7.1. mcp 설치 및 사용방법": {
+    "id": "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/1-mcp-설치-및-사용방법",
+    "type": "chapter",
+    "title": "7.1. MCP 설치 및 사용방법",
+    "url": "/ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/1-mcp-설치-및-사용방법",
+    "category": "ai-생산성"
+  },
+  "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/2-notebooklm-mcp": {
+    "id": "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/2-notebooklm-mcp",
+    "type": "chapter",
+    "title": "7.2. NotebookLM MCP",
+    "url": "/ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/2-notebooklm-mcp",
+    "category": "ai-생산성"
+  },
+  "2-notebooklm-mcp": {
+    "id": "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/2-notebooklm-mcp",
+    "type": "chapter",
+    "title": "7.2. NotebookLM MCP",
+    "url": "/ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/2-notebooklm-mcp",
+    "category": "ai-생산성"
+  },
+  "7.2. notebooklm mcp": {
+    "id": "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/2-notebooklm-mcp",
+    "type": "chapter",
+    "title": "7.2. NotebookLM MCP",
+    "url": "/ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/2-notebooklm-mcp",
+    "category": "ai-생산성"
+  },
   "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/스킬skills/1-스킬skills의-개념-및-구조": {
     "id": "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/스킬skills/1-스킬skills의-개념-및-구조",
     "type": "chapter",
@@ -755,48 +797,6 @@
     "type": "chapter",
     "title": "6.4. 나만의 커스텀 스킬 제작(Feat. skill-creator)",
     "url": "/ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/스킬skills/4-나만의-커스텀-스킬-제작feat-skill-creator",
-    "category": "ai-생산성"
-  },
-  "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/1-mcp-설치-및-사용방법": {
-    "id": "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/1-mcp-설치-및-사용방법",
-    "type": "chapter",
-    "title": "7.1. MCP 설치 및 사용방법",
-    "url": "/ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/1-mcp-설치-및-사용방법",
-    "category": "ai-생산성"
-  },
-  "1-mcp-설치-및-사용방법": {
-    "id": "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/1-mcp-설치-및-사용방법",
-    "type": "chapter",
-    "title": "7.1. MCP 설치 및 사용방법",
-    "url": "/ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/1-mcp-설치-및-사용방법",
-    "category": "ai-생산성"
-  },
-  "7.1. mcp 설치 및 사용방법": {
-    "id": "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/1-mcp-설치-및-사용방법",
-    "type": "chapter",
-    "title": "7.1. MCP 설치 및 사용방법",
-    "url": "/ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/1-mcp-설치-및-사용방법",
-    "category": "ai-생산성"
-  },
-  "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/2-notebooklm-mcp": {
-    "id": "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/2-notebooklm-mcp",
-    "type": "chapter",
-    "title": "7.2. NotebookLM MCP",
-    "url": "/ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/2-notebooklm-mcp",
-    "category": "ai-생산성"
-  },
-  "2-notebooklm-mcp": {
-    "id": "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/2-notebooklm-mcp",
-    "type": "chapter",
-    "title": "7.2. NotebookLM MCP",
-    "url": "/ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/2-notebooklm-mcp",
-    "category": "ai-생산성"
-  },
-  "7.2. notebooklm mcp": {
-    "id": "ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/2-notebooklm-mcp",
-    "type": "chapter",
-    "title": "7.2. NotebookLM MCP",
-    "url": "/ai-생산성/ai-활용/비개발자를-위한-antigravity-가이드/mcp/2-notebooklm-mcp",
     "category": "ai-생산성"
   },
   "ai-생산성/ai-활용/클로드-엑셀claude-for-excel-가이드/스킬skills-활용법/1-스킬skills이란": {
