@@ -17,26 +17,26 @@ export function ServicesGrid() {
             key={s.key}
             className="group flex flex-col rounded-xl border border-border/60 p-6 transition-all hover:border-foreground/40 hover:shadow-sm"
           >
-            <h3 className="text-[17px] font-semibold tracking-tight">{s.title}</h3>
-            <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground">{s.summary}</p>
+            <h3 className="text-lg font-semibold tracking-tight">{s.title}</h3>
+            <p className="mt-2 text-base leading-relaxed text-muted-foreground">{s.summary}</p>
 
             <ul className="mt-4 space-y-2">
               {s.outcomes.map((o) => (
                 <li
                   key={o}
-                  className="flex gap-2 text-[13px] leading-relaxed text-muted-foreground"
+                  className="flex gap-2.5 text-base leading-relaxed text-muted-foreground"
                 >
-                  <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-primary" />
+                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
                   {o}
                 </li>
               ))}
             </ul>
 
             <div className="mt-5 flex items-center justify-between border-t border-border/60 pt-4">
-              <span className="font-mono text-[11px] text-muted-foreground">{s.forWhom}</span>
+              <span className="font-mono text-[13px] text-muted-foreground">{s.forWhom}</span>
               <a
                 href={`mailto:${EMAIL}?subject=${encodeURIComponent(`[${s.title}] 문의`)}`}
-                className="shrink-0 text-[12px] font-medium text-primary transition-opacity hover:opacity-80"
+                className="shrink-0 text-sm font-medium text-primary transition-opacity hover:opacity-80"
               >
                 {s.cta} →
               </a>

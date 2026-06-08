@@ -40,7 +40,7 @@ export default function ContactPage() {
         <PageHero
           en="Contact"
           ko="문의하기"
-          description="회계·재무 자문부터 AI 도입, 강의·집필, 협업 제안까지 — 어떤 주제든 편하게 연락주세요. 보통 1–2일 내에 답장드립니다."
+          description="회계·재무 자문부터 AX 컨설팅, 강의·집필, 협업 제안까지 — 어떤 주제든 편하게 연락주세요."
         />
       </div>
 
@@ -52,7 +52,7 @@ export default function ContactPage() {
         id="channels"
         kicker="Channels"
         title="연락 채널"
-        description="이메일·오픈채팅이 가장 빠릅니다. 블로그·유튜브·깃허브에서도 만나보실 수 있습니다."
+        description="이메일·카카오톡이 가장 빠릅니다. 블로그·유튜브·깃허브에서도 만나보실 수 있습니다."
       >
         <div className="grid gap-3 sm:grid-cols-2">
           {contacts.map((c) => {
