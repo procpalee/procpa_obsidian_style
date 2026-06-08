@@ -169,3 +169,98 @@
 .scrollbar-none::-webkit-scrollbar {
   display: none;
 }
+
+/* ─────────── Prose (article body) ───────────
+   Maps @tailwindcss/typography to the site's design tokens so posts, series
+   intros, and chapters share one reading style across light/dark. Kept
+   unlayered so these win over the plugin's layered defaults. Tone follows the
+   repo rule: no gradients, hairline dividers, monospace-free numerals. */
+.prose {
+  --tw-prose-body: color-mix(in oklab, var(--foreground) 88%, var(--background));
+  --tw-prose-headings: var(--foreground);
+  --tw-prose-lead: var(--muted-foreground);
+  --tw-prose-links: var(--primary);
+  --tw-prose-bold: var(--foreground);
+  --tw-prose-counters: var(--muted-foreground);
+  --tw-prose-bullets: var(--border);
+  --tw-prose-hr: color-mix(in oklab, var(--border) 60%, transparent);
+  --tw-prose-quotes: var(--muted-foreground);
+  --tw-prose-quote-borders: var(--border);
+  --tw-prose-captions: var(--muted-foreground);
+  --tw-prose-code: var(--foreground);
+  --tw-prose-pre-code: var(--foreground);
+  --tw-prose-pre-bg: var(--muted);
+  --tw-prose-th-borders: var(--border);
+  --tw-prose-td-borders: color-mix(in oklab, var(--border) 60%, transparent);
+}
+.dark .prose {
+  --tw-prose-invert-body: color-mix(in oklab, var(--foreground) 88%, var(--background));
+  --tw-prose-invert-headings: var(--foreground);
+  --tw-prose-invert-lead: var(--muted-foreground);
+  --tw-prose-invert-links: var(--primary);
+  --tw-prose-invert-bold: var(--foreground);
+  --tw-prose-invert-counters: var(--muted-foreground);
+  --tw-prose-invert-bullets: var(--border);
+  --tw-prose-invert-hr: color-mix(in oklab, var(--border) 60%, transparent);
+  --tw-prose-invert-quotes: var(--muted-foreground);
+  --tw-prose-invert-quote-borders: var(--border);
+  --tw-prose-invert-captions: var(--muted-foreground);
+  --tw-prose-invert-code: var(--foreground);
+  --tw-prose-invert-pre-code: var(--foreground);
+  --tw-prose-invert-pre-bg: var(--muted);
+  --tw-prose-invert-th-borders: var(--border);
+  --tw-prose-invert-td-borders: color-mix(in oklab, var(--border) 60%, transparent);
+}
+
+/* Headings: tighter tracking + hairline rhythm on h2 */
+.prose :where(h1, h2, h3, h4) {
+  letter-spacing: -0.02em;
+}
+.prose :where(h2) {
+  margin-top: 2.5em;
+  padding-top: 1.25rem;
+  border-top: 1px solid color-mix(in oklab, var(--border) 60%, transparent);
+}
+.prose :where(h2):first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+/* Links: primary color with a subtle underline that fills in on hover */
+.prose :where(a) {
+  font-weight: 500;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in oklab, var(--primary) 40%, transparent);
+}
+.prose :where(a):hover {
+  text-decoration-color: var(--primary);
+}
+
+/* Inline code: token-colored chip (drop the plugin's backtick pseudo-content) */
+.prose :where(code):not(:where(pre code, [class~="not-prose"] *)) {
+  background-color: var(--muted);
+  border: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
+  border-radius: var(--radius-sm);
+  padding: 0.15em 0.4em;
+  font-size: 0.85em;
+  font-weight: 500;
+}
+.prose :where(code):not(:where(pre code, [class~="not-prose"] *))::before,
+.prose :where(code):not(:where(pre code, [class~="not-prose"] *))::after {
+  content: none;
+}
+
+/* Code blocks: hairline border + comfortable radius */
+.prose :where(pre) {
+  border: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
+  border-radius: var(--radius-md);
+}
+
+/* Blockquote: lighter weight, hairline accent */
+.prose :where(blockquote) {
+  font-style: normal;
+  font-weight: 400;
+  border-left-width: 2px;
+}

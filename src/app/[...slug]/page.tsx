@@ -5,7 +5,6 @@ import { posts, series, chapters } from '#site/content'
 import { isKnownTopic, topicLabel, type TopicKey } from '@/lib/topics'
 import { MDXContent } from '@/components/mdx-content'
 import { TableOfContents } from '@/components/table-of-contents'
-import { FolderPostsSidebar } from '@/components/folder-posts-sidebar'
 import { ReadingProgress } from '@/components/reading-progress'
 import { ShareButtons } from '@/components/share-buttons'
 import { MobileCollapsible } from '@/components/mobile-collapsible'
@@ -493,16 +492,9 @@ function PostView({
           { name: post.title, url },
         ])}
       />
-      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[220px_minmax(0,1fr)]">
-        {/* ── Left sidebar: folder posts ── */}
-        <FolderPostsSidebar
-          currentSlug={post.slugAsParams}
-          category={post.category}
-          subcategory={post.subcategory}
-        />
-
-        {/* ── Main content ── */}
-        <article className="min-w-0">
+      <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_15rem] lg:gap-12">
+        {/* ── Main content (centered blog column) ── */}
+        <article className="mx-auto w-full min-w-0 max-w-[72ch] lg:mx-0">
           <header className="mb-10 border-b border-border/60 pb-6">
             <nav className="mb-4 font-mono text-xs uppercase tracking-widest text-muted-foreground">
               <Link href="/" className="hover:text-foreground">Home</Link>
@@ -542,14 +534,16 @@ function PostView({
             )}
           </header>
 
-          {/* TOC collapsible */}
+          {/* TOC collapsible (mobile / tablet only) */}
           {post.toc.length > 0 && (
-            <MobileCollapsible title="On this page" alwaysVisible>
-              <TableOfContents items={post.toc} hideTitle />
-            </MobileCollapsible>
+            <div className="lg:hidden">
+              <MobileCollapsible title="On this page" alwaysVisible>
+                <TableOfContents items={post.toc} hideTitle />
+              </MobileCollapsible>
+            </div>
           )}
 
-          <div className="prose prose-lg prose-neutral max-w-[72ch] dark:prose-invert">
+          <div className="prose prose-lg prose-neutral max-w-none dark:prose-invert">
             <MDXContent code={post.body} />
           </div>
 
@@ -581,6 +575,15 @@ function PostView({
             <LazyLocalGraph currentSlug={post.slugAsParams} />
           </div>
         </article>
+
+        {/* ── Right rail: on this page (desktop) ── */}
+        {post.toc.length > 0 && (
+          <aside className="hidden lg:block">
+            <div className="sticky top-20">
+              <TableOfContents items={post.toc} />
+            </div>
+          </aside>
+        )}
       </div>
     </div>
     </>
@@ -661,7 +664,7 @@ function SeriesView({ r }: { r: Extract<Resolved, { type: 'series' }> }) {
 
           {/* Book intro body (MDX) */}
           {s.body && (
-            <section className="prose prose-neutral mb-12 max-w-none dark:prose-invert">
+            <section className="prose prose-lg prose-neutral mb-12 max-w-[72ch] dark:prose-invert">
               <MDXContent code={s.body} />
             </section>
           )}
@@ -700,7 +703,7 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
           { name: r.chapter.title, url },
         ])}
       />
-      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[220px_minmax(0,1fr)]">
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[220px_minmax(0,1fr)] xl:grid-cols-[15rem_minmax(0,1fr)_15rem] xl:gap-12">
         {/* ── Left sidebar: chapter navigation ── */}
         <aside className="hidden lg:block">
           <div className="group/sidebar sticky top-14 h-[calc(100vh-3.5rem)]">
@@ -740,11 +743,13 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
             </h1>
           </header>
 
-          {/* TOC collapsible */}
+          {/* TOC collapsible (below xl; right rail takes over on xl) */}
           {r.chapter.toc.length > 0 && (
-            <MobileCollapsible title="On this page" alwaysVisible>
-              <TableOfContents items={r.chapter.toc} hideTitle />
-            </MobileCollapsible>
+            <div className="xl:hidden">
+              <MobileCollapsible title="On this page" alwaysVisible>
+                <TableOfContents items={r.chapter.toc} hideTitle />
+              </MobileCollapsible>
+            </div>
           )}
 
           {childNodes.length > 0 ? (
@@ -785,6 +790,15 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
             <LazyLocalGraph currentSlug={r.chapter.slugAsParams} />
           </div>
         </article>
+
+        {/* ── Right rail: on this page (xl) ── */}
+        {r.chapter.toc.length > 0 && (
+          <aside className="hidden xl:block">
+            <div className="sticky top-20 pt-14">
+              <TableOfContents items={r.chapter.toc} />
+            </div>
+          </aside>
+        )}
       </div>
     </div>
     </>
