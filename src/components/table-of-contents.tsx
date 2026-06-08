@@ -34,8 +34,8 @@ function TocLink({
         href={item.url}
         className={`block border-l-2 py-1 text-[13px] leading-snug transition-colors ${
           isActive
-            ? 'border-primary text-foreground'
-            : 'border-transparent text-muted-foreground hover:text-foreground'
+            ? 'border-primary font-medium text-primary'
+            : 'border-border text-muted-foreground hover:text-foreground'
         }`}
         style={{ paddingLeft: `${12 + depth * 12}px` }}
       >
@@ -85,8 +85,8 @@ export function TableOfContents({ items, hideTitle = false }: { items: TocItem[]
   return (
     <nav aria-label="목차">
       {!hideTitle && (
-        <h3 className="mb-3 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-          On this page
+        <h3 className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">
+          이 페이지
         </h3>
       )}
       <div className="space-y-0.5">

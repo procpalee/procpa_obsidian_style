@@ -29,6 +29,7 @@
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
   --color-destructive: var(--destructive);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
@@ -72,6 +73,7 @@
   --accent-foreground: #2563eb;
   --destructive: #c2410c;
   --border: #e6e9ee;
+  --border-strong: #d4d8df;
   --input: #e6e9ee;
   --ring: #2563eb;
   --chart-1: #2563eb;
@@ -110,6 +112,7 @@
   --accent-foreground: #a8c6ff;
   --destructive: #ea7a3c;
   --border: #232a36;
+  --border-strong: #2f3947;
   --input: #2a3340;
   --ring: #5b9cff;
   --chart-1: #5b9cff;
@@ -170,97 +173,165 @@
   display: none;
 }
 
-/* ─────────── Prose (article body) ───────────
-   Maps @tailwindcss/typography to the site's design tokens so posts, series
-   intros, and chapters share one reading style across light/dark. Kept
-   unlayered so these win over the plugin's layered defaults. Tone follows the
-   repo rule: no gradients, hairline dividers, monospace-free numerals. */
+/* ═══════════════ Docs body (.prose) — CMDS reference layout, blue accent ═══════════════
+   Structure/scale ported from system.cmdspace.work/docs (Apple × CMDS), retoned
+   to the procpa blue identity. Token-mapped for light/dark; kept unlayered so it
+   wins over @tailwindcss/typography defaults. */
 .prose {
-  --tw-prose-body: color-mix(in oklab, var(--foreground) 88%, var(--background));
+  --tw-prose-body: var(--foreground);
   --tw-prose-headings: var(--foreground);
   --tw-prose-lead: var(--muted-foreground);
   --tw-prose-links: var(--primary);
   --tw-prose-bold: var(--foreground);
   --tw-prose-counters: var(--muted-foreground);
-  --tw-prose-bullets: var(--border);
-  --tw-prose-hr: color-mix(in oklab, var(--border) 60%, transparent);
+  --tw-prose-bullets: var(--border-strong, var(--border));
+  --tw-prose-hr: var(--border);
   --tw-prose-quotes: var(--muted-foreground);
-  --tw-prose-quote-borders: var(--border);
+  --tw-prose-quote-borders: var(--primary);
   --tw-prose-captions: var(--muted-foreground);
   --tw-prose-code: var(--foreground);
   --tw-prose-pre-code: var(--foreground);
   --tw-prose-pre-bg: var(--muted);
   --tw-prose-th-borders: var(--border);
-  --tw-prose-td-borders: color-mix(in oklab, var(--border) 60%, transparent);
+  --tw-prose-td-borders: var(--border);
+
+  font-size: 1.0625rem;   /* 17px */
+  line-height: 1.65;
+  letter-spacing: -0.011em;
+  color: var(--foreground);
+  max-width: none;
 }
 .dark .prose {
-  --tw-prose-invert-body: color-mix(in oklab, var(--foreground) 88%, var(--background));
+  --tw-prose-invert-body: var(--foreground);
   --tw-prose-invert-headings: var(--foreground);
   --tw-prose-invert-lead: var(--muted-foreground);
   --tw-prose-invert-links: var(--primary);
   --tw-prose-invert-bold: var(--foreground);
   --tw-prose-invert-counters: var(--muted-foreground);
-  --tw-prose-invert-bullets: var(--border);
-  --tw-prose-invert-hr: color-mix(in oklab, var(--border) 60%, transparent);
+  --tw-prose-invert-bullets: var(--border-strong, var(--border));
+  --tw-prose-invert-hr: var(--border);
   --tw-prose-invert-quotes: var(--muted-foreground);
-  --tw-prose-invert-quote-borders: var(--border);
+  --tw-prose-invert-quote-borders: var(--primary);
   --tw-prose-invert-captions: var(--muted-foreground);
   --tw-prose-invert-code: var(--foreground);
   --tw-prose-invert-pre-code: var(--foreground);
   --tw-prose-invert-pre-bg: var(--muted);
   --tw-prose-invert-th-borders: var(--border);
-  --tw-prose-invert-td-borders: color-mix(in oklab, var(--border) 60%, transparent);
+  --tw-prose-invert-td-borders: var(--border);
 }
 
-/* Headings: tighter tracking + hairline rhythm on h2 */
+.prose :where(p) { margin: 1.1em 0; }
+
+/* Headings — display weight, h2 separated by a hairline rule */
 .prose :where(h1, h2, h3, h4) {
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  letter-spacing: -0.022em;
+  line-height: 1.22;
+  color: var(--foreground);
 }
 .prose :where(h2) {
-  margin-top: 2.5em;
-  padding-top: 1.25rem;
-  border-top: 1px solid color-mix(in oklab, var(--border) 60%, transparent);
+  font-size: 1.75rem;          /* 28px */
+  font-weight: 700;
+  letter-spacing: -0.026em;
+  margin: 4rem 0 1.25rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border);
 }
-.prose :where(h2):first-child {
-  margin-top: 0;
-  padding-top: 0;
-  border-top: 0;
+.prose :where(h2):first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+.prose :where(h3) { font-size: 1.375rem; font-weight: 600; letter-spacing: -0.02em; margin: 2.5rem 0 0.75rem; }
+.prose :where(h4) {
+  font-size: 0.75rem;
+  margin: 1.75rem 0 0.5rem;
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
 }
 
-/* Links: primary color with a subtle underline that fills in on hover */
+/* Links — accent with an underline border that fills on hover */
 .prose :where(a) {
+  color: var(--primary);
   font-weight: 500;
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1px;
-  text-decoration-color: color-mix(in oklab, var(--primary) 40%, transparent);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in oklab, var(--primary) 30%, transparent);
 }
-.prose :where(a):hover {
-  text-decoration-color: var(--primary);
-}
+.prose :where(a):hover { border-bottom-color: var(--primary); }
 
-/* Inline code: token-colored chip (drop the plugin's backtick pseudo-content) */
-.prose :where(code):not(:where(pre code, [class~="not-prose"] *)) {
-  background-color: var(--muted);
-  border: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
-  border-radius: var(--radius-sm);
-  padding: 0.15em 0.4em;
-  font-size: 0.85em;
-  font-weight: 500;
-}
-.prose :where(code):not(:where(pre code, [class~="not-prose"] *))::before,
-.prose :where(code):not(:where(pre code, [class~="not-prose"] *))::after {
-  content: none;
-}
-
-/* Code blocks: hairline border + comfortable radius */
-.prose :where(pre) {
-  border: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
-  border-radius: var(--radius-md);
-}
-
-/* Blockquote: lighter weight, hairline accent */
+/* Blockquote — CMDS callout: accent rule + soft accent wash */
 .prose :where(blockquote) {
   font-style: normal;
   font-weight: 400;
-  border-left-width: 2px;
+  quotes: none;
+  border-left: 3px solid var(--primary);
+  background: color-mix(in oklab, var(--primary) 8%, var(--background));
+  color: var(--muted-foreground);
+  padding: 0.25rem 1.25rem;
+  margin: 1.4em 0;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
 }
+.prose :where(blockquote p):first-of-type::before,
+.prose :where(blockquote p):last-of-type::after { content: none; }
+
+/* Inline code — token chip (drop the plugin's backtick pseudo-content) */
+.prose :where(code):not(:where(pre code, [class~="not-prose"] *)) {
+  background: var(--muted);
+  border: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
+  border-radius: var(--radius-sm);
+  padding: 0.12em 0.4em;
+  font-size: 0.85em;
+  font-weight: 500;
+  color: var(--foreground);
+}
+.prose :where(code):not(:where(pre code, [class~="not-prose"] *))::before,
+.prose :where(code):not(:where(pre code, [class~="not-prose"] *))::after { content: none; }
+
+/* Code blocks — bordered card; copy button positioned by the pre wrapper */
+.prose :where(pre) {
+  position: relative;
+  background: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  margin: 1.4em 0;
+  overflow-x: auto;
+  font-size: 0.84375rem;       /* 13.5px */
+  line-height: 1.65;
+}
+.prose :where(pre code) { background: none; border: none; padding: 0; font-size: inherit; color: var(--foreground); }
+
+/* Tables — bordered, elevated header */
+.prose :where(table) {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.4em 0;
+  font-size: 0.875rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.prose :where(thead) { background: var(--card); }
+.prose :where(th, td) { padding: 0.625rem 0.875rem; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
+.prose :where(th) { font-weight: 600; color: var(--foreground); }
+.prose :where(tr):last-child :where(td) { border-bottom: none; }
+.prose :where(hr) { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
+
+/* Code-block copy button (rendered by the MDX <pre> wrapper) */
+.code-copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--primary-foreground);
+  background: var(--primary);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  opacity: 0.4;
+  transition: opacity 0.2s ease, background 0.15s ease, transform 0.08s ease;
+}
+.prose :where(pre):hover .code-copy-btn { opacity: 0.85; }
+.code-copy-btn:hover { opacity: 1; }
+.code-copy-btn:active { transform: scale(0.95); }
+.code-copy-btn[data-copied='true'] { opacity: 1; }

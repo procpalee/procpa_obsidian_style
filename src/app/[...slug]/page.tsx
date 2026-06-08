@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Fragment, type ReactNode } from 'react'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { posts, series, chapters } from '#site/content'
@@ -391,6 +392,14 @@ function ChapterList({
 
 // ── Sidebar (chapter page) ──
 
+function navItemCls(active: boolean) {
+  return `block rounded-md px-2.5 py-1.5 text-sm leading-snug transition-colors ${
+    active
+      ? 'bg-primary/10 font-medium text-primary'
+      : 'text-muted-foreground hover:bg-card hover:text-foreground'
+  }`
+}
+
 function SidebarList({
   nodes,
   activeSlug,
@@ -403,17 +412,10 @@ function SidebarList({
   depth?: number
 }) {
   return (
-    <ol className={depth > 0 ? 'ml-3 space-y-0.5' : 'space-y-1 border-l border-border/60'}>
+    <ul className={depth > 0 ? 'ml-2.5 mt-0.5 space-y-0.5 border-l border-border/60 pl-2' : 'space-y-0.5'}>
       {depth === 0 && seriesHref && (
         <li>
-          <Link
-            href={seriesHref}
-            className={`block border-l-2 px-4 py-1.5 text-sm font-medium transition-colors ${
-              activeSlug === '__series__'
-                ? '-ml-[2px] border-primary text-foreground'
-                : '-ml-[2px] border-transparent text-muted-foreground hover:text-foreground'
-            }`}
-          >
+          <Link href={seriesHref} className={navItemCls(activeSlug === '__series__')}>
             책 소개
           </Link>
         </li>
@@ -422,14 +424,7 @@ function SidebarList({
         const active = node.chapter.slug === activeSlug
         return (
           <li key={node.chapter.slug}>
-            <Link
-              href={`/${node.chapter.slugAsParams}`}
-              className={`block border-l-2 px-4 py-1.5 text-sm transition-colors ${
-                active
-                  ? '-ml-[2px] border-primary text-foreground'
-                  : '-ml-[2px] border-transparent text-muted-foreground hover:text-foreground'
-              }`}
-            >
+            <Link href={`/${node.chapter.slugAsParams}`} className={navItemCls(active)}>
               {node.chapter.title}
             </Link>
             {node.children.length > 0 && (
@@ -438,9 +433,44 @@ function SidebarList({
           </li>
         )
       })}
-    </ol>
+    </ul>
   )
 }
+
+// ── Doc chrome (CMDS-reference docs styling) ──
+
+/** Accent-soft pill above the doc title — e.g. "AI 생산성 · 일반". */
+function DocKicker({ parts }: { parts: ReactNode[] }) {
+  return (
+    <div className="inline-flex flex-wrap items-center rounded-md bg-primary/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-primary">
+      {parts.map((p, i) => (
+        <span key={i} className="inline-flex items-center">
+          {i > 0 && <span className="mx-1.5 opacity-40">·</span>}
+          {p}
+        </span>
+      ))}
+    </div>
+  )
+}
+
+/** Mono key/value frontmatter card under the doc header. */
+function MetaCard({ rows }: { rows: { label: string; value: ReactNode }[] }) {
+  const visible = rows.filter((r) => r.value !== undefined && r.value !== null && r.value !== '')
+  if (!visible.length) return null
+  return (
+    <dl className="mt-6 grid w-fit max-w-full grid-cols-[auto_1fr] gap-x-6 gap-y-1.5 rounded-lg border border-border bg-card px-4 py-3 font-mono text-xs">
+      {visible.map((r) => (
+        <Fragment key={r.label}>
+          <dt className="text-muted-foreground">{r.label}</dt>
+          <dd className="text-foreground">{r.value}</dd>
+        </Fragment>
+      ))}
+    </dl>
+  )
+}
+
+const DOC_TITLE_CLS =
+  'text-balance font-bold tracking-[-0.028em] leading-[1.1] text-[clamp(2rem,4vw,2.75rem)] text-foreground'
 
 // ── Page ──
 
@@ -495,43 +525,33 @@ function PostView({
       <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_15rem] lg:gap-12">
         {/* ── Main content (centered blog column) ── */}
         <article className="mx-auto w-full min-w-0 max-w-[72ch] lg:mx-0">
-          <header className="mb-10 border-b border-border/60 pb-6">
-            <nav className="mb-4 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-              <Link href="/" className="hover:text-foreground">Home</Link>
-              {' ⟩ '}
-              <Link href={`/${post.category}`} className="hover:text-foreground">{topicLabel(post.category)}</Link>
-              {post.subcategory && (
-                <>
-                  {' ⟩ '}
-                  <Link href={`/${post.category}/${post.subcategory}`} className="hover:text-foreground">{post.subcategory}</Link>
-                </>
-              )}
-            </nav>
-            <div className="mb-4 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
-              <time className="font-mono">{post.date.slice(0, 10)}</time>
-              {post.updated && post.updated !== post.date && (
-                <>
-                  <span>·</span>
-                  <span className="font-mono">수정 {post.updated.slice(0, 10)}</span>
-                </>
-              )}
-              <span>·</span>
-              <span>{post.metadata.readingTime}분 읽기</span>
-              <span className="ml-auto"><ShareButtons url={url} title={post.title} /></span>
+          <header className="mb-10 border-b border-border pb-8">
+            <div className="mb-4 flex items-start justify-between gap-4">
+              <DocKicker
+                parts={[
+                  <Link key="cat" href={`/${post.category}`} className="hover:opacity-70">{topicLabel(post.category)}</Link>,
+                  ...(post.subcategory
+                    ? [<Link key="sub" href={`/${post.category}/${post.subcategory}`} className="hover:opacity-70">{post.subcategory}</Link>]
+                    : []),
+                ]}
+              />
+              <ShareButtons url={url} title={post.title} />
             </div>
-            <div className="mb-3 flex flex-wrap gap-1.5">
-              {post.tags.map((tag) => (
-                <span key={tag} className="rounded border border-border/60 px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
-                  #{tag}
-                </span>
-              ))}
-            </div>
-            <h1 className="text-balance font-semibold tracking-[-0.03em] text-[clamp(2.25rem,4.5vw,3.75rem)]">
-              {post.title}
-            </h1>
+            <h1 className={DOC_TITLE_CLS}>{post.title}</h1>
             {post.description && (
-              <p className="mt-4 text-lg text-muted-foreground">{post.description}</p>
+              <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{post.description}</p>
             )}
+            <MetaCard
+              rows={[
+                { label: '발행', value: post.date.slice(0, 10) },
+                {
+                  label: '수정',
+                  value: post.updated && post.updated !== post.date ? post.updated.slice(0, 10) : '',
+                },
+                { label: '읽기', value: `${post.metadata.readingTime}분` },
+                { label: '태그', value: post.tags.length ? post.tags.join(', ') : '' },
+              ]}
+            />
           </header>
 
           {/* TOC collapsible (mobile / tablet only) */}
@@ -543,7 +563,7 @@ function PostView({
             </div>
           )}
 
-          <div className="prose prose-lg prose-neutral max-w-none dark:prose-invert">
+          <div className="prose max-w-none dark:prose-invert">
             <MDXContent code={post.body} />
           </div>
 
@@ -595,15 +615,15 @@ function PostView({
 function SeriesView({ r }: { r: Extract<Resolved, { type: 'series' }> }) {
   const s = r.series
   return (
-    <div className="mx-auto max-w-6xl px-6">
-      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[220px_minmax(0,1fr)]">
-        {/* ── Left sidebar: chapter TOC (desktop) ── */}
-        <aside className="hidden lg:block">
+    <div className="mx-auto max-w-[1440px] px-6">
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[17rem_minmax(0,1fr)]">
+        {/* ── Left sidebar: chapter nav (desktop) ── */}
+        <aside className="hidden border-r border-border lg:block">
           <div className="group/sidebar sticky top-14 h-[calc(100vh-3.5rem)]">
             <ScrollArea className="h-full [&_[data-slot=scroll-area-scrollbar]]:opacity-0 [&_[data-slot=scroll-area-scrollbar]]:transition-opacity group-hover/sidebar:[&_[data-slot=scroll-area-scrollbar]]:opacity-100">
-              <div className="pt-14 pb-8">
-                <div className="mb-4 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                  Table of contents
+              <div className="py-8 pr-6">
+                <div className="mb-3 px-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">
+                  목차
                 </div>
                 <SidebarList nodes={r.tree} activeSlug="__series__" seriesHref={`/${s.slugAsParams}`} />
               </div>
@@ -611,64 +631,52 @@ function SeriesView({ r }: { r: Extract<Resolved, { type: 'series' }> }) {
           </div>
         </aside>
 
-        {/* ── Mobile: chapter TOC ── */}
-        <MobileCollapsible title={`${s.title} · 목차`}>
-          <SidebarList nodes={r.tree} activeSlug="__series__" seriesHref={`/${s.slugAsParams}`} />
-        </MobileCollapsible>
-
         {/* ── Main content ── */}
-        <article className="min-w-0 pt-14 pb-12">
-          <header className="mb-10 border-b border-border/60 pb-6">
-            <nav className="mb-3 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-              <Link href="/" className="hover:text-foreground">Home</Link>
-              {' ⟩ '}
-              <Link href={`/${s.category}`} className="hover:text-foreground">{topicLabel(s.category)}</Link>
-              {' ⟩ '}
-              <Link href={`/${s.category}/${s.subcategory}`} className="hover:text-foreground">{s.subcategory}</Link>
-              {' ⟩ '}
-              <span>{s.title}</span>
-            </nav>
-
-            <h1 className="text-balance font-semibold tracking-[-0.03em] text-[clamp(2.25rem,4.5vw,3.75rem)]">{s.title}</h1>
-            <p className="mt-4 max-w-xl text-lg text-muted-foreground">{s.description}</p>
-            <div className="mt-3 flex flex-wrap items-center gap-3 font-mono text-xs text-muted-foreground">
-              <span>{r.totalCount}개 챕터</span>
-              {s.date && (
-                <>
-                  <span>·</span>
-                  <time>{s.date.slice(0, 10)}</time>
-                </>
-              )}
+        <article className="min-w-0 py-12">
+          <div className="mx-auto max-w-[72ch]">
+            {/* Mobile: chapter nav */}
+            <div className="lg:hidden">
+              <MobileCollapsible title={`${s.title} · 목차`}>
+                <SidebarList nodes={r.tree} activeSlug="__series__" seriesHref={`/${s.slugAsParams}`} />
+              </MobileCollapsible>
             </div>
-            {s.tags.length > 0 && (
-              <div className="mt-4 flex flex-wrap gap-1.5">
-                {s.tags.map((tag) => (
-                  <span key={tag} className="rounded border border-border/60 px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
-                    #{tag}
-                  </span>
-                ))}
+
+            <header className="mb-10 border-b border-border pb-8">
+              <DocKicker
+                parts={[
+                  <Link key="cat" href={`/${s.category}`} className="hover:opacity-70">{topicLabel(s.category)}</Link>,
+                  <Link key="sub" href={`/${s.category}/${s.subcategory}`} className="hover:opacity-70">{s.subcategory}</Link>,
+                  '시리즈',
+                ]}
+              />
+              <h1 className={`mt-4 ${DOC_TITLE_CLS}`}>{s.title}</h1>
+              {s.description && (
+                <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{s.description}</p>
+              )}
+              <MetaCard
+                rows={[
+                  { label: '챕터', value: `${r.totalCount}개` },
+                  { label: '발행', value: s.date ? s.date.slice(0, 10) : '' },
+                  { label: '태그', value: s.tags.length ? s.tags.join(', ') : '' },
+                ]}
+              />
+            </header>
+
+            {/* Cover image */}
+            {s.cover && (
+              <div className="mb-10 max-w-[200px] overflow-hidden rounded-lg border border-border">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={s.cover} alt={s.title} className="h-auto w-full object-cover" />
               </div>
             )}
-          </header>
 
-          {/* Cover image */}
-          {s.cover && (
-            <div className="mb-10 max-w-[200px] overflow-hidden rounded-lg border border-border/60">
-              <img
-                src={s.cover}
-                alt={s.title}
-                className="h-auto w-full object-cover"
-              />
-            </div>
-          )}
-
-          {/* Book intro body (MDX) */}
-          {s.body && (
-            <section className="prose prose-lg prose-neutral mb-12 max-w-[72ch] dark:prose-invert">
-              <MDXContent code={s.body} />
-            </section>
-          )}
-
+            {/* Book intro body (MDX) */}
+            {s.body && (
+              <section className="prose mb-12 max-w-none dark:prose-invert">
+                <MDXContent code={s.body} />
+              </section>
+            )}
+          </div>
         </article>
       </div>
     </div>
@@ -683,7 +691,7 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
   return (
     <>
     <ReadingProgress />
-    <div className="mx-auto max-w-6xl px-6">
+    <div className="mx-auto max-w-[1440px] px-6">
       <JsonLd
         data={articleJsonLd({
           title: `${r.chapter.title} · ${r.series.title}`,
@@ -703,14 +711,14 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
           { name: r.chapter.title, url },
         ])}
       />
-      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[220px_minmax(0,1fr)] xl:grid-cols-[15rem_minmax(0,1fr)_15rem] xl:gap-12">
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[17rem_minmax(0,1fr)] xl:grid-cols-[17rem_minmax(0,1fr)_15rem]">
         {/* ── Left sidebar: chapter navigation ── */}
-        <aside className="hidden lg:block">
+        <aside className="hidden border-r border-border lg:block">
           <div className="group/sidebar sticky top-14 h-[calc(100vh-3.5rem)]">
             <ScrollArea className="h-full [&_[data-slot=scroll-area-scrollbar]]:opacity-0 [&_[data-slot=scroll-area-scrollbar]]:transition-opacity group-hover/sidebar:[&_[data-slot=scroll-area-scrollbar]]:opacity-100">
-              <div className="pt-14 pb-8">
-                <div className="mb-4 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                  Table of contents
+              <div className="py-8 pr-6">
+                <div className="mb-3 px-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">
+                  목차
                 </div>
                 <SidebarList nodes={r.tree} activeSlug={r.chapter.slug} seriesHref={`/${r.series.slugAsParams}`} />
               </div>
@@ -718,83 +726,85 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
           </div>
         </aside>
 
-        {/* ── Mobile: chapter navigation ── */}
-        <MobileCollapsible title={`${r.series.title} · 목차`}>
-          <SidebarList nodes={r.tree} activeSlug={r.chapter.slug} seriesHref={`/${r.series.slugAsParams}`} />
-        </MobileCollapsible>
-
         {/* ── Main content ── */}
-        <article className="min-w-0 pt-14 pb-12">
-          <header className="mb-10 border-b border-border/60 pb-6">
-            <div className="mb-2 flex items-center justify-between">
-              <nav className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                <Link href="/" className="hover:text-foreground">Home</Link>
-                {' ⟩ '}
-                <Link href={`/${r.series.category}`} className="hover:text-foreground">{topicLabel(r.series.category)}</Link>
-                {' ⟩ '}
-                <Link href={`/${r.series.category}/${r.series.subcategory}`} className="hover:text-foreground">{r.series.subcategory}</Link>
-                {' ⟩ '}
-                <Link href={`/${r.series.slugAsParams}`} className="hover:text-foreground">{r.series.title}</Link>
-              </nav>
-              <ShareButtons url={url} title={r.chapter.title} />
-            </div>
-            <h1 className="text-balance font-semibold tracking-[-0.03em] text-[clamp(2.25rem,4.5vw,3.75rem)]">
-              {r.chapter.title}
-            </h1>
-          </header>
-
-          {/* TOC collapsible (below xl; right rail takes over on xl) */}
-          {r.chapter.toc.length > 0 && (
-            <div className="xl:hidden">
-              <MobileCollapsible title="On this page" alwaysVisible>
-                <TableOfContents items={r.chapter.toc} hideTitle />
+        <article className="min-w-0 py-12">
+          <div className="mx-auto max-w-[72ch]">
+            {/* Mobile: chapter navigation */}
+            <div className="lg:hidden">
+              <MobileCollapsible title={`${r.series.title} · 목차`}>
+                <SidebarList nodes={r.tree} activeSlug={r.chapter.slug} seriesHref={`/${r.series.slugAsParams}`} />
               </MobileCollapsible>
             </div>
-          )}
 
-          {childNodes.length > 0 ? (
-            <section>
-              <h2 className="mb-4 text-[11px] font-medium uppercase tracking-widest text-muted-foreground">
-                하위 챕터
-              </h2>
-              <ChapterList nodes={childNodes} counter={{ value: 0 }} />
-            </section>
-          ) : (
-            <div className="prose prose-lg prose-neutral max-w-[72ch] dark:prose-invert">
-              <MDXContent code={r.chapter.body} />
+            <header className="mb-10 border-b border-border pb-8">
+              <div className="mb-4 flex items-start justify-between gap-4">
+                <DocKicker
+                  parts={[
+                    <Link key="cat" href={`/${r.series.category}`} className="hover:opacity-70">{topicLabel(r.series.category)}</Link>,
+                    <Link key="series" href={`/${r.series.slugAsParams}`} className="hover:opacity-70">{r.series.title}</Link>,
+                  ]}
+                />
+                <ShareButtons url={url} title={r.chapter.title} />
+              </div>
+              <h1 className={DOC_TITLE_CLS}>{r.chapter.title}</h1>
+              {r.chapter.description && (
+                <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{r.chapter.description}</p>
+              )}
+            </header>
+
+            {/* TOC collapsible (below xl; right rail takes over on xl) */}
+            {r.chapter.toc.length > 0 && (
+              <div className="xl:hidden">
+                <MobileCollapsible title="On this page" alwaysVisible>
+                  <TableOfContents items={r.chapter.toc} hideTitle />
+                </MobileCollapsible>
+              </div>
+            )}
+
+            {childNodes.length > 0 ? (
+              <section>
+                <h2 className="mb-4 text-[11px] font-medium uppercase tracking-widest text-muted-foreground">
+                  하위 챕터
+                </h2>
+                <ChapterList nodes={childNodes} counter={{ value: 0 }} />
+              </section>
+            ) : (
+              <div className="prose max-w-none dark:prose-invert">
+                <MDXContent code={r.chapter.body} />
+              </div>
+            )}
+
+            <nav className="mt-16 flex items-center justify-between gap-4 border-t border-border pt-6 text-sm">
+              {r.prev ? (
+                <Link href={`/${r.prev.slugAsParams}`} className="group min-w-0 flex-1">
+                  <div className="text-xs text-muted-foreground">이전</div>
+                  <div className="truncate group-hover:text-primary">← {r.prev.title}</div>
+                </Link>
+              ) : (
+                <div className="flex-1" />
+              )}
+              {r.next ? (
+                <Link href={`/${r.next.slugAsParams}`} className="group min-w-0 flex-1 text-right">
+                  <div className="text-xs text-muted-foreground">다음</div>
+                  <div className="truncate group-hover:text-primary">{r.next.title} →</div>
+                </Link>
+              ) : (
+                <div className="flex-1" />
+              )}
+            </nav>
+
+            {/* 백링크/그래프 */}
+            <BacklinksPanel slug={r.chapter.slugAsParams} />
+            <div className="hidden lg:block">
+              <LazyLocalGraph currentSlug={r.chapter.slugAsParams} />
             </div>
-          )}
-
-          <nav className="mt-16 flex items-center justify-between gap-4 border-t border-border/60 pt-6 text-sm">
-            {r.prev ? (
-              <Link href={`/${r.prev.slugAsParams}`} className="group min-w-0 flex-1">
-                <div className="text-xs text-muted-foreground">이전</div>
-                <div className="truncate group-hover:text-primary">← {r.prev.title}</div>
-              </Link>
-            ) : (
-              <div className="flex-1" />
-            )}
-            {r.next ? (
-              <Link href={`/${r.next.slugAsParams}`} className="group min-w-0 flex-1 text-right">
-                <div className="text-xs text-muted-foreground">다음</div>
-                <div className="truncate group-hover:text-primary">{r.next.title} →</div>
-              </Link>
-            ) : (
-              <div className="flex-1" />
-            )}
-          </nav>
-
-          {/* 백링크/그래프 */}
-          <BacklinksPanel slug={r.chapter.slugAsParams} />
-          <div className="hidden lg:block">
-            <LazyLocalGraph currentSlug={r.chapter.slugAsParams} />
           </div>
         </article>
 
         {/* ── Right rail: on this page (xl) ── */}
         {r.chapter.toc.length > 0 && (
           <aside className="hidden xl:block">
-            <div className="sticky top-20 pt-14">
+            <div className="sticky top-14 py-12">
               <TableOfContents items={r.chapter.toc} />
             </div>
           </aside>
