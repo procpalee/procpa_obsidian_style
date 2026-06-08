@@ -5,9 +5,14 @@ export const stats = [
   { value: '3+', label: 'Side Projects' },
 ]
 
+// 자문위원 — Career 타임라인과 분리해 전용 강조 블록으로 노출한다.
+export const advisory = [
+  { period: '2025 – 현재', org: '방위사업청', role: '원가관리 자문위원' },
+  { period: '2026 – 현재', org: '한국공인회계사회', role: 'AI 자문위원' },
+]
+
 export const career = [
   { period: '2026 – 현재', title: '정인회계법인' },
-  { period: '2025 – 현재', title: '방위사업청 원가관리 자문위원' },
   { period: '2023 – 2026', title: '육군 재정장교' },
   { period: '2021 – 2023', title: '안진회계법인 (Deloitte)' },
   { period: '2019 – 2021', title: '안경회계법인' },

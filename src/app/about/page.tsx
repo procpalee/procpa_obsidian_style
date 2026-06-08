@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Mail, MessageCircle } from 'lucide-react'
 import {
+  advisory,
   career,
   certificates,
   education,
@@ -165,6 +166,33 @@ export default function AboutPage() {
               </div>
             ))}
           </dl>
+        </div>
+      </section>
+
+      {/* Advisory — 자문위원 전용 강조 블록 */}
+      <section className="border-t border-border/60 bg-primary/[0.04]">
+        <div className="mx-auto grid max-w-6xl grid-cols-12 gap-6 px-6 py-20">
+          <div className="col-span-12 lg:col-span-3">
+            <div className="font-mono text-xs uppercase tracking-widest text-primary">
+              Advisory
+            </div>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">자문위원</h2>
+          </div>
+          <div className="col-span-12 grid gap-4 sm:grid-cols-2 lg:col-span-9">
+            {advisory.map((a) => (
+              <div
+                key={a.org + a.role}
+                className="rounded-2xl border border-primary/30 bg-background p-6 transition-all hover:-translate-y-0.5 hover:border-primary/60"
+              >
+                <span className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-widest text-primary">
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                  {a.period}
+                </span>
+                <h3 className="mt-3 text-xl font-semibold tracking-tight">{a.org}</h3>
+                <p className="mt-1 text-base text-muted-foreground">{a.role}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -25,8 +25,8 @@ export const metadata: Metadata = {
   manifest: '/manifest.json',
   twitter: { card: 'summary_large_image', images: ['/og-default.png'] },
   other: {
-    'color-scheme': 'light dark',
-    'theme-color': '#ffffff',
+    'color-scheme': 'dark light',
+    'theme-color': '#000000',
   },
   icons: {
     icon: [
@@ -44,7 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="ko"
       suppressHydrationWarning
-      className="h-full antialiased"
+      className="dark h-full antialiased"
     >
       <head>
         <link
