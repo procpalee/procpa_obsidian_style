@@ -248,6 +248,14 @@
   font-weight: 600;
 }
 
+/* Autolinked headings (rehypeAutolinkHeadings wrap) keep the heading color, not link blue */
+.prose :where(h1, h2, h3, h4) a {
+  color: inherit;
+  font-weight: inherit;
+  border-bottom: none;
+  text-decoration: none;
+}
+
 /* Links — accent with an underline border that fills on hover */
 .prose :where(a) {
   color: var(--primary);

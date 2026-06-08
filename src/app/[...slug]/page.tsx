@@ -458,7 +458,7 @@ function MetaCard({ rows }: { rows: { label: string; value: ReactNode }[] }) {
   const visible = rows.filter((r) => r.value !== undefined && r.value !== null && r.value !== '')
   if (!visible.length) return null
   return (
-    <dl className="mt-6 grid w-fit max-w-full grid-cols-[auto_1fr] gap-x-6 gap-y-1.5 rounded-lg border border-border bg-card px-4 py-3 font-mono text-xs">
+    <dl className="mt-5 grid w-full grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 rounded-lg border border-border bg-card px-4 py-3 font-mono text-xs">
       {visible.map((r) => (
         <Fragment key={r.label}>
           <dt className="text-muted-foreground">{r.label}</dt>
@@ -522,10 +522,10 @@ function PostView({
           { name: post.title, url },
         ])}
       />
-      <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_15rem] lg:gap-12">
+      <div className="lg:flex lg:justify-center lg:gap-12">
         {/* ── Main content (centered blog column) ── */}
         <article className="mx-auto w-full min-w-0 max-w-[72ch] lg:mx-0">
-          <header className="mb-10 border-b border-border pb-8">
+          <header className="mb-10 border-b border-border pb-6">
             <div className="mb-4 flex items-start justify-between gap-4">
               <DocKicker
                 parts={[
@@ -598,7 +598,7 @@ function PostView({
 
         {/* ── Right rail: on this page (desktop) ── */}
         {post.toc.length > 0 && (
-          <aside className="hidden lg:block">
+          <aside className="hidden w-[15rem] shrink-0 lg:block">
             <div className="sticky top-20">
               <TableOfContents items={post.toc} />
             </div>
@@ -641,7 +641,7 @@ function SeriesView({ r }: { r: Extract<Resolved, { type: 'series' }> }) {
               </MobileCollapsible>
             </div>
 
-            <header className="mb-10 border-b border-border pb-8">
+            <header className="mb-10 border-b border-border pb-6">
               <DocKicker
                 parts={[
                   <Link key="cat" href={`/${s.category}`} className="hover:opacity-70">{topicLabel(s.category)}</Link>,
@@ -736,7 +736,7 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
               </MobileCollapsible>
             </div>
 
-            <header className="mb-10 border-b border-border pb-8">
+            <header className="mb-10 border-b border-border pb-6">
               <div className="mb-4 flex items-start justify-between gap-4">
                 <DocKicker
                   parts={[
@@ -750,6 +750,13 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
               {r.chapter.description && (
                 <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{r.chapter.description}</p>
               )}
+              <MetaCard
+                rows={[
+                  { label: '시리즈', value: r.series.title },
+                  { label: '발행', value: r.series.date ? r.series.date.slice(0, 10) : '' },
+                  { label: '수정', value: r.chapter.last_synced ? r.chapter.last_synced.slice(0, 10) : '' },
+                ]}
+              />
             </header>
 
             {/* TOC collapsible (below xl; right rail takes over on xl) */}
