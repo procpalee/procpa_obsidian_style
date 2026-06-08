@@ -20,7 +20,7 @@ export function Hero({ updated }: { updated?: string }) {
 
   return (
     <section className="border-b border-border/60">
-      <div className="mx-auto max-w-6xl px-6 py-20 sm:py-28">
+      <div className="mx-auto max-w-[1200px] px-6 py-20 sm:py-28">
         {/* eyebrow pill — 최근 업데이트 날짜 */}
         <div className={reveal()} style={delay(0)}>
           <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 font-mono text-[13px] uppercase tracking-widest text-primary">

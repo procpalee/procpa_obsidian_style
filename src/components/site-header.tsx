@@ -27,7 +27,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
+      <div className="flex h-14 w-full items-center justify-between px-6 lg:px-8">
         <Link href="/" aria-label="PROCPA" className="flex shrink-0 items-center">
           <Image
             src="/procpa_light2.png"

@@ -39,7 +39,7 @@ function Section({
 }) {
   return (
     <section className="border-t border-border/60">
-      <div className="mx-auto grid max-w-6xl grid-cols-12 gap-6 px-6 py-20">
+      <div className="mx-auto grid max-w-[1200px] grid-cols-12 gap-6 px-6 py-20">
         <div className="col-span-12 lg:col-span-3">
           <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
             {label}
@@ -139,7 +139,7 @@ export default function AboutPage() {
       <JsonLd data={personJsonLd({ sameAs: SAME_AS })} />
       {/* Hero */}
       <section>
-        <div className="mx-auto max-w-6xl px-6 py-14 sm:py-20">
+        <div className="mx-auto max-w-[1200px] px-6 py-14 sm:py-20">
           <PageHero
             en="About"
             ko={
@@ -187,7 +187,7 @@ export default function AboutPage() {
       </section>
 
       <section className="border-t border-border/60">
-        <div className="mx-auto grid max-w-6xl grid-cols-12 gap-y-12 lg:gap-6 px-6 py-20">
+        <div className="mx-auto grid max-w-[1200px] grid-cols-12 gap-y-12 lg:gap-6 px-6 py-20">
           <div className="col-span-12 lg:col-span-6">
             <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
               Career

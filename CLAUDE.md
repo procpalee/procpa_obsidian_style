@@ -57,7 +57,7 @@ Critical routing rules specific to this repo:
 - **Framework**: Tailwind v4 + shadcn/ui (zinc base). Plugins are registered via `@plugin` in `src/app/globals.css` (not via tailwind config). Typography plugin is the only one added beyond shadcn defaults.
 - **Fonts**: Pretendard (CDN `<link>` in `src/app/layout.tsx` head) for sans, Geist Mono (`next/font/google`) for mono / labels / numbers.
 - **Theme**: pure-black dark (`oklch(0 0 0)`) + blue primary. Dark is default. There is **no next-themes** — React 19 warns about scripts rendered inside components, so the pre-hydration theme script lives in `src/lib/theme-script.ts` and is injected directly into `<head>` via `dangerouslySetInnerHTML`. `src/components/theme-toggle.tsx` toggles the `dark` class on `<html>` and writes `localStorage('theme')` manually.
-- **Layout width**: header, footer, and home all use `max-w-6xl` — keep them in sync when adjusting widths so the site's left/right edges line up.
+- **Layout width** (matches the cmdspace reference): the header is full-bleed (`w-full px-6 lg:px-8`); footer inner, home, and other content pages cap at `max-w-[1200px]`; the docs reading shell (series/chapter in `[...slug]`) caps at `max-w-[1440px]` (sidebar `17rem` + content `72ch` + TOC `15rem`). Keep footer/home/content pages in sync at 1200; only the docs reading routes go to 1440.
 - **Tone rule**: no gradients, no glassmorphism, no emojis in UI. Hierarchy comes from typography, monospace labels, and hairline dividers (`border-border/60`). Korean text gets `word-break: keep-all` globally (set on `<body>` in the layout).
 
 ## Home page
