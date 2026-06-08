@@ -12,8 +12,8 @@ import { MobileCollapsible } from '@/components/mobile-collapsible'
 import { BacklinksPanel } from '@/components/backlinks-panel'
 import { LazyLocalGraph } from '@/components/graph/lazy-local-graph'
 import { JsonLd, articleJsonLd, breadcrumbJsonLd } from '@/components/json-ld'
-import { VaultLayout } from '@/components/vault/vault-layout'
 import { DocList, type CategoryDoc } from '@/components/doc-list'
+import { PageHero } from '@/components/page-hero'
 import { ScrollArea } from '@/components/ui/scroll-area'
 
 const SITE = 'https://procpa.co.kr'
@@ -824,6 +824,20 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
 
 // ── Category view ──
 
+const cleanLabel = (label: string) => label.replace(/^\d+\.\s*/, '')
+
+/** Pill linking back to a parent listing (blog / category). */
+function BackPill({ href, children }: { href: string; children: ReactNode }) {
+  return (
+    <Link
+      href={href}
+      className="inline-flex items-center rounded-full border border-border/60 px-4 py-2 font-mono text-xs text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground"
+    >
+      {children}
+    </Link>
+  )
+}
+
 function CategoryView({ r }: { r: Extract<Resolved, { type: 'category' }> }) {
   const postCount = r.docs.filter((d) => d.type === 'post').length
   const seriesCount = r.docs.filter((d) => d.type === 'series').length
@@ -834,34 +848,33 @@ function CategoryView({ r }: { r: Extract<Resolved, { type: 'category' }> }) {
   ].filter(Boolean)
 
   return (
-    <VaultLayout>
-      <header className="mb-10">
-        <nav className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-          <Link href="/" className="hover:text-foreground">Home</Link>
-          {' ⟩ '}
-          <span>{r.label}</span>
-        </nav>
-        <h1 className="mt-2 text-4xl font-semibold tracking-tight sm:text-5xl">{r.label}</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          {statParts.join(' · ')}
-        </p>
-      </header>
+    <div className="mx-auto max-w-[1440px] px-6 py-14 sm:py-20">
+      <PageHero
+        en="Category"
+        ko={cleanLabel(r.label)}
+        description={statParts.join(' · ')}
+        action={<BackPill href="/blog">← 블로그</BackPill>}
+      />
 
       {r.subcategories.length > 0 && (
-        <div className="mb-12">
-          <h2 className="mb-4 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-            서브카테고리
-          </h2>
-          <div className="grid gap-3 sm:grid-cols-2">
+        <section className="mt-20">
+          <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+            Subcategories
+          </div>
+          <div className="mt-2 flex items-baseline gap-3">
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">서브카테고리</h2>
+            <span className="font-mono text-xs text-muted-foreground/60">{r.subcategories.length}</span>
+          </div>
+          <div className="mt-8 grid gap-3 sm:grid-cols-2">
             {r.subcategories.map((sub) => (
               <Link
                 key={sub.name}
                 href={`/${r.category}/${sub.name}`}
-                className="group flex items-center justify-between rounded-xl border border-border/60 px-5 py-4 transition-colors hover:border-foreground/40"
+                className="group flex items-center justify-between rounded-2xl border border-border/60 px-5 py-4 transition-all hover:translate-y-[-2px] hover:border-foreground/40 hover:shadow-sm"
               >
                 <div>
-                  <div className="text-sm font-medium group-hover:text-primary">{sub.name}</div>
-                  <div className="mt-0.5 font-mono text-[10px] text-muted-foreground">
+                  <div className="text-base font-medium group-hover:text-primary">{sub.name}</div>
+                  <div className="mt-1 font-mono text-[11px] text-muted-foreground">
                     {[
                       sub.seriesCount > 0 && `시리즈 ${sub.seriesCount}`,
                       sub.postCount > 0 && `포스트 ${sub.postCount}`,
@@ -872,11 +885,13 @@ function CategoryView({ r }: { r: Extract<Resolved, { type: 'category' }> }) {
               </Link>
             ))}
           </div>
-        </div>
+        </section>
       )}
 
-      <DocList docs={r.docs} />
-    </VaultLayout>
+      <div className="mt-20">
+        <DocList docs={r.docs} />
+      </div>
+    </div>
   )
 }
 
@@ -891,22 +906,17 @@ function SubcategoryView({ r }: { r: Extract<Resolved, { type: 'subcategory' }> 
   ].filter(Boolean)
 
   return (
-    <VaultLayout>
-      <header className="mb-10">
-        <nav className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-          <Link href="/" className="hover:text-foreground">Home</Link>
-          {' ⟩ '}
-          <Link href={`/${r.category}`} className="hover:text-foreground">{r.categoryLabel}</Link>
-          {' ⟩ '}
-          <span>{r.subcategory}</span>
-        </nav>
-        <h1 className="mt-2 text-4xl font-semibold tracking-tight sm:text-5xl">{r.subcategory}</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          {statParts.join(' · ')}
-        </p>
-      </header>
+    <div className="mx-auto max-w-[1440px] px-6 py-14 sm:py-20">
+      <PageHero
+        en={cleanLabel(r.categoryLabel)}
+        ko={r.subcategory}
+        description={statParts.join(' · ')}
+        action={<BackPill href={`/${r.category}`}>← {cleanLabel(r.categoryLabel)}</BackPill>}
+      />
 
-      <DocList docs={r.docs} />
-    </VaultLayout>
+      <div className="mt-20">
+        <DocList docs={r.docs} />
+      </div>
+    </div>
   )
 }
