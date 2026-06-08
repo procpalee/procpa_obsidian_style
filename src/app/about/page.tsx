@@ -156,6 +156,23 @@ export default function AboutPage() {
             }
           />
 
+          {/* 자문위원 배너 */}
+          <div className="mt-8 flex flex-wrap items-center gap-2">
+            <span className="font-mono text-[11px] uppercase tracking-widest text-primary">
+              Advisory
+            </span>
+            {advisory.map((a) => (
+              <span
+                key={a.org + a.role}
+                className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/[0.06] px-3 py-1.5 text-[13px]"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                <span className="font-medium">{a.org}</span>
+                <span className="text-muted-foreground">{a.role}</span>
+              </span>
+            ))}
+          </div>
+
           <dl className="mt-14 grid grid-cols-2 gap-8 border-t border-border/60 pt-10 sm:grid-cols-4">
             {stats.map((s) => (
               <div key={s.label}>
@@ -166,33 +183,6 @@ export default function AboutPage() {
               </div>
             ))}
           </dl>
-        </div>
-      </section>
-
-      {/* Advisory — 자문위원 전용 강조 블록 */}
-      <section className="border-t border-border/60 bg-primary/[0.04]">
-        <div className="mx-auto grid max-w-6xl grid-cols-12 gap-6 px-6 py-20">
-          <div className="col-span-12 lg:col-span-3">
-            <div className="font-mono text-xs uppercase tracking-widest text-primary">
-              Advisory
-            </div>
-            <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">자문위원</h2>
-          </div>
-          <div className="col-span-12 grid gap-4 sm:grid-cols-2 lg:col-span-9">
-            {advisory.map((a) => (
-              <div
-                key={a.org + a.role}
-                className="rounded-2xl border border-primary/30 bg-background p-6 transition-all hover:-translate-y-0.5 hover:border-primary/60"
-              >
-                <span className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-widest text-primary">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                  {a.period}
-                </span>
-                <h3 className="mt-3 text-xl font-semibold tracking-tight">{a.org}</h3>
-                <p className="mt-1 text-base text-muted-foreground">{a.role}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
