@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { posts, series, chapters } from '#site/content'
 import { SeriesCard, PostCard } from '@/components/content-card'
 import { PageHero } from '@/components/page-hero'
-import { TOPIC_KEYS, topicLabel, topicOrder } from '@/lib/topics'
+import { TOPIC_KEYS, topicLabel } from '@/lib/topics'
 
 export const metadata: Metadata = {
   title: '블로그',
@@ -13,13 +13,22 @@ export const metadata: Metadata = {
 const cleanLabel = (key: string) => topicLabel(key).replace(/^\d+\.\s*/, '')
 
 export default function BlogPage() {
-  const visibleSeries = series
-    .filter((s) => !s.draft)
-    .sort((a, b) => topicOrder(a.category) - topicOrder(b.category))
-
+  const visibleSeries = series.filter((s) => !s.draft)
   const visiblePosts = posts.filter((p) => !p.draft)
 
-  const byCategory = TOPIC_KEYS.map((key) => ({
+  const seriesByCategory = TOPIC_KEYS.map((key) => ({
+    key,
+    label: cleanLabel(key),
+    items: visibleSeries
+      .filter((s) => s.category === key)
+      .sort(
+        (a, b) =>
+          (a.order ?? 0) - (b.order ?? 0) ||
+          +new Date(b.date ?? 0) - +new Date(a.date ?? 0),
+      ),
+  })).filter((g) => g.items.length > 0)
+
+  const postsByCategory = TOPIC_KEYS.map((key) => ({
     key,
     label: cleanLabel(key),
     items: visiblePosts
@@ -51,54 +60,88 @@ export default function BlogPage() {
         }
       />
 
-      {/* Series */}
+      {/* ── Series ── */}
       {visibleSeries.length > 0 && (
-        <section className="mt-14">
-          <h2 className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-            Series
-          </h2>
-          <div className="mt-5 grid gap-3 sm:grid-cols-2">
-            {visibleSeries.map((s) => {
-              const cc = chapters.filter((c) => !c.draft && c.series === s.slugAsParams)
-              const lastSynced = cc.map((c) => c.last_synced).filter(Boolean).sort().pop()
-              return (
-                <SeriesCard
-                  key={s.slug}
-                  title={s.title}
-                  description={s.description}
-                  url={`/${s.slugAsParams}`}
-                  cover={s.cover}
-                  chapterCount={cc.length || undefined}
-                  lastUpdated={lastSynced ?? undefined}
-                  variant="default"
-                />
-              )
-            })}
+        <section className="mt-16">
+          <div className="flex items-baseline justify-between gap-4 border-b border-border pb-3">
+            <h2 className="text-xl font-bold tracking-tight sm:text-2xl">시리즈</h2>
+            <span className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+              {visibleSeries.length} Series
+            </span>
           </div>
+
+          {seriesByCategory.map((g) => (
+            <div key={g.key} className="mt-8 first:mt-6">
+              <div className="mb-3 flex items-baseline gap-3">
+                <Link
+                  href={`/${g.key}`}
+                  className="font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  {g.label}
+                </Link>
+                <span className="font-mono text-[11px] text-muted-foreground/60">{g.items.length}</span>
+              </div>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {g.items.map((s) => {
+                  const cc = chapters.filter((c) => !c.draft && c.series === s.slugAsParams)
+                  const lastSynced = cc.map((c) => c.last_synced).filter(Boolean).sort().pop()
+                  return (
+                    <SeriesCard
+                      key={s.slug}
+                      title={s.title}
+                      description={s.description}
+                      url={`/${s.slugAsParams}`}
+                      cover={s.cover}
+                      chapterCount={cc.length || undefined}
+                      lastUpdated={lastSynced ?? undefined}
+                      variant="default"
+                    />
+                  )
+                })}
+              </div>
+            </div>
+          ))}
         </section>
       )}
 
-      {/* Posts by category */}
-      {byCategory.map((g) => (
-        <section key={g.key} className="mt-14">
-          <h2 className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-            {g.label}
-          </h2>
-          <div className="mt-2 divide-y divide-border/60">
-            {g.items.map((p) => (
-              <PostCard
-                key={p.slug}
-                title={p.title}
-                description={p.description}
-                url={`/${p.slugAsParams}`}
-                date={p.date}
-                tags={p.tags}
-                variant="list"
-              />
-            ))}
+      {/* ── Posts ── */}
+      {visiblePosts.length > 0 && (
+        <section className="mt-16">
+          <div className="flex items-baseline justify-between gap-4 border-b border-border pb-3">
+            <h2 className="text-xl font-bold tracking-tight sm:text-2xl">포스트</h2>
+            <span className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+              {visiblePosts.length} Posts
+            </span>
           </div>
+
+          {postsByCategory.map((g) => (
+            <div key={g.key} className="mt-8 first:mt-6">
+              <div className="mb-1 flex items-baseline gap-3">
+                <Link
+                  href={`/${g.key}`}
+                  className="font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  {g.label}
+                </Link>
+                <span className="font-mono text-[11px] text-muted-foreground/60">{g.items.length}</span>
+              </div>
+              <div className="divide-y divide-border/60">
+                {g.items.map((p) => (
+                  <PostCard
+                    key={p.slug}
+                    title={p.title}
+                    description={p.description}
+                    url={`/${p.slugAsParams}`}
+                    date={p.date}
+                    tags={p.tags}
+                    variant="list"
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
         </section>
-      ))}
+      )}
     </div>
   )
 }
