@@ -12,6 +12,12 @@ export const metadata: Metadata = {
 
 const order: ProjectCategory[] = ['Web App', 'Plugin', 'MCP Server']
 
+const categoryTitle: Record<ProjectCategory, string> = {
+  'Web App': '웹 앱',
+  Plugin: '플러그인',
+  'MCP Server': 'MCP 서버',
+}
+
 export default function ProjectsPage() {
   const groups = order
     .map((cat) => ({ cat, items: projects.filter((p) => p.category === cat) }))
@@ -28,10 +34,13 @@ export default function ProjectsPage() {
       <div className="mt-12 space-y-12">
         {groups.map((g) => (
           <section key={g.cat}>
-            <h2 className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+            <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
               {g.cat}
+            </div>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
+              {categoryTitle[g.cat]}
             </h2>
-            <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {g.items.map((p) => (
                 <ProjectCard
                   key={p.key}

@@ -63,15 +63,13 @@ export default function BlogPage() {
       {/* ── Series ── */}
       {visibleSeries.length > 0 && (
         <section className="mt-16">
-          <div className="flex items-baseline justify-between gap-4 border-b border-border pb-3">
-            <h2 className="text-xl font-bold tracking-tight sm:text-2xl">시리즈</h2>
-            <span className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
-              {visibleSeries.length} Series
-            </span>
+          <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+            Series
           </div>
+          <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">시리즈</h2>
 
           {seriesByCategory.map((g) => (
-            <div key={g.key} className="mt-8 first:mt-6">
+            <div key={g.key} className="mt-10 first:mt-8">
               <div className="mb-3 flex items-baseline gap-3">
                 <Link
                   href={`/${g.key}`}
@@ -107,15 +105,13 @@ export default function BlogPage() {
       {/* ── Posts ── */}
       {visiblePosts.length > 0 && (
         <section className="mt-16">
-          <div className="flex items-baseline justify-between gap-4 border-b border-border pb-3">
-            <h2 className="text-xl font-bold tracking-tight sm:text-2xl">포스트</h2>
-            <span className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
-              {visiblePosts.length} Posts
-            </span>
+          <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+            Posts
           </div>
+          <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">포스트</h2>
 
           {postsByCategory.map((g) => (
-            <div key={g.key} className="mt-8 first:mt-6">
+            <div key={g.key} className="mt-10 first:mt-8">
               <div className="mb-1 flex items-baseline gap-3">
                 <Link
                   href={`/${g.key}`}
