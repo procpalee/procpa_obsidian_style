@@ -29,7 +29,7 @@ export default function CategoryLabPage() {
         </p>
       </div>
 
-      {SAMPLE_CATS.map((cat) => {
+      {SAMPLE_CATS.map((cat, ci) => {
         const data = buildCategoryData(cat)
         return (
           <section key={cat}>
@@ -40,7 +40,7 @@ export default function CategoryLabPage() {
             </div>
 
             {DESIGNS.map(({ id, name, Comp }) => (
-              <div key={id}>
+              <div key={id} id={`shot-${ci}-${id}`}>
                 <div className="mx-auto mt-12 max-w-[1440px] px-6">
                   <div className="border-t-2 border-dashed border-border/60 pt-6">
                     <span className="font-mono text-sm uppercase tracking-widest text-muted-foreground">
