@@ -1,6 +1,9 @@
 import { series, chapters } from '#site/content'
 import { Section, SectionLink } from '@/components/home/section'
 import { SeriesCard } from '@/components/content-card'
+import { topicLabel } from '@/lib/topics'
+
+const cleanLabel = (key: string) => topicLabel(key).replace(/^\d+\.\s*/, '')
 
 export function SeriesHighlights() {
   const recentSeries = series
@@ -19,7 +22,7 @@ export function SeriesHighlights() {
       id="series"
       kicker="Series"
       title="한 권으로 읽는 연재"
-      description="여러 편으로 이어지는 전자책형 연재를 주제별로 묶어 한 권씩 읽어 나갈 수 있게 정리합니다."
+      description="실무 및 AI 활용 가이드"
       action={<SectionLink href="/series">시리즈 전체 보기 →</SectionLink>}
     >
       <div className="grid gap-3 sm:grid-cols-2">
@@ -33,6 +36,7 @@ export function SeriesHighlights() {
               description={s.description}
               url={`/${s.slugAsParams}`}
               cover={s.cover}
+              category={cleanLabel(s.category)}
               chapterCount={cc.length || undefined}
               lastUpdated={lastSynced ?? undefined}
               variant="default"

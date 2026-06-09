@@ -7,12 +7,13 @@ interface SeriesCardProps {
   description: string
   url: string
   cover?: string
+  category?: string
   chapterCount?: number
   lastUpdated?: string
   variant?: 'default' | 'featured'
 }
 
-export function SeriesCard({ title, description, url, cover, chapterCount, lastUpdated, variant = 'default' }: SeriesCardProps) {
+export function SeriesCard({ title, description, url, cover, category, chapterCount, lastUpdated, variant = 'default' }: SeriesCardProps) {
   if (variant === 'featured') {
     return (
       <Link
@@ -71,7 +72,12 @@ export function SeriesCard({ title, description, url, cover, chapterCount, lastU
           </div>
         )}
         <div className="min-w-0 flex-1">
-          <div className="text-base font-medium leading-snug group-hover:text-primary">{title}</div>
+          {category && (
+            <span className="inline-flex rounded border border-border/60 px-1.5 py-0.5 font-mono text-[11px] text-muted-foreground">
+              {category}
+            </span>
+          )}
+          <div className={`${category ? 'mt-2' : ''} text-base font-medium leading-snug group-hover:text-primary`}>{title}</div>
           {description && (
             <div className="mt-1 line-clamp-2 text-sm leading-snug text-muted-foreground">
               {description}
@@ -111,7 +117,7 @@ export function PostCard({ title, description, url, date, category, tags, varian
     return (
       <Link
         href={url}
-        className="group flex w-[260px] shrink-0 snap-start flex-col justify-between rounded-2xl border border-border/60 px-4 py-4 transition-all hover:translate-y-[-2px] hover:border-foreground/40 hover:shadow-sm"
+        className="group flex w-[78%] shrink-0 snap-start flex-col justify-between rounded-2xl border border-border/60 px-4 py-4 transition-all hover:translate-y-[-2px] hover:border-foreground/40 hover:shadow-sm sm:w-[46%] lg:w-[31%]"
       >
         <div>
           {category && (

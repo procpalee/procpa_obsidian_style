@@ -18,8 +18,8 @@ export function BlogHighlights() {
     <Section
       id="blog"
       kicker="Blog"
-      title="인사이트와 가이드"
-      description="실무에 바로 쓰는 회계·AI 인사이트와, 깊이 있게 정리한 실무 가이드를 정리합니다."
+      title="인사이트와 생각 정리"
+      description="실무 및 AI 활용 관련 나의 인사이트, 생각 정리"
       action={<SectionLink href="/blog">블로그 전체 보기 →</SectionLink>}
     >
       <NoteCarousel>

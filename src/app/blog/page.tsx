@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { posts } from '#site/content'
 import { PageHero } from '@/components/page-hero'
 import { CategoryFilter, type FilterPost } from '@/components/category-filter'
@@ -27,6 +28,14 @@ export default function BlogPage() {
         en="Blog"
         ko="블로그"
         description="회계·재무 실무 및 AI 활용에 대한 지식과 생각을 정리합니다."
+        action={
+          <Link
+            href="/browse"
+            className="inline-flex items-center rounded-full border border-border/60 px-4 py-2 font-mono text-xs text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground"
+          >
+            카테고리별로 보기 →
+          </Link>
+        }
       />
 
       <div className="mt-14 sm:mt-16">

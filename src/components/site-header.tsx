@@ -15,7 +15,6 @@ const nav = [
   { href: '/about', label: '소개' },
   { href: '/series', label: '시리즈' },
   { href: '/blog', label: '블로그' },
-  { href: '/browse', label: '둘러보기' },
   { href: '/projects', label: '프로젝트' },
 ]
 

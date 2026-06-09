@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { series, chapters } from '#site/content'
 import { PageHero } from '@/components/page-hero'
 import { CategoryFilter, type FilterSeries } from '@/components/category-filter'
@@ -36,6 +37,14 @@ export default function SeriesPage() {
         en="Series"
         ko="시리즈"
         description="여러 편으로 이어지는 전자책형 연재. 주제별로 묶어 한 권씩 읽어 나갈 수 있게 정리했습니다."
+        action={
+          <Link
+            href="/browse"
+            className="inline-flex items-center rounded-full border border-border/60 px-4 py-2 font-mono text-xs text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground"
+          >
+            카테고리별로 보기 →
+          </Link>
+        }
       />
 
       <div className="mt-14 sm:mt-16">
