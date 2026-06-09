@@ -8,8 +8,10 @@ export type CategoryDoc = {
   date: string
   tags: string[]
   cover?: string
+  subcategory?: string
   chapterCount?: number
   lastUpdated?: string
+  readingTime?: number
 }
 
 export function DocList({ docs, emptyMsg }: { docs: CategoryDoc[]; emptyMsg?: string }) {

@@ -14,6 +14,7 @@ import { LazyLocalGraph } from '@/components/graph/lazy-local-graph'
 import { JsonLd, articleJsonLd, breadcrumbJsonLd } from '@/components/json-ld'
 import { DocList, type CategoryDoc } from '@/components/doc-list'
 import { PageHero } from '@/components/page-hero'
+import { buildCategoryData, type SubcategoryInfo } from '@/lib/category'
 import { ScrollArea } from '@/components/ui/scroll-area'
 
 const SITE = 'https://procpa.co.kr'
@@ -23,12 +24,6 @@ interface PageProps {
 }
 
 // ── Resolve content by full path ──
-
-type SubcategoryInfo = {
-  name: string
-  postCount: number
-  seriesCount: number
-}
 
 type Resolved =
   | {
@@ -68,43 +63,8 @@ function resolveContent(path: string): Resolved | null {
   // 0. Category page: e.g. "accounting"
   if (segments.length === 1 && isKnownTopic(segments[0])) {
     const cat = segments[0] as TopicKey
-    const catPosts = posts.filter((p) => !p.draft && p.category === cat)
-    const catSeries = series.filter((s) => !s.draft && s.category === cat)
-    const subNames = [...new Set([
-      ...catPosts.map((p) => p.subcategory),
-      ...catSeries.map((s) => s.subcategory),
-    ])].filter(Boolean).sort() as string[]
-    const subcategories: SubcategoryInfo[] = subNames.map((name) => ({
-      name,
-      postCount: catPosts.filter((p) => p.subcategory === name).length,
-      seriesCount: catSeries.filter((s) => s.subcategory === name).length,
-    }))
-    const docs: CategoryDoc[] = [
-      ...catSeries.map((s) => {
-        const cc = chapters.filter((c) => !c.draft && c.series === s.slugAsParams)
-        const lastSynced = cc.map((c) => c.last_synced).filter(Boolean).sort().pop()
-        return {
-          type: 'series' as const,
-          title: s.title,
-          description: s.description,
-          url: `/${s.slugAsParams}`,
-          date: s.date ?? '',
-          tags: s.tags,
-          cover: s.cover,
-          chapterCount: cc.length,
-          lastUpdated: lastSynced ?? undefined,
-        }
-      }),
-      ...catPosts.map((p) => ({
-        type: 'post' as const,
-        title: p.title,
-        description: p.description,
-        url: `/${p.slugAsParams}`,
-        date: p.date,
-        tags: p.tags,
-      })),
-    ]
-    return { type: 'category', category: cat, label: topicLabel(cat), subcategories, docs }
+    const { label, subcategories, docs } = buildCategoryData(cat)
+    return { type: 'category', category: cat, label, subcategories, docs }
   }
 
   // 0b. Subcategory page: e.g. "accounting/일반"
