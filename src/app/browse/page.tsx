@@ -7,7 +7,7 @@ import { BrowseTabs, type BrowseDoc } from '@/components/browse-tabs'
 export const dynamic = 'force-static'
 
 export const metadata: Metadata = {
-  title: '둘러보기',
+  title: '카테고리별 탐색',
   description: '회계·AI·개발 등 카테고리별로 시리즈와 포스트를 한곳에서 탐색합니다.',
 }
 
@@ -20,7 +20,7 @@ export default function BrowsePage() {
     <div className="mx-auto max-w-[1440px] px-6 py-14 sm:py-20">
       <PageHero
         en="Browse"
-        ko="둘러보기"
+        ko="카테고리별 탐색"
         description="카테고리별로 시리즈와 포스트를 한곳에서 모아 봅니다."
       />
 

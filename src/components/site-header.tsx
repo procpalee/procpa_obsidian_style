@@ -58,7 +58,7 @@ export function SiteHeader() {
             href="/contact"
             className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
           >
-            문의하기
+            연락하기
           </Link>
         </nav>
 
@@ -92,7 +92,7 @@ export function SiteHeader() {
                   onClick={() => setOpen(false)}
                   className="mt-6 inline-flex items-center justify-center rounded-full bg-primary px-4 py-2.5 text-[15px] font-semibold text-primary-foreground"
                 >
-                  문의하기
+                  연락하기
                 </Link>
 
                 <div className="mt-6 flex items-center gap-4 border-t border-border/60 pt-5 text-muted-foreground">

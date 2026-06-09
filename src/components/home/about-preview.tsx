@@ -12,7 +12,7 @@ export function AboutPreview() {
     <Section
       id="about"
       kicker="About"
-      title="새로운 시대의 전문가"
+      title="자기소개"
       description="회계감사·내부회계·평가 등 실무를 거치며 쌓은 전문성 위에, 데이터·AI를 더해 일하는 방식을 바꾸고 있습니다."
       action={<SectionLink href="/about">소개 전체 보기 →</SectionLink>}
     >

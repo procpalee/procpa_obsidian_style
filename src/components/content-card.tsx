@@ -121,20 +121,20 @@ export function PostCard({ title, description, url, date, category, tags, varian
       >
         <div>
           {category && (
-            <span className="rounded border border-border/60 px-1.5 py-0.5 font-mono text-[11px] text-muted-foreground">
+            <span className="rounded border border-border/60 px-1.5 py-0.5 font-mono text-xs text-muted-foreground">
               {category}
             </span>
           )}
-          <div className={`${category ? 'mt-2.5' : ''} text-[15px] font-medium leading-snug group-hover:text-primary`}>
+          <h3 className={`${category ? 'mt-3' : ''} text-lg font-semibold tracking-tight group-hover:text-primary`}>
             {title}
-          </div>
+          </h3>
           {description && (
-            <p className="mt-1 line-clamp-2 text-[13px] leading-relaxed text-muted-foreground">
+            <p className="mt-1.5 line-clamp-2 text-base leading-relaxed text-muted-foreground">
               {description}
             </p>
           )}
         </div>
-        <div className="mt-3 font-mono text-[11px] text-muted-foreground">
+        <div className="mt-4 font-mono text-xs text-muted-foreground">
           {date.slice(0, 10).replace(/-/g, '.')}
         </div>
       </Link>
