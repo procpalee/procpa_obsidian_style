@@ -13,14 +13,10 @@ import { socials } from '@/components/social-icons'
 const nav = [
   { href: '/', label: '홈' },
   { href: '/about', label: '소개' },
-  { href: '/blog', label: '블로그' },
   { href: '/series', label: '시리즈' },
+  { href: '/blog', label: '블로그' },
+  { href: '/browse', label: '둘러보기' },
   { href: '/projects', label: '프로젝트' },
-]
-
-const tools = [
-  { href: '/explore', label: '탐색' },
-  { href: '/graph', label: '그래프' },
 ]
 
 export function SiteHeader() {
@@ -87,20 +83,6 @@ export function SiteHeader() {
                     href={item.href}
                     onClick={() => setOpen(false)}
                     className="py-2.5 text-base font-medium transition-colors hover:text-primary"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-
-                <div className="mt-6 border-t border-border/60 pt-5 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                  지식베이스
-                </div>
-                {tools.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    className="py-2 text-[14px] text-muted-foreground transition-colors hover:text-foreground"
                   >
                     {item.label}
                   </Link>

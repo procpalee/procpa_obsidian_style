@@ -3,18 +3,14 @@ import { Fragment, type ReactNode } from 'react'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { posts, series, chapters } from '#site/content'
-import { isKnownTopic, topicLabel, type TopicKey } from '@/lib/topics'
+import { topicLabel } from '@/lib/topics'
 import { MDXContent } from '@/components/mdx-content'
 import { TableOfContents } from '@/components/table-of-contents'
 import { ReadingProgress } from '@/components/reading-progress'
 import { ShareButtons } from '@/components/share-buttons'
 import { MobileCollapsible } from '@/components/mobile-collapsible'
 import { BacklinksPanel } from '@/components/backlinks-panel'
-import { LazyLocalGraph } from '@/components/graph/lazy-local-graph'
 import { JsonLd, articleJsonLd, breadcrumbJsonLd } from '@/components/json-ld'
-import { DocList, type CategoryDoc } from '@/components/doc-list'
-import { PageHero } from '@/components/page-hero'
-import { buildCategoryData, type SubcategoryInfo } from '@/lib/category'
 import { ScrollArea } from '@/components/ui/scroll-area'
 
 const SITE = 'https://procpa.co.kr'
@@ -42,66 +38,8 @@ type Resolved =
       prev?: (typeof chapters)[number]
       next?: (typeof chapters)[number]
     }
-  | {
-      type: 'category'
-      category: TopicKey
-      label: string
-      subcategories: SubcategoryInfo[]
-      docs: CategoryDoc[]
-    }
-  | {
-      type: 'subcategory'
-      category: TopicKey
-      categoryLabel: string
-      subcategory: string
-      docs: CategoryDoc[]
-    }
 
 function resolveContent(path: string): Resolved | null {
-  const segments = path.split('/')
-
-  // 0. Category page: e.g. "accounting"
-  if (segments.length === 1 && isKnownTopic(segments[0])) {
-    const cat = segments[0] as TopicKey
-    const { label, subcategories, docs } = buildCategoryData(cat)
-    return { type: 'category', category: cat, label, subcategories, docs }
-  }
-
-  // 0b. Subcategory page: e.g. "accounting/일반"
-  if (segments.length === 2 && isKnownTopic(segments[0])) {
-    const cat = segments[0] as TopicKey
-    const sub = segments[1]
-    const subPosts = posts.filter((p) => !p.draft && p.category === cat && p.subcategory === sub)
-    const subSeries = series.filter((s) => !s.draft && s.category === cat && s.subcategory === sub)
-    if (subPosts.length > 0 || subSeries.length > 0) {
-      const docs: CategoryDoc[] = [
-        ...subSeries.map((s) => {
-          const cc = chapters.filter((c) => !c.draft && c.series === s.slugAsParams)
-          const lastSynced = cc.map((c) => c.last_synced).filter(Boolean).sort().pop()
-          return {
-            type: 'series' as const,
-            title: s.title,
-            description: s.description,
-            url: `/${s.slugAsParams}`,
-            date: s.date ?? '',
-            tags: s.tags,
-            cover: s.cover,
-            chapterCount: cc.length,
-            lastUpdated: lastSynced ?? undefined,
-          }
-        }),
-        ...subPosts.map((p) => ({
-          type: 'post' as const,
-          title: p.title,
-          description: p.description,
-          url: `/${p.slugAsParams}`,
-          date: p.date,
-          tags: p.tags,
-        })),
-      ]
-      return { type: 'subcategory', category: cat, categoryLabel: topicLabel(cat), subcategory: sub, docs }
-    }
-  }
   // 1. Post
   const post = posts.find((p) => p.slugAsParams === path)
   if (post && !post.draft) {
@@ -215,22 +153,6 @@ function findNodeChildren(nodes: ChapterNode[], slug: string): ChapterNode[] {
 export async function generateStaticParams() {
   const all: { slug: string[] }[] = []
 
-  // Category pages (e.g. /accounting)
-  const categories = new Set<string>()
-  const subcategories = new Set<string>()
-  for (const p of posts) {
-    if (p.draft) continue
-    if (p.category) categories.add(p.category)
-    if (p.category && p.subcategory) subcategories.add(`${p.category}/${p.subcategory}`)
-  }
-  for (const s of series) {
-    if (s.draft) continue
-    if (s.category) categories.add(s.category)
-    if (s.category && s.subcategory) subcategories.add(`${s.category}/${s.subcategory}`)
-  }
-  for (const cat of categories) all.push({ slug: [cat] })
-  for (const sub of subcategories) all.push({ slug: sub.split('/') })
-
   // Content pages
   for (const p of posts) all.push({ slug: p.slugAsParams.split('/') })
   for (const s of series) all.push({ slug: s.slugAsParams.split('/') })
@@ -247,28 +169,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!r) return {}
 
   const defaultOg = '/og-default.png'
-
-  if (r.type === 'category') {
-    const desc = `${r.label} 카테고리의 모든 글`
-    return {
-      title: r.label,
-      description: desc,
-      alternates: { canonical: `/${path}` },
-      openGraph: { title: r.label, description: desc, images: [{ url: defaultOg, width: 1200, height: 630 }] },
-      twitter: { card: 'summary_large_image', title: r.label, description: desc, images: [defaultOg] },
-    }
-  }
-  if (r.type === 'subcategory') {
-    const title = `${r.subcategory} · ${r.categoryLabel}`
-    const desc = `${r.categoryLabel} > ${r.subcategory}의 모든 글`
-    return {
-      title,
-      description: desc,
-      alternates: { canonical: `/${path}` },
-      openGraph: { title, description: desc, images: [{ url: defaultOg, width: 1200, height: 630 }] },
-      twitter: { card: 'summary_large_image', title, description: desc, images: [defaultOg] },
-    }
-  }
 
   if (r.type === 'post') {
     const { post } = r
@@ -440,8 +340,6 @@ export default async function ContentPage({ params }: PageProps) {
   const r = resolveContent(path)
   if (!r) notFound()
 
-  if (r.type === 'category') return <CategoryView r={r} />
-  if (r.type === 'subcategory') return <SubcategoryView r={r} />
   if (r.type === 'post') return <PostView post={r.post} prev={r.prev} next={r.next} />
   if (r.type === 'series') return <SeriesView r={r} />
   return <ChapterView r={r} />
@@ -477,8 +375,7 @@ function PostView({
       <JsonLd
         data={breadcrumbJsonLd([
           { name: '홈', url: SITE },
-          { name: topicLabel(post.category), url: `${SITE}/${post.category}` },
-          ...(post.subcategory ? [{ name: post.subcategory, url: `${SITE}/${post.category}/${post.subcategory}` }] : []),
+          { name: topicLabel(post.category), url: `${SITE}/browse` },
           { name: post.title, url },
         ])}
       />
@@ -489,10 +386,8 @@ function PostView({
             <div className="mb-4 flex items-start justify-between gap-4">
               <DocKicker
                 parts={[
-                  <Link key="cat" href={`/${post.category}`} className="hover:opacity-70">{topicLabel(post.category)}</Link>,
-                  ...(post.subcategory
-                    ? [<Link key="sub" href={`/${post.category}/${post.subcategory}`} className="hover:opacity-70">{post.subcategory}</Link>]
-                    : []),
+                  <Link key="cat" href="/browse" className="hover:opacity-70">{topicLabel(post.category)}</Link>,
+                  ...(post.subcategory ? [<span key="sub">{post.subcategory}</span>] : []),
                 ]}
               />
               <ShareButtons url={url} title={post.title} />
@@ -549,11 +444,8 @@ function PostView({
             </nav>
           )}
 
-          {/* 백링크/그래프 */}
+          {/* 백링크 */}
           <BacklinksPanel slug={post.slugAsParams} />
-          <div className="hidden lg:block">
-            <LazyLocalGraph currentSlug={post.slugAsParams} />
-          </div>
         </article>
 
         {/* ── Right rail: on this page (desktop) ── */}
@@ -604,8 +496,8 @@ function SeriesView({ r }: { r: Extract<Resolved, { type: 'series' }> }) {
             <header className="mb-10 border-b border-border pb-6">
               <DocKicker
                 parts={[
-                  <Link key="cat" href={`/${s.category}`} className="hover:opacity-70">{topicLabel(s.category)}</Link>,
-                  <Link key="sub" href={`/${s.category}/${s.subcategory}`} className="hover:opacity-70">{s.subcategory}</Link>,
+                  <Link key="cat" href="/browse" className="hover:opacity-70">{topicLabel(s.category)}</Link>,
+                  ...(s.subcategory ? [<span key="sub">{s.subcategory}</span>] : []),
                   '시리즈',
                 ]}
               />
@@ -665,8 +557,7 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
       <JsonLd
         data={breadcrumbJsonLd([
           { name: '홈', url: SITE },
-          { name: topicLabel(r.series.category), url: `${SITE}/${r.series.category}` },
-          { name: r.series.subcategory, url: `${SITE}/${r.series.category}/${r.series.subcategory}` },
+          { name: topicLabel(r.series.category), url: `${SITE}/browse` },
           { name: r.series.title, url: `${SITE}/${r.series.slugAsParams}` },
           { name: r.chapter.title, url },
         ])}
@@ -700,7 +591,7 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
               <div className="mb-4 flex items-start justify-between gap-4">
                 <DocKicker
                   parts={[
-                    <Link key="cat" href={`/${r.series.category}`} className="hover:opacity-70">{topicLabel(r.series.category)}</Link>,
+                    <Link key="cat" href="/browse" className="hover:opacity-70">{topicLabel(r.series.category)}</Link>,
                     <Link key="series" href={`/${r.series.slugAsParams}`} className="hover:opacity-70">{r.series.title}</Link>,
                   ]}
                 />
@@ -760,11 +651,8 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
               )}
             </nav>
 
-            {/* 백링크/그래프 */}
+            {/* 백링크 */}
             <BacklinksPanel slug={r.chapter.slugAsParams} />
-            <div className="hidden lg:block">
-              <LazyLocalGraph currentSlug={r.chapter.slugAsParams} />
-            </div>
           </div>
         </article>
 
@@ -779,104 +667,5 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
       </div>
     </div>
     </>
-  )
-}
-
-// ── Category view ──
-
-const cleanLabel = (label: string) => label.replace(/^\d+\.\s*/, '')
-
-/** Pill linking back to a parent listing (blog / category). */
-function BackPill({ href, children }: { href: string; children: ReactNode }) {
-  return (
-    <Link
-      href={href}
-      className="inline-flex items-center rounded-full border border-border/60 px-4 py-2 font-mono text-xs text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground"
-    >
-      {children}
-    </Link>
-  )
-}
-
-function CategoryView({ r }: { r: Extract<Resolved, { type: 'category' }> }) {
-  const postCount = r.docs.filter((d) => d.type === 'post').length
-  const seriesCount = r.docs.filter((d) => d.type === 'series').length
-  const statParts = [
-    seriesCount > 0 && `시리즈 ${seriesCount}`,
-    postCount > 0 && `포스트 ${postCount}`,
-    r.subcategories.length > 0 && `서브카테고리 ${r.subcategories.length}`,
-  ].filter(Boolean)
-
-  return (
-    <div className="mx-auto max-w-[1440px] px-6 py-14 sm:py-20">
-      <PageHero
-        en="Category"
-        ko={cleanLabel(r.label)}
-        description={statParts.join(' · ')}
-        action={<BackPill href="/blog">← 블로그</BackPill>}
-      />
-
-      {r.subcategories.length > 0 && (
-        <section className="mt-20">
-          <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-            Subcategories
-          </div>
-          <div className="mt-2 flex items-baseline gap-3">
-            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">서브카테고리</h2>
-            <span className="font-mono text-xs text-muted-foreground/60">{r.subcategories.length}</span>
-          </div>
-          <div className="mt-8 grid gap-3 sm:grid-cols-2">
-            {r.subcategories.map((sub) => (
-              <Link
-                key={sub.name}
-                href={`/${r.category}/${sub.name}`}
-                className="group flex items-center justify-between rounded-2xl border border-border/60 px-5 py-4 transition-all hover:translate-y-[-2px] hover:border-foreground/40 hover:shadow-sm"
-              >
-                <div>
-                  <div className="text-base font-medium group-hover:text-primary">{sub.name}</div>
-                  <div className="mt-1 font-mono text-[11px] text-muted-foreground">
-                    {[
-                      sub.seriesCount > 0 && `시리즈 ${sub.seriesCount}`,
-                      sub.postCount > 0 && `포스트 ${sub.postCount}`,
-                    ].filter(Boolean).join(' · ')}
-                  </div>
-                </div>
-                <span className="text-muted-foreground transition-transform group-hover:translate-x-0.5">⟩</span>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
-
-      <div className="mt-20">
-        <DocList docs={r.docs} />
-      </div>
-    </div>
-  )
-}
-
-// ── Subcategory view ──
-
-function SubcategoryView({ r }: { r: Extract<Resolved, { type: 'subcategory' }> }) {
-  const postCount = r.docs.filter((d) => d.type === 'post').length
-  const seriesCount = r.docs.filter((d) => d.type === 'series').length
-  const statParts = [
-    seriesCount > 0 && `시리즈 ${seriesCount}`,
-    postCount > 0 && `포스트 ${postCount}`,
-  ].filter(Boolean)
-
-  return (
-    <div className="mx-auto max-w-[1440px] px-6 py-14 sm:py-20">
-      <PageHero
-        en={cleanLabel(r.categoryLabel)}
-        ko={r.subcategory}
-        description={statParts.join(' · ')}
-        action={<BackPill href={`/${r.category}`}>← {cleanLabel(r.categoryLabel)}</BackPill>}
-      />
-
-      <div className="mt-20">
-        <DocList docs={r.docs} />
-      </div>
-    </div>
   )
 }
