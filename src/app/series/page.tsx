@@ -3,10 +3,17 @@ import Link from 'next/link'
 import { series, chapters } from '#site/content'
 import { PageHero } from '@/components/page-hero'
 import { CategoryFilter, type FilterSeries } from '@/components/category-filter'
+import { ogImageUrl } from '@/lib/og'
+
+const DESC = '여러 편으로 이어지는 전자책형 연재 — 주제별로 묶어 한 권씩 읽어 나갈 수 있게 정리했습니다.'
+const OG = ogImageUrl({ kicker: 'PROCPA · SERIES', title: '시리즈', subtitle: '실무 및 AI 활용 가이드' })
 
 export const metadata: Metadata = {
   title: '시리즈',
-  description: '여러 편으로 이어지는 전자책형 연재 — 주제별로 묶어 한 권씩 읽어 나갈 수 있게 정리했습니다.',
+  description: DESC,
+  alternates: { canonical: '/series' },
+  openGraph: { title: '시리즈', description: DESC, url: '/series', images: [{ url: OG, width: 1200, height: 630 }] },
+  twitter: { card: 'summary_large_image', title: '시리즈', description: DESC, images: [OG] },
 }
 
 export default function SeriesPage() {

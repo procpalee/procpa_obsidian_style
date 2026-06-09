@@ -3,7 +3,46 @@ import type { NextRequest } from 'next/server'
 
 export const runtime = 'nodejs'
 
-export function GET(req: NextRequest) {
+// Latin/number glyphs we always need (domain, dates) regardless of the title.
+const BASE_GLYPHS = 'PROCPAprocpa.co.kr0123456789.,:·-—&()/ '
+
+type OgFont = { name: string; data: ArrayBuffer; weight: 400 | 700; style: 'normal' }
+
+/**
+ * next/og (Satori) ships no CJK glyphs, so Korean text renders as boxes unless
+ * we provide a font. We fetch a per-request *subset* of Noto Sans KR from Google
+ * Fonts containing only the glyphs in this card — tiny and fast.
+ */
+async function loadGoogleFont(weight: 400 | 700, text: string): Promise<ArrayBuffer | null> {
+  try {
+    const url = `https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@${weight}&text=${encodeURIComponent(text)}`
+    const css = await (
+      await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0 (compatible; OG)' } })
+    ).text()
+    const src = css.match(/src:\s*url\(([^)]+)\)\s*format/)?.[1]
+    if (!src) return null
+    const res = await fetch(src)
+    if (!res.ok) return null
+    return await res.arrayBuffer()
+  } catch {
+    return null
+  }
+}
+
+async function loadFonts(text: string): Promise<OgFont[]> {
+  const subset = text + BASE_GLYPHS
+  const [r400, r700] = await Promise.all([loadGoogleFont(400, subset), loadGoogleFont(700, subset)])
+  const fonts: OgFont[] = []
+  if (r400) fonts.push({ name: 'Noto Sans KR', data: r400, weight: 400, style: 'normal' })
+  if (r700) fonts.push({ name: 'Noto Sans KR', data: r700, weight: 700, style: 'normal' })
+  return fonts
+}
+
+const IMG_HEADERS = {
+  'Cache-Control': 'public, max-age=31536000, s-maxage=31536000, immutable',
+}
+
+export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const title = (searchParams.get('title') ?? 'PROCPA').slice(0, 120)
   const subtitle = (searchParams.get('subtitle') ?? '').slice(0, 200)
@@ -11,15 +50,35 @@ export function GET(req: NextRequest) {
   const meta = (searchParams.get('meta') ?? '').slice(0, 40)
   const variant = searchParams.get('variant') ?? 'a'
 
-  if (variant === 'b') return variantB({ title, subtitle, kicker, meta })
-  if (variant === 'c') return variantC({ title, subtitle, kicker, meta })
-  return variantA({ title, subtitle, kicker, meta })
+  const fonts = await loadFonts(`${title}${subtitle}${kicker}${meta}`)
+  const props = { title, subtitle, kicker, meta, fonts }
+
+  if (variant === 'b') return variantB(props)
+  if (variant === 'c') return variantC(props)
+  return variantA(props)
 }
 
-type OgProps = { title: string; subtitle: string; kicker: string; meta: string }
+type OgProps = {
+  title: string
+  subtitle: string
+  kicker: string
+  meta: string
+  fonts: OgFont[]
+}
+
+function imageOptions(fonts: OgFont[]) {
+  return {
+    width: 1200,
+    height: 630,
+    headers: IMG_HEADERS,
+    ...(fonts.length ? { fonts } : {}),
+  } as const
+}
+
+const FONT_FAMILY = '"Noto Sans KR", sans-serif'
 
 /* ── Variant A: Accent Line ── */
-function variantA({ title, subtitle, kicker, meta }: OgProps) {
+function variantA({ title, subtitle, kicker, meta, fonts }: OgProps) {
   return new ImageResponse(
     (
       <div
@@ -31,6 +90,7 @@ function variantA({ title, subtitle, kicker, meta }: OgProps) {
           display: 'flex',
           flexDirection: 'column',
           position: 'relative',
+          fontFamily: FONT_FAMILY,
         }}
       >
         {/* Top accent line */}
@@ -69,12 +129,12 @@ function variantA({ title, subtitle, kicker, meta }: OgProps) {
         </div>
       </div>
     ),
-    { width: 1200, height: 630 },
+    imageOptions(fonts),
   )
 }
 
 /* ── Variant B: Left Stripe ── */
-function variantB({ title, subtitle, kicker, meta }: OgProps) {
+function variantB({ title, subtitle, kicker, meta, fonts }: OgProps) {
   return new ImageResponse(
     (
       <div
@@ -85,6 +145,7 @@ function variantB({ title, subtitle, kicker, meta }: OgProps) {
           color: '#fff',
           display: 'flex',
           position: 'relative',
+          fontFamily: FONT_FAMILY,
         }}
       >
         {/* Left stripe */}
@@ -123,12 +184,12 @@ function variantB({ title, subtitle, kicker, meta }: OgProps) {
         </div>
       </div>
     ),
-    { width: 1200, height: 630 },
+    imageOptions(fonts),
   )
 }
 
 /* ── Variant C: Border Frame ── */
-function variantC({ title, subtitle, kicker, meta }: OgProps) {
+function variantC({ title, subtitle, kicker, meta, fonts }: OgProps) {
   return new ImageResponse(
     (
       <div
@@ -139,6 +200,7 @@ function variantC({ title, subtitle, kicker, meta }: OgProps) {
           color: '#fff',
           display: 'flex',
           padding: 24,
+          fontFamily: FONT_FAMILY,
         }}
       >
         <div
@@ -178,6 +240,6 @@ function variantC({ title, subtitle, kicker, meta }: OgProps) {
         </div>
       </div>
     ),
-    { width: 1200, height: 630 },
+    imageOptions(fonts),
   )
 }
