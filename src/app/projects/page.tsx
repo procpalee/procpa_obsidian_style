@@ -4,10 +4,14 @@ import { PageHero } from '@/components/page-hero'
 import { resolveArticleHref } from '@/components/home/projects-grid'
 import { projects, type ProjectCategory } from '@/lib/projects-data'
 
+const DESC = '회계·콘텐츠 작업의 불편함을 직접 코드로 풀어 만든 웹 앱·플러그인·MCP 서버 모음.'
+
 export const metadata: Metadata = {
   title: '프로젝트',
-  description:
-    '회계·콘텐츠 작업의 불편함을 직접 코드로 풀어 만든 웹 앱·플러그인·MCP 서버 모음.',
+  description: DESC,
+  alternates: { canonical: '/projects' },
+  openGraph: { title: '프로젝트', description: DESC, url: '/projects', images: ['/og-default.png'] },
+  twitter: { card: 'summary_large_image', title: '프로젝트', description: DESC, images: ['/og-default.png'] },
 }
 
 const order: ProjectCategory[] = ['Web App', 'Plugin', 'MCP Server']

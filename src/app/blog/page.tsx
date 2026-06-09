@@ -4,9 +4,14 @@ import { posts } from '#site/content'
 import { PageHero } from '@/components/page-hero'
 import { CategoryFilter, type FilterPost } from '@/components/category-filter'
 
+const DESC = '회계·재무 실무와 AI 활용에 관한 단편 포스트.'
+
 export const metadata: Metadata = {
   title: '블로그',
-  description: '회계·재무 실무와 AI 활용에 관한 단편 포스트.',
+  description: DESC,
+  alternates: { canonical: '/blog' },
+  openGraph: { title: '블로그', description: DESC, url: '/blog', images: ['/og-default.png'] },
+  twitter: { card: 'summary_large_image', title: '블로그', description: DESC, images: ['/og-default.png'] },
 }
 
 export default function BlogPage() {

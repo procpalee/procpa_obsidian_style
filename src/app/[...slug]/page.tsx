@@ -13,6 +13,8 @@ import { BacklinksPanel } from '@/components/backlinks-panel'
 import { JsonLd, articleJsonLd, breadcrumbJsonLd } from '@/components/json-ld'
 import { ScrollArea } from '@/components/ui/scroll-area'
 
+const DEFAULT_OG = '/og-default.png'
+
 const SITE = 'https://procpa.co.kr'
 
 interface PageProps {
@@ -168,11 +170,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const r = resolveContent(path)
   if (!r) return {}
 
-  const defaultOg = '/og-default.png'
-
   if (r.type === 'post') {
     const { post } = r
-    const ogImage = post.cover || defaultOg
+    const ogImage = post.cover || DEFAULT_OG
     return {
       title: post.title,
       description: post.description,
@@ -184,7 +184,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (r.type === 'series') {
     const { series: s } = r
-    const ogImage = s.cover || defaultOg
+    const ogImage = s.cover || DEFAULT_OG
     return {
       title: s.title,
       description: s.description,
@@ -197,7 +197,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   // chapter
   const title = `${r.chapter.title} · ${r.series.title}`
   const description = r.chapter.description ?? r.series.description
-  const ogImage = r.series.cover || defaultOg
+  const ogImage = r.series.cover || DEFAULT_OG
   return {
     title,
     description,
@@ -368,7 +368,7 @@ function PostView({
           url,
           datePublished: post.date,
           dateModified: post.updated,
-          image: `${SITE}/api/og?kicker=${encodeURIComponent('PROCPA · POST')}&title=${encodeURIComponent(post.title)}&subtitle=${encodeURIComponent(post.description)}&meta=${encodeURIComponent(post.date.slice(0, 10))}`,
+          image: new URL(post.cover ?? DEFAULT_OG, SITE).toString(),
           tags: post.tags,
         })}
       />
@@ -550,7 +550,7 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
           description: r.chapter.description ?? r.series.description,
           url,
           datePublished: r.series.date ?? '',
-          image: `${SITE}/api/og?kicker=${encodeURIComponent('PROCPA · SERIES')}&title=${encodeURIComponent(r.chapter.title)}&subtitle=${encodeURIComponent(r.chapter.description ?? r.series.description)}&meta=${encodeURIComponent(r.series.title)}`,
+          image: new URL(r.series.cover ?? DEFAULT_OG, SITE).toString(),
           tags: r.series.tags,
         })}
       />

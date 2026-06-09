@@ -6,9 +6,14 @@ import { BrowseTabs, type BrowseDoc } from '@/components/browse-tabs'
 
 export const dynamic = 'force-static'
 
+const DESC = '회계·AI·개발 등 카테고리별로 시리즈와 포스트를 한곳에서 탐색합니다.'
+
 export const metadata: Metadata = {
   title: '카테고리별 탐색',
-  description: '회계·AI·개발 등 카테고리별로 시리즈와 포스트를 한곳에서 탐색합니다.',
+  description: DESC,
+  alternates: { canonical: '/browse' },
+  openGraph: { title: '카테고리별 탐색', description: DESC, url: '/browse', images: ['/og-default.png'] },
+  twitter: { card: 'summary_large_image', title: '카테고리별 탐색', description: DESC, images: ['/og-default.png'] },
 }
 
 export default function BrowsePage() {
