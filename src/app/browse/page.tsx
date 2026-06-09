@@ -3,19 +3,17 @@ import { TOPIC_KEYS } from '@/lib/topics'
 import { buildCategoryData } from '@/lib/category'
 import { PageHero } from '@/components/page-hero'
 import { BrowseTabs, type BrowseDoc } from '@/components/browse-tabs'
-import { ogImageUrl } from '@/lib/og'
 
 export const dynamic = 'force-static'
 
 const DESC = '회계·AI·개발 등 카테고리별로 시리즈와 포스트를 한곳에서 탐색합니다.'
-const OG = ogImageUrl({ kicker: 'PROCPA · BROWSE', title: '카테고리별 탐색', subtitle: DESC })
 
 export const metadata: Metadata = {
   title: '카테고리별 탐색',
   description: DESC,
   alternates: { canonical: '/browse' },
-  openGraph: { title: '카테고리별 탐색', description: DESC, url: '/browse', images: [{ url: OG, width: 1200, height: 630 }] },
-  twitter: { card: 'summary_large_image', title: '카테고리별 탐색', description: DESC, images: [OG] },
+  openGraph: { title: '카테고리별 탐색', description: DESC, url: '/browse', images: ['/og-default.png'] },
+  twitter: { card: 'summary_large_image', title: '카테고리별 탐색', description: DESC, images: ['/og-default.png'] },
 }
 
 export default function BrowsePage() {
