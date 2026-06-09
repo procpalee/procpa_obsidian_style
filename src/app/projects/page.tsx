@@ -31,7 +31,7 @@ export default function ProjectsPage() {
         description="실무에서 마주친 불편함을 코드로 풀어, 웹과 MCP 서버로 배포해 운영합니다. 각 프로젝트의 제작 과정은 글로도 정리해 두었습니다."
       />
 
-      <div className="mt-12 space-y-12">
+      <div className="mt-20 space-y-20">
         {groups.map((g) => (
           <section key={g.cat}>
             <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">

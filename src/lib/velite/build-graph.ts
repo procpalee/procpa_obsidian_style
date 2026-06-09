@@ -1,11 +1,12 @@
 /**
  * build-graph
  *
- * Velite의 `prepare` 훅에서 호출되어 wiki-link 그래프/백링크 인덱스를 생성한다.
+ * Velite의 `prepare` 훅에서 호출되어 wiki-link 백링크 인덱스를 생성한다.
  * posts, chapters의 원본 마크다운을 다시 스캔해 `[[...]]`를 추출하고,
- * slugMap으로 resolve한 뒤 nodes/edges/backlinks JSON을 `.velite/`에 기록한다.
+ * slugMap으로 resolve한 뒤 backlinks/slug-map/broken-links JSON을 `.velite/`에 기록한다.
+ * (지식그래프 시각화 제거에 따라 graph.json은 더 이상 생성하지 않는다.)
  *
- * 런타임(WikiLink 컴포넌트, LocalGraph 등)은 이 JSON을 `#site/content`에서 import한다.
+ * 런타임(WikiLink 컴포넌트, BacklinksPanel 등)은 이 JSON을 import한다.
  */
 import { promises as fs } from 'node:fs'
 import path from 'node:path'
@@ -208,8 +209,8 @@ export async function buildGraph(opts: {
   // ---- 4) 파일 기록 ----
   const graph: GraphData = { nodes: Object.values(nodes), edges }
   await fs.mkdir(outDir, { recursive: true })
+  // graph.json(시각화용)은 더 이상 생성하지 않는다 — 위키링크 분석 산출물만 기록.
   await Promise.all([
-    fs.writeFile(path.join(outDir, 'graph.json'), JSON.stringify(graph, null, 2)),
     fs.writeFile(path.join(outDir, 'backlinks.json'), JSON.stringify(backlinks, null, 2)),
     fs.writeFile(path.join(outDir, 'slug-map.json'), JSON.stringify(slugMap, null, 2)),
     fs.writeFile(path.join(outDir, 'broken-links.json'), JSON.stringify(broken, null, 2)),

@@ -203,6 +203,8 @@ export default defineConfig({
   },
   collections: { posts, series, chapters, downloads },
   prepare: async (data) => {
+    // Resolve wiki-links → backlinks / slug-map / broken-links artifacts.
+    // (The knowledge-graph visualization was removed; graph.json is no longer emitted.)
     await buildGraph({
       posts: data.posts as unknown as Parameters<typeof buildGraph>[0]['posts'],
       chapters: data.chapters as unknown as Parameters<typeof buildGraph>[0]['chapters'],

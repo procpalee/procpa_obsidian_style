@@ -13,13 +13,9 @@ import { socials } from '@/components/social-icons'
 const nav = [
   { href: '/', label: '홈' },
   { href: '/about', label: '소개' },
+  { href: '/series', label: '시리즈' },
   { href: '/blog', label: '블로그' },
   { href: '/projects', label: '프로젝트' },
-]
-
-const tools = [
-  { href: '/explore', label: '탐색' },
-  { href: '/graph', label: '그래프' },
 ]
 
 export function SiteHeader() {
@@ -62,7 +58,7 @@ export function SiteHeader() {
             href="/contact"
             className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
           >
-            문의하기
+            연락하기
           </Link>
         </nav>
 
@@ -91,26 +87,12 @@ export function SiteHeader() {
                   </Link>
                 ))}
 
-                <div className="mt-6 border-t border-border/60 pt-5 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                  지식베이스
-                </div>
-                {tools.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    className="py-2 text-[14px] text-muted-foreground transition-colors hover:text-foreground"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-
                 <Link
                   href="/contact"
                   onClick={() => setOpen(false)}
                   className="mt-6 inline-flex items-center justify-center rounded-full bg-primary px-4 py-2.5 text-[15px] font-semibold text-primary-foreground"
                 >
-                  문의하기
+                  연락하기
                 </Link>
 
                 <div className="mt-6 flex items-center gap-4 border-t border-border/60 pt-5 text-muted-foreground">

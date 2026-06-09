@@ -7,12 +7,13 @@ interface SeriesCardProps {
   description: string
   url: string
   cover?: string
+  category?: string
   chapterCount?: number
   lastUpdated?: string
   variant?: 'default' | 'featured'
 }
 
-export function SeriesCard({ title, description, url, cover, chapterCount, lastUpdated, variant = 'default' }: SeriesCardProps) {
+export function SeriesCard({ title, description, url, cover, category, chapterCount, lastUpdated, variant = 'default' }: SeriesCardProps) {
   if (variant === 'featured') {
     return (
       <Link
@@ -31,17 +32,17 @@ export function SeriesCard({ title, description, url, cover, chapterCount, lastU
         )}
         <div className="flex flex-1 flex-col justify-between p-4">
           <div>
-            <div className="text-[13px] font-medium leading-snug group-hover:text-primary">
+            <div className="text-sm font-medium leading-snug group-hover:text-primary">
               {title}
             </div>
             {description && (
-              <p className="mt-1.5 line-clamp-2 text-[11px] leading-relaxed text-muted-foreground">
+              <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-muted-foreground">
                 {description}
               </p>
             )}
           </div>
           {(chapterCount != null || lastUpdated) && (
-            <div className="mt-2 flex flex-wrap items-center gap-2 font-mono text-[10px] text-muted-foreground">
+            <div className="mt-2 flex flex-wrap items-center gap-2 font-mono text-[11px] text-muted-foreground">
               {chapterCount != null && <span>{chapterCount}개 챕터</span>}
               {lastUpdated && (
                 <>
@@ -71,16 +72,21 @@ export function SeriesCard({ title, description, url, cover, chapterCount, lastU
           </div>
         )}
         <div className="min-w-0 flex-1">
-          <div className="text-[15px] font-medium leading-snug group-hover:text-primary">{title}</div>
+          {category && (
+            <span className="inline-flex rounded border border-border/60 px-1.5 py-0.5 font-mono text-[11px] text-muted-foreground">
+              {category}
+            </span>
+          )}
+          <div className={`${category ? 'mt-2' : ''} text-base font-medium leading-snug group-hover:text-primary`}>{title}</div>
           {description && (
-            <div className="mt-1 line-clamp-2 text-[13px] leading-snug text-muted-foreground">
+            <div className="mt-1 line-clamp-2 text-sm leading-snug text-muted-foreground">
               {description}
             </div>
           )}
         </div>
       </div>
       {(chapterCount != null || lastUpdated) && (
-        <div className="mt-3 flex flex-wrap items-center gap-2 font-mono text-[10px] text-muted-foreground">
+        <div className="mt-3 flex flex-wrap items-center gap-2 font-mono text-[11px] text-muted-foreground">
           {chapterCount != null && <span>{chapterCount}개 챕터</span>}
           {lastUpdated && (
             <>
@@ -111,24 +117,24 @@ export function PostCard({ title, description, url, date, category, tags, varian
     return (
       <Link
         href={url}
-        className="group flex w-[260px] shrink-0 snap-start flex-col justify-between rounded-2xl border border-border/60 px-4 py-4 transition-all hover:translate-y-[-2px] hover:border-foreground/40 hover:shadow-sm"
+        className="group flex w-[78%] shrink-0 snap-start flex-col justify-between rounded-2xl border border-border/60 px-4 py-4 transition-all hover:translate-y-[-2px] hover:border-foreground/40 hover:shadow-sm sm:w-[46%] lg:w-[31%]"
       >
         <div>
           {category && (
-            <span className="rounded border border-border/60 px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+            <span className="rounded border border-border/60 px-1.5 py-0.5 font-mono text-xs text-muted-foreground">
               {category}
             </span>
           )}
-          <div className={`${category ? 'mt-2.5' : ''} text-[14px] font-medium leading-snug group-hover:text-primary`}>
+          <h3 className={`${category ? 'mt-3' : ''} text-lg font-semibold tracking-tight group-hover:text-primary`}>
             {title}
-          </div>
+          </h3>
           {description && (
-            <p className="mt-1 line-clamp-2 text-[12px] leading-relaxed text-muted-foreground">
+            <p className="mt-1.5 line-clamp-2 text-base leading-relaxed text-muted-foreground">
               {description}
             </p>
           )}
         </div>
-        <div className="mt-3 font-mono text-[10px] text-muted-foreground">
+        <div className="mt-4 font-mono text-xs text-muted-foreground">
           {date.slice(0, 10).replace(/-/g, '.')}
         </div>
       </Link>
@@ -144,7 +150,7 @@ export function PostCard({ title, description, url, date, category, tags, varian
       <div className="flex items-baseline gap-4">
         <span className="flex-1 text-lg leading-snug group-hover:text-primary">{title}</span>
         {date && (
-          <span className="shrink-0 font-mono text-[11px] text-muted-foreground">
+          <span className="shrink-0 font-mono text-xs text-muted-foreground">
             {date.slice(0, 10).replace(/-/g, '.')}
           </span>
         )}
@@ -152,7 +158,7 @@ export function PostCard({ title, description, url, date, category, tags, varian
       {tags && tags.length > 0 && (
         <div className="flex flex-wrap gap-1.5">
           {tags.map((t) => (
-            <span key={t} className="rounded-full border border-border/60 px-2 py-0.5 font-mono text-[11px] text-muted-foreground">
+            <span key={t} className="rounded-full border border-border/60 px-2 py-0.5 font-mono text-xs text-muted-foreground">
               {t}
             </span>
           ))}

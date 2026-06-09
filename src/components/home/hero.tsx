@@ -62,13 +62,13 @@ export function Hero({ updated }: { updated?: string }) {
             href="/#follow"
             className="rounded-full bg-primary px-6 py-3 text-base font-semibold text-primary-foreground transition-opacity hover:opacity-90"
           >
-            구독하기
+            커뮤니티
           </Link>
           <Link
             href="/contact"
             className="rounded-full border border-border/60 px-6 py-3 text-base font-medium transition-colors hover:border-foreground/40"
           >
-            문의하기
+            연락하기
           </Link>
         </div>
       </div>
