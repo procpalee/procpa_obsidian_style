@@ -77,40 +77,6 @@ export const certificates = [
   },
 ]
 
-export const publications = [
-  {
-    title: '비개발자를 위한 Antigravity',
-    description: 'Antigravity의 실무 활용법을 비개발자 관점에서 정리한 가이드북.',
-    href: 'https://wikidocs.net/book/18574',
-  },
-  {
-    title: '클로드 엑셀(Claude for Excel) 가이드',
-    description: 'Claude for Excel의 사용법 및 실무 적용 사례를 다루는 실전 가이드.',
-    href: 'https://wikidocs.net/book/19374',
-  },
-]
-
-export const sideProjects = [
-  {
-    title: 'PROCPA',
-    description: '회계 실무 지식과 AI 활용 가이드를 제공하는 실무 중심 지식체계 사이트.',
-    stack: ['Next.js', 'TypeScript', 'Velite', 'Tailwind'],
-    href: '/',
-  },
-  {
-    title: 'Marklog',
-    description: '네이버 블로그를 위한 마크다운 커스터마이징 & 변환 도구.',
-    stack: ['React', 'TypeScript'],
-    href: 'https://marklog.procpa.co.kr/',
-  },
-  {
-    title: 'ClickThumb',
-    description: '디자인 툴 없이도 10초만에 끝내는 맞춤형 썸네일 제작 도구.',
-    stack: ['HTML'],
-    href: 'https://clickthumb.procpa.co.kr/',
-  },
-]
-
 export const contacts = [
   {
     label: 'Email',
