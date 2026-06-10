@@ -318,7 +318,7 @@ function MetaCard({ rows }: { rows: { label: string; value: ReactNode }[] }) {
   const visible = rows.filter((r) => r.value !== undefined && r.value !== null && r.value !== '')
   if (!visible.length) return null
   return (
-    <dl className="mt-5 grid w-full grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 rounded-lg border border-border bg-card px-4 py-3 font-mono text-xs">
+    <dl className="mt-5 grid w-full grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 rounded-lg border border-border/60 bg-card px-4 py-3 font-mono text-xs">
       {visible.map((r) => (
         <Fragment key={r.label}>
           <dt className="text-muted-foreground">{r.label}</dt>
@@ -382,7 +382,7 @@ function PostView({
       <div className="lg:flex lg:justify-center lg:gap-12">
         {/* ── Main content (centered blog column) ── */}
         <article className="mx-auto w-full min-w-0 max-w-[72ch] lg:mx-0">
-          <header className="mb-10 border-b border-border pb-6">
+          <header className="mb-10 border-b border-border/60 pb-6">
             <div className="mb-4 flex items-start justify-between gap-4">
               <DocKicker
                 parts={[
@@ -470,7 +470,7 @@ function SeriesView({ r }: { r: Extract<Resolved, { type: 'series' }> }) {
     <div className="mx-auto max-w-[1440px] px-6">
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-[17rem_minmax(0,1fr)]">
         {/* ── Left sidebar: chapter nav (desktop) ── */}
-        <aside className="hidden border-r border-border lg:block">
+        <aside className="hidden border-r border-border/60 lg:block">
           <div className="group/sidebar sticky top-14 h-[calc(100vh-3.5rem)]">
             <ScrollArea className="h-full [&_[data-slot=scroll-area-scrollbar]]:opacity-0 [&_[data-slot=scroll-area-scrollbar]]:transition-opacity group-hover/sidebar:[&_[data-slot=scroll-area-scrollbar]]:opacity-100">
               <div className="py-8 pr-6">
@@ -493,7 +493,7 @@ function SeriesView({ r }: { r: Extract<Resolved, { type: 'series' }> }) {
               </MobileCollapsible>
             </div>
 
-            <header className="mb-10 border-b border-border pb-6">
+            <header className="mb-10 border-b border-border/60 pb-6">
               <DocKicker
                 parts={[
                   <Link key="cat" href="/browse" className="hover:opacity-70">{topicLabel(s.category)}</Link>,
@@ -516,7 +516,7 @@ function SeriesView({ r }: { r: Extract<Resolved, { type: 'series' }> }) {
 
             {/* Cover image */}
             {s.cover && (
-              <div className="mb-10 max-w-[200px] overflow-hidden rounded-lg border border-border">
+              <div className="mb-10 max-w-[200px] overflow-hidden rounded-lg border border-border/60">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={s.cover} alt={s.title} className="h-auto w-full object-cover" />
               </div>
@@ -564,7 +564,7 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
       />
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-[17rem_minmax(0,1fr)] xl:grid-cols-[17rem_minmax(0,1fr)_15rem]">
         {/* ── Left sidebar: chapter navigation ── */}
-        <aside className="hidden border-r border-border lg:block">
+        <aside className="hidden border-r border-border/60 lg:block">
           <div className="group/sidebar sticky top-14 h-[calc(100vh-3.5rem)]">
             <ScrollArea className="h-full [&_[data-slot=scroll-area-scrollbar]]:opacity-0 [&_[data-slot=scroll-area-scrollbar]]:transition-opacity group-hover/sidebar:[&_[data-slot=scroll-area-scrollbar]]:opacity-100">
               <div className="py-8 pr-6">
@@ -587,7 +587,7 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
               </MobileCollapsible>
             </div>
 
-            <header className="mb-10 border-b border-border pb-6">
+            <header className="mb-10 border-b border-border/60 pb-6">
               <div className="mb-4 flex items-start justify-between gap-4">
                 <DocKicker
                   parts={[
@@ -632,7 +632,7 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
               </div>
             )}
 
-            <nav className="mt-16 flex items-center justify-between gap-4 border-t border-border pt-6 text-sm">
+            <nav className="mt-16 flex items-center justify-between gap-4 border-t border-border/60 pt-6 text-sm">
               {r.prev ? (
                 <Link href={`/${r.prev.slugAsParams}`} className="group min-w-0 flex-1">
                   <div className="text-xs text-muted-foreground">이전</div>

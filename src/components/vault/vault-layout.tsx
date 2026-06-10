@@ -20,18 +20,18 @@ export function VaultLayout({ children }: { children: React.ReactNode }) {
   const vaultData = getVaultData()
   return (
     <div className="border-t border-border/60">
-      <div className="mx-auto grid min-h-[calc(100vh-3.5rem)] max-w-[1440px] grid-cols-12 gap-0 px-6 lg:px-0">
+      <div className="mx-auto grid min-h-[calc(100vh-3.5rem)] max-w-[1440px] grid-cols-12 gap-0 px-6">
         <aside className="hidden border-border/60 lg:col-span-3 lg:block lg:border-r">
           <div className="group/sidebar sticky top-14 h-[calc(100vh-3.5rem)]">
             <ScrollArea className="h-full [&_[data-slot=scroll-area-scrollbar]]:opacity-0 [&_[data-slot=scroll-area-scrollbar]]:transition-opacity group-hover/sidebar:[&_[data-slot=scroll-area-scrollbar]]:opacity-100">
-              <div className="px-6 pt-14 pb-8">
+              <div className="pr-6 pt-14 pb-8">
                 <VaultSidebar data={vaultData} />
               </div>
             </ScrollArea>
           </div>
         </aside>
         <section className="col-span-12 min-w-0 lg:col-span-9">
-          <div className="pt-14 pb-8 sm:pb-10 lg:px-12">
+          <div className="pt-14 pb-8 sm:pb-10 lg:pl-12">
             {children}
           </div>
         </section>

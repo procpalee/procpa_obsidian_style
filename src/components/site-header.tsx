@@ -22,7 +22,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background">
       <div className="mx-auto flex h-14 max-w-[1440px] items-center justify-between px-6">
         <Link href="/" aria-label="PROCPA" className="flex shrink-0 items-center">
           <Image
