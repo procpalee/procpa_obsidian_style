@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { posts } from '#site/content'
 import { PageHero } from '@/components/page-hero'
-import { CategoryFilter, type FilterPost } from '@/components/category-filter'
+import { BlogFeed, type FeedPost } from '@/components/blog-feed'
 
 const DESC = '회계·재무 실무와 AI 활용에 관한 단편 포스트.'
 
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 }
 
 export default function BlogPage() {
-  const items: FilterPost[] = posts
+  const items: FeedPost[] = posts
     .filter((p) => !p.draft)
     .sort((a, b) => +new Date(b.date) - +new Date(a.date))
     .map((p) => ({
@@ -25,6 +25,7 @@ export default function BlogPage() {
       date: p.date,
       tags: p.tags,
       category: p.category,
+      readingTime: p.metadata.readingTime,
     }))
 
   return (
@@ -38,13 +39,13 @@ export default function BlogPage() {
             href="/browse"
             className="inline-flex items-center rounded-full border border-border/60 px-4 py-2 font-mono text-xs text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground"
           >
-            카테고리별로 보기 →
+            주제별로 보기 →
           </Link>
         }
       />
 
       <div className="mt-14 sm:mt-16">
-        <CategoryFilter kind="post" items={items} />
+        <BlogFeed items={items} />
       </div>
     </div>
   )

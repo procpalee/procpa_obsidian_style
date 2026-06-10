@@ -11,6 +11,10 @@ export const metadata: Metadata = {
       height: 630,
     }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    images: ['/api/og?kicker=PROCPA&title=%EC%9D%B4%EC%9A%A9%EC%95%BD%EA%B4%80'],
+  },
 }
 
 export default function TermsPage() {

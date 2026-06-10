@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { MessageSquare, ArrowRight } from 'lucide-react'
 
 export function CtaBlock() {
@@ -6,7 +7,7 @@ export function CtaBlock() {
       <div className="relative overflow-hidden rounded-3xl border border-border/60 bg-card px-6 py-12 text-center shadow-sm sm:px-12 sm:py-20">
         <div className="relative mx-auto max-w-2xl">
           <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-semibold text-primary mb-6">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
             COMMUNITY
           </div>
 
@@ -40,6 +41,14 @@ export function CtaBlock() {
               <ArrowRight className="h-4 w-4" />
             </a>
           </div>
+
+          <p className="mt-6 text-sm text-muted-foreground">
+            업무·컨설팅·강의 문의는{' '}
+            <Link href="/contact" className="font-medium text-primary underline-offset-4 hover:underline">
+              문의하기
+            </Link>
+            에서 확인하세요.
+          </p>
         </div>
       </div>
     </section>

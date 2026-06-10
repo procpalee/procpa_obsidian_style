@@ -35,7 +35,7 @@ function TocLink({
         className={`block border-l-2 py-1 text-[13px] leading-snug transition-colors ${
           isActive
             ? 'border-primary font-medium text-primary'
-            : 'border-border text-muted-foreground hover:text-foreground'
+            : 'border-border/60 text-muted-foreground hover:text-foreground'
         }`}
         style={{ paddingLeft: `${12 + depth * 12}px` }}
       >

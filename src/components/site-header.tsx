@@ -16,13 +16,14 @@ const nav = [
   { href: '/series', label: '시리즈' },
   { href: '/blog', label: '블로그' },
   { href: '/projects', label: '프로젝트' },
+  { href: '/downloads', label: '자료실' },
 ]
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background">
       <div className="mx-auto flex h-14 max-w-[1440px] items-center justify-between px-6">
         <Link href="/" aria-label="PROCPA" className="flex shrink-0 items-center">
           <Image
