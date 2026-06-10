@@ -1,14 +1,8 @@
 ---
-title: "AI는 회계사를 대체하는가 - 수습 회계사님들을 위한 제언"
-type: post
-index: []
-tags: []
-date_created: "2026-02-23"
-date_modified: "2026-02-23"
-status: draft
-description: ""
-thumbnail: ""
-date: "2026-02-02"
+title: AI는 회계사를 대체하는가 - 수습 회계사님들을 위한 제언
+description: 알파고 시대의 수험생이 AI 시대의 현직 회계사가 되었습니다. 유례없는 채용난 속 수습 회계사분들께, AI는 회계사를 대체하는가라는 질문에 대한 저의 답을 전합니다.
+date: 2026-02-02
+draft: false
 ---
 안녕하세요, **PROCPA**입니다.
 

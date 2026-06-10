@@ -1,14 +1,8 @@
 ---
-title: "ClickThumb - 디자인 툴 없이도 10초만에 끝내는 맞춤형 썸네일 제작기"
-type: post
-index: []
-tags: []
-date_created: "2026-02-23"
-date_modified: "2026-02-23"
-status: draft
-description: ""
-thumbnail: ""
-date: "2026-01-08"
+title: ClickThumb - 디자인 툴 없이도 10초만에 끝내는 맞춤형 썸네일 제작기
+description: 디자인 툴 없이 브라우저에서 10초 만에 블로그 썸네일을 만드는 ClickThumb을 직접 개발했습니다. 제작 동기부터 주요 기능, 활용 방법까지 소개합니다.
+date: 2026-01-08
+draft: false
 ---
 안녕하세요, **PROCPA**입니다.
 

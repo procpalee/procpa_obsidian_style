@@ -1,14 +1,8 @@
 ---
-title: "AI 시대, 회계·재무 실무자의 생존 전략"
-type: post
-index: []
-tags: []
-date_created: "2026-02-23"
-date_modified: "2026-02-23"
-status: draft
-description: ""
-thumbnail: ""
-date: "2026-01-15"
+title: AI 시대, 회계·재무 실무자의 생존 전략
+description: AI 시대에 회계·재무 실무자는 어떻게 살아남아야 할까요. 현직 회계사로서 IT·데이터·AI를 실무에 활용해 온 경험을 바탕으로 생존 전략을 제시합니다.
+date: 2026-01-15
+draft: false
 ---
 안녕하세요, **PROCPA**입니다.
 

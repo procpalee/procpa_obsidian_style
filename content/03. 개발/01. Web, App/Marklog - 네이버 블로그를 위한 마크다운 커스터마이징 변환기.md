@@ -1,14 +1,8 @@
 ---
-title: "Marklog - 네이버 블로그를 위한 마크다운 커스터마이징 변환기"
-type: post
-index: []
-tags: []
-date_created: "2026-02-23"
-date_modified: "2026-02-23"
-status: draft
-description: ""
-thumbnail: ""
-date: "2026-01-12"
+title: Marklog - 네이버 블로그를 위한 마크다운 커스터마이징 변환기
+description: 마크다운 글을 네이버 블로그에 옮길 때마다 깨지는 서식이 고민이라면, 직접 개발한 변환 도구 Marklog를 소개합니다. 제작 동기와 사용법을 정리했습니다.
+date: 2026-01-12
+draft: false
 ---
 안녕하세요, **생산적회계사(PROCPA)** 입니다.
 

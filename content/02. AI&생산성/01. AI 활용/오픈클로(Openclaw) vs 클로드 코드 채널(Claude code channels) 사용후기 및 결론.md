@@ -1,7 +1,8 @@
 ---
-title: "오픈클로(Openclaw) vs 클로드 코드 채널(Claude code channels) 사용후기 및 결론"
-description: "최근 AI 도구 중 가장 큰 주목을 받고 있는 서비스는 단연 오픈클로(OpenClaw) 입니다. 오픈클로를 약 3주간 사용해 보았고, 이후 출시된 클로드 코드 채널(Claude Code Channels) 을 1주일가량 사용하며 내린 결론을 정리해 보았습니다."
-date: "2026-04-06"
+title: 오픈클로(Openclaw) vs 클로드 코드 채널(Claude code channels) 사용후기 및 결론
+description: 최근 AI 도구 중 가장 큰 주목을 받고 있는 서비스는 단연 오픈클로(OpenClaw) 입니다. 오픈클로를 약 3주간 사용해 보았고, 이후 출시된 클로드 코드 채널(Claude Code Channels) 을 1주일가량 사용하며 내린 결론을 정리해 보았습니다.
+date: 2026-04-06
+draft: false
 ---
 
 최근 AI 도구 중 가장 큰 주목을 받고 있는 서비스는 단연 **오픈클로(OpenClaw)** 입니다. 오픈클로를 약 3주간 사용해 보았고, 이후 출시된 **클로드 코드 채널(Claude Code Channels)** 을 1주일가량 사용하며 내린 결론을 정리해 보았습니다.

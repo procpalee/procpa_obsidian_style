@@ -1,14 +1,8 @@
 ---
-title: "Marklog for Obsidian - 네이버 블로그를 위한 옵시디언 플러그인"
-type: post
-index: []
-tags: []
-date_created: "2026-02-23"
-date_modified: "2026-02-23"
-status: draft
-description: ""
-thumbnail: ""
-date: "2026-01-12"
+title: Marklog for Obsidian - 네이버 블로그를 위한 옵시디언 플러그인
+description: 옵시디언 안에서 바로 네이버 블로그용 HTML로 변환하는 Marklog 플러그인을 만들었습니다. React 웹 앱을 옵시디언 플러그인으로 포팅한 개발 과정을 공유합니다.
+date: 2026-01-12
+draft: false
 ---
 안녕하세요, **생산적 회계사(PROCPA)** 입니다.
 
