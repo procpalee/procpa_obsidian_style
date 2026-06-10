@@ -10,7 +10,7 @@ import { ReadingProgress } from '@/components/reading-progress'
 import { ShareButtons } from '@/components/share-buttons'
 import { MobileCollapsible } from '@/components/mobile-collapsible'
 import { BacklinksPanel } from '@/components/backlinks-panel'
-import { JsonLd, articleJsonLd, breadcrumbJsonLd } from '@/components/json-ld'
+import { JsonLd, articleJsonLd, seriesJsonLd, breadcrumbJsonLd } from '@/components/json-ld'
 import { ScrollArea } from '@/components/ui/scroll-area'
 
 const DEFAULT_OG = '/og-default.png'
@@ -189,7 +189,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: s.title,
       description: s.description,
       alternates: { canonical: `/${s.slugAsParams}` },
-      openGraph: { title: s.title, description: s.description, type: 'article', images: [{ url: ogImage, width: 1200, height: 630 }] },
+      openGraph: { title: s.title, description: s.description, type: 'article', ...(s.date ? { publishedTime: s.date } : {}), images: [{ url: ogImage, width: 1200, height: 630 }] },
       twitter: { card: 'summary_large_image', title: s.title, description: s.description, images: [ogImage] },
     }
   }
@@ -198,11 +198,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const title = `${r.chapter.title} · ${r.series.title}`
   const description = r.chapter.description ?? r.series.description
   const ogImage = r.series.cover || DEFAULT_OG
+  const chapterModified = r.chapter.last_synced || undefined
   return {
     title,
     description,
     alternates: { canonical: `/${r.chapter.slugAsParams}` },
-    openGraph: { title, description, type: 'article', images: [{ url: ogImage, width: 1200, height: 630 }] },
+    openGraph: { title, description, type: 'article', ...(r.series.date ? { publishedTime: r.series.date } : {}), ...(chapterModified ? { modifiedTime: chapterModified } : {}), images: [{ url: ogImage, width: 1200, height: 630 }] },
     twitter: { card: 'summary_large_image', title, description, images: [ogImage] },
   }
 }
@@ -466,8 +467,36 @@ function PostView({
 
 function SeriesView({ r }: { r: Extract<Resolved, { type: 'series' }> }) {
   const s = r.series
+  const url = `${SITE}/${s.slugAsParams}`
+  const seriesChapters = chapters
+    .filter((c) => !c.draft && c.series === s.slugAsParams)
+    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+  const lastModified = seriesChapters
+    .map((c) => c.last_synced)
+    .filter((d): d is string => !!d)
+    .sort()
+    .pop()
   return (
     <div className="mx-auto max-w-[1440px] px-6">
+      <JsonLd
+        data={seriesJsonLd({
+          title: s.title,
+          description: s.description,
+          url,
+          datePublished: s.date,
+          dateModified: lastModified ?? s.date,
+          image: new URL(s.cover ?? DEFAULT_OG, SITE).toString(),
+          tags: s.tags,
+          chapters: seriesChapters.map((c) => ({ name: c.title, url: `${SITE}/${c.slugAsParams}` })),
+        })}
+      />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: '홈', url: SITE },
+          { name: topicLabel(s.category), url: `${SITE}/browse` },
+          { name: s.title, url },
+        ])}
+      />
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-[17rem_minmax(0,1fr)]">
         {/* ── Left sidebar: chapter nav (desktop) ── */}
         <aside className="hidden border-r border-border/60 lg:block">
@@ -550,8 +579,10 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
           description: r.chapter.description ?? r.series.description,
           url,
           datePublished: r.series.date ?? '',
+          dateModified: r.chapter.last_synced || undefined,
           image: new URL(r.series.cover ?? DEFAULT_OG, SITE).toString(),
           tags: r.series.tags,
+          isPartOf: { name: r.series.title, url: `${SITE}/${r.series.slugAsParams}` },
         })}
       />
       <JsonLd

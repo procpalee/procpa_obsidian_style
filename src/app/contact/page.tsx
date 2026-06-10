@@ -23,6 +23,10 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: 'summary_large_image',
+    images: [`/api/og?kicker=PROCPA&title=${ogTitle}&subtitle=${ogSubtitle}`],
+  },
 }
 
 const iconFor: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>> = {

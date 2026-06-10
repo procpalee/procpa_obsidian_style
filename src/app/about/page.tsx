@@ -26,6 +26,10 @@ export const metadata: Metadata = {
       height: 630,
     }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    images: ['/api/og?kicker=PROCPA&title=%EC%86%8C%EA%B0%9C&subtitle=%ED%95%9C%EA%B5%AD%EA%B3%B5%EC%9D%B8%ED%9A%8C%EA%B3%84%EC%82%AC%20%EC%9D%B4%EC%9E%AC%ED%98%84'],
+  },
 }
 
 function Section({

@@ -66,6 +66,13 @@ export const metadata: Metadata = {
       'max-video-preview': -1,
     },
   },
+  // Search-console ownership tokens — supplied via Vercel env (empty → not rendered).
+  verification: {
+    ...(process.env.GOOGLE_SITE_VERIFICATION ? { google: process.env.GOOGLE_SITE_VERIFICATION } : {}),
+    ...(process.env.NAVER_SITE_VERIFICATION
+      ? { other: { 'naver-site-verification': process.env.NAVER_SITE_VERIFICATION } }
+      : {}),
+  },
   formatDetection: { telephone: false, address: false, email: false },
   other: {
     'color-scheme': 'dark light',
