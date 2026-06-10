@@ -124,18 +124,6 @@ export function personJsonLd(opts: {
   }
 }
 
-export function faqJsonLd(items: { question: string; answer: string }[]) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: items.map((it) => ({
-      '@type': 'Question',
-      name: it.question,
-      acceptedAnswer: { '@type': 'Answer', text: it.answer },
-    })),
-  }
-}
-
 export function breadcrumbJsonLd(items: { name: string; url: string }[]) {
   return {
     '@context': 'https://schema.org',

@@ -301,20 +301,6 @@ function SidebarList({
 
 // ── Doc chrome (CMDS-reference docs styling) ──
 
-/** Accent-soft pill above the doc title — e.g. "AI 생산성 · 일반". */
-function DocKicker({ parts }: { parts: ReactNode[] }) {
-  return (
-    <div className="inline-flex flex-wrap items-center rounded-md bg-primary/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-primary">
-      {parts.map((p, i) => (
-        <span key={i} className="inline-flex items-center">
-          {i > 0 && <span className="mx-1.5 opacity-40">·</span>}
-          {p}
-        </span>
-      ))}
-    </div>
-  )
-}
-
 /** Mono key/value frontmatter card under the doc header. */
 function MetaCard({ rows }: { rows: { label: string; value: ReactNode }[] }) {
   const visible = rows.filter((r) => r.value !== undefined && r.value !== null && r.value !== '')
@@ -377,6 +363,7 @@ function PostView({
       <JsonLd
         data={breadcrumbJsonLd([
           { name: '홈', url: SITE },
+          { name: '블로그', url: `${SITE}/blog` },
           { name: topicLabel(post.category), url: `${SITE}/browse` },
           { name: post.title, url },
         ])}
@@ -385,18 +372,13 @@ function PostView({
         {/* ── Main content (centered blog column) ── */}
         <article className="mx-auto w-full min-w-0 max-w-[72ch] lg:mx-0">
           <header className="mb-10 border-b border-border/60 pb-6">
-            <Breadcrumbs
-              items={[
-                { name: '홈', href: '/' },
-                { name: topicLabel(post.category), href: '/browse' },
-                { name: post.title },
-              ]}
-            />
-            <div className="mb-4 flex items-start justify-between gap-4">
-              <DocKicker
-                parts={[
-                  <Link key="cat" href="/browse" className="hover:opacity-70">{topicLabel(post.category)}</Link>,
-                  ...(post.subcategory ? [<span key="sub">{post.subcategory}</span>] : []),
+            <div className="flex items-start justify-between gap-4">
+              <Breadcrumbs
+                items={[
+                  { name: '홈', href: '/' },
+                  { name: '블로그', href: '/blog' },
+                  { name: topicLabel(post.category), href: '/browse' },
+                  { name: post.title },
                 ]}
               />
               <ShareButtons url={url} title={post.title} />
@@ -501,6 +483,7 @@ function SeriesView({ r }: { r: Extract<Resolved, { type: 'series' }> }) {
       <JsonLd
         data={breadcrumbJsonLd([
           { name: '홈', url: SITE },
+          { name: '시리즈', url: `${SITE}/series` },
           { name: topicLabel(s.category), url: `${SITE}/browse` },
           { name: s.title, url },
         ])}
@@ -534,18 +517,12 @@ function SeriesView({ r }: { r: Extract<Resolved, { type: 'series' }> }) {
               <Breadcrumbs
                 items={[
                   { name: '홈', href: '/' },
+                  { name: '시리즈', href: '/series' },
                   { name: topicLabel(s.category), href: '/browse' },
                   { name: s.title },
                 ]}
               />
-              <DocKicker
-                parts={[
-                  <Link key="cat" href="/browse" className="hover:opacity-70">{topicLabel(s.category)}</Link>,
-                  ...(s.subcategory ? [<span key="sub">{s.subcategory}</span>] : []),
-                  '시리즈',
-                ]}
-              />
-              <h1 className={`mt-4 ${DOC_TITLE_CLS}`}>{s.title}</h1>
+              <h1 className={`mt-2 ${DOC_TITLE_CLS}`}>{s.title}</h1>
               {s.description && (
                 <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{s.description}</p>
               )}
@@ -603,7 +580,7 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
       <JsonLd
         data={breadcrumbJsonLd([
           { name: '홈', url: SITE },
-          { name: topicLabel(r.series.category), url: `${SITE}/browse` },
+          { name: '시리즈', url: `${SITE}/series` },
           { name: r.series.title, url: `${SITE}/${r.series.slugAsParams}` },
           { name: r.chapter.title, url },
         ])}
@@ -634,19 +611,13 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
             </div>
 
             <header className="mb-10 border-b border-border/60 pb-6">
-              <Breadcrumbs
-                items={[
-                  { name: '홈', href: '/' },
-                  { name: topicLabel(r.series.category), href: '/browse' },
-                  { name: r.series.title, href: `/${r.series.slugAsParams}` },
-                  { name: r.chapter.title },
-                ]}
-              />
-              <div className="mb-4 flex items-start justify-between gap-4">
-                <DocKicker
-                  parts={[
-                    <Link key="cat" href="/browse" className="hover:opacity-70">{topicLabel(r.series.category)}</Link>,
-                    <Link key="series" href={`/${r.series.slugAsParams}`} className="hover:opacity-70">{r.series.title}</Link>,
+              <div className="flex items-start justify-between gap-4">
+                <Breadcrumbs
+                  items={[
+                    { name: '홈', href: '/' },
+                    { name: '시리즈', href: '/series' },
+                    { name: r.series.title, href: `/${r.series.slugAsParams}` },
+                    { name: r.chapter.title },
                   ]}
                 />
                 <ShareButtons url={url} title={r.chapter.title} />

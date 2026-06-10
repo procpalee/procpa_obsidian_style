@@ -5,9 +5,7 @@ import { ServicesGrid } from '@/components/home/services-grid'
 import { Section } from '@/components/home/section'
 import { GithubIcon, YoutubeIcon, NaverIcon } from '@/components/social-icons'
 import { contacts } from '@/lib/about-data'
-import { faqs } from '@/lib/faq-data'
 import { testimonials } from '@/lib/testimonials-data'
-import { JsonLd, faqJsonLd } from '@/components/json-ld'
 
 const ogTitle = encodeURIComponent('문의하기')
 const ogSubtitle = encodeURIComponent('한국공인회계사 이재현에게 연락하기')
@@ -112,27 +110,6 @@ export default function ContactPage() {
         </Section>
       )}
 
-      {/* 자주 묻는 질문 */}
-      <Section
-        id="faq"
-        kicker="FAQ"
-        title="자주 묻는 질문"
-        description="문의 전에 궁금한 점을 먼저 확인해 보세요."
-      >
-        <JsonLd data={faqJsonLd(faqs.map((f) => ({ question: f.question, answer: f.answer })))} />
-        <dl className="divide-y divide-border/60 border-t border-border/60">
-          {faqs.map((f) => (
-            <div key={f.question} className="grid gap-2 py-6 md:grid-cols-[1fr_2fr] md:gap-8">
-              <dt className="text-base font-semibold tracking-tight [word-break:keep-all]">
-                {f.question}
-              </dt>
-              <dd className="text-base leading-relaxed text-muted-foreground [word-break:keep-all]">
-                {f.answer}
-              </dd>
-            </div>
-          ))}
-        </dl>
-      </Section>
     </>
   )
 }
