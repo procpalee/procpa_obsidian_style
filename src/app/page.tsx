@@ -4,7 +4,6 @@ import { socials } from '@/components/social-icons'
 import { getLastPushDate } from '@/lib/last-updated'
 import { Reveal } from '@/components/reveal'
 import { Hero } from '@/components/home/hero'
-import { StatsStrip } from '@/components/home/stats-strip'
 import { AboutPreview } from '@/components/home/about-preview'
 import { SeriesHighlights } from '@/components/home/series-highlights'
 import { BlogHighlights } from '@/components/home/blog-highlights'
@@ -32,7 +31,6 @@ export default function HomePage() {
         })}
       />
       <Hero updated={lastUpdated} />
-      <StatsStrip />
       <Reveal>
         <AboutPreview />
       </Reveal>
