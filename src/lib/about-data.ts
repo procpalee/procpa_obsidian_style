@@ -1,8 +1,8 @@
 export const stats = [
   { value: '7+', label: 'Years Exp.' },
   { value: '10+', label: 'Certificates' },
-  { value: '2+', label: 'Publications' },
-  { value: '3+', label: 'Side Projects' },
+  { value: '3', label: 'Publications' },
+  { value: '6', label: 'Side Projects' },
 ]
 
 // 자문위원 — Career 타임라인에도 포함하되, 히어로 배너로도 강조한다.
