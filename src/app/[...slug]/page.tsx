@@ -517,7 +517,7 @@ function SeriesView({ r }: { r: Extract<Resolved, { type: 'series' }> }) {
               <Breadcrumbs
                 items={[
                   { name: '홈', href: '/' },
-                  { name: '시리즈', href: '/series' },
+                  { name: '시리즈', href: '/blog' },
                   { name: topicLabel(s.category), href: '/browse' },
                   { name: s.title },
                 ]}
@@ -615,7 +615,7 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
                 <Breadcrumbs
                   items={[
                     { name: '홈', href: '/' },
-                    { name: '시리즈', href: '/series' },
+                    { name: '시리즈', href: '/blog' },
                     { name: r.series.title, href: `/${r.series.slugAsParams}` },
                     { name: r.chapter.title },
                   ]}

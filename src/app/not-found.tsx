@@ -3,7 +3,7 @@ import Link from 'next/link'
 const links = [
   { href: '/', label: '홈' },
   { href: '/blog', label: '블로그' },
-  { href: '/series', label: '시리즈' },
+  { href: '/about', label: '소개' },
 ]
 
 export default function NotFound() {

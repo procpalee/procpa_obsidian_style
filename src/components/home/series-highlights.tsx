@@ -23,7 +23,7 @@ export function SeriesHighlights() {
       kicker="Series"
       title="한 권으로 읽는 시리즈"
       description="회계실무 및 AI 활용 가이드"
-      action={<SectionLink href="/series">시리즈 전체 보기 →</SectionLink>}
+      action={<SectionLink href="/blog">시리즈 전체 보기 →</SectionLink>}
     >
       <div className="grid gap-3 sm:grid-cols-2">
         {recentSeries.map((s) => {

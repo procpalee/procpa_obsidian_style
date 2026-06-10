@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { MessageSquare, ArrowRight } from 'lucide-react'
 
 export function CtaBlock() {
@@ -41,14 +40,6 @@ export function CtaBlock() {
               <ArrowRight className="h-4 w-4" />
             </a>
           </div>
-
-          <p className="mt-6 text-sm text-muted-foreground">
-            업무·컨설팅·강의 문의는{' '}
-            <Link href="/contact" className="font-medium text-primary underline-offset-4 hover:underline">
-              문의하기
-            </Link>
-            에서 확인하세요.
-          </p>
         </div>
       </div>
     </section>

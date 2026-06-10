@@ -1,10 +1,12 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { posts } from '#site/content'
+import { posts, series, chapters } from '#site/content'
 import { PageHero } from '@/components/page-hero'
 import { BlogFeed, type FeedPost } from '@/components/blog-feed'
+import { SeriesCard } from '@/components/content-card'
+import { topicLabel } from '@/lib/topics'
 
-const DESC = '회계·재무 실무와 AI 활용에 관한 단편 포스트.'
+const DESC = '회계·재무 실무와 AI 활용에 관한 시리즈와 단편 포스트를 한곳에서.'
 
 export const metadata: Metadata = {
   title: '블로그',
@@ -14,8 +16,30 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image', title: '블로그', description: DESC, images: ['/og-default.png'] },
 }
 
+const cleanLabel = (key: string) => topicLabel(key).replace(/^\d+\.\s*/, '')
+
 export default function BlogPage() {
-  const items: FeedPost[] = posts
+  const seriesItems = series
+    .filter((s) => !s.draft)
+    .sort(
+      (a, b) =>
+        (a.order ?? 0) - (b.order ?? 0) || +new Date(b.date ?? 0) - +new Date(a.date ?? 0),
+    )
+    .map((s) => {
+      const cc = chapters.filter((c) => !c.draft && c.series === s.slugAsParams)
+      const lastSynced = cc.map((c) => c.last_synced).filter(Boolean).sort().pop()
+      return {
+        title: s.title,
+        description: s.description,
+        url: `/${s.slugAsParams}`,
+        cover: s.cover,
+        category: cleanLabel(s.category),
+        chapterCount: cc.length || undefined,
+        lastUpdated: lastSynced ?? undefined,
+      }
+    })
+
+  const postItems: FeedPost[] = posts
     .filter((p) => !p.draft)
     .sort((a, b) => +new Date(b.date) - +new Date(a.date))
     .map((p) => ({
@@ -33,7 +57,7 @@ export default function BlogPage() {
       <PageHero
         en="Blog"
         ko="블로그"
-        description="회계·재무 실무 및 AI 활용에 대한 지식과 생각을 정리합니다."
+        description="한 권으로 읽는 시리즈와 단편 포스트를 한곳에서 모아 봅니다."
         action={
           <Link
             href="/browse"
@@ -44,8 +68,50 @@ export default function BlogPage() {
         }
       />
 
-      <div className="mt-14 sm:mt-16">
-        <BlogFeed items={items} />
+      <div className="mt-14 space-y-20 sm:mt-16">
+        {seriesItems.length > 0 && (
+          <section>
+            <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+              Series
+            </div>
+            <div className="mt-2 flex items-baseline gap-3">
+              <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">시리즈</h2>
+              <span className="font-mono text-xs text-muted-foreground/60">{seriesItems.length}</span>
+            </div>
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+              {seriesItems.map((s) => (
+                <SeriesCard
+                  key={s.url}
+                  title={s.title}
+                  description={s.description}
+                  url={s.url}
+                  cover={s.cover}
+                  category={s.category}
+                  chapterCount={s.chapterCount}
+                  lastUpdated={s.lastUpdated}
+                  variant="default"
+                />
+              ))}
+            </div>
+          </section>
+        )}
+
+        <section>
+          <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+            Posts
+          </div>
+          <div className="mt-2 flex items-baseline gap-3">
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">포스트</h2>
+            <span className="font-mono text-xs text-muted-foreground/60">{postItems.length}</span>
+          </div>
+          <div className="mt-8">
+            {postItems.length > 0 ? (
+              <BlogFeed items={postItems} />
+            ) : (
+              <p className="font-mono text-sm text-muted-foreground">아직 공개된 포스트가 없습니다.</p>
+            )}
+          </div>
+        </section>
       </div>
     </div>
   )
