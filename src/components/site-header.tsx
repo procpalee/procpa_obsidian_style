@@ -16,6 +16,7 @@ const nav = [
   { href: '/series', label: '시리즈' },
   { href: '/blog', label: '블로그' },
   { href: '/projects', label: '프로젝트' },
+  { href: '/downloads', label: '자료실' },
 ]
 
 export function SiteHeader() {

@@ -11,6 +11,7 @@ import { ShareButtons } from '@/components/share-buttons'
 import { MobileCollapsible } from '@/components/mobile-collapsible'
 import { BacklinksPanel } from '@/components/backlinks-panel'
 import { JsonLd, articleJsonLd, seriesJsonLd, breadcrumbJsonLd } from '@/components/json-ld'
+import { Breadcrumbs } from '@/components/breadcrumbs'
 import { ScrollArea } from '@/components/ui/scroll-area'
 
 const DEFAULT_OG = '/og-default.png'
@@ -384,6 +385,13 @@ function PostView({
         {/* ── Main content (centered blog column) ── */}
         <article className="mx-auto w-full min-w-0 max-w-[72ch] lg:mx-0">
           <header className="mb-10 border-b border-border/60 pb-6">
+            <Breadcrumbs
+              items={[
+                { name: '홈', href: '/' },
+                { name: topicLabel(post.category), href: '/browse' },
+                { name: post.title },
+              ]}
+            />
             <div className="mb-4 flex items-start justify-between gap-4">
               <DocKicker
                 parts={[
@@ -523,6 +531,13 @@ function SeriesView({ r }: { r: Extract<Resolved, { type: 'series' }> }) {
             </div>
 
             <header className="mb-10 border-b border-border/60 pb-6">
+              <Breadcrumbs
+                items={[
+                  { name: '홈', href: '/' },
+                  { name: topicLabel(s.category), href: '/browse' },
+                  { name: s.title },
+                ]}
+              />
               <DocKicker
                 parts={[
                   <Link key="cat" href="/browse" className="hover:opacity-70">{topicLabel(s.category)}</Link>,
@@ -619,6 +634,14 @@ function ChapterView({ r }: { r: Extract<Resolved, { type: 'chapter' }> }) {
             </div>
 
             <header className="mb-10 border-b border-border/60 pb-6">
+              <Breadcrumbs
+                items={[
+                  { name: '홈', href: '/' },
+                  { name: topicLabel(r.series.category), href: '/browse' },
+                  { name: r.series.title, href: `/${r.series.slugAsParams}` },
+                  { name: r.chapter.title },
+                ]}
+              />
               <div className="mb-4 flex items-start justify-between gap-4">
                 <DocKicker
                   parts={[
