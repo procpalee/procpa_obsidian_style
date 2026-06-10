@@ -4,9 +4,11 @@ import { socials } from '@/components/social-icons'
 import { getLastPushDate } from '@/lib/last-updated'
 import { Reveal } from '@/components/reveal'
 import { Hero } from '@/components/home/hero'
+import { StatsStrip } from '@/components/home/stats-strip'
 import { AboutPreview } from '@/components/home/about-preview'
 import { SeriesHighlights } from '@/components/home/series-highlights'
 import { BlogHighlights } from '@/components/home/blog-highlights'
+import { FeaturedWork } from '@/components/home/featured-work'
 import { ProjectsGrid } from '@/components/home/projects-grid'
 import { FollowBand } from '@/components/home/follow-band'
 import { CtaBlock } from '@/components/home/cta-block'
@@ -31,6 +33,7 @@ export default function HomePage() {
         })}
       />
       <Hero updated={lastUpdated} />
+      <StatsStrip />
       <Reveal>
         <AboutPreview />
       </Reveal>
@@ -39,6 +42,9 @@ export default function HomePage() {
       </Reveal>
       <Reveal>
         <BlogHighlights />
+      </Reveal>
+      <Reveal>
+        <FeaturedWork />
       </Reveal>
       <Reveal>
         <ProjectsGrid limit={3} />

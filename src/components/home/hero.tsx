@@ -71,6 +71,22 @@ export function Hero({ updated }: { updated?: string }) {
             연락하기
           </Link>
         </div>
+
+        {/* expertise strip — adds structure + impact under the fold line */}
+        <div
+          className={cn(
+            'mt-12 flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-border/60 pt-6 font-mono text-xs uppercase tracking-widest text-muted-foreground',
+            reveal()
+          )}
+          style={delay(4)}
+        >
+          {['회계감사', '내부회계', '기업가치평가', '원가분석', 'AI 자동화'].map((k, i) => (
+            <span key={k} className="inline-flex items-center gap-3">
+              {i > 0 && <span className="opacity-30">/</span>}
+              {k}
+            </span>
+          ))}
+        </div>
       </div>
     </section>
   )
