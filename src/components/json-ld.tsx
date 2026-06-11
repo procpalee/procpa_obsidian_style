@@ -124,6 +124,42 @@ export function personJsonLd(opts: {
   }
 }
 
+export function serviceJsonLd(opts: {
+  name: string
+  description: string
+  url: string
+  serviceType?: string
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: opts.name,
+    description: opts.description,
+    url: opts.url,
+    ...(opts.serviceType ? { serviceType: opts.serviceType } : {}),
+    provider: {
+      '@type': 'Person',
+      name: '이재현',
+      url: `${SITE}/about`,
+      jobTitle: '한국공인회계사',
+    },
+    areaServed: { '@type': 'Country', name: 'KR' },
+    inLanguage: 'ko-KR',
+  }
+}
+
+export function faqJsonLd(items: { q: string; a: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map((it) => ({
+      '@type': 'Question',
+      name: it.q,
+      acceptedAnswer: { '@type': 'Answer', text: it.a },
+    })),
+  }
+}
+
 export function breadcrumbJsonLd(items: { name: string; url: string }[]) {
   return {
     '@context': 'https://schema.org',

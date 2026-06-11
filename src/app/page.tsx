@@ -5,6 +5,7 @@ import { getLastPushDate } from '@/lib/last-updated'
 import { Reveal } from '@/components/reveal'
 import { Hero } from '@/components/home/hero'
 import { AboutPreview } from '@/components/home/about-preview'
+import { ServicesTeaser } from '@/components/home/services-teaser'
 import { SeriesHighlights } from '@/components/home/series-highlights'
 import { BlogHighlights } from '@/components/home/blog-highlights'
 import { ProjectsGrid } from '@/components/home/projects-grid'
@@ -33,6 +34,9 @@ export default function HomePage() {
       <Hero updated={lastUpdated} />
       <Reveal>
         <AboutPreview />
+      </Reveal>
+      <Reveal>
+        <ServicesTeaser />
       </Reveal>
       <Reveal>
         <SeriesHighlights />

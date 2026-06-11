@@ -1,10 +1,12 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { ArrowUpRight, Mail, MessageCircle } from 'lucide-react'
 import { PageHero } from '@/components/page-hero'
-import { ServicesGrid } from '@/components/home/services-grid'
 import { Section } from '@/components/home/section'
+import { InquirySection } from '@/components/inquiry-section'
 import { GithubIcon, YoutubeIcon, NaverIcon } from '@/components/social-icons'
 import { contacts } from '@/lib/about-data'
+import { serviceAreas } from '@/lib/services-data'
 import { testimonials } from '@/lib/testimonials-data'
 
 const ogTitle = encodeURIComponent('문의하기')
@@ -38,7 +40,13 @@ const iconFor: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>
   GitHub: GithubIcon,
 }
 
-export default function ContactPage() {
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ service?: string }>
+}) {
+  const { service } = await searchParams
+
   return (
     <>
       <div className="mx-auto max-w-[1440px] px-6 py-14 sm:py-20">
@@ -49,8 +57,39 @@ export default function ContactPage() {
         />
       </div>
 
-      {/* 업무 소개 (홈에서 이관) */}
-      <ServicesGrid />
+      {/* 문의 폼 (호스팅 폼 임베드) */}
+      <InquirySection service={service} />
+
+      {/* 서비스 바로가기 */}
+      <Section
+        id="services"
+        kicker="Services"
+        title="서비스 둘러보기"
+        description="필요한 실무 영역을 선택해 자세한 진행 과정과 FAQ를 확인하세요."
+        action={
+          <Link
+            href="/services"
+            className="inline-flex items-center rounded-full border border-border px-4 py-2 font-mono text-xs text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground"
+          >
+            서비스 전체 보기 →
+          </Link>
+        }
+      >
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {serviceAreas.map((s) => (
+            <Link
+              key={s.slug}
+              href={`/services/${s.slug}`}
+              className="group flex flex-col rounded-2xl border border-border/60 p-5 transition-all hover:-translate-y-0.5 hover:border-foreground/40 hover:shadow-sm"
+            >
+              <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">{s.en}</p>
+              <h3 className="mt-2 text-lg font-semibold tracking-tight group-hover:text-primary [word-break:keep-all]">
+                {s.title}
+              </h3>
+            </Link>
+          ))}
+        </div>
+      </Section>
 
       {/* 연락 채널 */}
       <Section
@@ -109,7 +148,6 @@ export default function ContactPage() {
           </div>
         </Section>
       )}
-
     </>
   )
 }

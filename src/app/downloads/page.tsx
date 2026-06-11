@@ -34,6 +34,14 @@ export default function DownloadsPage() {
           en="Downloads"
           ko="자료실"
           description="회계·재무 실무에 바로 쓰는 템플릿과 자료를 내려받을 수 있습니다."
+          action={
+            <Link
+              href="/products"
+              className="inline-flex items-center rounded-full border border-border px-4 py-2 font-mono text-xs text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground"
+            >
+              템플릿·제품 보기 →
+            </Link>
+          }
         />
       </div>
 

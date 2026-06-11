@@ -1,5 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { posts, series, chapters } from '#site/content'
+import { serviceAreas } from '@/lib/services-data'
+import { products } from '@/lib/products-data'
 
 const SITE = 'https://procpa.co.kr'
 
@@ -14,6 +16,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticUrls: MetadataRoute.Sitemap = [
     '',
     '/about',
+    '/services',
+    '/ax',
+    '/products',
     '/blog',
     '/browse',
     '/projects',
@@ -61,5 +66,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
   }))
 
-  return [...staticUrls, ...postUrls, ...seriesUrls, ...chapterUrls, ...tagUrls]
+  const serviceUrls: MetadataRoute.Sitemap = serviceAreas.map((s) => ({
+    url: `${SITE}/services/${s.slug}`,
+    lastModified: new Date(),
+  }))
+
+  const productUrls: MetadataRoute.Sitemap = products.map((p) => ({
+    url: `${SITE}/products/${p.slug}`,
+    lastModified: new Date(),
+  }))
+
+  return [
+    ...staticUrls,
+    ...serviceUrls,
+    ...productUrls,
+    ...postUrls,
+    ...seriesUrls,
+    ...chapterUrls,
+    ...tagUrls,
+  ]
 }
