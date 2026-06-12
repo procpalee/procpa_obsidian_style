@@ -1,19 +1,29 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Mail, MessageCircle } from 'lucide-react'
+import { series } from '#site/content'
 import {
   advisory,
   career,
   certificates,
   education,
   expertise,
-  publications,
-  sideProjects,
   stats,
   contacts,
 } from '@/lib/about-data'
+import { projects } from '@/lib/projects-data'
 import { JsonLd, personJsonLd } from '@/components/json-ld'
 import { PageHero } from '@/components/page-hero'
+
+// 저서 = 시리즈 컬렉션(한 권으로 읽는 시리즈), 사이드 프로젝트 = projects-data 단일 출처.
+const publications = series
+  .filter((s) => !s.draft)
+  .sort((a, b) => (a.order ?? 0) - (b.order ?? 0) || +new Date(b.date ?? 0) - +new Date(a.date ?? 0))
+  .map((s) => ({
+    title: s.title,
+    description: s.description,
+    href: `/${s.slugAsParams}`,
+  }))
 
 export const metadata: Metadata = {
   title: '소개',
@@ -25,6 +35,10 @@ export const metadata: Metadata = {
       width: 1200,
       height: 630,
     }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: ['/api/og?kicker=PROCPA&title=%EC%86%8C%EA%B0%9C&subtitle=%ED%95%9C%EA%B5%AD%EA%B3%B5%EC%9D%B8%ED%9A%8C%EA%B3%84%EC%82%AC%20%EC%9D%B4%EC%9E%AC%ED%98%84'],
   },
 }
 
@@ -245,18 +259,16 @@ export default function AboutPage() {
       </Section>
 
       <Section label="Publications" title="저서">
-        <div className="grid gap-5 sm:grid-cols-2">
+        <div className="grid gap-5 sm:grid-cols-3">
           {publications.map((p) => (
-            <a
+            <Link
               key={p.title}
               href={p.href}
-              target="_blank"
-              rel="noreferrer"
               className="group rounded-2xl border border-border/60 p-6 transition-all hover:-translate-y-0.5 hover:border-foreground/40"
             >
               <h3 className="text-lg font-medium group-hover:text-primary">{p.title}</h3>
               <p className="mt-2 text-base leading-6 text-muted-foreground">{p.description}</p>
-            </a>
+            </Link>
           ))}
         </div>
       </Section>
@@ -271,28 +283,32 @@ export default function AboutPage() {
           </Link>
         </div>
         <div className="grid gap-5 sm:grid-cols-3">
-          {sideProjects.map((p) => (
-            <a
-              key={p.title}
-              href={p.href}
-              target={p.href.startsWith('http') ? '_blank' : undefined}
-              rel={p.href.startsWith('http') ? 'noreferrer' : undefined}
-              className="group rounded-2xl border border-border/60 p-6 transition-all hover:-translate-y-0.5 hover:border-foreground/40"
-            >
-              <h3 className="text-lg font-medium group-hover:text-primary">{p.title}</h3>
-              <p className="mt-2 text-base leading-6 text-muted-foreground">{p.description}</p>
-              <div className="mt-4 flex flex-wrap gap-1.5">
-                {p.stack.map((t) => (
-                  <span
-                    key={t}
-                    className="rounded-full border border-border/60 px-2 py-0.5 font-mono text-[10px] text-muted-foreground"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </a>
-          ))}
+          {projects.map((p) => {
+            const href = p.liveUrl ?? p.repoUrl ?? '/projects'
+            const external = href.startsWith('http')
+            return (
+              <a
+                key={p.key}
+                href={href}
+                target={external ? '_blank' : undefined}
+                rel={external ? 'noreferrer' : undefined}
+                className="group rounded-2xl border border-border/60 p-6 transition-all hover:-translate-y-0.5 hover:border-foreground/40"
+              >
+                <h3 className="text-lg font-medium group-hover:text-primary">{p.name}</h3>
+                <p className="mt-2 text-base leading-6 text-muted-foreground">{p.tagline}</p>
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  {p.stack.map((t) => (
+                    <span
+                      key={t}
+                      className="rounded-full border border-border/60 px-2 py-0.5 font-mono text-[10px] text-muted-foreground"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </a>
+            )
+          })}
         </div>
       </Section>
 

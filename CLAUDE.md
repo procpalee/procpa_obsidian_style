@@ -59,6 +59,8 @@ Critical routing rules specific to this repo:
 - **Theme**: pure-black dark (`oklch(0 0 0)`) + blue primary. Dark is default. There is **no next-themes** — React 19 warns about scripts rendered inside components, so the pre-hydration theme script lives in `src/lib/theme-script.ts` and is injected directly into `<head>` via `dangerouslySetInnerHTML`. `src/components/theme-toggle.tsx` toggles the `dark` class on `<html>` and writes `localStorage('theme')` manually.
 - **Layout width**: header, footer inner, home, and all other pages — including the docs reading shell (series/chapter in `[...slug]`, sidebar `17rem` + content `72ch` + TOC `15rem`) — share one container: `mx-auto max-w-[1440px] px-6`. Keep them in sync (same max-width and `px-6` gutter) so the site's left/right edges line up.
 - **Tone rule**: no gradients, no glassmorphism, no emojis in UI. Hierarchy comes from typography, monospace labels, and hairline dividers (`border-border/60`). Korean text gets `word-break: keep-all` globally (set on `<body>` in the layout).
+- **Border canon**: structural/decorative dividers and card outlines (`border-t/b/l/r`, `divide-*`) use the hairline `border-border/60`. Interactive controls (shadcn `button` outline variant, `badge`, inputs, and CTA links styled as buttons) keep full-opacity `border-border` for affordance — this is the one allowed exception.
+- **Color exception**: the palette is zinc + blue `primary`; decorative palette colors are banned. The exception is *functional* semantic color — Obsidian-style callout types (`src/components/mdx/callout.tsx`) and project status dots (`src/components/project-card.tsx`) may use blue/emerald/amber/red/violet/sky to convey meaning. Verify legibility in both light and dark modes.
 
 ## Home page
 

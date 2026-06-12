@@ -3,6 +3,46 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
+import { stats } from '@/lib/about-data'
+
+/** 히어로가 드러난 뒤(run) 한 번 카운트업. reduced-motion이면 즉시 표시. */
+function useCountUp(target: number, run: boolean, ms = 1000) {
+  const [n, setN] = useState(0)
+  useEffect(() => {
+    if (!run) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const raf = requestAnimationFrame(() => setN(target))
+      return () => cancelAnimationFrame(raf)
+    }
+    let raf = 0
+    const start = performance.now()
+    const tick = (t: number) => {
+      const p = Math.min(1, (t - start) / ms)
+      setN(Math.round(target * (1 - Math.pow(1 - p, 3))))
+      if (p < 1) raf = requestAnimationFrame(tick)
+    }
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [run, target, ms])
+  return n
+}
+
+function Stat({ value, label, run }: { value: string; label: string; run: boolean }) {
+  const target = parseInt(value, 10) || 0
+  const suffix = value.replace(/\d/g, '')
+  const n = useCountUp(target, run)
+  return (
+    <div className="flex flex-col">
+      <span className="text-3xl font-bold tracking-tight tabular-nums sm:text-4xl">
+        {n}
+        {suffix}
+      </span>
+      <span className="mt-1.5 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+        {label}
+      </span>
+    </div>
+  )
+}
 
 export function Hero({ updated }: { updated?: string }) {
   const [on, setOn] = useState(false)
@@ -62,7 +102,7 @@ export function Hero({ updated }: { updated?: string }) {
             href="/#follow"
             className="rounded-full bg-primary px-6 py-3 text-base font-semibold text-primary-foreground transition-opacity hover:opacity-90"
           >
-            커뮤니티
+            함께하기
           </Link>
           <Link
             href="/contact"
@@ -70,6 +110,19 @@ export function Hero({ updated }: { updated?: string }) {
           >
             연락하기
           </Link>
+        </div>
+
+        {/* stats — 히어로에 통합, 카운트업 */}
+        <div
+          className={cn(
+            'mt-14 grid max-w-3xl grid-cols-2 gap-8 border-t border-border/60 pt-8 sm:grid-cols-4',
+            reveal()
+          )}
+          style={delay(4)}
+        >
+          {stats.map((s) => (
+            <Stat key={s.label} value={s.value} label={s.label} run={on} />
+          ))}
         </div>
       </div>
     </section>

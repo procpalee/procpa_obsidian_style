@@ -18,7 +18,7 @@ export function GET() {
     .sort((a, b) => +new Date(b.date) - +new Date(a.date))
 
   const lastBuildDate = sorted.length
-    ? new Date(sorted[0].date).toUTCString()
+    ? new Date(sorted[0].updated ?? sorted[0].date).toUTCString()
     : new Date().toUTCString()
 
   const items = sorted
@@ -28,18 +28,22 @@ export function GET() {
     <item>
       <title>${escape(p.title)}</title>
       <link>${SITE}/${p.slugAsParams}</link>
-      <guid>${SITE}/${p.slugAsParams}</guid>
+      <guid isPermaLink="true">${SITE}/${p.slugAsParams}</guid>
       <pubDate>${new Date(p.date).toUTCString()}</pubDate>
-      <description>${escape(p.description)}</description>
+      <dc:creator>이재현</dc:creator>
+      <description>${escape(p.description)}</description>${p.tags
+        .map((t) => `\n      <category>${escape(t)}</category>`)
+        .join('')}
     </item>`,
     )
     .join('')
 
   const xml = `<?xml version="1.0" encoding="UTF-8" ?>
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
     <title>PROCPA</title>
     <link>${SITE}</link>
+    <atom:link href="${SITE}/rss.xml" rel="self" type="application/rss+xml" />
     <description>회계사의 기록</description>
     <language>ko</language>
     <lastBuildDate>${lastBuildDate}</lastBuildDate>

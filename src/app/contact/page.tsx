@@ -5,6 +5,7 @@ import { ServicesGrid } from '@/components/home/services-grid'
 import { Section } from '@/components/home/section'
 import { GithubIcon, YoutubeIcon, NaverIcon } from '@/components/social-icons'
 import { contacts } from '@/lib/about-data'
+import { testimonials } from '@/lib/testimonials-data'
 
 const ogTitle = encodeURIComponent('문의하기')
 const ogSubtitle = encodeURIComponent('한국공인회계사 이재현에게 연락하기')
@@ -22,6 +23,10 @@ export const metadata: Metadata = {
         height: 630,
       },
     ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: [`/api/og?kicker=PROCPA&title=${ogTitle}&subtitle=${ogSubtitle}`],
   },
 }
 
@@ -81,6 +86,30 @@ export default function ContactPage() {
           })}
         </div>
       </Section>
+
+      {/* 후기 — 데이터가 있을 때만 렌더 */}
+      {testimonials.length > 0 && (
+        <Section id="testimonials" kicker="Testimonials" title="이런 평가를 받았습니다">
+          <div className="grid gap-3 sm:grid-cols-2">
+            {testimonials.map((t) => (
+              <figure
+                key={t.quote}
+                className="flex flex-col rounded-xl border border-border/60 p-6"
+              >
+                <blockquote className="text-base leading-relaxed text-foreground [word-break:keep-all]">
+                  “{t.quote}”
+                </blockquote>
+                <figcaption className="mt-4 border-t border-border/60 pt-4 text-sm text-muted-foreground">
+                  <span className="font-semibold text-foreground">{t.author}</span>
+                  {t.role && <span> · {t.role}</span>}
+                  {t.context && <p className="mt-1 font-mono text-[13px]">{t.context}</p>}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </Section>
+      )}
+
     </>
   )
 }
