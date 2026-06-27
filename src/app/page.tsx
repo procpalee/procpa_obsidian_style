@@ -6,11 +6,11 @@ import { Hero } from '@/components/home/hero'
 import { Approach } from '@/components/home/approach'
 import { ServicesTeaser } from '@/components/home/services-teaser'
 import { CtaBlock } from '@/components/home/cta-block'
+import { content } from '@/lib/site-content'
 
 export const metadata: Metadata = {
-  title: 'PROCPA — 이재현',
-  description:
-    '한국공인회계사 이재현. 회계·재무 전문성에 AI의 생산성을 더합니다. AX 컨설팅·강의·협업 문의를 받습니다.',
+  title: content.meta.home.title,
+  description: content.meta.home.description,
 }
 
 export default function HomePage() {

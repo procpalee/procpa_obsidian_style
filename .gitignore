@@ -40,6 +40,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-.vercel
-.env*.local
-.velite/chapters.json
+# 콘텐츠는 외부(위키독스·네이버)로 이전 — 로컬 보관, 저장소엔 미추적
+/content

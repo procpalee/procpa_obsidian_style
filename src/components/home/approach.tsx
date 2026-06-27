@@ -1,32 +1,16 @@
 import { ShieldCheck, Sparkles, Hammer } from 'lucide-react'
 import { Section } from '@/components/home/section'
+import { content } from '@/lib/site-content'
 
-const points = [
-  {
-    icon: ShieldCheck,
-    title: '회계 실무의 깊이',
-    desc: '감사·내부회계관리제도·가치평가·원가까지, 상장·비상장 현장에서 In-charge로 쌓은 실무 전문성.',
-  },
-  {
-    icon: Sparkles,
-    title: 'AI로 끌어올린 생산성',
-    desc: '실무에 바로 쓰는 AI 워크플로우를 설계해 반복은 자동화하고 판단에 집중합니다.',
-  },
-  {
-    icon: Hammer,
-    title: '직접 만드는 실행력',
-    desc: '필요한 도구·MCP 서버를 직접 개발·배포합니다. 말이 아니라 결과물로 증명합니다.',
-  },
-]
+const t = content.home.approach
+// 아이콘은 코드에서, 문구는 site-content.ts(home.approach.points)에서 — 순서대로 매칭.
+const icons = [ShieldCheck, Sparkles, Hammer]
+const points = t.points.map((p, i) => ({ ...p, icon: icons[i] ?? ShieldCheck }))
 
 /** 강점 — 왜 나인가. 회계 깊이 + AI 생산성 + 실행력. (설득형, 메뉴 페이지와 중복 없음) */
 export function Approach() {
   return (
-    <Section
-      kicker="Approach"
-      title="회계 전문성과 AI, 그리고 실행력"
-      description="깊이 있는 회계 실무 위에 AI 생산성과 직접 만드는 실행력을 더합니다."
-    >
+    <Section kicker={t.kicker} title={t.title} description={t.description}>
       <div className="grid gap-4 sm:grid-cols-3">
         {points.map((p) => {
           const Icon = p.icon

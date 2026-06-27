@@ -2,15 +2,14 @@ import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { Section } from '@/components/home/section'
 import { services } from '@/lib/services-data'
+import { content } from '@/lib/site-content'
+
+const t = content.home.services
 
 /** 하는 일 — 서비스 4종 컴팩트 티저(상세는 /contact). 홈에서 "무엇을 하는지" 한눈에. */
 export function ServicesTeaser() {
   return (
-    <Section
-      kicker="What I do"
-      title="이런 일을 함께합니다"
-      description="회계 도메인 전문성과 AI 활용 역량으로 까다로운 실무 과제를 함께 풀어드립니다."
-    >
+    <Section kicker={t.kicker} title={t.title} description={t.description}>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {services.map((s) => (
           <Link

@@ -7,13 +7,9 @@ import { Menu } from 'lucide-react'
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { socials } from '@/components/social-icons'
+import { content } from '@/lib/site-content'
 
-const nav = [
-  { href: '/', label: '홈' },
-  { href: '/about', label: '소개' },
-  { href: '/portfolio', label: '포트폴리오' },
-  { href: '/contact', label: '문의' },
-]
+const nav = content.nav.header
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false)
@@ -57,13 +53,13 @@ export function SiteHeader() {
           <ThemeToggle />
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger
-              aria-label="메뉴 열기"
+              aria-label={content.nav.menuOpen}
               className="-mr-2 inline-flex h-8 w-8 items-center justify-center rounded-md transition-colors hover:bg-accent hover:text-foreground"
             >
               <Menu className="h-4 w-4" />
             </SheetTrigger>
             <SheetContent side="right" className="w-[280px] overflow-y-auto p-0">
-              <SheetTitle className="sr-only">메뉴</SheetTitle>
+              <SheetTitle className="sr-only">{content.nav.menuTitle}</SheetTitle>
               <nav className="flex flex-col px-6 py-6">
                 {nav.map((item) => (
                   <Link

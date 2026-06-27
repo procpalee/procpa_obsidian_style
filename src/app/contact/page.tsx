@@ -6,14 +6,15 @@ import { ContactForm } from '@/components/contact-form'
 import { GithubIcon, YoutubeIcon, NaverIcon } from '@/components/social-icons'
 import { contacts } from '@/lib/about-data'
 import { testimonials } from '@/lib/testimonials-data'
+import { content } from '@/lib/site-content'
 
-const ogTitle = encodeURIComponent('문의하기')
-const ogSubtitle = encodeURIComponent('한국공인회계사 이재현에게 연락하기')
+const t = content.contact
+const ogTitle = encodeURIComponent(content.meta.contact.title)
+const ogSubtitle = encodeURIComponent(content.meta.contact.ogSubtitle)
 
 export const metadata: Metadata = {
-  title: '문의하기',
-  description:
-    '회계·재무 자문, AI 도입 컨설팅, 강의·집필, 협업 제안 — 어떤 주제든 편하게 연락주세요.',
+  title: content.meta.contact.title,
+  description: content.meta.contact.description,
   alternates: { canonical: '/contact' },
   openGraph: {
     images: [
@@ -42,30 +43,16 @@ export default function ContactPage() {
   return (
     <>
       <div className="mx-auto max-w-[1440px] px-6 py-14 sm:py-20">
-        <PageHero
-          en="Contact"
-          ko="문의하기"
-          description="회계·재무 자문부터 AX 컨설팅, 강의·집필, 협업 제안까지 — 어떤 주제든 편하게 연락주세요."
-        />
+        <PageHero en={t.hero.en} ko={t.hero.ko} description={t.hero.description} />
       </div>
 
       {/* 업무 문의 폼 (주 섹션) */}
-      <Section
-        id="inquiry"
-        kicker="Inquiry"
-        title="업무 문의"
-        description="아래 양식으로 보내주시면 이메일로 전달됩니다. 영업일 기준 1~2일 내 회신드립니다."
-      >
+      <Section id="inquiry" kicker={t.inquiry.kicker} title={t.inquiry.title} description={t.inquiry.description}>
         <ContactForm />
       </Section>
 
       {/* 연락 채널 */}
-      <Section
-        id="channels"
-        kicker="Channels"
-        title="연락 채널"
-        description="이메일·카카오톡이 가장 빠릅니다. 블로그·유튜브·깃허브에서도 만나보실 수 있습니다."
-      >
+      <Section id="channels" kicker={t.channels.kicker} title={t.channels.title} description={t.channels.description}>
         <div className="grid gap-3 sm:grid-cols-2">
           {contacts.map((c) => {
             const Icon = iconFor[c.label] ?? Mail
@@ -96,7 +83,7 @@ export default function ContactPage() {
 
       {/* 후기 — 데이터가 있을 때만 렌더 */}
       {testimonials.length > 0 && (
-        <Section id="testimonials" kicker="Testimonials" title="이런 평가를 받았습니다">
+        <Section id="testimonials" kicker="Testimonials" title={t.testimonials.title}>
           <div className="grid gap-3 sm:grid-cols-2">
             {testimonials.map((t) => (
               <figure

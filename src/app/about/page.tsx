@@ -10,10 +10,13 @@ import {
 } from '@/lib/about-data'
 import { JsonLd, personJsonLd } from '@/components/json-ld'
 import { PageHero } from '@/components/page-hero'
+import { content } from '@/lib/site-content'
+
+const t = content.about
 
 export const metadata: Metadata = {
-  title: '소개',
-  description: '한국공인회계사 이재현 — 회계·재무 전문성과 AI의 생산성을 모두 갖춘 전문가.',
+  title: content.meta.about.title,
+  description: content.meta.about.description,
   alternates: { canonical: '/about' },
   openGraph: {
     images: [{
@@ -81,17 +84,20 @@ export default function AboutPage() {
       <section>
         <div className="mx-auto max-w-[1440px] px-6 py-14 sm:py-20">
           <PageHero
-            en="About"
+            en={t.hero.en}
             ko={
               <>
-                한국공인회계사 <span className="text-primary">이재현</span>입니다.
+                {t.hero.koPre}
+                <span className="text-primary">{t.hero.koName}</span>
+                {t.hero.koPost}
               </>
             }
             description={
               <>
-                <span className="text-foreground">회계·재무 전문성</span>과{' '}
-                <span className="text-foreground">AI의 생산성</span>을 모두 갖춘 새로운 시대의
-                전문가를 지향합니다.
+                <span className="text-foreground">{t.hero.hi1}</span>
+                {t.hero.mid}
+                <span className="text-foreground">{t.hero.hi2}</span>
+                {t.hero.descTail}
               </>
             }
           />
@@ -127,18 +133,18 @@ export default function AboutPage() {
         <div className="mx-auto grid max-w-[1440px] grid-cols-12 gap-y-12 lg:gap-6 px-6 py-20">
           <div className="col-span-12 lg:col-span-6">
             <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-              Career
+              {t.sections.career.en}
             </div>
-            <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">경력</h2>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">{t.sections.career.ko}</h2>
             <div className="mt-8">
               <Timeline items={career} />
             </div>
           </div>
           <div className="col-span-12 border-t border-border/60 pt-20 lg:col-span-6 lg:border-0 lg:pt-0">
             <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-              Education
+              {t.sections.education.en}
             </div>
-            <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">학력</h2>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">{t.sections.education.ko}</h2>
             <div className="mt-8">
               <Timeline items={education} />
             </div>
@@ -146,7 +152,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Section label="Expertise" title="전문 분야">
+      <Section label={t.sections.expertise.en} title={t.sections.expertise.ko}>
         <div className="grid gap-4 sm:grid-cols-2">
           {expertise.map((e) => (
             <div key={e.title} className="rounded-2xl border border-border/60 p-6 transition-all hover:-translate-y-0.5 hover:border-foreground/40">
@@ -164,7 +170,7 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section label="Certificates" title="자격증">
+      <Section label={t.sections.certificates.en} title={t.sections.certificates.ko}>
         <div className="grid gap-4 sm:grid-cols-3">
           {certificates.map((c) => (
             <div key={c.group} className="rounded-2xl border border-border/60 p-6 transition-all hover:-translate-y-0.5 hover:border-foreground/40">

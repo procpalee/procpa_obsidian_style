@@ -8,15 +8,17 @@ import { projects } from '@/lib/projects-data'
 import { publications } from '@/lib/publications-data'
 import { lectures } from '@/lib/lectures-data'
 import { press } from '@/lib/press-data'
+import { content } from '@/lib/site-content'
 
-const DESC = '직접 집필한 도서, 강의, 개발한 도구·MCP 서버, 그리고 활동까지 — 그동안의 작업을 한곳에 모았습니다.'
+const t = content.portfolio
+const DESC = content.meta.portfolio.description
 
 export const metadata: Metadata = {
-  title: '포트폴리오',
+  title: content.meta.portfolio.title,
   description: DESC,
   alternates: { canonical: '/portfolio' },
-  openGraph: { title: '포트폴리오', description: DESC, url: '/portfolio', images: ['/og-default.png'] },
-  twitter: { card: 'summary_large_image', title: '포트폴리오', description: DESC, images: ['/og-default.png'] },
+  openGraph: { title: content.meta.portfolio.title, description: DESC, url: '/portfolio', images: ['/og-default.png'] },
+  twitter: { card: 'summary_large_image', title: content.meta.portfolio.title, description: DESC, images: ['/og-default.png'] },
 }
 
 function EmptyNote({ children }: { children: React.ReactNode }) {
@@ -32,15 +34,11 @@ export default function PortfolioPage() {
   return (
     <>
       <div className="mx-auto max-w-[1440px] px-6 py-14 sm:py-20">
-        <PageHero en="Works" ko="포트폴리오" description={DESC} />
+        <PageHero en={t.hero.en} ko={t.hero.ko} description={DESC} />
       </div>
 
       {/* 도서 */}
-      <Section
-        kicker="Books"
-        title="도서"
-        description="실무에서 쌓은 노하우와 AI 활용 인사이트를 가이드북으로 정리해 공유합니다."
-      >
+      <Section kicker={t.books.kicker} title={t.books.title} description={t.books.description}>
         <div className="grid gap-4 sm:grid-cols-2">
           {publications.map((p) => (
             <a
@@ -82,7 +80,7 @@ export default function PortfolioPage() {
                 <div className="mt-4 flex items-center justify-between border-t border-border/60 pt-3 text-sm">
                   <span className="font-mono text-xs text-muted-foreground">{p.year}</span>
                   <span className="inline-flex items-center gap-1 font-medium text-primary transition-opacity group-hover:opacity-80">
-                    읽기 <ArrowUpRight className="h-3.5 w-3.5" />
+                    {t.readMore} <ArrowUpRight className="h-3.5 w-3.5" />
                   </span>
                 </div>
               </div>
@@ -92,11 +90,7 @@ export default function PortfolioPage() {
       </Section>
 
       {/* 강의 */}
-      <Section
-        kicker="Lectures"
-        title="강의"
-        description="회계·AI 실무 강의와 워크숍을 진행합니다."
-      >
+      <Section kicker={t.lectures.kicker} title={t.lectures.title} description={t.lectures.description}>
         {lectures.length > 0 ? (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {lectures.map((l) => {
@@ -125,16 +119,12 @@ export default function PortfolioPage() {
             })}
           </div>
         ) : (
-          <EmptyNote>강의·워크숍 이력을 준비 중입니다. 곧 업데이트됩니다.</EmptyNote>
+          <EmptyNote>{t.lectures.empty}</EmptyNote>
         )}
       </Section>
 
       {/* 프로젝트 */}
-      <Section
-        kicker="Projects"
-        title="프로젝트"
-        description="실무에서 마주친 불편함을 코드로 풀어, 웹과 MCP 서버로 배포해 운영합니다."
-      >
+      <Section kicker={t.projects.kicker} title={t.projects.title} description={t.projects.description}>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((p) => (
             <ProjectCard key={p.key} project={p} detailed />
@@ -143,11 +133,7 @@ export default function PortfolioPage() {
       </Section>
 
       {/* 뉴스 */}
-      <Section
-        kicker="Press"
-        title="뉴스"
-        description="주요 외부 활동과 언론 보도를 공유합니다."
-      >
+      <Section kicker={t.press.kicker} title={t.press.title} description={t.press.description}>
         {press.length > 0 ? (
           <div className="divide-y divide-border/60 overflow-hidden rounded-2xl border border-border/60">
             {press.map((n) => (
@@ -169,7 +155,7 @@ export default function PortfolioPage() {
             ))}
           </div>
         ) : (
-          <EmptyNote>활동·언론 보도를 곧 추가할 예정입니다.</EmptyNote>
+          <EmptyNote>{t.press.empty}</EmptyNote>
         )}
       </Section>
     </>

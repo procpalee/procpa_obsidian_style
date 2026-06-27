@@ -4,8 +4,10 @@ import { useEffect, useState } from 'react'
 import { ArrowRight, Check, Mail, MessageCircle } from 'lucide-react'
 import { services } from '@/lib/services-data'
 import { siteConfig } from '@/lib/site-config'
+import { content } from '@/lib/site-content'
 
-const TYPE_OPTIONS = [...services.map((s) => ({ key: s.key, label: s.title })), { key: 'etc', label: '기타' }]
+const t = content.contact.form
+const TYPE_OPTIONS = [...services.map((s) => ({ key: s.key, label: s.title })), { key: 'etc', label: t.type.etc }]
 
 const inputCls =
   'w-full rounded-lg border border-border bg-secondary/40 px-3.5 py-2.5 text-[15px] text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-foreground/40 focus:bg-secondary/60'
@@ -28,15 +30,13 @@ export function ContactForm() {
   if (!siteConfig.web3formsKey) {
     return (
       <div className="rounded-2xl border border-border/60 p-6 sm:p-8">
-        <p className="text-base leading-relaxed text-muted-foreground">
-          아래 채널로 바로 연락 주세요. 영업일 기준 1~2일 내 회신드립니다.
-        </p>
+        <p className="text-base leading-relaxed text-muted-foreground">{t.fallbackNote}</p>
         <div className="mt-5 flex flex-wrap gap-3">
           <a
             href={`mailto:${siteConfig.email}`}
             className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
           >
-            <Mail className="h-4 w-4" /> 이메일 보내기
+            <Mail className="h-4 w-4" /> {t.fallbackEmail}
           </a>
           <a
             href={siteConfig.kakaoDirect}
@@ -44,7 +44,7 @@ export function ContactForm() {
             rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium transition-colors hover:border-foreground/40"
           >
-            <MessageCircle className="h-4 w-4" /> 카카오톡 1:1
+            <MessageCircle className="h-4 w-4" /> {t.fallbackKakao}
           </a>
         </div>
       </div>
@@ -57,10 +57,8 @@ export function ContactForm() {
         <span className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-500">
           <Check className="h-6 w-6" />
         </span>
-        <h3 className="mt-5 text-xl font-semibold tracking-tight">문의가 접수되었습니다</h3>
-        <p className="mt-2 max-w-sm text-base leading-relaxed text-muted-foreground">
-          보내주신 내용을 확인하고 영업일 기준 1~2일 내 회신드리겠습니다. 감사합니다.
-        </p>
+        <h3 className="mt-5 text-xl font-semibold tracking-tight">{t.successTitle}</h3>
+        <p className="mt-2 max-w-sm text-base leading-relaxed text-muted-foreground">{t.successBody}</p>
       </div>
     )
   }
@@ -109,19 +107,19 @@ export function ContactForm() {
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block">
           <span className="mb-1.5 block font-mono text-xs uppercase tracking-widest text-muted-foreground">
-            이름 *
+            {t.name.label}
           </span>
-          <input name="name" required placeholder="홍길동" className={inputCls} />
+          <input name="name" required placeholder={t.name.placeholder} className={inputCls} />
         </label>
         <label className="block">
           <span className="mb-1.5 block font-mono text-xs uppercase tracking-widest text-muted-foreground">
-            이메일 *
+            {t.email.label}
           </span>
-          <input name="email" type="email" required placeholder="you@example.com" className={inputCls} />
+          <input name="email" type="email" required placeholder={t.email.placeholder} className={inputCls} />
         </label>
         <label className="block">
           <span className="mb-1.5 block font-mono text-xs uppercase tracking-widest text-muted-foreground">
-            문의 유형 *
+            {t.type.label}
           </span>
           <select
             name="type"
@@ -131,7 +129,7 @@ export function ContactForm() {
             className={inputCls}
           >
             <option value="" disabled>
-              선택해 주세요
+              {t.type.placeholder}
             </option>
             {TYPE_OPTIONS.map((o) => (
               <option key={o.key} value={o.key}>
@@ -142,21 +140,21 @@ export function ContactForm() {
         </label>
         <label className="block">
           <span className="mb-1.5 block font-mono text-xs uppercase tracking-widest text-muted-foreground">
-            회사·소속 (선택)
+            {t.company.label}
           </span>
-          <input name="company" placeholder="회사명 / 직함" className={inputCls} />
+          <input name="company" placeholder={t.company.placeholder} className={inputCls} />
         </label>
       </div>
 
       <label className="mt-4 block">
         <span className="mb-1.5 block font-mono text-xs uppercase tracking-widest text-muted-foreground">
-          문의 내용 *
+          {t.message.label}
         </span>
         <textarea
           name="message"
           required
           rows={5}
-          placeholder="어떤 도움이 필요하신지 편하게 적어주세요."
+          placeholder={t.message.placeholder}
           className={inputCls + ' resize-y'}
         />
       </label>
@@ -167,14 +165,10 @@ export function ContactForm() {
           disabled={sending}
           className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-base font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
         >
-          {sending ? '보내는 중…' : '문의 보내기'}
+          {sending ? t.sending : t.submit}
           {!sending && <ArrowRight className="h-4 w-4" />}
         </button>
-        {status === 'error' && (
-          <span className="text-sm text-destructive">
-            전송에 실패했습니다. 잠시 후 다시 시도하시거나 이메일로 연락 주세요.
-          </span>
-        )}
+        {status === 'error' && <span className="text-sm text-destructive">{t.error}</span>}
       </div>
     </form>
   )

@@ -1,4 +1,7 @@
 import Link from 'next/link'
+import { content } from '@/lib/site-content'
+
+const t = content.home.hero
 
 /**
  * 화려한 히어로 셸 — 텍스트가 라인 마스크 슬라이드업으로 등장 + 강조어 그라데이션 시머.
@@ -30,18 +33,19 @@ export function HeroFxShell({ bg }: { bg: React.ReactNode }) {
           style={{ animationDelay: '0ms' }}
         >
           <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-          공인회계사 · AI 자문위원
+          {t.badge}
         </span>
 
         <h1 className="mt-8 max-w-4xl text-[clamp(2.75rem,8vw,6rem)]/[1.02] font-bold tracking-[-0.05em]">
           <span className="fx-mask">
             <span className="fx-rise" style={{ animationDelay: '120ms' }}>
-              회계 전문성에
+              {t.headline1}
             </span>
           </span>
           <span className="fx-mask">
             <span className="fx-rise" style={{ animationDelay: '260ms' }}>
-              <span className="fx-grad">AI의 생산성</span>을 더합니다
+              <span className="fx-grad">{t.headlineAccent}</span>
+              {t.headlineSuffix}
             </span>
           </span>
         </h1>
@@ -50,8 +54,7 @@ export function HeroFxShell({ bg }: { bg: React.ReactNode }) {
           className="fx-fade mt-8 max-w-2xl text-pretty text-[clamp(1.25rem,1.9vw,1.5rem)]/[1.5] tracking-[-0.015em] text-white/80"
           style={{ animationDelay: '520ms' }}
         >
-          회계 도메인 전문성에 AI를 더해, 회계·재무 실무의 AI 전환(AX)을 설계하고 이끕니다. 회계 자문, AI
-          도입·AX 컨설팅, 강의, 협업을 함께합니다.
+          {t.lede}
         </p>
 
         <div className="fx-fade mt-10 flex flex-wrap items-center gap-3" style={{ animationDelay: '680ms' }}>
@@ -59,13 +62,13 @@ export function HeroFxShell({ bg }: { bg: React.ReactNode }) {
             href="/contact"
             className="rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-primary-foreground transition-opacity hover:opacity-90"
           >
-            업무 문의하기
+            {t.ctaPrimary}
           </Link>
           <Link
             href="/portfolio"
             className="rounded-full border border-white/40 px-7 py-3.5 text-base font-medium text-white transition-colors hover:bg-white/10"
           >
-            포트폴리오 보기
+            {t.ctaSecondary}
           </Link>
         </div>
       </div>
