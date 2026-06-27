@@ -10,18 +10,18 @@ export const content = {
   /** 각 페이지 SEO 제목/설명 (검색결과·공유 카드에 사용) */
   meta: {
     home: {
-      title: 'PROCPA — 이재현',
+      title: 'PROCPA',
       description:
-        '한국공인회계사 이재현. 회계·재무 전문성에 AI의 생산성을 더합니다. AX 컨설팅·강의·협업 문의를 받습니다.',
+        '회계·재무 전문성에 AI의 생산성을 더합니다. AX 컨설팅·강의·협업 문의를 받습니다.',
     },
     about: {
       title: '소개',
-      description: '한국공인회계사 이재현 — 회계·재무 전문성과 AI의 생산성을 모두 갖춘 전문가.',
+      description: '한국공인회계사 이재현 — 회계·재무 전문성과 AI의 생산성을 모두 갖춘 전문가를 지향합니다.',
     },
     portfolio: {
       title: '포트폴리오',
       description:
-        '직접 집필한 도서, 강의, 개발한 도구·MCP 서버, 그리고 활동까지 — 그동안의 작업을 한곳에 모았습니다.',
+        '직접 집필한 도서, 강의, 개발한 도구, 그리고 주요 활동까지 — 그동안의 작업을 한곳에 모았습니다.',
     },
     contact: {
       title: '문의하기',
@@ -50,7 +50,7 @@ export const content = {
   /** 홈 */
   home: {
     hero: {
-      badge: '공인회계사 · AI 자문위원',
+      badge: '공인회계사 · AX 컨설팅',
       headline1: '회계 전문성에', // 1번째 줄
       headlineAccent: 'AI의 생산성', // 2번째 줄 강조어(그라데이션)
       headlineSuffix: '을 더합니다', // 강조어 뒤 문구
@@ -65,7 +65,7 @@ export const content = {
       points: [
         {
           title: '회계 실무의 깊이',
-          desc: '감사·내부회계관리제도·가치평가·원가까지, 상장·비상장 현장에서 In-charge로 쌓은 실무 전문성.',
+          desc: '감사·내부회계관리제도·가치평가·원가계산까지, 현장에서 쌓은 실무 전문성.',
         },
         {
           title: 'AI로 끌어올린 생산성',
