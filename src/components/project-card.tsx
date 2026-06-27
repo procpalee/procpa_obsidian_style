@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { type Project, type ProjectStatus, statusLabel } from '@/lib/projects-data'
 
@@ -39,11 +38,9 @@ function StatusPill({ status }: { status: ProjectStatus }) {
 
 export function ProjectCard({
   project,
-  articleHref,
   detailed = false,
 }: {
   project: Project
-  articleHref?: string
   detailed?: boolean
 }) {
   const { name, tagline, description, stack, category, status, year, liveUrl, repoUrl } = project
@@ -96,14 +93,6 @@ export function ProjectCard({
             <GithubIcon className="h-3.5 w-3.5" />
             Repository
           </a>
-        )}
-        {articleHref && (
-          <Link
-            href={articleHref}
-            className="text-muted-foreground transition-colors hover:text-foreground"
-          >
-            제작기 →
-          </Link>
         )}
         <span className="ml-auto font-mono text-xs text-muted-foreground">{year}</span>
       </div>

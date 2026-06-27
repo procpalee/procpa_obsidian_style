@@ -46,7 +46,6 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: '/',
-    types: { 'application/rss+xml': '/rss.xml' },
   },
   manifest: '/manifest.json',
   twitter: {
@@ -139,7 +138,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
           />
         </noscript>
-        <Script strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <Script id="theme-init" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground [word-break:keep-all]">
         <SiteHeader />

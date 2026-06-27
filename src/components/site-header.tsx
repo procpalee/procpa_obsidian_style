@@ -6,16 +6,13 @@ import { useState } from 'react'
 import { Menu } from 'lucide-react'
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { ThemeToggle } from '@/components/theme-toggle'
-import dynamic from 'next/dynamic'
-const CommandPalette = dynamic(() => import('@/components/command-palette').then((m) => m.CommandPalette), { ssr: false })
 import { socials } from '@/components/social-icons'
 
 const nav = [
   { href: '/', label: '홈' },
   { href: '/about', label: '소개' },
-  { href: '/blog', label: '블로그' },
-  { href: '/projects', label: '프로젝트' },
-  { href: '/downloads', label: '자료실' },
+  { href: '/portfolio', label: '포트폴리오' },
+  { href: '/contact', label: '문의' },
 ]
 
 export function SiteHeader() {
@@ -51,20 +48,12 @@ export function SiteHeader() {
             </Link>
           ))}
           <div className="ml-1 flex items-center gap-0.5">
-            <CommandPalette />
             <ThemeToggle />
           </div>
-          <Link
-            href="/contact"
-            className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
-          >
-            연락하기
-          </Link>
         </nav>
 
         {/* Mobile/tablet: icons + hamburger */}
         <div className="flex items-center gap-0.5 text-muted-foreground md:hidden">
-          <CommandPalette />
           <ThemeToggle />
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger
@@ -86,14 +75,6 @@ export function SiteHeader() {
                     {item.label}
                   </Link>
                 ))}
-
-                <Link
-                  href="/contact"
-                  onClick={() => setOpen(false)}
-                  className="mt-6 inline-flex items-center justify-center rounded-full bg-primary px-4 py-2.5 text-[15px] font-semibold text-primary-foreground"
-                >
-                  연락하기
-                </Link>
 
                 <div className="mt-6 flex items-center gap-4 border-t border-border/60 pt-5 text-muted-foreground">
                   {socials.map((s) => {

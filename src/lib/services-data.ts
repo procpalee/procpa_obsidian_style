@@ -29,7 +29,7 @@ export const services: Service[] = [
   },
   {
     key: 'ai',
-    title: 'AI 도입·컨설팅',
+    title: 'AI 도입·AX 컨설팅',
     summary: '실무에 바로 쓰는 AI 워크플로우를 설계해 팀의 생산성을 끌어올립니다.',
     outcomes: [
       '재무·회계 업무 AI 자동화 설계',

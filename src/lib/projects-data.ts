@@ -1,6 +1,5 @@
-// 개발 프로젝트 — 홈 Projects 섹션과 /projects 페이지에서 공용으로 사용.
+// 개발 프로젝트 — 홈 Projects 섹션과 /portfolio 페이지에서 공용으로 사용.
 // 마케팅용 큐레이션 정보(스택·배포 링크·상태)를 담는다.
-// 관련 개발 글은 articleMatch(slugAsParams 부분 문자열)로 #site/content에서 런타임 매칭한다.
 
 export type ProjectCategory = 'Web App' | 'Plugin' | 'MCP Server'
 export type ProjectStatus = 'live' | 'wip' | 'archived'
@@ -20,8 +19,6 @@ export type Project = {
   liveUrl?: string
   /** 소스 저장소 */
   repoUrl?: string
-  /** 관련 개발 글 매칭용 slugAsParams 부분 문자열 */
-  articleMatch?: string
 }
 
 export const projects: Project[] = [
@@ -36,7 +33,6 @@ export const projects: Project[] = [
     status: 'live',
     year: '2026',
     liveUrl: 'https://procpa.co.kr',
-    articleMatch: 'procpa-개인-지식관리',
   },
   {
     key: 'marklog',
@@ -49,7 +45,6 @@ export const projects: Project[] = [
     status: 'live',
     year: '2026',
     liveUrl: 'https://marklog.procpa.co.kr/',
-    articleMatch: 'marklog-네이버',
   },
   {
     key: 'marklog-obsidian',
@@ -61,7 +56,6 @@ export const projects: Project[] = [
     category: 'Plugin',
     status: 'live',
     year: '2026',
-    articleMatch: 'marklog-for-obsidian',
   },
   {
     key: 'clickthumb',
@@ -74,7 +68,6 @@ export const projects: Project[] = [
     status: 'live',
     year: '2026',
     liveUrl: 'https://clickthumb.procpa.co.kr/',
-    articleMatch: 'clickthumb',
   },
   {
     key: 'opendart-mcp',
@@ -86,7 +79,6 @@ export const projects: Project[] = [
     category: 'MCP Server',
     status: 'live',
     year: '2026',
-    articleMatch: '전자공시시스템opendart',
   },
   {
     key: 'peer-group-mcp',
@@ -98,7 +90,6 @@ export const projects: Project[] = [
     category: 'MCP Server',
     status: 'wip',
     year: '2026',
-    articleMatch: 'dcf-평가를-위한-peer-group',
   },
 ]
 

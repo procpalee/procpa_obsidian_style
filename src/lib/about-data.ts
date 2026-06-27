@@ -1,7 +1,7 @@
 export const stats = [
   { value: '7+', label: 'Years Exp.' },
   { value: '10+', label: 'Certificates' },
-  { value: '3', label: 'Publications' },
+  { value: '4', label: 'Publications' },
   { value: '6', label: 'Side Projects' },
 ]
 

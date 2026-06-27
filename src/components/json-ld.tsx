@@ -1,4 +1,6 @@
 import { certificates, education, advisory } from '@/lib/about-data'
+import { services } from '@/lib/services-data'
+import { siteConfig } from '@/lib/site-config'
 
 export function JsonLd({ data }: { data: Record<string, unknown> }) {
   return (
@@ -11,77 +13,6 @@ export function JsonLd({ data }: { data: Record<string, unknown> }) {
 
 const SITE = 'https://procpa.co.kr'
 const DEFAULT_OG = `${SITE}/og-default.png`
-const AUTHOR = { '@type': 'Person', name: '이재현', url: `${SITE}/about` }
-const PUBLISHER = {
-  '@type': 'Organization',
-  name: 'PROCPA',
-  url: SITE,
-  logo: { '@type': 'ImageObject', url: `${SITE}/icon.png` },
-}
-
-export function articleJsonLd(opts: {
-  title: string
-  description: string
-  url: string
-  datePublished: string
-  dateModified?: string
-  image?: string
-  tags?: string[]
-  isPartOf?: { name: string; url: string }
-}) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: opts.title,
-    description: opts.description,
-    mainEntityOfPage: { '@type': 'WebPage', '@id': opts.url },
-    url: opts.url,
-    datePublished: opts.datePublished,
-    dateModified: opts.dateModified ?? opts.datePublished,
-    author: AUTHOR,
-    publisher: PUBLISHER,
-    image: opts.image ?? DEFAULT_OG,
-    keywords: opts.tags?.join(', '),
-    inLanguage: 'ko-KR',
-    ...(opts.isPartOf
-      ? { isPartOf: { '@type': 'Book', name: opts.isPartOf.name, url: opts.isPartOf.url } }
-      : {}),
-  }
-}
-
-export function seriesJsonLd(opts: {
-  title: string
-  description: string
-  url: string
-  datePublished?: string
-  dateModified?: string
-  image?: string
-  tags?: string[]
-  chapters: { name: string; url: string }[]
-}) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Book',
-    name: opts.title,
-    description: opts.description,
-    mainEntityOfPage: { '@type': 'WebPage', '@id': opts.url },
-    url: opts.url,
-    ...(opts.datePublished ? { datePublished: opts.datePublished } : {}),
-    ...(opts.dateModified ? { dateModified: opts.dateModified } : {}),
-    author: AUTHOR,
-    publisher: PUBLISHER,
-    image: opts.image ?? DEFAULT_OG,
-    inLanguage: 'ko-KR',
-    ...(opts.tags?.length ? { keywords: opts.tags.join(', ') } : {}),
-    numberOfPages: opts.chapters.length,
-    hasPart: opts.chapters.map((c, i) => ({
-      '@type': 'Chapter',
-      position: i + 1,
-      name: c.name,
-      url: c.url,
-    })),
-  }
-}
 
 export function websiteJsonLd() {
   return {
@@ -120,19 +51,18 @@ export function personJsonLd(opts: {
     alumniOf: education.map((e) => ({ '@type': 'CollegeOrUniversity', name: e.title })),
     memberOf: advisory.map((a) => ({ '@type': 'Organization', name: a.org })),
     worksFor: { '@type': 'Organization', name: '정인회계법인' },
-    sameAs: opts.sameAs ?? [],
-  }
-}
-
-export function breadcrumbJsonLd(items: { name: string; url: string }[]) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: items.map((item, i) => ({
-      '@type': 'ListItem',
-      position: i + 1,
-      name: item.name,
-      item: item.url,
+    email: siteConfig.email,
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'business inquiry',
+      email: siteConfig.email,
+      url: `${SITE}/contact`,
+      availableLanguage: ['Korean'],
+    },
+    makesOffer: services.map((s) => ({
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: s.title, description: s.summary },
     })),
+    sameAs: opts.sameAs ?? [],
   }
 }

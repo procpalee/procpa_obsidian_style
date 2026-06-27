@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { ArrowUpRight, Mail, MessageCircle } from 'lucide-react'
 import { PageHero } from '@/components/page-hero'
-import { ServicesGrid } from '@/components/home/services-grid'
 import { Section } from '@/components/home/section'
+import { ContactForm } from '@/components/contact-form'
 import { GithubIcon, YoutubeIcon, NaverIcon } from '@/components/social-icons'
 import { contacts } from '@/lib/about-data'
 import { testimonials } from '@/lib/testimonials-data'
@@ -49,8 +49,15 @@ export default function ContactPage() {
         />
       </div>
 
-      {/* 업무 소개 (홈에서 이관) */}
-      <ServicesGrid />
+      {/* 업무 문의 폼 (주 섹션) */}
+      <Section
+        id="inquiry"
+        kicker="Inquiry"
+        title="업무 문의"
+        description="아래 양식으로 보내주시면 이메일로 전달됩니다. 영업일 기준 1~2일 내 회신드립니다."
+      >
+        <ContactForm />
+      </Section>
 
       {/* 연락 채널 */}
       <Section
