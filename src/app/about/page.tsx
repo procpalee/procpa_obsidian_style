@@ -13,7 +13,7 @@ import { PageHero } from '@/components/page-hero'
 
 export const metadata: Metadata = {
   title: '소개',
-  description: '한국공인회계사 이재현 — 회계·재무 전문성과 AI의 생산성을 모두 갖춘 새로운 시대의 전문가.',
+  description: '한국공인회계사 이재현 — 회계·재무 전문성과 AI의 생산성을 모두 갖춘 전문가.',
   alternates: { canonical: '/about' },
   openGraph: {
     images: [{
