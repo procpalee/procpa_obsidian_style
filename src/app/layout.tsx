@@ -47,7 +47,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
-  manifest: '/manifest.json',
   twitter: {
     card: 'summary_large_image',
     title: 'PROCPA — 회계사의 기록',

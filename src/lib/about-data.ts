@@ -1,9 +1,5 @@
-export const stats = [
-  { value: '7+', label: 'Years Exp.' },
-  { value: '10+', label: 'Certificates' },
-  { value: '2', label: 'Publications' },
-  { value: '5', label: 'Side Projects' },
-]
+import { publications } from './publications-data'
+import { projects } from './projects-data'
 
 // 자문위원 — Career 타임라인에도 포함하되, 히어로 배너로도 강조한다.
 export const advisory = [
@@ -75,6 +71,19 @@ export const certificates = [
       'SQL개발자 (SQLD)',
     ],
   },
+]
+
+// 통계 — 데이터에서 자동 집계한다. 자격증/도서/프로젝트를 추가·삭제하면 숫자가 따라 갱신된다.
+// (Years Exp.만 시작 연도 기준으로 매년 자동 증가)
+const CAREER_START_YEAR = 2019 // 회계 실무 시작 연도(경력 최하단 기준)
+const yearsOfExperience = new Date().getFullYear() - CAREER_START_YEAR
+const certificateCount = certificates.reduce((total, group) => total + group.items.length, 0)
+
+export const stats = [
+  { value: `${yearsOfExperience}+`, label: 'Years Exp.' },
+  { value: `${certificateCount}`, label: 'Certificates' },
+  { value: `${publications.length}`, label: 'Publications' },
+  { value: `${projects.length}`, label: 'Side Projects' },
 ]
 
 export const contacts = [
