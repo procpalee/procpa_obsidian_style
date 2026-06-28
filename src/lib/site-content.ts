@@ -87,6 +87,14 @@ export const content = {
       title: '이런 일을 함께합니다',
       description: '회계 도메인 전문성과 AI 활용 역량으로 까다로운 실무 과제를 함께 풀어드립니다.',
     },
+    blog: {
+      kicker: 'Writing',
+      title: '최근 글',
+      description: 'AI 활용 인사이트와 직접 만든 개발 프로젝트 기록을 공유합니다.',
+      action: '블로그 전체 보기',
+      empty: '첫 글을 준비 중입니다. 블로그에서 곧 만나보실 수 있습니다.',
+      emptyCta: '블로그 보기',
+    },
     cta: {
       badge: 'WORK WITH ME',
       headingLine1: '회계·재무 실무,',
