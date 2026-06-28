@@ -27,7 +27,7 @@ export default function BlogPage() {
       </div>
       <section className="border-t border-border/60">
         <div className="mx-auto max-w-[1440px] px-6 py-12 sm:py-16">
-          <BlogIndex posts={posts} tags={tags} />
+          <BlogIndex posts={posts} tags={tags} empty={t.empty} />
         </div>
       </section>
     </>

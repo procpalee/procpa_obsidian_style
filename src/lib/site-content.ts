@@ -151,6 +151,7 @@ export const content = {
       ko: '블로그',
       description: 'AI 활용 인사이트와 직접 만든 개발 프로젝트 기록을 공유합니다.',
     },
+    empty: '글을 준비 중입니다. 곧 첫 글을 올릴 예정입니다.',
     backToList: '블로그 목록',
   },
 

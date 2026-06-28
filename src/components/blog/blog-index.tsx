@@ -7,7 +7,7 @@ import { PostCard } from './post-card'
 
 type Filter = CategoryKey | 'all'
 
-export function BlogIndex({ posts, tags }: { posts: PostMeta[]; tags: string[] }) {
+export function BlogIndex({ posts, tags, empty }: { posts: PostMeta[]; tags: string[]; empty: string }) {
   const [category, setCategory] = useState<Filter>('all')
   const [tag, setTag] = useState<string | null>(null)
 
@@ -18,6 +18,14 @@ export function BlogIndex({ posts, tags }: { posts: PostMeta[]; tags: string[] }
       ),
     [posts, category, tag],
   )
+
+  if (posts.length === 0) {
+    return (
+      <div className="rounded-2xl border border-dashed border-border/60 px-6 py-16 text-center text-base text-muted-foreground">
+        {empty}
+      </div>
+    )
+  }
 
   const chip =
     'rounded-full border px-3.5 py-1.5 text-sm transition-colors'
