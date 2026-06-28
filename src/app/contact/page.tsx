@@ -3,7 +3,7 @@ import { ArrowUpRight, Mail, MessageCircle } from 'lucide-react'
 import { PageHero } from '@/components/page-hero'
 import { Section } from '@/components/home/section'
 import { ContactForm } from '@/components/contact-form'
-import { GithubIcon, YoutubeIcon, NaverIcon } from '@/components/social-icons'
+import { GithubIcon, YoutubeIcon, NaverIcon, ThreadsIcon } from '@/components/social-icons'
 import { contacts } from '@/lib/about-data'
 import { testimonials } from '@/lib/testimonials-data'
 import { content } from '@/lib/site-content'
@@ -36,6 +36,7 @@ const iconFor: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>
   KakaoTalk: MessageCircle,
   'Naver Blog': NaverIcon,
   YouTube: YoutubeIcon,
+  Threads: ThreadsIcon,
   GitHub: GithubIcon,
 }
 

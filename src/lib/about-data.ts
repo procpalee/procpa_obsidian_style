@@ -108,6 +108,11 @@ export const contacts = [
     description: '영상 콘텐츠는 유튜브 채널에서 만나보실 수 있습니다.',
   },
   {
+    label: 'Threads',
+    href: 'https://www.threads.com/@procpalee',
+    description: '짧은 생각과 소식은 스레드에서 공유합니다.',
+  },
+  {
     label: 'GitHub',
     href: 'https://github.com/procpalee',
     description: '사이드 프로젝트 소스 코드를 공유합니다.',
