@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { ArrowUpRight } from 'lucide-react'
 import {
   advisory,
   career,
@@ -8,6 +9,7 @@ import {
   stats,
   contacts,
 } from '@/lib/about-data'
+import { press } from '@/lib/press-data'
 import { JsonLd, personJsonLd } from '@/components/json-ld'
 import { PageHero } from '@/components/page-hero'
 import { content } from '@/lib/site-content'
@@ -188,6 +190,34 @@ export default function AboutPage() {
             </div>
           ))}
         </div>
+      </Section>
+
+      <Section label={t.sections.externalActivities.en} title={t.sections.externalActivities.ko}>
+        {press.length > 0 ? (
+          <div className="divide-y divide-border/60 overflow-hidden rounded-2xl border border-border/60">
+            {press.map((n) => (
+              <a
+                key={n.key}
+                href={n.url}
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-center justify-between gap-4 px-6 py-5 transition-colors hover:bg-secondary/40"
+              >
+                <div className="min-w-0">
+                  <h3 className="truncate text-base font-medium group-hover:text-primary">{n.title}</h3>
+                  <p className="mt-0.5 font-mono text-xs text-muted-foreground">
+                    {[n.outlet, n.date].filter(Boolean).join(' · ')}
+                  </p>
+                </div>
+                <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground" />
+              </a>
+            ))}
+          </div>
+        ) : (
+          <div className="rounded-2xl border border-dashed border-border/60 px-6 py-10 text-center text-base text-muted-foreground">
+            {t.externalActivitiesEmpty}
+          </div>
+        )}
       </Section>
     </>
   )

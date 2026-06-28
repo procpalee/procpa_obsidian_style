@@ -7,7 +7,6 @@ import { ProjectCard } from '@/components/project-card'
 import { projects } from '@/lib/projects-data'
 import { publications } from '@/lib/publications-data'
 import { lectures } from '@/lib/lectures-data'
-import { press } from '@/lib/press-data'
 import { content } from '@/lib/site-content'
 
 const t = content.portfolio
@@ -130,33 +129,6 @@ export default function PortfolioPage() {
             <ProjectCard key={p.key} project={p} detailed />
           ))}
         </div>
-      </Section>
-
-      {/* 뉴스 */}
-      <Section kicker={t.press.kicker} title={t.press.title} description={t.press.description}>
-        {press.length > 0 ? (
-          <div className="divide-y divide-border/60 overflow-hidden rounded-2xl border border-border/60">
-            {press.map((n) => (
-              <a
-                key={n.key}
-                href={n.url}
-                target="_blank"
-                rel="noreferrer"
-                className="group flex items-center justify-between gap-4 px-6 py-5 transition-colors hover:bg-secondary/40"
-              >
-                <div className="min-w-0">
-                  <h3 className="truncate text-base font-medium group-hover:text-primary">{n.title}</h3>
-                  <p className="mt-0.5 font-mono text-xs text-muted-foreground">
-                    {[n.outlet, n.date].filter(Boolean).join(' · ')}
-                  </p>
-                </div>
-                <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground" />
-              </a>
-            ))}
-          </div>
-        ) : (
-          <EmptyNote>{t.press.empty}</EmptyNote>
-        )}
       </Section>
     </>
   )

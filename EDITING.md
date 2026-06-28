@@ -38,7 +38,7 @@ home: {
 | 도서(포트폴리오) | `src/lib/publications-data.ts` |
 | 강의(현재 비어 있음 → 추가하면 자동 노출) | `src/lib/lectures-data.ts` |
 | 프로젝트 | `src/lib/projects-data.ts` |
-| 뉴스/언론 | `src/lib/press-data.ts` |
+| 외부활동(언론·활동, *소개* 페이지에 표시) | `src/lib/press-data.ts` |
 | 경력·학력·전문분야·자격증·통계·연락처 | `src/lib/about-data.ts` |
 | 후기(있을 때만 노출) | `src/lib/testimonials-data.ts` |
 | 이메일·카카오·블로그·위키독스 등 링크 | `src/lib/site-config.ts` |
@@ -53,6 +53,25 @@ home: {
 ## 4. 법적 페이지(이용약관·면책조항)
 
 본문이 길어 별도 파일에서 직접 수정합니다: `src/app/terms/page.tsx`, `src/app/disclaimer/page.tsx`.
+
+## 5. 문의 폼 켜기 (Web3Forms)
+
+문의(`/contact`) 페이지의 **업무 문의는 "폼" 형태**로 만들어져 있습니다.
+다만 **무료 키(Web3Forms Access Key)를 등록해야 폼이 실제로 동작**합니다.
+키를 넣기 전에는 자동으로 이메일·카카오 링크가 대신 표시됩니다(정상 동작이며, 방문자가 연락할 수 있습니다).
+
+켜는 방법:
+
+1. **키 발급** — [web3forms.com](https://web3forms.com) 접속 → 문의를 받을 이메일 주소를 입력하면 **Access Key**가 메일로 옵니다(무료, 가입 불필요).
+2. **로컬 적용** — 프로젝트 루트에 `.env.local` 파일을 만들고 아래 한 줄을 넣습니다(따옴표 없이):
+   ```
+   NEXT_PUBLIC_WEB3FORMS_KEY=발급받은키
+   ```
+   `.env.local`은 자동으로 깃에 올라가지 않습니다(비밀 보관). `npm run dev`로 폼이 뜨는지 확인하세요.
+3. **운영(배포)에 적용** — Vercel 대시보드 → 해당 프로젝트 → **Settings → Environment Variables** →
+   Name `NEXT_PUBLIC_WEB3FORMS_KEY`, Value `발급받은키`, 환경은 **Production**(원하면 Preview/Development도) 선택 후 저장 →
+   **Deployments**에서 최신 배포를 **Redeploy** 하면 운영 사이트에 폼이 켜집니다.
+4. 폼으로 들어온 문의는 1번에서 입력한 이메일로 전달됩니다. (메일 제목 형식은 `src/components/contact-form.tsx`에서 조정 가능)
 
 ---
 

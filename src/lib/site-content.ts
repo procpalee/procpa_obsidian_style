@@ -50,12 +50,12 @@ export const content = {
   /** 홈 */
   home: {
     hero: {
-      badge: '공인회계사 · AX 컨설팅',
+      badge: 'KICPA · AX 컨설팅',
       headline1: '회계 전문성에', // 1번째 줄
       headlineAccent: 'AI의 생산성', // 2번째 줄 강조어(그라데이션)
       headlineSuffix: '을 더합니다', // 강조어 뒤 문구
-      lede: '회계 도메인 전문성에 AI를 더해, 회계·재무 실무의 AI 전환(AX)을 설계하고 이끕니다. 회계 자문, AI 도입·AX 컨설팅, 강의, 협업을 함께합니다.',
-      ctaPrimary: '업무 문의하기',
+      lede: '회계·재무 실무의 AI 전환(AX)을 리딩합니다.',
+      ctaPrimary: '문의하기',
       ctaSecondary: '포트폴리오 보기',
     },
     approach: {
@@ -112,7 +112,9 @@ export const content = {
       education: { en: 'Education', ko: '학력' },
       expertise: { en: 'Expertise', ko: '전문 분야' },
       certificates: { en: 'Certificates', ko: '자격증' },
+      externalActivities: { en: 'External Activities', ko: '외부활동' },
     },
+    externalActivitiesEmpty: '활동·언론 보도를 곧 추가할 예정입니다.',
   },
 
   /** 포트폴리오 */
@@ -133,12 +135,6 @@ export const content = {
       kicker: 'Projects',
       title: '프로젝트',
       description: '실무에서 마주친 불편함을 코드로 풀어, 웹과 MCP 서버로 배포해 운영합니다.',
-    },
-    press: {
-      kicker: 'Press',
-      title: '뉴스',
-      description: '주요 외부 활동과 언론 보도를 공유합니다.',
-      empty: '활동·언론 보도를 곧 추가할 예정입니다.',
     },
     readMore: '읽기',
   },
