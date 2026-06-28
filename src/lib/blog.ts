@@ -31,6 +31,18 @@ function normalizeCategory(v: unknown): CategoryKey {
   return v === 'project' ? 'project' : 'ai'
 }
 
+// YAML이 무따옴표 날짜를 Date 객체로 파싱하므로 항상 'YYYY-MM-DD' 문자열로 정규화(타임존 영향 제거).
+function toYmd(v: unknown): string {
+  if (!v) return ''
+  if (v instanceof Date) {
+    const p = (n: number) => String(n).padStart(2, '0')
+    return `${v.getUTCFullYear()}-${p(v.getUTCMonth() + 1)}-${p(v.getUTCDate())}`
+  }
+  const s = String(v).trim()
+  const m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/)
+  return m ? `${m[1]}-${m[2].padStart(2, '0')}-${m[3].padStart(2, '0')}` : s
+}
+
 function parseFile(file: string): { meta: PostMeta; body: string } | null {
   const raw = fs.readFileSync(file, 'utf8')
   const { data, content } = matter(raw)
@@ -43,8 +55,8 @@ function parseFile(file: string): { meta: PostMeta; body: string } | null {
       slug,
       title: String(data.title ?? slug),
       description: String(data.description ?? ''),
-      date: String(data.date ?? ''),
-      updated: data.updated ? String(data.updated) : undefined,
+      date: toYmd(data.date),
+      updated: data.updated ? toYmd(data.updated) : undefined,
       category,
       categoryLabel: CATEGORY_LABEL[category],
       tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
