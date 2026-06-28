@@ -40,5 +40,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# 콘텐츠는 외부(위키독스·네이버)로 이전 — 로컬 보관, 저장소엔 미추적
-/content
+# 옵시디언 원고는 미추적. 단, 블로그용 동기화 산출물(content/posts)만 추적한다.
+/content/*
+!/content/posts/

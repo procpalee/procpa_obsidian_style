@@ -343,3 +343,21 @@
 .code-copy-btn:hover { opacity: 1; }
 .code-copy-btn:active { transform: scale(0.95); }
 .code-copy-btn[data-copied='true'] { opacity: 1; }
+
+/* Obsidian 콜아웃 (블로그 본문) — remark-callout가 생성하는 .callout */
+.prose :where(.callout) {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--primary);
+  border-radius: var(--radius);
+  background: color-mix(in oklab, var(--primary) 5%, var(--card));
+}
+.prose :where(.callout) > :first-child { margin-top: 0; }
+.prose :where(.callout) > :last-child { margin-bottom: 0; }
+.prose :where(.callout-title) {
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+  color: var(--foreground);
+  letter-spacing: -0.01em;
+}

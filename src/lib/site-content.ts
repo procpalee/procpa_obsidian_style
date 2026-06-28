@@ -16,12 +16,17 @@ export const content = {
     },
     about: {
       title: '소개',
-      description: '한국공인회계사 이재현 — 회계·재무 전문성과 AI의 생산성을 모두 갖춘 전문가를 지향합니다.',
+      description:
+        '한국공인회계사 이재현 — 회계·재무 전문성과 AI의 생산성을 모두 갖춘 전문가를 지향합니다. 이력과 전문 분야, 직접 집필한 도서·강의·개발 프로젝트까지 한곳에 모았습니다.',
     },
     portfolio: {
       title: '포트폴리오',
       description:
         '직접 집필한 도서, 강의, 개발한 도구, 그리고 주요 활동까지 — 그동안의 작업을 한곳에 모았습니다.',
+    },
+    blog: {
+      title: '블로그',
+      description: 'AI 활용 인사이트와 직접 만든 개발 프로젝트 기록을 공유합니다.',
     },
     contact: {
       title: '문의하기',
@@ -35,7 +40,7 @@ export const content = {
     header: [
       { href: '/', label: '홈' },
       { href: '/about', label: '소개' },
-      { href: '/portfolio', label: '포트폴리오' },
+      { href: '/blog', label: '블로그' },
       { href: '/contact', label: '문의' },
     ],
     menuOpen: '메뉴 열기',
@@ -137,6 +142,16 @@ export const content = {
       description: '실무에서 마주친 불편함을 코드로 풀어, 웹과 MCP 서버로 배포해 운영합니다.',
     },
     readMore: '읽기',
+  },
+
+  /** 블로그 */
+  blog: {
+    hero: {
+      en: 'Blog',
+      ko: '블로그',
+      description: 'AI 활용 인사이트와 직접 만든 개발 프로젝트 기록을 공유합니다.',
+    },
+    backToList: '블로그 목록',
   },
 
   /** 문의 */

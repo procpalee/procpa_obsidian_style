@@ -66,3 +66,28 @@ export function personJsonLd(opts: {
     sameAs: opts.sameAs ?? [],
   }
 }
+
+export function blogPostingJsonLd(post: {
+  slug: string
+  title: string
+  description: string
+  date: string
+  updated?: string
+  tags: string[]
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date,
+    dateModified: post.updated ?? post.date,
+    keywords: post.tags.join(', '),
+    inLanguage: 'ko-KR',
+    url: `${SITE}/blog/${post.slug}`,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE}/blog/${post.slug}` },
+    image: DEFAULT_OG,
+    author: { '@type': 'Person', name: '이재현', url: `${SITE}/about` },
+    publisher: { '@type': 'Person', name: '이재현', url: `${SITE}/about` },
+  }
+}
