@@ -46,7 +46,7 @@ export function ProjectCard({
   const { name, tagline, description, stack, category, status, year, liveUrl, repoUrl } = project
 
   return (
-    <div className="group flex flex-col rounded-2xl border border-border/60 p-5 transition-all hover:-translate-y-0.5 hover:border-foreground/40 hover:shadow-sm">
+    <div className="group flex h-full flex-col rounded-2xl border border-border/60 p-5 transition-all hover:-translate-y-0.5 hover:border-foreground/40 hover:shadow-sm">
       <div className="flex items-center justify-between gap-2">
         <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
           {category}

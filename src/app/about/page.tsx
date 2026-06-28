@@ -15,6 +15,7 @@ import { publications } from '@/lib/publications-data'
 import { lectures } from '@/lib/lectures-data'
 import { projects } from '@/lib/projects-data'
 import { ProjectCard } from '@/components/project-card'
+import { Carousel } from '@/components/carousel'
 import { JsonLd, personJsonLd } from '@/components/json-ld'
 import { PageHero } from '@/components/page-hero'
 import { content } from '@/lib/site-content'
@@ -201,14 +202,14 @@ export default function AboutPage() {
       {/* 도서 */}
       <Section label={cp.books.kicker} title={cp.books.title}>
         <p className="mb-8 max-w-2xl text-base leading-relaxed text-muted-foreground">{cp.books.description}</p>
-        <div className="grid gap-4 sm:grid-cols-2">
+        <Carousel ariaLabel="도서">
           {publications.map((p) => (
             <a
               key={p.key}
               href={p.url}
               target="_blank"
               rel="noreferrer"
-              className="group flex gap-5 rounded-2xl border border-border/60 p-5 transition-all hover:-translate-y-0.5 hover:border-foreground/40 hover:shadow-sm"
+              className="group flex w-[88%] shrink-0 snap-start gap-5 rounded-2xl border border-border/60 p-5 transition-all hover:-translate-y-0.5 hover:border-foreground/40 hover:shadow-sm sm:w-[440px]"
             >
               <div className="relative aspect-[3/4] w-24 shrink-0 overflow-hidden rounded-md bg-secondary">
                 {p.cover && <Image src={p.cover} alt={p.title} fill sizes="96px" className="object-cover" />}
@@ -234,7 +235,7 @@ export default function AboutPage() {
               </div>
             </a>
           ))}
-        </div>
+        </Carousel>
       </Section>
 
       {/* 강의 */}
@@ -277,11 +278,13 @@ export default function AboutPage() {
       {/* 프로젝트 */}
       <Section label={cp.projects.kicker} title={cp.projects.title}>
         <p className="mb-8 max-w-2xl text-base leading-relaxed text-muted-foreground">{cp.projects.description}</p>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <Carousel ariaLabel="프로젝트">
           {projects.map((p) => (
-            <ProjectCard key={p.key} project={p} detailed />
+            <div key={p.key} className="w-[85%] shrink-0 snap-start sm:w-[360px]">
+              <ProjectCard project={p} detailed />
+            </div>
           ))}
-        </div>
+        </Carousel>
       </Section>
 
       <Section label={t.sections.externalActivities.en} title={t.sections.externalActivities.ko}>

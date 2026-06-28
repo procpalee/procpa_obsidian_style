@@ -80,7 +80,7 @@ export const projects: Project[] = [
       'DCF 평가에서 가장 손이 많이 가는 유사회사(Peer Group) 선정과 데이터 수집을 자동화하는 MCP 서버입니다. 클로드 엑셀 기반 평가 워크플로우와 연결됩니다.',
     stack: ['MCP', 'TypeScript', 'Financial Data'],
     category: 'MCP Server',
-    status: 'wip',
+    status: 'live',
     year: '2026',
     repoUrl: 'https://github.com/procpalee/DCF-Peergroup-Search',
   },
