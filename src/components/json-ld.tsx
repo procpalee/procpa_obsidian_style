@@ -12,7 +12,7 @@ export function JsonLd({ data }: { data: Record<string, unknown> }) {
 }
 
 const SITE = 'https://procpa.co.kr'
-const DEFAULT_OG = `${SITE}/api/og?kicker=PROCPA&title=${encodeURIComponent('회계 전문성에 AI의 생산성을 더합니다')}&subtitle=${encodeURIComponent('한국공인회계사 이재현 · AX 컨설팅')}`
+const DEFAULT_OG = `${SITE}/api/og?variant=hero`
 
 export function websiteJsonLd() {
   return {

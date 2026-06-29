@@ -8,10 +8,8 @@ import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { content } from '@/lib/site-content'
 
-const OG_TITLE = '회계 전문성에 AI의 생산성을 더합니다'
-const OG_SUBTITLE = '한국공인회계사 이재현 · AX 컨설팅'
-// 공유 카드(카톡 등) 이미지 — 정적 PNG 대신 현재 브랜딩을 반영하는 동적 OG 카드 사용
-const OG_IMAGE = `/api/og?kicker=PROCPA&title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}`
+// 공유 카드(카톡 등) 이미지 — 실제 히어로(배경 이미지 + 헤드라인)를 그대로 렌더하는 동적 OG 카드
+const OG_IMAGE = '/api/og?variant=hero'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://procpa.co.kr'),

@@ -1,7 +1,20 @@
 import { ImageResponse } from 'next/og'
 import type { NextRequest } from 'next/server'
+import fs from 'node:fs'
+import path from 'node:path'
+import { content } from '@/lib/site-content'
 
 export const runtime = 'nodejs'
+
+/** 히어로 배경 이미지를 data URI로 (Satori가 파일을 직접 못 읽으므로 인라인). */
+function heroDataUri(): string | null {
+  try {
+    const buf = fs.readFileSync(path.join(process.cwd(), 'public', 'hero-cover.jpg'))
+    return `data:image/jpeg;base64,${buf.toString('base64')}`
+  } catch {
+    return null
+  }
+}
 
 // Latin/number glyphs we always need (domain, dates) regardless of the title.
 const BASE_GLYPHS = 'PROCPAprocpa.co.kr0123456789.,:·-—&()/ '
@@ -49,6 +62,14 @@ export async function GET(req: NextRequest) {
   const kicker = (searchParams.get('kicker') ?? 'PROCPA').slice(0, 40)
   const meta = (searchParams.get('meta') ?? '').slice(0, 40)
   const variant = searchParams.get('variant') ?? 'a'
+
+  if (variant === 'hero') {
+    const h = content.home.hero
+    const heroFonts = await loadFonts(
+      `${h.badge}${h.headline1}${h.headlineAccent}${h.headlineSuffix}${h.lede}`,
+    )
+    return variantHero(heroFonts)
+  }
 
   const fonts = await loadFonts(`${title}${subtitle}${kicker}${meta}`)
   const props = { title, subtitle, kicker, meta, fonts }
@@ -126,6 +147,88 @@ function variantA({ title, subtitle, kicker, meta, fonts }: OgProps) {
             )}
           </div>
           <div style={{ fontSize: 20, color: '#5b9cff', letterSpacing: 1 }}>procpa.co.kr</div>
+        </div>
+      </div>
+    ),
+    imageOptions(fonts),
+  )
+}
+
+/* ── Variant Hero: 실제 히어로(배경 이미지 + 듀오톤 + 헤드라인) ── */
+function variantHero(fonts: OgFont[]) {
+  const h = content.home.hero
+  const bg = heroDataUri()
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          position: 'relative',
+          background: '#070912',
+          fontFamily: FONT_FAMILY,
+        }}
+      >
+        {bg && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={bg}
+            width={1200}
+            height={630}
+            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        )}
+        {/* 블루 듀오톤 + 가독성용 어두운 그라데이션 */}
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(11,28,74,0.5)' }} />
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            background: 'linear-gradient(90deg, rgba(4,7,16,0.92) 0%, rgba(4,7,16,0.6) 55%, rgba(4,7,16,0.3) 100%)',
+          }}
+        />
+        {/* 콘텐츠 */}
+        <div
+          style={{
+            position: 'relative',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            height: '100%',
+            width: '100%',
+            padding: '0 80px',
+          }}
+        >
+          <div style={{ display: 'flex' }}>
+            <div
+              style={{
+                fontSize: 20,
+                color: '#cdd8f0',
+                letterSpacing: 3,
+                textTransform: 'uppercase' as const,
+                border: '1px solid rgba(255,255,255,0.28)',
+                borderRadius: 999,
+                padding: '8px 18px',
+              }}
+            >
+              {h.badge}
+            </div>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', fontSize: 74, fontWeight: 700, lineHeight: 1.12, color: '#fff', marginTop: 28 }}>
+            <span>{h.headline1}</span>
+            <span>
+              <span style={{ color: '#5b9cff' }}>{h.headlineAccent}</span>
+              {h.headlineSuffix}
+            </span>
+          </div>
+          <div style={{ fontSize: 26, color: '#c7cedd', marginTop: 26 }}>{h.lede}</div>
+        </div>
+        <div style={{ position: 'absolute', bottom: 46, left: 80, fontSize: 22, color: '#5b9cff', letterSpacing: 1 }}>
+          procpa.co.kr
         </div>
       </div>
     ),
