@@ -6,14 +6,20 @@ import Script from 'next/script'
 import { themeScript } from '@/lib/theme-script'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import { content } from '@/lib/site-content'
+
+const OG_TITLE = '회계 전문성에 AI의 생산성을 더합니다'
+const OG_SUBTITLE = '한국공인회계사 이재현 · AX 컨설팅'
+// 공유 카드(카톡 등) 이미지 — 정적 PNG 대신 현재 브랜딩을 반영하는 동적 OG 카드 사용
+const OG_IMAGE = `/api/og?kicker=PROCPA&title=${encodeURIComponent(OG_TITLE)}&subtitle=${encodeURIComponent(OG_SUBTITLE)}`
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://procpa.co.kr'),
   title: {
-    default: 'PROCPA — 회계사의 기록',
+    default: 'PROCPA — 회계 전문성에 AI의 생산성을 더합니다',
     template: '%s · PROCPA',
   },
-  description: '회계사의 기록 — 회계·재무 전문성에 AI의 생산성을 더하다.',
+  description: content.meta.home.description,
   applicationName: 'PROCPA',
   authors: [{ name: '이재현', url: 'https://procpa.co.kr/about' }],
   creator: '이재현',
@@ -40,18 +46,18 @@ export const metadata: Metadata = {
     locale: 'ko_KR',
     url: 'https://procpa.co.kr',
     siteName: 'PROCPA',
-    title: 'PROCPA — 회계사의 기록',
-    description: '회계사의 기록 — 회계·재무 전문성에 AI의 생산성을 더하다.',
-    images: [{ url: '/og-default.png', width: 1200, height: 630, alt: 'PROCPA — 회계사의 기록' }],
+    title: 'PROCPA — 회계 전문성에 AI의 생산성을 더합니다',
+    description: content.meta.home.description,
+    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: 'PROCPA — 한국공인회계사 이재현' }],
   },
   alternates: {
     canonical: '/',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PROCPA — 회계사의 기록',
-    description: '회계사의 기록 — 회계·재무 전문성에 AI의 생산성을 더하다.',
-    images: ['/og-default.png'],
+    title: 'PROCPA — 회계 전문성에 AI의 생산성을 더합니다',
+    description: content.meta.home.description,
+    images: [OG_IMAGE],
   },
   robots: {
     index: true,
