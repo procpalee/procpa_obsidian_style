@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: `/api/og?kicker=PROCPA&title=${ogTitle}&subtitle=${ogSubtitle}`,
+        url: `/api/og?kicker=PROCPA&title=${ogTitle}&subtitle=${ogSubtitle}&variant=hero`,
         width: 1200,
         height: 630,
       },
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    images: [`/api/og?kicker=PROCPA&title=${ogTitle}&subtitle=${ogSubtitle}`],
+    images: [`/api/og?kicker=PROCPA&title=${ogTitle}&subtitle=${ogSubtitle}&variant=hero`],
   },
 }
 

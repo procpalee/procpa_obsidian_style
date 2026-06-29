@@ -64,6 +64,13 @@ export async function GET(req: NextRequest) {
   const variant = searchParams.get('variant') ?? 'a'
 
   if (variant === 'hero') {
+    const rawTitle = searchParams.get('title')
+    if (rawTitle) {
+      // 다른 페이지: 히어로 배경 위에 페이지 제목/부제
+      const heroFonts = await loadFonts(`${title}${subtitle}${kicker}`)
+      return variantHero(heroFonts, { kicker, title, subtitle })
+    }
+    // 홈: 실제 히어로 헤드라인(강조어 포함)
     const h = content.home.hero
     const heroFonts = await loadFonts(
       `${h.badge}${h.headline1}${h.headlineAccent}${h.headlineSuffix}${h.lede}`,
@@ -154,10 +161,12 @@ function variantA({ title, subtitle, kicker, meta, fonts }: OgProps) {
   )
 }
 
-/* ── Variant Hero: 실제 히어로(배경 이미지 + 듀오톤 + 헤드라인) ── */
-function variantHero(fonts: OgFont[]) {
+/* ── Variant Hero: 실제 히어로(배경 이미지 + 듀오톤). opts 없으면 홈 헤드라인, 있으면 페이지 제목/부제 ── */
+function variantHero(fonts: OgFont[], opts?: { kicker: string; title: string; subtitle: string }) {
   const h = content.home.hero
   const bg = heroDataUri()
+  const badge = opts ? opts.kicker : h.badge
+  const lede = opts ? opts.subtitle : h.lede
   return new ImageResponse(
     (
       <div
@@ -215,17 +224,23 @@ function variantHero(fonts: OgFont[]) {
                 padding: '8px 18px',
               }}
             >
-              {h.badge}
+              {badge}
             </div>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', fontSize: 74, fontWeight: 700, lineHeight: 1.12, color: '#fff', marginTop: 28 }}>
-            <span>{h.headline1}</span>
-            <span>
-              <span style={{ color: '#5b9cff' }}>{h.headlineAccent}</span>
-              {h.headlineSuffix}
-            </span>
-          </div>
-          <div style={{ fontSize: 26, color: '#c7cedd', marginTop: 26 }}>{h.lede}</div>
+          {opts ? (
+            <div style={{ display: 'flex', fontSize: 66, fontWeight: 700, lineHeight: 1.15, color: '#fff', marginTop: 28 }}>
+              {opts.title}
+            </div>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', fontSize: 74, fontWeight: 700, lineHeight: 1.12, color: '#fff', marginTop: 28 }}>
+              <span>{h.headline1}</span>
+              <span>
+                <span style={{ color: '#5b9cff' }}>{h.headlineAccent}</span>
+                {h.headlineSuffix}
+              </span>
+            </div>
+          )}
+          {lede ? <div style={{ display: 'flex', fontSize: 26, color: '#c7cedd', marginTop: 26 }}>{lede}</div> : null}
         </div>
         <div style={{ position: 'absolute', bottom: 46, left: 80, fontSize: 22, color: '#5b9cff', letterSpacing: 1 }}>
           procpa.co.kr

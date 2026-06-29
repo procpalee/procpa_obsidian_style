@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const post = await getPostBySlug(slug)
   if (!post) return {}
-  const og = `/api/og?kicker=BLOG&title=${encodeURIComponent(post.title)}&meta=${encodeURIComponent(formatDate(post.date))}&variant=b`
+  const og = `/api/og?kicker=BLOG&title=${encodeURIComponent(post.title)}&subtitle=${encodeURIComponent(`${post.categoryLabel} · ${formatDate(post.date)}`)}&variant=hero`
   return {
     title: post.title,
     description: post.description,

@@ -7,7 +7,7 @@ import { content } from '@/lib/site-content'
 const t = content.blog
 const DESC = content.meta.blog.description
 const ogTitle = encodeURIComponent(content.meta.blog.title)
-const og = `/api/og?kicker=BLOG&title=${ogTitle}`
+const og = `/api/og?kicker=BLOG&title=${ogTitle}&subtitle=${encodeURIComponent('AI 인사이트 · 개발 프로젝트 기록')}&variant=hero`
 
 export const metadata: Metadata = {
   title: content.meta.blog.title,
