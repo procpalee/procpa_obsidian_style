@@ -24,10 +24,6 @@ export const content = {
       description:
         '직접 집필한 도서, 강의, 개발한 도구, 그리고 주요 활동까지 — 그동안의 작업을 한곳에 모았습니다.',
     },
-    blog: {
-      title: '블로그',
-      description: 'AI 활용 인사이트와 직접 만든 개발 프로젝트 기록을 공유합니다.',
-    },
     contact: {
       title: '문의하기',
       description: '회계·재무 자문, AI 도입 컨설팅, 강의·집필, 협업 제안 — 어떤 주제든 편하게 연락주세요.',
@@ -40,7 +36,6 @@ export const content = {
     header: [
       { href: '/', label: '홈' },
       { href: '/about', label: '소개' },
-      { href: '/blog', label: '블로그' },
       { href: '/contact', label: '문의' },
     ],
     menuOpen: '메뉴 열기',
@@ -86,14 +81,6 @@ export const content = {
       kicker: 'What I do',
       title: '이런 일을 함께합니다',
       description: '회계 도메인 전문성과 AI 활용 역량으로 까다로운 실무 과제를 함께 풀어드립니다.',
-    },
-    blog: {
-      kicker: 'Writing',
-      title: '최근 글',
-      description: 'AI 활용 인사이트와 직접 만든 개발 프로젝트 기록을 공유합니다.',
-      action: '블로그 전체 보기',
-      empty: '첫 글을 준비 중입니다. 블로그에서 곧 만나보실 수 있습니다.',
-      emptyCta: '블로그 보기',
     },
     cta: {
       badge: 'WORK WITH ME',
@@ -152,16 +139,6 @@ export const content = {
     readMore: '읽기',
   },
 
-  /** 블로그 */
-  blog: {
-    hero: {
-      en: 'Blog',
-      ko: '블로그',
-      description: 'AI 활용 인사이트와 직접 만든 개발 프로젝트 기록을 공유합니다.',
-    },
-    empty: '글을 준비 중입니다. 곧 첫 글을 올릴 예정입니다.',
-    backToList: '블로그 목록',
-  },
 
   /** 문의 */
   contact: {

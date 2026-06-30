@@ -40,6 +40,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# 옵시디언 원고는 미추적. 단, 블로그용 동기화 산출물(content/posts)만 추적한다.
-/content/*
-!/content/posts/
+# 콘텐츠(옵시디언 원고)는 미추적 — 로컬 보관
+/content

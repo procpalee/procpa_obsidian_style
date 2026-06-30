@@ -39,7 +39,6 @@ home: {
 | 강의(현재 비어 있음 → 추가하면 자동 노출) | `src/lib/lectures-data.ts` |
 | 프로젝트(*소개* 페이지) | `src/lib/projects-data.ts` |
 | 외부활동(언론·활동, *소개* 페이지에 표시) | `src/lib/press-data.ts` |
-| 블로그 글 | **직접 편집 안 함** — Obsidian Vault에서 발행(아래 6번) |
 | 경력·학력·전문분야·자격증·통계·연락처 | `src/lib/about-data.ts` |
 | 후기(있을 때만 노출) | `src/lib/testimonials-data.ts` |
 | 이메일·카카오·블로그·위키독스 등 링크 | `src/lib/site-config.ts` |
@@ -74,33 +73,6 @@ home: {
    **Deployments**에서 최신 배포를 **Redeploy** 하면 운영 사이트에 폼이 켜집니다.
 4. 폼으로 들어온 문의는 1번에서 입력한 이메일로 전달됩니다. (메일 제목 형식은 `src/components/contact-form.tsx`에서 조정 가능)
 
-## 6. 블로그 글 발행 (Obsidian Vault 연동)
-
-블로그 글은 이 저장소에서 직접 쓰지 않고 **Obsidian Vault**(`Obsidian_Vault`)에서 가져와 발행합니다.
-대상은 **포스트만**(AI 인사이트 + 개발 프로젝트). 가이드(시리즈)는 위키독스로, 회계 실무 글은 별도 사이트로 갑니다.
-
-발행 순서:
-
-1. **Vault에서 글 작성** — `40. Content/42. Posts/` 아래. frontmatter에 `category`(`00. 개인`/`02. AI·생산성`/`03. 프로젝트`), `description`(300자 이하), `tags`, 그리고 발행 시 `slug`(영문) 지정.
-2. **발행** — Vault에서 `/post-publish <slug>` 실행(글을 `02. publish/`로 이동 + `status: published`). 또는 수동으로 같은 처리.
-3. **웹으로 동기화** — Vault 루트에서:
-   ```bash
-   node ".scripts/sync-to-blog.mjs" --target "<이 저장소 경로>"
-   ```
-   → 이 저장소의 `content/posts/<slug>.md`(+ 이미지가 있으면 `public/blog/<slug>/`)가 새로 생성됩니다. (`--dry`를 붙이면 검사만)
-4. **커밋·푸시** — 이 저장소에서:
-   ```bash
-   git add content/posts public/blog
-   git commit -m "블로그: <글 제목>"
-   git push
-   ```
-   `master` push → Vercel 자동 배포 → `/blog`에 노출.
-
-참고:
-- 카테고리는 `00. 개인`·`02. AI·생산성` → **AI 인사이트**, `03. 프로젝트` → **개발 프로젝트**로 자동 매핑됩니다.
-- `slug`가 없으면 제목을 로마자로 변환해 자동 생성합니다(영문 URL). 깔끔한 URL을 원하면 Vault frontmatter에 `slug`를 직접 넣으세요.
-- `content/posts/`만 git에 추적되고, 나머지 옵시디언 원고는 추적되지 않습니다.
-
 ---
 
 ## 미리보기 & 반영(배포)
@@ -123,4 +95,4 @@ git push
 
 - 콤마/따옴표/중괄호 같은 **형식 문자는 지우지 마세요**(문구 글자만 수정).
 - 저장 후 화면이 깨지면, 방금 바꾼 부분의 따옴표·쉼표 짝이 맞는지 확인하세요.
-- `content/posts/`는 블로그 글(Vault 동기화 산출물)이라 건드리지 마세요 — 수정은 Vault에서 합니다.
+- 글(블로그)은 이 사이트에서 운영하지 않습니다 — 네이버 블로그·위키독스 등 외부 채널로 링크합니다.
