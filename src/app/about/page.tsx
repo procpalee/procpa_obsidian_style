@@ -211,7 +211,7 @@ export default function AboutPage() {
               rel="noreferrer"
               className="group flex w-[88%] shrink-0 snap-start gap-5 rounded-2xl border border-border/60 p-5 transition-all hover:-translate-y-0.5 hover:border-foreground/40 hover:shadow-sm sm:w-[440px]"
             >
-              <div className="relative aspect-[3/4] w-24 shrink-0 overflow-hidden rounded-md bg-secondary">
+              <div className="relative aspect-[3/4] w-24 shrink-0 self-start overflow-hidden rounded-md bg-secondary">
                 {p.cover && <Image src={p.cover} alt={p.title} fill sizes="96px" className="object-cover" />}
               </div>
               <div className="flex min-w-0 flex-1 flex-col">
