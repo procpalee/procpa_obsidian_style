@@ -50,17 +50,24 @@ export const content = {
   /** 홈 */
   home: {
     hero: {
-      badge: 'KICPA · AX 컨설팅',
+      badge: '공인회계사 이재현 · KICPA AI 자문위원',
       headline1: '회계 전문성에', // 1번째 줄
       headlineAccent: 'AI의 생산성', // 2번째 줄 강조어(그라데이션)
       headlineSuffix: '을 더합니다', // 강조어 뒤 문구
-      lede: '회계·재무 실무의 AI 전환(AX)을 리딩합니다.',
+      lede: '한국공인회계사 이재현입니다. 회계·재무 자문부터 AI 도입(AX) 컨설팅, 강의, 협업까지 — 지금 진행 중인 과제를 그대로 들고 오시면 됩니다.',
       ctaPrimary: '문의하기',
-      ctaSecondary: '포트폴리오 보기',
+      emailPrefix: '이메일로 바로', // 뒤에 siteConfig.email이 이어짐
+      areasAriaLabel: '의뢰 가능한 업무', // 히어로 하단 업무 인덱스 aria-label
+    },
+    services: {
+      kicker: '01 — Services',
+      title: '이런 일을 의뢰하실 수 있습니다',
+      description: '네 가지 업무를 상시로 받고 있습니다. 항목을 누르면 해당 유형이 선택된 문의 양식으로 이동합니다.',
+      forWhomPrefix: '이런 분께',
     },
     approach: {
-      kicker: 'Approach',
-      title: '회계 전문성과 AI, 그리고 실행력',
+      kicker: '02 — Why',
+      title: '왜 함께 일할 만한가',
       description: '깊이 있는 회계 실무 위에 AI 생산성과 직접 만드는 실행력을 더합니다.',
       points: [
         {
@@ -76,21 +83,29 @@ export const content = {
           desc: '필요한 도구·MCP 서버를 직접 개발·배포합니다. 말이 아니라 결과물로 증명합니다.',
         },
       ],
+      // about-data.ts의 stats 배열 순서(경력→자격증→도서→프로젝트)와 인덱스로 매칭 — 순서 계약
+      statsLabels: ['년차 실무 경력', '보유 자격증', '집필 도서', '운영 프로젝트'],
     },
-    services: {
-      kicker: 'What I do',
-      title: '이런 일을 함께합니다',
-      description: '회계 도메인 전문성과 AI 활용 역량으로 까다로운 실무 과제를 함께 풀어드립니다.',
+    works: {
+      kicker: '03 — Selected Works',
+      title: '말이 아니라 결과물로 증명합니다',
+      description: '직접 집필해 연재 중인 가이드북, 배포해 운영 중인 도구, 그리고 언론이 다룬 활동입니다.',
+      books: '집필한 가이드북',
+      projects: '만들어 운영 중인 도구',
+      press: '언론 속 활동',
+      viewAll: '전체 보기 →',
+      moreSuffix: '개 운영 중', // "외 N" 뒤에 붙는 문구
     },
     cta: {
-      badge: 'WORK WITH ME',
-      headingLine1: '회계·재무 실무,',
-      headingAccent: 'AI와 함께',
-      headingSuffix: ' 풀어드립니다',
-      paragraph1: '회계·재무 자문, AI 도입 컨설팅, 강의·집필, 협업까지 —',
-      paragraph2: '필요하신 일이 있다면 편하게 문의해 주세요.',
+      kicker: '04 — Contact',
+      headingLine1: '지금 하시는 고민,',
+      headingAccent: '회계 × AI',
+      headingSuffix: '로 풀어보세요',
+      paragraph1: '자문·컨설팅·강의·협업 — 어느 단계의 이야기든 좋습니다.',
+      paragraph2: '간단한 상황 설명만 남겨주셔도 충분합니다.',
       primary: '업무 문의하기',
-      secondary: '실무 자동화 커뮤니티',
+      secondaryKakao: '카카오톡 1:1 문의',
+      responseNote: '영업일 기준 1~2일 내 회신드립니다.',
     },
   },
 

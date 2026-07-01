@@ -3,9 +3,11 @@ import { JsonLd, websiteJsonLd, personJsonLd } from '@/components/json-ld'
 import { socials } from '@/components/social-icons'
 import { Reveal } from '@/components/reveal'
 import { Hero } from '@/components/home/hero'
-import { Approach } from '@/components/home/approach'
-import { ServicesTeaser } from '@/components/home/services-teaser'
-import { CtaBlock } from '@/components/home/cta-block'
+import { CredentialMarquee } from '@/components/home/credential-marquee'
+import { ServicesIndex } from '@/components/home/services-index'
+import { ProofStats } from '@/components/home/proof-stats'
+import { WorksStrip } from '@/components/home/works-strip'
+import { ContactFinale } from '@/components/home/contact-finale'
 import { content } from '@/lib/site-content'
 
 export const metadata: Metadata = {
@@ -25,14 +27,18 @@ export default function HomePage() {
         })}
       />
       <Hero />
+      <CredentialMarquee />
       <Reveal>
-        <Approach />
+        <ServicesIndex />
       </Reveal>
       <Reveal>
-        <ServicesTeaser />
+        <ProofStats />
       </Reveal>
       <Reveal>
-        <CtaBlock />
+        <WorksStrip />
+      </Reveal>
+      <Reveal>
+        <ContactFinale />
       </Reveal>
     </>
   )

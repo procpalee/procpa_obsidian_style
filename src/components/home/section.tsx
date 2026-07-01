@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
-/** 홈 랜딩의 공통 섹션 셸 — mono 라벨 + 헤딩 + 설명 + 액션, hairline 구분선. */
+/** 홈 랜딩의 공통 섹션 셸 — mono 라벨 + 헤딩 + 설명 + 액션, hairline 구분선.
+ *  size="display" — 홈 리디자인용 대형 헤딩 + 넓은 리듬 (서브페이지는 default 유지). */
 export function Section({
   id,
   kicker,
@@ -10,6 +11,7 @@ export function Section({
   action,
   children,
   className,
+  size = 'default',
 }: {
   id?: string
   kicker?: string
@@ -18,13 +20,20 @@ export function Section({
   action?: React.ReactNode
   children: React.ReactNode
   className?: string
+  size?: 'default' | 'display'
 }) {
+  const display = size === 'display'
   return (
     <section
       id={id}
       className={cn('scroll-mt-20 border-t border-border/60', className)}
     >
-      <div className="mx-auto max-w-[1440px] px-6 py-16 sm:py-20">
+      <div
+        className={cn(
+          'mx-auto max-w-[1440px] px-6',
+          display ? 'py-20 sm:py-28' : 'py-16 sm:py-20',
+        )}
+      >
         {(kicker || title || description || action) && (
           <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
             <div className="min-w-0">
@@ -34,7 +43,14 @@ export function Section({
                 </p>
               )}
               {title && (
-                <h2 className="mt-3 text-3xl font-bold tracking-[-0.02em] sm:text-4xl">
+                <h2
+                  className={cn(
+                    'mt-3 font-bold [word-break:keep-all]',
+                    display
+                      ? 'text-[clamp(2.25rem,4.5vw,3.75rem)] leading-[1.08] tracking-[-0.035em]'
+                      : 'text-3xl tracking-[-0.02em] sm:text-4xl',
+                  )}
+                >
                   {title}
                 </h2>
               )}

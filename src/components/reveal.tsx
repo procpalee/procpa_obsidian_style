@@ -43,7 +43,8 @@ export function Reveal({
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
       className={cn(
-        'transition-all duration-700 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none',
+        // transition-all 금지 — 테마 토글 시 상속 color까지 애니메이션되어 텍스트가 이전 테마 색으로 지연/고착된다
+        'transition-[opacity,transform] duration-700 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none',
         shown ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0',
         className
       )}

@@ -3,6 +3,10 @@ import type { NextRequest } from 'next/server'
 import fs from 'node:fs'
 import path from 'node:path'
 import { content } from '@/lib/site-content'
+import { services } from '@/lib/services-data'
+
+// 홈 히어로 카드 하단의 업무 인덱스 라인 (실제 히어로 Work Index를 미러링)
+const WORK_AREAS = services.map((s) => s.title).join(' · ')
 
 export const runtime = 'nodejs'
 
@@ -70,10 +74,10 @@ export async function GET(req: NextRequest) {
       const heroFonts = await loadFonts(`${title}${subtitle}${kicker}`)
       return variantHero(heroFonts, { kicker, title, subtitle })
     }
-    // 홈: 실제 히어로 헤드라인(강조어 포함)
+    // 홈: 실제 히어로 헤드라인(강조어 포함) + 업무 인덱스 라인
     const h = content.home.hero
     const heroFonts = await loadFonts(
-      `${h.badge}${h.headline1}${h.headlineAccent}${h.headlineSuffix}${h.lede}`,
+      `${h.badge}${h.headline1}${h.headlineAccent}${h.headlineSuffix}${h.lede}${WORK_AREAS}`,
     )
     return variantHero(heroFonts)
   }
@@ -183,6 +187,7 @@ function variantHero(fonts: OgFont[], opts?: { kicker: string; title: string; su
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={bg}
+            alt=""
             width={1200}
             height={630}
             style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}
@@ -242,6 +247,25 @@ function variantHero(fonts: OgFont[], opts?: { kicker: string; title: string; su
           )}
           {lede ? <div style={{ display: 'flex', fontSize: 26, color: '#c7cedd', marginTop: 26 }}>{lede}</div> : null}
         </div>
+        {/* 홈 카드: 하단에 의뢰 가능한 업무 인덱스 (실제 히어로 Work Index 미러) */}
+        {!opts && (
+          <div
+            style={{
+              position: 'absolute',
+              bottom: 88,
+              left: 80,
+              right: 80,
+              paddingTop: 18,
+              borderTop: '1px solid rgba(255,255,255,0.2)',
+              fontSize: 21,
+              color: '#9fb4dd',
+              letterSpacing: 1,
+              display: 'flex',
+            }}
+          >
+            {WORK_AREAS}
+          </div>
+        )}
         <div style={{ position: 'absolute', bottom: 46, left: 80, fontSize: 22, color: '#5b9cff', letterSpacing: 1 }}>
           procpa.co.kr
         </div>

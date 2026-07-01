@@ -173,6 +173,79 @@
   display: none;
 }
 
+/* ═══════════════ Home FX — 홈 전용 연출 (히어로 등장·시머·마퀴) ═══════════════
+   홈에서만 쓰는 keyframes/유틸. 히어로(hero-fx-shell)와 크레덴셜 마퀴가 소비한다. */
+.fx-mask {
+  overflow: hidden;
+  display: block;
+  padding-bottom: 0.04em;
+}
+.fx-rise {
+  display: block;
+  transform: translateY(115%);
+  animation: fx-rise 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.fx-fade {
+  animation: fx-fade-up 0.9s ease-out both;
+}
+.fx-grad {
+  background: linear-gradient(90deg, #5b9cff, #a8c6ff, #22d3ee, #5b9cff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: fx-shimmer 5s linear infinite;
+}
+.fx-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: fx-marquee 36s linear infinite;
+}
+.fx-marquee-track:hover {
+  animation-play-state: paused;
+}
+.edge-fade-x {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+@keyframes fx-rise {
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes fx-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fx-shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+@keyframes fx-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fx-rise {
+    animation: none;
+    transform: none;
+  }
+  .fx-fade,
+  .fx-grad,
+  .fx-marquee-track {
+    animation: none;
+  }
+}
+
 /* ═══════════════ Docs body (.prose) — CMDS reference layout, blue accent ═══════════════
    Structure/scale ported from system.cmdspace.work/docs (Apple × CMDS), retoned
    to the procpa blue identity. Token-mapped for light/dark; kept unlayered so it
