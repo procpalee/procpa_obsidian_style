@@ -200,7 +200,7 @@
 .fx-marquee-track {
   display: flex;
   width: max-content;
-  animation: fx-marquee 36s linear infinite;
+  animation: fx-marquee 100s linear infinite;
 }
 .fx-marquee-track:hover {
   animation-play-state: paused;

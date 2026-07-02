@@ -8,7 +8,7 @@ const t = content.home.approach
 /** 왜 나인가 — 자동 집계 stats를 대형 카운트업 숫자로 + 강점 3포인트(타이포 중심). */
 export function ProofStats() {
   return (
-    <Section size="display" kicker={t.kicker} title={t.title} description={t.description}>
+    <Section id="why" size="display" kicker={t.kicker} title={t.title} description={t.description}>
       <dl className="grid grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-4">
         {stats.map((s, i) => (
           <div key={s.label}>

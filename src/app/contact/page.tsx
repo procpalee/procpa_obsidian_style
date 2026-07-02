@@ -55,7 +55,7 @@ export default function ContactPage() {
       {/* 연락 채널 */}
       <Section id="channels" kicker={t.channels.kicker} title={t.channels.title} description={t.channels.description}>
         <div className="grid gap-3 sm:grid-cols-2">
-          {contacts.map((c) => {
+          {contacts.filter((c) => c.label !== 'Email').map((c) => {
             const Icon = iconFor[c.label] ?? Mail
             const external = c.href.startsWith('http')
             return (

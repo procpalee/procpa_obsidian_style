@@ -3,13 +3,12 @@ import { ArrowUpRight } from 'lucide-react'
 import { Section, SectionLink } from '@/components/home/section'
 import { publications } from '@/lib/publications-data'
 import { projects } from '@/lib/projects-data'
-import { press } from '@/lib/press-data'
 import { content } from '@/lib/site-content'
 import { cn } from '@/lib/utils'
 
 const t = content.home.works
 
-/** 결과물 — 도서 표지(실물) + Live 프로젝트 + 언론 보도. 홈의 유일한 이미지 섹션. */
+/** 결과물 — 가이드북 표지(실물) + Live 프로젝트. 홈의 유일한 이미지 섹션. */
 export function WorksStrip() {
   const live = projects.filter((p) => p.status === 'live')
   const shown = live.slice(0, 3)
@@ -17,6 +16,7 @@ export function WorksStrip() {
 
   return (
     <Section
+      id="works"
       size="display"
       kicker={t.kicker}
       title={t.title}
@@ -56,7 +56,7 @@ export function WorksStrip() {
           </div>
         </div>
 
-        {/* 프로젝트 + 언론 */}
+        {/* 개발한 도구들 */}
         <div>
           <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
             {t.projects}
@@ -93,29 +93,6 @@ export function WorksStrip() {
               {t.moreSuffix}
             </p>
           )}
-
-          <p className="mt-12 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-            {t.press}
-          </p>
-          <ul className="mt-4 space-y-3">
-            {press.slice(0, 2).map((n) => (
-              <li key={n.key}>
-                <a
-                  href={n.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-3"
-                >
-                  <span className="min-w-0 text-sm transition-colors [word-break:keep-all] group-hover:text-primary sm:truncate">
-                    {n.title}
-                  </span>
-                  <span className="shrink-0 font-mono text-xs text-muted-foreground">
-                    {[n.outlet, n.date].filter(Boolean).join(' · ')}
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </Section>

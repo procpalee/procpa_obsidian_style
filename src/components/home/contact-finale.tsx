@@ -5,10 +5,10 @@ import { content } from '@/lib/site-content'
 
 const t = content.home.cta
 
-/** 클로징 — 풀와이드 좌정렬 스테이트먼트. 이메일을 거대 타이포 링크로 노출. */
+/** 클로징 — 풀와이드 좌정렬 스테이트먼트. */
 export function ContactFinale() {
   return (
-    <section className="border-t border-border/60">
+    <section id="contact" className="scroll-mt-20 border-t border-border/60">
       <div className="mx-auto max-w-[1440px] px-6 py-24 sm:py-32">
         <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
           {t.kicker}
@@ -23,17 +23,7 @@ export function ContactFinale() {
 
         <p className="mt-7 max-w-2xl text-lg leading-relaxed text-muted-foreground [word-break:keep-all]">
           {t.paragraph1}
-          <br className="hidden sm:inline" /> {t.paragraph2}
         </p>
-
-        <div className="mt-12">
-          <a
-            href={`mailto:${siteConfig.email}`}
-            className="inline-block break-all text-[clamp(1.375rem,3vw,2.25rem)] font-semibold tracking-[-0.02em] underline decoration-primary/40 decoration-2 underline-offset-8 transition-colors hover:decoration-primary"
-          >
-            {siteConfig.email}
-          </a>
-        </div>
 
         <div className="mt-10 flex flex-wrap items-center gap-4">
           <Link
@@ -53,8 +43,6 @@ export function ContactFinale() {
             {t.secondaryKakao}
           </a>
         </div>
-
-        <p className="mt-6 font-mono text-xs text-muted-foreground">{t.responseNote}</p>
       </div>
     </section>
   )

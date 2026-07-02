@@ -50,19 +50,26 @@ export const content = {
   /** 홈 */
   home: {
     hero: {
-      badge: '공인회계사 이재현 · KICPA AI 자문위원',
+      badge: 'KICPA · AX 컨설팅',
       headline1: '회계 전문성에', // 1번째 줄
       headlineAccent: 'AI의 생산성', // 2번째 줄 강조어(그라데이션)
       headlineSuffix: '을 더합니다', // 강조어 뒤 문구
-      lede: '한국공인회계사 이재현입니다. 회계·재무 자문부터 AI 도입(AX) 컨설팅, 강의, 협업까지 — 지금 진행 중인 과제를 그대로 들고 오시면 됩니다.',
+      lede: '회계·재무 실무의 AI 전환(AX)을 리딩합니다.',
       ctaPrimary: '문의하기',
-      emailPrefix: '이메일로 바로', // 뒤에 siteConfig.email이 이어짐
-      areasAriaLabel: '의뢰 가능한 업무', // 히어로 하단 업무 인덱스 aria-label
+      ctaSecondary: '포트폴리오 보기',
+      sectionsAriaLabel: '섹션 바로가기', // 히어로 하단 섹션 인덱스 aria-label
+      // 히어로 하단 인덱스 → 홈 각 섹션으로 스크롤 (번호는 섹션 kicker 01~04와 매칭)
+      sections: [
+        { label: 'SERVICES', href: '/#services' },
+        { label: 'WHY', href: '/#why' },
+        { label: 'WORKS', href: '/#works' },
+        { label: 'CONTACT', href: '/#contact' },
+      ],
     },
     services: {
       kicker: '01 — Services',
-      title: '이런 일을 의뢰하실 수 있습니다',
-      description: '네 가지 업무를 상시로 받고 있습니다. 항목을 누르면 해당 유형이 선택된 문의 양식으로 이동합니다.',
+      title: '이런 일들을 합니다',
+      description: '회계재무 자문부터 AX컨설팅, 강의, 외주 프로젝트까지. 항목을 선택하면 관련 내용이 채워진 문의 양식으로 이어집니다.',
       forWhomPrefix: '이런 분께',
     },
     approach: {
@@ -87,25 +94,22 @@ export const content = {
       statsLabels: ['년차 실무 경력', '보유 자격증', '집필 도서', '운영 프로젝트'],
     },
     works: {
-      kicker: '03 — Selected Works',
-      title: '말이 아니라 결과물로 증명합니다',
-      description: '직접 집필해 연재 중인 가이드북, 배포해 운영 중인 도구, 그리고 언론이 다룬 활동입니다.',
-      books: '집필한 가이드북',
-      projects: '만들어 운영 중인 도구',
-      press: '언론 속 활동',
+      kicker: '03 — Works',
+      title: '지금까지 해온 작업을 소개합니다',
+      description: '직접 집필한 가이드북과 손수 만들어 운영 중인 도구들을 모았습니다.',
+      books: '가이드북',
+      projects: '개발한 도구들',
       viewAll: '전체 보기 →',
       moreSuffix: '개 운영 중', // "외 N" 뒤에 붙는 문구
     },
     cta: {
       kicker: '04 — Contact',
-      headingLine1: '지금 하시는 고민,',
-      headingAccent: '회계 × AI',
-      headingSuffix: '로 풀어보세요',
-      paragraph1: '자문·컨설팅·강의·협업 — 어느 단계의 이야기든 좋습니다.',
-      paragraph2: '간단한 상황 설명만 남겨주셔도 충분합니다.',
+      headingLine1: '지금 하고 계신 고민,',
+      headingAccent: '함께',
+      headingSuffix: ' 풀어가겠습니다',
+      paragraph1: '자문·컨설팅·강의·개발 — 어느 단계의 이야기든 편하게 문의 주세요.',
       primary: '업무 문의하기',
       secondaryKakao: '카카오톡 1:1 문의',
-      responseNote: '영업일 기준 1~2일 내 회신드립니다.',
     },
   },
 
@@ -170,7 +174,7 @@ export const content = {
     channels: {
       kicker: 'Channels',
       title: '연락 채널',
-      description: '이메일·카카오톡이 가장 빠릅니다. 블로그·유튜브·깃허브에서도 만나보실 수 있습니다.',
+      description: '카카오톡이 가장 빠릅니다. 블로그·유튜브·깃허브에서도 만나보실 수 있습니다.',
     },
     testimonials: { title: '이런 평가를 받았습니다' },
     form: {

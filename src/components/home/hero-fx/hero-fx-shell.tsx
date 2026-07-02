@@ -1,27 +1,24 @@
 import Link from 'next/link'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowDown } from 'lucide-react'
 import { content } from '@/lib/site-content'
-import { services } from '@/lib/services-data'
-import { siteConfig } from '@/lib/site-config'
 
 const t = content.home.hero
 
 /**
  * 에디토리얼 히어로 — 대형 헤드라인이 라인 마스크 슬라이드업으로 등장하고,
- * 하단에 4개 업무 인덱스(Work Index)가 히어로의 구조 요소로 붙는다.
- * 첫 화면에서 "누구인지 / 무슨 일을 받는지 / 어떻게 연락하는지"를 모두 답한다.
+ * 하단에 섹션 인덱스가 히어로의 구조 요소로 붙어 홈 각 섹션으로 스크롤한다.
  * (fx-* keyframes/유틸은 globals.css의 Home FX 블록)
  */
 export function HeroFxShell({ bg }: { bg: React.ReactNode }) {
   return (
-    <section className="relative isolate flex min-h-[92svh] flex-col justify-end overflow-hidden border-b border-border/60 bg-[#070912]">
+    <section className="relative isolate flex min-h-[92svh] flex-col overflow-hidden border-b border-border/60 bg-[#070912]">
       <div className="absolute inset-0 -z-10">{bg}</div>
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/70 via-black/25 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-1/2 bg-gradient-to-b from-transparent to-black/60" />
 
-      <div className="mx-auto w-full max-w-[1440px] px-6 pb-10 pt-24 text-white sm:pt-28">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col justify-center px-6 py-20 text-white">
         <span
-          className="fx-fade inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1 font-mono text-[13px] tracking-wider text-white/90 backdrop-blur-sm"
+          className="fx-fade inline-flex items-center gap-2 self-start rounded-full border border-white/25 bg-white/10 px-3 py-1 font-mono text-[13px] tracking-wider text-white/90 backdrop-blur-sm"
           style={{ animationDelay: '0ms' }}
         >
           <span className="h-1.5 w-1.5 rounded-full bg-primary" />
@@ -59,22 +56,22 @@ export function HeroFxShell({ bg }: { bg: React.ReactNode }) {
           >
             {t.ctaPrimary}
           </Link>
-          <a
-            href={`mailto:${siteConfig.email}`}
-            className="font-mono text-sm text-white/75 underline decoration-white/30 underline-offset-4 transition-colors hover:text-white hover:decoration-[#8ab4ff]"
+          <Link
+            href="/about"
+            className="rounded-full border border-white/40 px-7 py-3.5 text-base font-medium text-white transition-colors hover:bg-white/10"
           >
-            {t.emailPrefix} — {siteConfig.email}
-          </a>
+            {t.ctaSecondary}
+          </Link>
         </div>
       </div>
 
-      {/* Work Index — 의뢰 가능한 4개 업무. 홈 내 서비스 섹션(#services)으로 스크롤 */}
-      <nav aria-label={t.areasAriaLabel} className="border-t border-white/15 text-white">
+      {/* 섹션 인덱스 — 홈 각 섹션으로 스크롤 (번호는 섹션 kicker 01~04와 매칭) */}
+      <nav aria-label={t.sectionsAriaLabel} className="border-t border-white/15 text-white">
         <div className="mx-auto grid w-full max-w-[1440px] grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-white/10">
-          {services.map((s, i) => (
+          {t.sections.map((s, i) => (
             <Link
-              key={s.key}
-              href="/#services"
+              key={s.href}
+              href={s.href}
               className="fx-fade group flex items-center justify-between gap-3 px-6 py-4 transition-colors hover:bg-white/[0.06] sm:py-5"
               style={{ animationDelay: `${700 + i * 80}ms` }}
             >
@@ -83,10 +80,10 @@ export function HeroFxShell({ bg }: { bg: React.ReactNode }) {
                   0{i + 1}
                 </span>
                 <span className="mt-1 block text-[15px] font-semibold leading-snug [word-break:keep-all] sm:text-base">
-                  {s.title}
+                  {s.label}
                 </span>
               </span>
-              <ArrowUpRight className="h-4 w-4 shrink-0 text-white/50 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" />
+              <ArrowDown className="h-4 w-4 shrink-0 text-white/50 transition-all group-hover:translate-y-0.5 group-hover:text-white" />
             </Link>
           ))}
         </div>
